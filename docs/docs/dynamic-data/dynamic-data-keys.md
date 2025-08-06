@@ -77,6 +77,12 @@ This page will serve as the master doc page for all dynamic data keys. Feel free
 
 `url.parameter` allows you to reference the value of any parameter key in the url string, which can be very helpful for personalizing page content by injecting content or creating conditions.
 
+For example, if you have a URL of `/thank-you/?firstName=John`, you can use `{url.parameter.firstName}` to output `John`.
+
+**Tips:**
+- This key is case sensitive. If you have a parameter of `Name` in your URL, you need to use `{url.parameter.Name}`, not `{url.parameter.name}`
+- For security, all URL parameters are automatically sanitized using WordPress's `sanitize_text_field()` function to prevent XSS attacks.
+
 ## Etch Custom Fields Support
 
 Custom fields created within Etch can be accessed with the `etch` extension.
