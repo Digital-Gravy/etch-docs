@@ -290,18 +290,18 @@ display: none;
 		var(--nav-item-focus-outline-color);
 }
 
+:where(.etch-nav__item .etch-nav__link, .etch-nav__item .etch-nav__button) {
+	text-decoration: none;
+	color: var(--nav-link-color);
+	padding: var(--nav-item-padding);
+}
+
 :where(
 	.etch-nav__link[aria-current='page'],
 	.etch-nav__button[aria-current='page']
 ) {
 	text-decoration: var(--nav-item-current-active-decoration);
 	text-underline-offset: var(--nav-item-current-active-offset);
-}
-
-:where(.etch-nav__item .etch-nav__link, .etch-nav__item .etch-nav__button) {
-	text-decoration: none;
-	color: var(--nav-link-color);
-	padding: var(--nav-item-padding);
 }
 
 :where(.etch-nav__button) {
@@ -421,8 +421,9 @@ display: none;
 5. With the main Nav element still selected, copy the below JS and paste it into the JS editor. If you don't see the JS editor in Etch, make sure the JS panel is turned on in the panel visibility area.
 ```js
 class EtchNavScript {
-	constructor(navElement) {
+	constructor(navElement, options = {}) {
 		this.navEl = navElement;
+		this.options = options;
 		this.hoverTimeouts = new Map();
 		this.isTouchDevice = this.detectTouchDevice();
 		this.init();
@@ -449,10 +450,71 @@ class EtchNavScript {
 
 		this.attachEventListeners();
 		this.setInitialNavStates();
+
+		if (this.isAriaCurrentPageEnabled()) {
+			this.setAriaCurrentPage();
+		}
 	}
 
 	getNavList() {
 		return this.navEl.querySelector('.etch-nav__list');
+	}
+
+	getAriaCurrentPageConfig() {
+		const value = this.options?.ariaCurrentPage;
+
+		if (value === true)
+			return {
+				enabled: true,
+				homePage: true
+			};
+
+		if (value && typeof value === 'object')
+			return {
+				enabled: true,
+				homePage: value.homePage === false ? false : true
+			};
+
+		return {
+			enabled: false
+		};
+	}
+
+	setAriaCurrentPage() {
+		const { homePage } = this.getAriaCurrentPageConfig();
+
+		const currentUrl = this.normalizeUrl(window.location.href);
+		const homepageUrl = this.normalizeUrl(window.location.origin);
+
+		if (!homePage && currentUrl === homepageUrl) return;
+
+		const navLinks = this.topLevelNavItems.filter(
+			(el) =>
+				el.classList.contains('etch-nav__link') &&
+				el.hasAttribute('href')
+		);
+
+		for (const item of navLinks) {
+			const itemUrl = this.normalizeUrl(
+				new URL(item.href, window.location.origin).href
+			);
+			if (itemUrl === currentUrl) {
+				item.setAttribute('aria-current', 'page');
+				break;
+			}
+		}
+	}
+
+	isAriaCurrentPageEnabled() {
+		return this.getAriaCurrentPageConfig().enabled;
+	}
+
+	normalizeUrl(url) {
+		let normalized = url.replace(/\/+$/, '');
+		if (normalized === window.location.origin) {
+			normalized += '/';
+		}
+		return normalized;
 	}
 
 	getTopLevelNavItems(navList) {
@@ -864,7 +926,7 @@ class EtchNavScript {
 	}
 }
 
-function instantiateNavClass() {
+function instantiateNavClass(options = {}) {
 	// etch nav element ( if you changed the data-etch-nav attribute value in html, it need to be reflected here as well)
 	const navEl = document.querySelector('[data-etch-nav="main"]');
 
@@ -876,7 +938,7 @@ function instantiateNavClass() {
 	}
 
 	// create an instance of the nav script
-	const navInstance = new EtchNavScript(navEl);
+	const navInstance = new EtchNavScript(navEl, options);
 
 	// use etchElements window object or create a new one if doesnt exist
 	window.etchElements = window.etchElements || [];
@@ -889,8 +951,10 @@ instantiateNavClass();
 6. Right click the Nav and choose "Create component."
 7. From the component editor, add a "Loop" prop. Make sure the prop key is `basicNav`. The HTML is looking for this specific prop key.
 8. Choose the Basic Nav loop as the default loop. This is a starter nav loop that is provided by default in Etch.
-9. Save the component and exit the component editor.
-10. Choose the Basic Nav loop once again from the Loop selector in the component attributes panel. This will explicitly set the loop so you're not relying on the default value.
+9. From the component editor, add a "Text" prop. Make sure the prop key is `navAriaLabel`.
+10. Save the component and exit the component editor.
+11. Choose the Basic Nav loop once again from the Loop selector in the component attributes panel. This will explicitly set the loop so you're not relying on the default value.
+12. Set a descriptive aria-label for the nav in the component attributes panel. This is important for accessibility.
 
 You will now see a rendered sample navigation in your header.
 
@@ -904,6 +968,7 @@ The burger trigger is required for triggering the mobile navigation.
 <button
 	aria-expanded="false"
 	class="etch-burger"
+	aria-label="Open {props.ariaLabel}"
 	data-etch-context="eyJvcmlnaW4iOiJldGNoIiwiaGlkZGVuIjpmYWxzZSwic3RydWN0dXJlU3RhdGUiOiJvcGVuIiwicmVmIjoiZWVoamd1ZSJ9"
 >
 	<span
@@ -922,7 +987,7 @@ The burger trigger is required for triggering the mobile navigation.
 ```
 3. Choose the Burger element and you'll see the `.etch-burger` class. Paste the following CSS into that class:
 ```css
---hamburger-size: 20px;
+	--hamburger-size: 20px;
 	--burger-dark-color: #242424;
 	--burger-lines-size: 100%;
 	--transition-duration: 0.3s;
@@ -1046,10 +1111,26 @@ class EtchBurgerScript {
 		return false;
 	}
 
+	getAriaLabel() {
+		return this.button.getAttribute('aria-label') || '';
+	}
+
+	updateAriaLabel(newState) {
+		const ariaLabel = this.getAriaLabel();
+		if (!ariaLabel) return;
+
+		const match = ariaLabel.match(/^\s*([^\s]+)(.*)$/);
+		const rest = match[2];
+		const action = newState ? 'Close' : 'Open';
+
+		this.button.setAttribute('aria-label', `${action}${rest}`);
+	}
+
 	updateBurgerState(newState) {
 		if (this.selfAriaExpanded) {
 			this.button.setAttribute('aria-expanded', String(newState));
 		}
+		this.updateAriaLabel(newState);
 	}
 
 	updateTargetState(newState) {
@@ -1106,7 +1187,9 @@ if (!etchNav) {
 // instantiateBurgerClass();
 ```
 5. Right click the Burger element and choose "Create Component."
-6. Save the component and exit the component editor.
+6. From the component editor, add a "Text" prop. Make sure the prop key is `ariaLabel`.
+7. Save the component and exit the component editor.
+8. Set a descriptive aria-label for the burger in the component attributes panel. This is important for accessibility.
 
 You now have a Burger element (which you can't see on desktop) next to a Navigation element. The navigation pulls data from the Basic Nav JSON data to compile your JSON into a functional, accessible, responsive menu.
 
@@ -1200,6 +1283,62 @@ Here's some sample JSON:
 :::tip
 Use relative URL references, not full static URLs.
 :::
+
+### Nav Component Options
+| Option            | Type                  | Default | Description                                                                                                                                                      |
+| ----------------- | --------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ariaCurrentPage` | `boolean` or `object` | `false` | Enables automatic setting of `aria-current="page"` on the current navigation link. Pass `true` for basic usage, or an object for advanced configuration.         |
+|   • `homePage`    | `boolean`             | `true`  | *(Only if `ariaCurrentPage` is an object)* — If `true`, the homepage link will also be marked as the current page. Set to `false` to skip homepage highlighting. |
+
+**Examples** of using the `ariaCurrentPage` option:
+- Enable the `aria-current` attribute on the current page:
+- Disable the homepage link from being marked as the current page:
+```js
+instantiateNavClass({
+	ariaCurrentPage: true
+});
+
+instantiateNavClass({
+	ariaCurrentPage: {
+		homePage: false
+	}
+});
+```
+
+### Burger Component Options
+| Option             | Type                        | Default     | Description                                                                  |
+| ------------------ | --------------------------- | ----------- | ---------------------------------------------------------------------------- |
+| `button`           | `HTMLElement`               | `undefined` | **Required** – The burger toggle element where click handling is attached.   |
+| `target`           | `string` or `HTMLElement`   | `null`      | The element to show/hide when toggled. Selector or direct element reference. |
+| `selfAriaExpanded` | `boolean`                   | `false`     | If `true`, the burger button manages its own `aria-expanded` attribute.      |
+| `targetOptions`    | `object`                    | `{}`        | Configuration for the target element.                                        |
+|   • `class`        | `string`                    | `null`      | Class to toggle on the target element.                                       |
+|   • `ariaExpanded` | `boolean`                   | `false`     | If `true`, toggles `aria-expanded` on the target element.                    |
+| `onToggle`         | `(isOpen: boolean) => void` | `null`      | Called every time the burger is toggled; `isOpen` is `true` when opened.     |
+| `onClose`          | `() => void`                | `null`      | Called only when the burger is closed.                                       |
+
+**Example** of using the `onToggle` or `onClose` to execute custom functions:
+:::warning
+The example below might differ from the javascript provided in the burger component for brevity.
+:::
+```js
+const burgerInstance = new EtchBurgerScript({
+	button: document.querySelector('.etch-burger'),
+	target: document.querySelector('[data-etch-nav="main"]'),
+	selfAriaExpanded: true,
+	targetOptions: {
+		ariaExpanded: true
+	},
+	onToggle: (isOpen) => {
+		document.body.classList.toggle('my-class', isOpen); // toggle a class on the body
+	},
+	onClose: myOwnFunction // our own function that will do something that we need.
+});
+
+myOwnFunction() {
+	// do something
+}
+```
 
 ## Styling Your Navigation
 
