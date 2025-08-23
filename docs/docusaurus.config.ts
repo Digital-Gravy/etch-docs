@@ -68,6 +68,9 @@ const config: Config = {
 	themeConfig: {
 		// Replace with your project's social card
 		image: 'img/docs-cover-image',
+		colorMode: {
+			defaultMode: 'dark',
+		},
 		navbar: {
 			title: 'Etch',
 			logo: {
