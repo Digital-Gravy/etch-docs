@@ -14,7 +14,7 @@ In Etch, relationship fields can be accessed using the loop syntax. Each custom 
 ```html
 <!-- General syntax -->
 {#loop this.field_source.relationship_field_name as item}
-  <!-- Your repeating content here -->
+  <!-- Your relationship content here -->
   <!-- Access post data using the appropriate properties -->
 {/loop}
 ```
