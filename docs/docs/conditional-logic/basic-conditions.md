@@ -73,30 +73,15 @@ And since conditions are blocks in the editor, you are free to drag whatever ele
 
 ## Non-Boolean Conditions
 
-If you need to check a specific value, like the value of a custom field, then you will use comparison operators. Understanding the difference between loose and strict comparisons is crucial for writing reliable conditions.
+If you need to check a specific value, like the value of a custom field, then you will use comparison operators. In most cases, you should use strict comparisons (`===`, `!==`) which compare both the value and the type.
 
-### Loose vs Strict Comparisons
+```html
+{#if props.productCategory === "featured"}
+  <!-- Show featured tag -->
+{/if}
+```
 
-**Loose Comparisons (`==` and `!=`)**
-- Compares values after attempting type conversion
-- `"5" == 5` returns `true` (string "5" is converted to number 5)
-- `true == 1` returns `true` (boolean true is converted to number 1)
-- `false == 0` returns `true` (boolean false is converted to number 0)
-
-**Use Loose Comparisons when:**
-- You want flexible matching regardless of data type
-- You expect the data might come in different formats
-
-**Strict Comparisons (`===` and `!==`)**
-- Compares both value AND type without conversion
-- `"5" === 5` returns `false` (string vs number)
-- `true === 1` returns `false` (boolean vs number)
-- `false === 0` returns `false` (boolean vs number)
-
-**Use Strict Comparisons when:**
-- You need precise type and value matching
-- Working with exact data validation
-- You want to prevent unexpected type conversion bugs
+For more information about the difference between loose and strict comparisons, see the [Advanced Conditions](/conditional-logic/advanced-conditions#loose-vs-strict-comparisons) guide.
 
 ### Practical Examples
 
@@ -106,22 +91,6 @@ In your component, create a prop called "rating." This is where we'll place the 
 
 One way to do this would be to create five conditions that all check the rating value. If the rating equals 1, show one star. If the rating equals 2, show two stars.
 
-**Using Loose Comparison (Flexible):**
-```html
-{#if props.rating == 1}
-  <!-- Star 1 -->
-{/if}
-{#if props.rating == 2}
-  <!-- Star 1 --> <!-- Star 2 -->
-{/if}
-{#if props.rating == 3}
-  <!-- Star 1 --> <!-- Star 2 --> <!-- Star 3 -->
-{/if}
-```
-
-This approach works whether `props.rating` is the number `2` or the string `"2"`.
-
-**Using Strict Comparison (Precise):**
 ```html
 {#if props.rating === 1}
   <!-- Star 1 -->
@@ -134,7 +103,7 @@ This approach works whether `props.rating` is the number `2` or the string `"2"`
 {/if}
 ```
 
-This approach only works if `props.rating` is exactly the number (not a string representation).
+This approach uses strict comparison (`===`), which is recommended for most cases. It ensures that `props.rating` is exactly the number we're checking for.
 
 ## Values vs Strings
 
@@ -178,9 +147,9 @@ That's a critical distinction that many beginners get wrong.
 ## Best Practices
 
 1. **Use strict comparisons (`===`, `!==`) by default** to avoid unexpected behavior
-2. **Use loose comparisons (`==`, `!=`) only when you specifically need type flexibility**
-3. **Always use quotes around text values** and never around numbers or booleans
-4. **Use mathematical operators (`>=`, `<=`, `>`, `<`) for numerical ranges**
+2. **Always use quotes around text values** and never around numbers or booleans
+3. **Use mathematical operators (`>=`, `<=`, `>`, `<`) for numerical ranges**
+4. **For more complex conditions**, refer to the [Advanced Conditions](/conditional-logic/advanced-conditions) guide
 
 ## Practice Makes Perfect
 
