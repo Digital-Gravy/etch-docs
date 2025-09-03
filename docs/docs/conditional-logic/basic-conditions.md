@@ -81,7 +81,7 @@ If you need to check a specific value, like the value of a custom field, then yo
 {/if}
 ```
 
-For more information about the difference between loose and strict comparisons, see the [Advanced Conditions](/docs/conditional-logic/advanced-conditions#loose-vs-strict-comparisons) guide.
+For more information about the difference between loose and strict comparisons, see the [Advanced Conditions](/conditional-logic/advanced-conditions#loose-vs-strict-comparisons) guide.
 
 ### Practical Examples
 
@@ -149,7 +149,7 @@ That's a critical distinction that many beginners get wrong.
 1. **Use strict comparisons (`===`, `!==`) by default** to avoid unexpected behavior
 2. **Always use quotes around text values** and never around numbers or booleans
 3. **Use mathematical operators (`>=`, `<=`, `>`, `<`) for numerical ranges**
-4. **For more complex conditions**, refer to the [Advanced Conditions](/docs/conditional-logic/advanced-conditions) guide
+4. **For more complex conditions**, refer to the [Advanced Conditions](/conditional-logic/advanced-conditions) guide
 
 ## Practice Makes Perfect
 
