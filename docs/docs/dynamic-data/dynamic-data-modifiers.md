@@ -180,7 +180,7 @@ The `.toInt()` method converts numeric values to an integer by truncating any fr
 ### `.toSlug()`
 **Returns:** string (slug) or original value
 
-The `.toSlug()` method generates a URL‑friendly slug from a string: it lowercases the text, transliterates to ASCII, replaces non `[a–z0–9]` characters with `-`, and trims leading/trailing hyphens. Only string inputs are transformed; other types are returned unchanged.
+The `.toSlug()` method generates a URL‑friendly slug from a string: it lowercases the text, transliterates to ASCII, replaces non `[a–z][0–9]` characters with `-`, and trims leading/trailing hyphens. Only string inputs are transformed; other types are returned unchanged.
 
 #### Examples:
 - value = "Über Theme"<br />
@@ -188,7 +188,7 @@ The `.toSlug()` method generates a URL‑friendly slug from a string: it lowerca
 
 #### Example use case: Generate CSS class names from values
 - `<article class="post-{post.title.toSlug()}">...</article>`
-- `<span class="role-{user.role.toSlug()}">...</span>`
+- `<span class="role-{user.userRoles.toSlug()}">...</span>`
 
 ---
 
