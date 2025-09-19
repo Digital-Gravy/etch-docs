@@ -151,9 +151,14 @@ The `.numberFormat()` method formats a numeric value with grouped thousands and 
 
 The `.toString()` method converts any value into its string representation. Booleans become the strings "true" or "false", scalar values are cast directly to strings, and arrays or objects are JSON-encoded when possible to provide a readable format.
 #### Examples:
-- **Numbers:** <br />`3.14` → "3.14"
-- **Booleans:** <br />`true` → "true"<br />`false` → "false"
-- **Null Values:** <br />`null` → "" (empty string)
+- value1 = `3.14`<br />
+  - `{item.value1.toString()}` → "3.14"
+- value2 = `true`<br />
+  - `{item.value2.toString()}` → "true"
+- value3 = `false`<br />
+  - `{item.value3.toString()}` → "false"
+- value4 = `null`<br />
+  - `{item.value4.toString()}` → "" (empty string)
 
 ---
 
@@ -163,9 +168,12 @@ The `.toString()` method converts any value into its string representation. Bool
 The `.toInt()` method converts numeric values to an integer by truncating any fractional part. If the value is already an integer it is returned as-is; if it’s numeric (including numeric strings like "123" or "123.45") it is cast to `(int)`. Non-numeric values are returned unchanged.
 
 #### Examples:
-- "123" → `123`
-- "123.9" → `123`
-- "abc" → "abc" (unchanged)
+- value1 = "123"<br />
+  - `{item.value1.toInt()}` → `123`
+- value2 = "123.9"<br />
+  - `{item.value2.toInt()}` → `123`
+- value3 = "abc"<br />
+  - `{item.value3.toInt()}` → "abc" (unchanged)
 
 ---
 
@@ -175,7 +183,8 @@ The `.toInt()` method converts numeric values to an integer by truncating any fr
 The `.toSlug()` method generates a URL‑friendly slug from a string: it lowercases the text, transliterates to ASCII, replaces non `[a–z0–9]` characters with `-`, and trims leading/trailing hyphens. Only string inputs are transformed; other types are returned unchanged.
 
 #### Examples:
-- "Über Theme".toSlug() → "uber-theme"
+- value = "Über Theme"<br />
+  - `{item.value.toSlug()}` → "uber-theme"
 
 #### Example use case: Generate CSS class names from values
 - `<article class="post-{post.title.toSlug()}">...</article>`
@@ -187,7 +196,7 @@ The `.toSlug()` method generates a URL‑friendly slug from a string: it lowerca
 **Returns:** boolean (`true`/`false`)
 
 The `.toBool()` method normalizes common truthy/falsey inputs into a strict boolean. It is case-insensitive and supports strings ("true"/"false", "yes"/"no", "on"/"off"), numeric strings ("1"/"0"), and numeric values (1/0). `null` becomes `false`.
-#### Examples:
+#### Example inputs that will convert to booleans:
 - `1`, "1", "true", "yes", "on" → `true`
 - `0`, "0", "false", "no", "off" → `false`
 - `null` → `false`
