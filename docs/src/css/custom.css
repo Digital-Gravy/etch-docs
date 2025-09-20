@@ -6,13 +6,13 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: oklch(0.9007 0.1206 185.02);
-  --ifm-color-primary-dark: hsl(205, 30%, 30%);
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: var(--ifm-color-primary-darker);
+  --ifm-color-primary-dark: #08aa98;
+  --ifm-color-primary-darker: #067a6c;
+  --ifm-color-primary-darkest: #02221e;
+  --ifm-color-primary-light: oklch(0.8998 0.1203 184.8);
+  --ifm-color-primary-lighter: #55f7e4;
+  --ifm-color-primary-lightest: #c6ece7;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
@@ -27,6 +27,9 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-breadcrumb-color-active: var(--ifm-color-primary);
+  --ifm-link-color: var(--ifm-color-primary);
+  
 }
 
 .navbar__logo {
