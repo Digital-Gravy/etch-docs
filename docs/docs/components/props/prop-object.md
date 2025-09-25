@@ -5,11 +5,30 @@ sidebar_position: 1000
 
 # Object Prop
 
-The Object Prop passes loop/object/array data from outside a component, into the component.
+The Object Prop passes loop/object/array/json data from outside a component, into the component.
+The most basic example would be to pass an entire post into a post card component like this:
+```
+{#loop allPosts as currentPost}
+  <PostCard post={currentPost}/>
+{/loop}
+```
+Within the component, the entire post object is now accessible under the `props.post` key.
+To retrieve the posts title you can write `{props.post.title}` for example.
 
 ## Why the Object Prop Exists
 
-When a component is placed inside a loop, the component is blocked from accessing the loop data. This is done on purpose to force users to create properly atomized, independent components. 
+Sometimes it is preferable to pass an entire object or array at once, instead of creating props for everything separately.
+Especially if you try to access data from a loop wrapping your component, inside your component, without passing it as a prop, it will not work.
+
+For example, if you create a component without an object prop, and put it inside a `{#loop allPosts as post}`, you will find you cannot access e.g. `{post.title}` when editing the component. This is by design, as a component should be atomic, and not dependend on anything from outside. 
+_Everything a component "needs" should be given to it as a prop._
+
+:::tip
+
+Always think of a component as completely separated from the page you are currently editing, it has its own "scope", and can only see `props` and global keys like `this`, `site` or `url`.
+
+:::
+
 
 Let's say you build a blog post card component with the intention of using it inside a loop that will be configured to query blog posts.
 
