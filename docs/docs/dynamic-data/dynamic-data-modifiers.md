@@ -110,6 +110,11 @@ This allows you to format or transform values before they are displayed.
       <td>Combines array elements into a string with a separator.</td>
       <td><code>user.userRoles = ["author", "editor"]</code><br /><br /><code>&#123;user.userRoles.join(', ')&#125;</code> → <code>"author, editor"</code></td>
     </tr>
+    <tr>
+      <td><code>.applyData()</code></td>
+      <td>Reapplies available dynamic data to the given value.<br /><a href="#applydata">More Details</a></td>
+      <td><code>item.text = "Hello &#123;user.name&#125;"</code><br /><br /><code>&#123;item.text.applyData()&#125;</code> → <code>"Hello John"</code></td>
+    </tr>
   </tbody>
   </table>
 
@@ -229,6 +234,21 @@ The `.includes()` method checks whether a string contains a given substring or a
   - `{item.value.includes("oo")}` → `false` (no substring matching)
   - `{item.value.includes("Foo")}` → `false` (case-sensitive)
   - `{item.value.includes("test")}` → `false`
+
+---
+
+### `.applyData`
+**Returns:** Returns the original value with dynamic data reapplied.
+
+The `applyData()` method is an advanced feature that can be used to reapply dynamic data to an already resolved value.
+
+#### Examples:
+
+You might have a custom field that includes dynamic data, for example: `this.etch.header = "Welcome to {this.title}!"` <br/>
+If you output `{this.etch.header}` directly, it will render as: <br /> `"Welcome to {this.title}!"` — without replacing `{this.title}`.
+
+To resolve the dynamic data, call `.applyData()` on the value: `{this.etch.header.applyData()}` <br />
+This first retrieves the original string, then reapplies the dynamic data, resulting in: <br />`"Welcome to Etch!` (or whatever value `{this.title}` resolves to).
 
 ---
 
