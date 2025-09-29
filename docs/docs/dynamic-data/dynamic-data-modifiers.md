@@ -79,6 +79,36 @@ This allows you to format or transform values before they are displayed.
       <td><code>value = "hello  "</code><br /><br /><code>&#123;item.value.rtrim()&#125;</code> → <code>"hello"</code></td>
     </tr>
     <tr>
+      <td><code>.urlEncode()</code></td>
+      <td>Encodes a string for usage inside a URL.</td>
+      <td><code>value = "Hello World!"</code><br /><br /><code>&#123;item.value.urlEncode()&#125;</code> → <code>"Hello%20World!"</code></td>
+    </tr>
+    <tr>
+      <td><code>.urlDecode()</code></td>
+      <td>Decodes a URL-encoded string.</td>
+      <td><code>value = "Hello%20World!"</code><br /><br /><code>&#123;item.value.urlDecode()&#125;</code> → <code>"Hello&nbsp;World!"</code></td>
+    </tr>
+    <tr>
+      <td><code>.truncateChars()</code></td>
+      <td>
+        Truncates and returns the string after <code>count</code> characters.
+        <details><summary>Arguments</summary><code>count</code>: maximum number of characters to keep<br/><code>ellipsis</code>: string to append if truncation occurs. default: <code>"..."</code></details>
+      </td>
+      <td>
+        <code>title = "The quick brown fox jumps over the lazy dog"</code><br /><br /><code>&#123;title.truncateChars(15)&#125;</code> → <br/> <code>The quick brown...</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.truncateWords()</code></td>
+      <td>
+        Truncates and returns the string after <code>count</code> words.
+        <details><summary>Arguments</summary><code>count</code>: maximum number of words to keep<br/><code>ellipsis</code>: string to append if truncation occurs. default: <code>"..."</code></details>
+      </td>
+      <td>
+        <code>title = "The quick brown fox jumps over the lazy dog"</code><br /><br /><code>&#123;title.truncateWords(2)&#125;</code> → <br/> <code>The quick...</code>
+      </td>
+    </tr>
+    <tr>
       <td><code>.round()</code></td>
       <td>
         Rounds a number to the nearest integer or to a given precision.
@@ -95,6 +125,62 @@ This allows you to format or transform values before they are displayed.
       <td><code>.floor()</code></td>
       <td>Rounds a number down to the nearest integer.</td>
       <td><code>value = "1.9"</code><br /><br /><code>&#123;item.value.floor()&#125;</code> → <code>1</code></td>
+    </tr>
+    <tr>
+      <td><code>.startsWith()</code></td>
+      <td>
+        Checks if a *string* starts with a given string. Returns 
+        <code>true</code>/<code>false</code>.
+      </td>
+      <td>
+        <code>value = "Hello World!"</code><br /><br /><code>&#123;item.value.startsWith('Hel')&#125;</code> → <code>true</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.endsWith()</code></td>
+      <td>
+        Checks if a *string* ends with a given string. Returns 
+        <code>true</code>/<code>false</code>.
+      </td>
+      <td>
+        <code>value = "Hello World!"</code><br /><br /><code>&#123;item.value.endsWith('ld!')&#125;</code> → <code>true</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.length()</code></td>
+      <td>
+        Returns the length of a *string* OR an *array*. 
+      </td>
+      <td>
+        <code>value = ["Foo", "bar"]</code><br /><br /><code>&#123;item.value.length()&#125;</code> → <code>2</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.reverse()</code></td>
+      <td>
+        Reverses the order of a *string* OR an *array*. 
+      </td>
+      <td>
+        <code>value = [1, 2, 3]</code><br /><br /><code>&#123;item.value.reverse()&#125;</code> → <code>[3, 2, 1]</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.at()</code></td>
+      <td>
+        Returns the element at the given array index.
+        <details><summary>Arguments</summary> <code>index</code>: index of the value you want to get</details>
+        <a href="#at">More Details</a>
+      </td>
+      <td><code>user.names = ["John", "David", "Sarah"]</code><br /><br /><code>&#123;user.names.at(1)&#125;</code> → <code>"David"</code></td>
+    </tr>
+    <tr>
+      <td><code>.slice()</code></td>
+      <td>
+        Returns a portion of the array from <code>start</code> to <code>end</code> index.
+        <details><summary>Arguments</summary><code>start</code>: index of the start value<br/><code>end</code>: index of the end value (not included)</details>
+        <a href="#slice">More Details</a>
+      </td>
+      <td><code>animals = ["ant", "bison", "camel", "duck", "elephant"]</code><br /><br /><code>&#123;item.animals.slice(2)&#125;</code> → <code>["camel", "duck", "elephant"]</code></td>
     </tr>
     <tr>
       <td><code>.includes()</code></td>
@@ -212,6 +298,43 @@ The `.toBool()` method normalizes common truthy/falsey inputs into a strict bool
 
 ---
 
+### `.at()`
+**Returns:** any (element at the given index)
+
+The `.at()` method takes an integer value and returns the item at that index in the array, allowing for positive and negative integers.
+Negative integers count back from the last item in the array.
+
+| Argument             | Type   | Default | Description                                           |
+| -------------------- | ------ | ------- | ------------------------------------------------------|
+| `index`              | int    | —       | Zero-based index of the array element to be returned  |
+
+#### Examples:
+- value = `[5, 12, 8, 130, 44]`<br />
+  - `{item.value.at(2)}` → `8`
+  - `{item.value.at(-2)}` → `130`
+
+---
+
+### `.slice()`
+**Returns:** array
+
+Similar behaviour to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener noreferrer">JS Array.prototype.slice()</a><br />
+The `.slice()` returns a portion of the array, selected from start to end (end not included) where start and end represent the index of items in that array. 
+Extraction happens up to but not including end.
+
+| Argument             | Type   | Default | Description                                           |
+| -------------------- | ------ | ------- | ------------------------------------------------------|
+| `start`              | int    | —       | Zero-based index at which to start extraction         |
+| `end`                | int    | array length       | Zero-based index at which to end extraction           |
+
+#### Examples:
+- value = `["ant", "bison", "camel", "duck", "elephant"]`<br />
+  - `{item.value.slice(2)}` → `["camel", "duck", "elephant"]`
+  - `{item.value.slice(2, 4)}` → `["camel", "duck"]`
+  - `{item.value.slice(-2)}` → `["duck", "elephant"]`
+
+---
+
 ### `.includes()`
 **Returns:** boolean (`true`/`false`)
 
@@ -237,7 +360,7 @@ The `.includes()` method checks whether a string contains a given substring or a
 
 ---
 
-### `.applyData`
+### `.applyData()`
 **Returns:** Returns the original value with dynamic data reapplied.
 
 The `applyData()` method is an advanced feature that can be used to reapply dynamic data to an already resolved value.
