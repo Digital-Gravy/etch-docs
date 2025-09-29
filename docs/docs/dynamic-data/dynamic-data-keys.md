@@ -133,14 +133,15 @@ Some dynamic data keys return arrays (for example, `categories`, `tags`, etc). Y
 ```
 
 **2) Access a specific item by index (zero-based)**
-- Use numeric path segments to pick a single item out of an array and then access its fields.
+- Us the `.at()` modifier to access a specific item.
 
 *Example: Get the first category’s name for the current post:*
 
 ```html
-{this.categories.0.name}
+{this.categories.at(0).name}
 ```
 
 **Notes:**
 - Indexing is zero-based (`0` is the first item, `1` is the second, etc.).
+- It is possible to get the last item with `-1`, or the second to last item with `-2` and so on.
 - Ensure the array and the requested index exist before using them (e.g., a post may have no categories).
