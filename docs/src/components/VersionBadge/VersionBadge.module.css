@@ -1,0 +1,11 @@
+.versionBadge {
+  display: inline-block;
+  background: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary-darkest);
+  border-radius: var(--ifm-global-radius);
+  font-size: 0.85em;
+  font-weight: 500;
+  padding: 0.15em 0.6em;
+  margin-bottom: 2rem; /* md files are not creating a margin for react components */
+  font-family: var(--ifm-font-family-base);
+}
