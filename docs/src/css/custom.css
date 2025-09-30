@@ -222,6 +222,27 @@ table td {
   width: 100%;
 }
 
+/* maybe update it later on with BEM if we are going to have more buttons */
+.btn-copy-to-clipboard {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.5rem 0.75rem;
+	border-radius: 6px;
+	border: 1px solid var(--ifm-color-primary);
+	color: var(--ifm-color-primary);
+	background: transparent;
+	cursor: pointer;
+}
+
+.btn-copy-to-clipboard:hover {
+	background: var(--ifm-color-primary-light);
+}
+
+.btn-copy-to-clipboard:active {
+	background: var(--ifm-color-primary-dark);
+}
+
 details summary {
   cursor: pointer;
 }

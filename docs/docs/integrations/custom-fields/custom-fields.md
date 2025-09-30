@@ -23,6 +23,18 @@ Custom fields created with Advanced Custom Fields can be accessed with the `acf`
 {item.acf.field_id}
 ```
 
+### JetEngine
+
+Custom fields created with JetEngine can be accessed with the `jetengine` namespace.
+
+```html
+<!-- In a template -->
+{this.jetengine.field_id}
+
+<!-- In a loop -->
+{item.jetengine.field_id}
+```
+
 :::info 
 For information about Etch native fields and WordPress meta fields, see the [Dynamic Data Keys](/dynamic-data/dynamic-data-keys) documentation.
 :::

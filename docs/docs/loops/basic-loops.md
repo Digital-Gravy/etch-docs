@@ -160,6 +160,19 @@ Then you can loop it the same way we looped the blog post earlier!
 - Paste the above JSON as the data source.
 - Add a child element (e.g., Heading) inside the loop and use `{item.name}` to display each author's name.
 
+## Inline Loops
+
+Sometimes you just want to repeat a piece of content a fixed number of times — for example, 5 times. 
+<br/>The easiest way to achieve this is with an inline loop, where the data source is written directly in the loop markup.
+
+```html
+{#loop [1,2,3,4,5] as item}
+  <p>I will be repeated 5 times</p>
+{/loop}
+```
+
+In this example, the variable item also holds the corresponding value from the array (1 through 5), which you can use inside the loop if needed.
+
 ## See Also
 
 - [Nested Loops](/loops/nested-loops)
