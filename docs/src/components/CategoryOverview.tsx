@@ -1,6 +1,5 @@
-import React from 'react';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { useLocation } from '@docusaurus/router';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 // Import the generated category data
 import categoryFiles from '../data/category-files.json';
@@ -56,7 +55,7 @@ export default function CategoryOverview({
 
   const formatTitle = (filename: string) => {
     return filename
-      .replace('.md', '')
+      .replace(/\.(md|mdx)$/, '')
       .split('-')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
@@ -75,7 +74,7 @@ export default function CategoryOverview({
       <div className="category-grid">
         {allFiles.map((file) => (
           <div key={file} className="category-item">
-            <a href={`${getUrlPath(categoryPath)}/${file.replace('.md', '')}`} className="category-link">
+            <a href={`${getUrlPath(categoryPath)}/${file.replace(/\.(md|mdx)$/, '')}`} className="category-link">
               {formatTitle(file)}
             </a>
           </div>

@@ -19,13 +19,15 @@ function generateCategoryData() {
         // Check if this directory contains markdown files
         const subItems = fs.readdirSync(fullPath);
         const hasMarkdownFiles = subItems.some(subItem => 
-          subItem.endsWith('.md') && subItem !== '00-overview.md' && subItem !== '_category_.json'
+          (subItem.endsWith('.md') || subItem.endsWith('.mdx')) && 
+          subItem !== '00-overview.md' && 
+          subItem !== '_category_.json'
         );
         
         if (hasMarkdownFiles) {
           // This is a category directory
           const markdownFiles = subItems.filter(file => 
-            file.endsWith('.md') && 
+            (file.endsWith('.md') || file.endsWith('.mdx')) && 
             file !== '00-overview.md' && 
             file !== '_category_.json'
           );

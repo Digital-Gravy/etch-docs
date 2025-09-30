@@ -4,7 +4,7 @@ const path = require('path');
 function generateCategoryList(folderPath, outputFile) {
   const files = fs.readdirSync(folderPath);
   const markdownFiles = files.filter(file => 
-    file.endsWith('.md') && 
+    (file.endsWith('.md') || file.endsWith('.mdx')) && 
     file !== 'index.md' && 
     file !== '_category_.json'
   );
@@ -23,7 +23,9 @@ Interactive components that respond to user actions and display dynamic content.
 `;
 
   markdownFiles.forEach(file => {
-    const fileName = path.basename(file, '.md');
+    const fileName = file.endsWith('.mdx') 
+      ? path.basename(file, '.mdx')
+      : path.basename(file, '.md');
     const displayName = fileName
       .split('-')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))

@@ -4,7 +4,7 @@ const path = require('path');
 function setAlphabeticalOrder(folderPath) {
   const files = fs.readdirSync(folderPath);
   const markdownFiles = files.filter(file => 
-    file.endsWith('.md') && 
+    (file.endsWith('.md') || file.endsWith('.mdx')) && 
     file !== '00-overview.md' && 
     file !== '_category_.json'
   );
