@@ -225,3 +225,7 @@ table td {
 details summary {
   cursor: pointer;
 }
+
+td p:last-child {
+	margin-bottom: 0;
+}
