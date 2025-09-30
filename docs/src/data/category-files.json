@@ -12,6 +12,7 @@
     "prop-array.md",
     "prop-boolean.md",
     "prop-image.md",
+    "prop-object.md",
     "prop-select.md",
     "prop-slot.md",
     "prop-text.md"
@@ -41,10 +42,11 @@
     "text.md"
   ],
   "docs/elements/dynamic-elements": [
-    "accordion.md",
+    "accordion",
     "advanced-nav.md",
     "alert.md",
     "before-after.md",
+    "basic-nav",
     "carousel.md",
     "copy-to-clipboard.md",
     "countdown.md",
@@ -136,6 +138,7 @@
     "page-templates.md",
     "search-results-template.md",
     "single-post-templates.md",
+    "tax-archive-templates.md",
     "template-manager.md"
   ],
   "docs/top-priorities": [
