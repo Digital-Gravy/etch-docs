@@ -1,11 +1,11 @@
 import { useState } from 'react';
+import styles from './CopyToCliboard.module.css';
 
 type CopyToClipboardProps = {
   label: string;
   value: string;
   successText?: string;
   errorText?: string;
-  className?: string;
 };
 
 export default function CopyToClipboard({
@@ -13,7 +13,6 @@ export default function CopyToClipboard({
   value,
   successText = 'Copied!',
   errorText = 'Failed to copy',
-  className = 'btn-copy-to-clipboard',
 }: CopyToClipboardProps) {
   const [copied, setCopied] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
@@ -34,7 +33,7 @@ export default function CopyToClipboard({
     <button
       type="button"
       onClick={handleCopy}
-      className={className}
+      className={styles.btnCopyToClipboard}
       aria-live="polite"
       aria-label={copied ? successText : errorMessage || label}
       title={copied ? successText : errorMessage || label}
