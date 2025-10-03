@@ -28,6 +28,7 @@ Bug fixes, general improvements, and minor features are not listed here. The pur
 | Feature                        | Description                                                                                      |
 |--------------------------------|--------------------------------------------------------------------------------------------------|
 | **Pattern Library** | A way to save, name, categorize, and import/export patterns for easy insertion throughout a project. This includes support for third party pattern libraries. |
+| **Recipes** | Custom/importable/exportable code snippets for maximum development efficiency. |
 | **PHP Authoring** | PHP authoring inside the HTML editor |
 | **Elements API** | A way for 3rd party devs to create/register native Etch elements for custom functionality and for internal use for creating Etch dynamic elements. |
 | **Dynamic Elements** | Prioritization of our native [dynamic elements](../elements/dynamic-elements/overview). |
