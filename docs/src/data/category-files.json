@@ -42,11 +42,11 @@
     "text.md"
   ],
   "docs/elements/dynamic-elements": [
-    "accordion",
+    "accordion.mdx",
     "advanced-nav.md",
     "alert.md",
+    "basic-nav.mdx",
     "before-after.md",
-    "basic-nav",
     "carousel.md",
     "copy-to-clipboard.md",
     "countdown.md",

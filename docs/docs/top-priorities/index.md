@@ -21,8 +21,6 @@ Bug fixes, general improvements, and minor features are not listed here. The pur
 
 | Feature                        | Description                                                                                      |
 |--------------------------------|--------------------------------------------------------------------------------------------------|
-| **CSS Styling Inputs** | Phased improvements to styling inputs and a pathway to using styling inputs with breakpoints. |
-| **Metabox Support Phase 1** | Initial integration with key Metabox fields (repeater, image, gallery, etc.) |
 | **V1 Stability** | Bug fixes and stability for V1 status. |
 
 ## High Priority Items (Soon)
