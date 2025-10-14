@@ -26,3 +26,7 @@ That's a lot of questions. And if we have to configure props and conditional log
 Instead of programming all that complexity via props, all we have to do is define a slot in the accordion content area. Once the slot is defined, users can drop anything they want in the slot and be happy. 100% flexibility with zero complexity!
 
 To add a slot, click the slot icon and give it a name in camelCase. Make sure you place the slot in the area of the component where you want slot content to show up. That's it!
+
+:::warning Common Confusion
+A slot is an empty drop-zone that you define at the component level. This means each component instance will have a slot available for unique content. You should not try to add content to the slot from inside the component editor — slots are for adding content to each instance from *outside* the component editing context (e.g. the normal page development workflow).
+:::
