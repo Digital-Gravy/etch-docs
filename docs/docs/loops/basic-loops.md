@@ -173,6 +173,29 @@ Sometimes you just want to repeat a piece of content a fixed number of times —
 
 In this example, the variable item also holds the corresponding value from the array (1 through 5), which you can use inside the loop if needed.
 
+## Accessing the Index
+
+When looping through data in Etch, you can optionally access the index of each iteration.
+This can be useful for tasks such as displaying item numbers, applying alternating styles, or conditionally rendering elements based on position.
+
+To access the index, add a second variable name after your item variable in the loop declaration, separated by a comma.
+You can choose any name for the index, but we recommend using one that clearly describes its purpose — such as `index`, `i` or `idx`.
+
+The index variable behaves just like any other piece of dynamic data and can be used directly inside your markup:
+
+```html
+{#loop recent-posts as post, index}
+  <div class="post-card" data-post-idx={index}>
+    {#if index === 0}
+     <!-- Only render something for the first item -->
+    {/if}
+  </div>
+{/loop}
+```
+
+The index will start at `0` for the first item and increase by one with each iteration.
+
+
 ## See Also
 
 - [Nested Loops](/loops/nested-loops)
