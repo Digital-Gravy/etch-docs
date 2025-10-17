@@ -1,0 +1,19 @@
+.btnCopyToClipboard {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.5rem 0.75rem;
+	border-radius: 6px;
+	border: 1px solid var(--ifm-color-primary);
+	color: var(--ifm-color-primary);
+	background: transparent;
+	cursor: pointer;
+}
+
+.btnCopyToClipboard:hover {
+	background: var(--ifm-color-primary-light);
+}
+
+.btnCopyToClipboard:active {
+	background: var(--ifm-color-primary-dark);
+}

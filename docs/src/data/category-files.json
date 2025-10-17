@@ -12,6 +12,7 @@
     "prop-array.md",
     "prop-boolean.md",
     "prop-image.md",
+    "prop-object.md",
     "prop-select.md",
     "prop-slot.md",
     "prop-text.md"
@@ -31,6 +32,8 @@
     "condition.md",
     "container.md",
     "div.md",
+    "element.mdx",
+    "empty-elements.md",
     "flex-div.md",
     "heading.md",
     "iframe.md",
@@ -41,9 +44,10 @@
     "text.md"
   ],
   "docs/elements/dynamic-elements": [
-    "accordion.md",
+    "accordion.mdx",
     "advanced-nav.md",
     "alert.md",
+    "basic-nav.mdx",
     "before-after.md",
     "carousel.md",
     "copy-to-clipboard.md",
@@ -114,7 +118,7 @@
     "index.md"
   ],
   "docs/loops": [
-    "basic-loops.md",
+    "basic-loops.mdx",
     "loop-arguments.md",
     "looping-attachments.md",
     "nested-loops.md"
@@ -136,6 +140,7 @@
     "page-templates.md",
     "search-results-template.md",
     "single-post-templates.md",
+    "tax-archive-templates.md",
     "template-manager.md"
   ],
   "docs/top-priorities": [

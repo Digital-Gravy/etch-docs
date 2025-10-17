@@ -42,13 +42,7 @@ You can choose from the available flags below. Their default state is listed.
 | Flag Name | Description | Default |
 |-----------|-------------|---------|
 | `ENABLE_DEBUG_LOG` | Enables debug logging | `off` |
-| `ENABLE_PREPROCESSOR` | Enables block authoring preprocessor | `on` |
 | `ENABLE_SERVER_TIMING` | Enables server timing headers for performance monitoring | `off` |
-| `GUTENBERG_PROCESSOR` | Enables Gutenberg block processing | `on` |
-| `GUTENBERG_COMPONENT_BLOCK` | Enables Gutenberg component blocks | `on` |
-| `INLINE_ETCH_ASSETS` | Inlines Etch assets for faster loading | `on` |
-| `REMOVE_WP_DEFAULT_CSS` | Removes WordPress default CSS | `off` |
-| `ENABLE_STRUCTURE_PANEL_V2` | Enables version 2 of the structure panel | `on` |
-| `ENABLE_INSTANT_STRUCTURE_SORT` | Enables instant sorting in structure panel | `off` |
-| `COMPONENTS-COPY-PASTE` | Enables copy and paste of components and element groups | `on` |
-| `ENABLE_WAF_COMPATIBILITY_WORKAROUND` | Improves compatibility with WAF that don't allow `PUT`, `PATCH` or `DELETE` requests | `off`
+| `REMOVE_WP_DEFAULT_CSS` | Removes WordPress default CSS | `on` |
+| `ENABLE_WAF_COMPATIBILITY_WORKAROUND` | Improves compatibility with WAF that don't allow `PUT`, `PATCH` or `DELETE` requests | `on`
+| `UNSAVED_CHANGES_WARNING` | Enables warning before closing tab with unsaved changes| `on` |

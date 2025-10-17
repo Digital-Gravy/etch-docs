@@ -1,0 +1,133 @@
+{
+    "type": "component",
+    "def": {
+        "id": 1255,
+        "name": "EtchBurgerComponent",
+        "key": "EtchBurgerComponent",
+        "properties": [
+            {
+                "key": "ariaLabel",
+                "name": "Aria Label",
+                "keyTouched": true,
+                "type": {
+                    "primitive": "string"
+                },
+                "default": "Navigation"
+            }
+        ],
+        "description": "",
+        "legacyId": "",
+        "blocks": [
+            {
+                "blockName": "core/group",
+                "attrs": {
+                    "metadata": {
+                        "etchData": {
+                            "origin": "etch",
+                            "script": {
+                                "code": "Y2xhc3MgRXRjaEJ1cmdlclNjcmlwdCB7Cgljb25zdHJ1Y3RvcihvcHRpb25zID0ge30pIHsKCQl0aGlzLmJ1dHRvbiA9IG9wdGlvbnMuYnV0dG9uOwoJCXRoaXMudGFyZ2V0ID0gdGhpcy5yZXNvbHZlVGFyZ2V0KG9wdGlvbnMudGFyZ2V0KTsKCQl0aGlzLnNlbGZBcmlhRXhwYW5kZWQgPSBvcHRpb25zLnNlbGZBcmlhRXhwYW5kZWQgPz8gZmFsc2U7CgoJCWNvbnN0IHRhcmdldENvbmZpZyA9IG9wdGlvbnMudGFyZ2V0T3B0aW9ucyA/PyB7fTsKCQl0aGlzLnRhcmdldENsYXNzID0gdGFyZ2V0Q29uZmlnLmNsYXNzID8/IG51bGw7CgkJdGhpcy50YXJnZXRBcmlhRXhwYW5kZWQgPSB0YXJnZXRDb25maWcuYXJpYUV4cGFuZGVkID8/IGZhbHNlOwoKCQl0aGlzLm9uVG9nZ2xlID0KCQkJdHlwZW9mIG9wdGlvbnMub25Ub2dnbGUgPT09ICdmdW5jdGlvbicgPyBvcHRpb25zLm9uVG9nZ2xlIDogbnVsbDsKCQl0aGlzLm9uQ2xvc2UgPQoJCQl0eXBlb2Ygb3B0aW9ucy5vbkNsb3NlID09PSAnZnVuY3Rpb24nID8gb3B0aW9ucy5vbkNsb3NlIDogbnVsbDsKCgkJdGhpcy5mb2N1c2FibGVFbGVtZW50cyA9IFtdOwoJCXRoaXMua2V5ZG93bkhhbmRsZXIgPSAoZSkgPT4gdGhpcy5oYW5kbGVLZXlEb3duKGUpOwoJCXRoaXMuZm9jdXNUcmFwSGFuZGxlciA9IChlKSA9PiB0aGlzLmhhbmRsZUZvY3VzVHJhcChlKTsKCgkJdGhpcy5pbml0KCk7Cgl9CgoJaW5pdCgpIHsKCQlpZiAoIXRoaXMuYnV0dG9uKSByZXR1cm4gY29uc29sZS5lcnJvcignQ2Fubm90IGZpbmQgQnVyZ2VyIGJ1dHRvbicpOwoJCXRoaXMuYXR0YWNoRXZlbnRMaXN0ZW5lcnMoKTsKCX0KCglpc0V0Y2hFZGl0b3IoKSB7CgkJY29uc3QgaXNJbkVkaXRvciA9CgkJCXdpbmRvdyAhPT0gd2luZG93LnRvcCAmJiBmcmFtZUVsZW1lbnQuaWQgPT09ICdldGNoLWlmcmFtZSc7CgkJcmV0dXJuIGlzSW5FZGl0b3I7Cgl9CgoJaXNNZW51T3BlbigpIHsKCQlpZiAodGhpcy5zZWxmQXJpYUV4cGFuZGVkKSB7CgkJCXJldHVybiB0aGlzLmJ1dHRvbi5nZXRBdHRyaWJ1dGUoJ2FyaWEtZXhwYW5kZWQnKSA9PT0gJ3RydWUnOwoJCX0KCQlyZXR1cm4gZmFsc2U7Cgl9CgoJcmVzb2x2ZVRhcmdldCh0YXJnZXQpIHsKCQlpZiAodGFyZ2V0ID09IG51bGwpIHJldHVybiBudWxsOwoKCQlpZiAodGhpcy5pc0V0Y2hFZGl0b3IoKSkgcmV0dXJuIG51bGw7CgoJCWlmICh0eXBlb2YgdGFyZ2V0ID09PSAnc3RyaW5nJykgewoJCQljb25zdCBlbGVtZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcih0YXJnZXQpOwoJCQlpZiAoIWVsZW1lbnQpIHJldHVybiBjb25zb2xlLmVycm9yKCdDYW5ub3QgZmluZCB0YXJnZXQgZWxlbWVudCcpOwoJCQlyZXR1cm4gZWxlbWVudDsKCQl9CgoJCWlmICh0YXJnZXQgaW5zdGFuY2VvZiBIVE1MRWxlbWVudCkgcmV0dXJuIHRhcmdldDsKCgkJY29uc29sZS5lcnJvcigKCQkJJ0ludmFsaWQgdGFyZ2V0IOKAlCBtdXN0IGJlIGEgc2VsZWN0b3Igc3RyaW5nIG9yIEhUTUxFbGVtZW50JwoJCSk7CgkJcmV0dXJuIG51bGw7Cgl9CgoJYXR0YWNoRXZlbnRMaXN0ZW5lcnMoKSB7CgkJdGhpcy5idXR0b24uYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCAoKSA9PiB0aGlzLmhhbmRsZUNsaWNrKCkpOwoJfQoKCWhhbmRsZUNsaWNrKCkgewoJCWNvbnN0IG5ld1N0YXRlID0gdGhpcy5nZXRUb2dnbGVTdGF0ZSgpOwoJCXRoaXMudXBkYXRlQnVyZ2VyU3RhdGUobmV3U3RhdGUpOwoJCXRoaXMudXBkYXRlVGFyZ2V0U3RhdGUobmV3U3RhdGUpOwoKCQlpZiAobmV3U3RhdGUpIHsKCQkJdGhpcy5zZXRGb2N1c1RyYXAoKTsKCQl9IGVsc2UgewoJCQl0aGlzLnJlbW92ZUZvY3VzVHJhcCgpOwoJCX0KCgkJdHJ5IHsKCQkJaWYgKHRoaXMub25Ub2dnbGUpIHRoaXMub25Ub2dnbGUobmV3U3RhdGUpOwoJCQlpZiAoIW5ld1N0YXRlICYmIHRoaXMub25DbG9zZSkgdGhpcy5vbkNsb3NlKCk7CgkJfSBjYXRjaCAoZXJyb3IpIHsKCQkJY29uc29sZS5lcnJvcignRXJyb3Igb24gY2FsbGJhY2s6JywgZXJyb3IpOwoJCX0KCX0KCgljbG9zZU1lbnUoKSB7CiAgICAgIGNvbnNvbGUubG9nKCdidXJnZXIgY2xvc2VNZW51IGNhbGxlZCcpCgkJdGhpcy51cGRhdGVCdXJnZXJTdGF0ZShmYWxzZSk7CgkJdGhpcy51cGRhdGVUYXJnZXRTdGF0ZShmYWxzZSk7CgkJdGhpcy5yZW1vdmVGb2N1c1RyYXAoKTsKCQl0aGlzLmJ1dHRvbi5mb2N1cygpOwoKCQl0cnkgewoJCQlpZiAodGhpcy5vbkNsb3NlKSB0aGlzLm9uQ2xvc2UoKTsKCQl9IGNhdGNoIChlcnJvcikgewoJCQljb25zb2xlLmVycm9yKCdFcnJvciBvbiBjYWxsYmFjazonLCBlcnJvcik7CgkJfQoJfQoKCWdldFRvZ2dsZVN0YXRlKCkgewoJCWlmICh0aGlzLnNlbGZBcmlhRXhwYW5kZWQpIHsKCQkJY29uc3QgaXNPcGVuID0gdGhpcy5idXR0b24uZ2V0QXR0cmlidXRlKCdhcmlhLWV4cGFuZGVkJykgPT09ICd0cnVlJzsKCQkJcmV0dXJuICFpc09wZW47CgkJfQoKCQlyZXR1cm4gZmFsc2U7Cgl9CgoJZ2V0QXJpYUxhYmVsKCkgewoJCXJldHVybiB0aGlzLmJ1dHRvbi5nZXRBdHRyaWJ1dGUoJ2FyaWEtbGFiZWwnKSB8fCAnJzsKCX0KCglzZXRGb2N1c2FibGVFbGVtZW50cygpIHsKCQl0aGlzLmZvY3VzYWJsZUVsZW1lbnRzID0gQXJyYXkuZnJvbSgKCQkJdGhpcy50YXJnZXQucXVlcnlTZWxlY3RvckFsbCgKCQkJCSdhLCBidXR0b24sIFt0YWJpbmRleF06bm90KFt0YWJpbmRleD0iLTEiXSknCgkJCSkKCQkpLmZpbHRlcigKCQkJKGVsKSA9PgoJCQkJIWVsLmRpc2FibGVkICYmCgkJCQllbC5vZmZzZXRQYXJlbnQgIT09IG51bGwgJiYKCQkJCWdldENvbXB1dGVkU3R5bGUoZWwpLnZpc2liaWxpdHkgIT09ICdoaWRkZW4nCgkJKTsKCX0KCglzZXRGb2N1c1RyYXAoKSB7CgkJaWYgKCF0aGlzLnRhcmdldCkgcmV0dXJuOwoKCQl0aGlzLnNldEZvY3VzYWJsZUVsZW1lbnRzKCk7CgoJCXRoaXMudGFyZ2V0LmFkZEV2ZW50TGlzdGVuZXIoJ2tleWRvd24nLCB0aGlzLmtleWRvd25IYW5kbGVyLCB0cnVlKTsKCQlkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCdrZXlkb3duJywgdGhpcy5mb2N1c1RyYXBIYW5kbGVyLCB0cnVlKTsKCgkJdGhpcy5mb2N1c2FibGVFbGVtZW50c1swXT8uZm9jdXMoKTsKCX0KCglyZW1vdmVGb2N1c1RyYXAoKSB7CgkJaWYgKHRoaXMudGFyZ2V0KSB7CgkJCXRoaXMudGFyZ2V0LnJlbW92ZUV2ZW50TGlzdGVuZXIoCgkJCQkna2V5ZG93bicsCgkJCQl0aGlzLmtleWRvd25IYW5kbGVyLAoJCQkJdHJ1ZQoJCQkpOwoJCX0KCQlkb2N1bWVudC5yZW1vdmVFdmVudExpc3RlbmVyKCdrZXlkb3duJywgdGhpcy5mb2N1c1RyYXBIYW5kbGVyLCB0cnVlKTsKCQl0aGlzLmZvY3VzYWJsZUVsZW1lbnRzID0gW107Cgl9CgoJdXBkYXRlQXJpYUxhYmVsKG5ld1N0YXRlKSB7CgkJY29uc3QgYXJpYUxhYmVsID0gdGhpcy5nZXRBcmlhTGFiZWwoKTsKCQlpZiAoIWFyaWFMYWJlbCkgcmV0dXJuOwoKCQljb25zdCBtYXRjaCA9IGFyaWFMYWJlbC5tYXRjaCgvXlxzKihbXlxzXSspKC4qKSQvKTsKCQljb25zdCByZXN0ID0gbWF0Y2hbMl07CgkJY29uc3QgYWN0aW9uID0gbmV3U3RhdGUgPyAnQ2xvc2UnIDogJ09wZW4nOwoKCQl0aGlzLmJ1dHRvbi5zZXRBdHRyaWJ1dGUoJ2FyaWEtbGFiZWwnLCBgJHthY3Rpb259JHtyZXN0fWApOwoJfQoKCXVwZGF0ZUJ1cmdlclN0YXRlKG5ld1N0YXRlKSB7CgkJaWYgKHRoaXMuc2VsZkFyaWFFeHBhbmRlZCkgewoJCQl0aGlzLmJ1dHRvbi5zZXRBdHRyaWJ1dGUoJ2FyaWEtZXhwYW5kZWQnLCBTdHJpbmcobmV3U3RhdGUpKTsKCQl9CgkJdGhpcy51cGRhdGVBcmlhTGFiZWwobmV3U3RhdGUpOwoJfQoKCXVwZGF0ZVRhcmdldFN0YXRlKG5ld1N0YXRlKSB7CgkJaWYgKHRoaXMudGFyZ2V0ID09IG51bGwpIHJldHVybjsKCQlpZiAoIXRoaXMudGFyZ2V0KSB7CgkJCWNvbnNvbGUuZXJyb3IoJ0Nhbm5vdCBmaW5kIHRhcmdldCBlbGVtZW50Jyk7CgkJCXJldHVybjsKCQl9CgoJCWlmICh0aGlzLnRhcmdldENsYXNzKSB7CgkJCXRoaXMudGFyZ2V0LmNsYXNzTGlzdC50b2dnbGUodGhpcy50YXJnZXRDbGFzcywgbmV3U3RhdGUpOwoJCX0KCgkJaWYgKHRoaXMudGFyZ2V0QXJpYUV4cGFuZGVkKSB7CgkJCXRoaXMudGFyZ2V0LnNldEF0dHJpYnV0ZSgnYXJpYS1leHBhbmRlZCcsIFN0cmluZyhuZXdTdGF0ZSkpOwoJCX0KCX0KCgloYW5kbGVLZXlEb3duKGUpIHsKCQljb25zdCB7IGtleSB9ID0gZTsKCgkJaWYgKGtleSA9PT0gJ0VzY2FwZScgJiYgdGhpcy5pc01lbnVPcGVuKCkpIHsKICAgICAgICAgICAgIGlmICh0aGlzLmhhc09wZW5TdWJtZW51cygpKSByZXR1cm47CgkJCWUucHJldmVudERlZmF1bHQoKTsKCQkJdGhpcy5jbG9zZU1lbnUoKTsKCQl9Cgl9CgoJaGFuZGxlRm9jdXNUcmFwKGUpIHsKCQljb25zdCB7IGtleSB9ID0gZTsKCgkJaWYgKAoJCQkhdGhpcy5pc01lbnVPcGVuKCkgfHwKCQkJa2V5ICE9PSAnVGFiJyB8fAoJCQkhdGhpcy5mb2N1c2FibGVFbGVtZW50cy5sZW5ndGgKCQkpCgkJCXJldHVybjsKCgkJY29uc3QgZm9jdXNlZEVsZW1lbnQgPSBkb2N1bWVudC5hY3RpdmVFbGVtZW50OwoJCWNvbnN0IGZvY3VzZWRJbmRleCA9IHRoaXMuZm9jdXNhYmxlRWxlbWVudHMuaW5kZXhPZihmb2N1c2VkRWxlbWVudCk7CgoJCWlmIChrZXkuc2hpZnRLZXkpIHsKCQkJaWYgKGZvY3VzZWRJbmRleCA9PT0gMCkgewoJCQkJZS5wcmV2ZW50RGVmYXVsdCgpOwoJCQkJdGhpcy5mb2N1c2FibGVFbGVtZW50c1sKCQkJCQl0aGlzLmZvY3VzYWJsZUVsZW1lbnRzLmxlbmd0aCAtIDEKCQkJCV0/LmZvY3VzKCk7CgkJCX0KCQl9IGVsc2UgewoJCQlpZiAoZm9jdXNlZEluZGV4ID09PSB0aGlzLmZvY3VzYWJsZUVsZW1lbnRzLmxlbmd0aCAtIDEpIHsKCQkJCWUucHJldmVudERlZmF1bHQoKTsKCQkJCXRoaXMuZm9jdXNhYmxlRWxlbWVudHNbMF0/LmZvY3VzKCk7CgkJCX0KCQl9Cgl9CgogICAgaGFzT3BlblN1Ym1lbnVzKCkgewogICAgICBpZiAoIXRoaXMudGFyZ2V0KSByZXR1cm4gZmFsc2U7CiAgICAgIGNvbnN0IG9wZW5TdWJtZW51cyA9IHRoaXMudGFyZ2V0LnF1ZXJ5U2VsZWN0b3JBbGwoCiAgICAgICAgICAnLmV0Y2gtbmF2X19idXR0b24tLWRyb3Bkb3duLXRvZ2dsZVthcmlhLWV4cGFuZGVkPSJ0cnVlIl0sIC5ldGNoLW5hdl9fYnV0dG9uLS1mbHlvdXQtdG9nZ2xlW2FyaWEtZXhwYW5kZWQ9InRydWUiXScKICAgICAgKTsKICAgICAgcmV0dXJuIG9wZW5TdWJtZW51cy5sZW5ndGggPiAwOwogICAgfQp9CgovLyBldGNOYXYgcGFyYW1ldGVyIGlzIG5vdCBuZWVkZWQgaWYgdGhlIGJ1cmdlciBpcyBub3QgdG8gd29yayB3aXRoIHRoZSBuYXYgY29tcG9uZW50CmZ1bmN0aW9uIGluc3RhbnRpYXRlQnVyZ2VyQ2xhc3MoZXRjaE5hdiwgb25DbG9zZSkgewoJLy8gZ2V0IGV0Y2ggYnVyZ2VyIGVsZW1lbnQKCWNvbnN0IGJ1cmdlckJ0biA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJy5ldGNoLWJ1cmdlcicpOwoJLy8gY3JlYXRlIGV0Y2ggYnVyZ2VyIGluc3RhbmNlIHdpdGggb3B0aW9ucwoJY29uc3QgYnVyZ2VySW5zdGFuY2UgPSBuZXcgRXRjaEJ1cmdlclNjcmlwdCh7CgkJYnV0dG9uOiBidXJnZXJCdG4sCgkJdGFyZ2V0OiBldGNoTmF2LAoJCXNlbGZBcmlhRXhwYW5kZWQ6IHRydWUsCgkJdGFyZ2V0T3B0aW9uczogewoJCQlhcmlhRXhwYW5kZWQ6IHRydWUKCQl9LAoJCW9uQ2xvc2UKCX0pOwoKCS8vIHVzZSBldGNoRWxlbWVudHMgd2luZG93IG9iamVjdCBvciBjcmVhdGUgYSBuZXcgb25lIGlmIGl0IGRvZXNuJ3QgZXhpc3QKCXdpbmRvdy5ldGNoRWxlbWVudHMgPSB3aW5kb3cuZXRjaEVsZW1lbnRzIHx8IFtdOwoJLy8gYXNzaWduIGV0Y2ggYnVyZ2VyIGluc3RhbmNlIHRvIHRoZSB3aW5kb3cgb2JqZWN0Cgl3aW5kb3cuZXRjaEVsZW1lbnRzLmV0Y2hCdXJnZXIgPSBidXJnZXJJbnN0YW5jZTsKfQoKLyoqCiAqIENoZWNrIGlmIHRoZSBuYXYgZWxlbWVudCBleGlzdHMKICogSWYgdGhlIGJ1cmdlciBpcyBub3QgdG8gd29yayB3aXRoIHRoZSBuYXYgY29tcG9uZW50LCB0aGVuIHRoZSBibG9jayBvZiBjb2RlIGJlbGxvdyBjYW4gYmUgcmVtb3ZlZAogKi8KY29uc3QgZXRjaE5hdiA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJ1tkYXRhLWV0Y2gtbmF2PSJtYWluIl0nKTsKaWYgKCFldGNoTmF2KSB7Cgljb25zb2xlLmVycm9yKCdCdXJnZXIgY2Fubm90IGZpbmQgTmF2IGVsZW1lbnQnKTsKfSBlbHNlIHsKCWluc3RhbnRpYXRlQnVyZ2VyQ2xhc3MoZXRjaE5hdiwgY2xvc2VFdGNoTmF2KTsKfQoKLyoqCiAqIFRoaXMgZnVuY3Rpb24gaXMgY3JlYXRlZCBzcGVjaWZpY2FsbHkgdG8gd29yayB3aXRoIHRoZSBuYXYgY29tcG9uZW50IGFuZCBjYWxsIHRoZSBjbG9zZUFsbE5hdnMgbWV0aG9kIHRvIGNsb3NlIGFsbCB0aGUgbmF2IGFyZWFzICggZHJvcGRvd25zIGFuZCBmbHlvdXRzICkKICovCmZ1bmN0aW9uIGNsb3NlRXRjaE5hdigpIHsKCXdpbmRvdy5ldGNoRWxlbWVudHM/LmV0Y2hOYXY/LmNsb3NlQWxsTmF2cygpOwp9CgovKioKICogSWYgdGhlIGJ1cmdlciBpcyBub3QgdG8gdXNlZCB3aXRoIHRoZSBuYXYgY29tcG9uZW50IHRoZW4gdGhlIGNvZGUgYmVsbG93IGNhbiBiZSB1bmNvbW1lbnRlZAogKi8KLy8gaW5zdGFudGlhdGVCdXJnZXJDbGFzcygpOwo=",
+                                "id": "ndlnxfv"
+                            },
+                            "styles": [
+                                "pv6hyoq"
+                            ],
+                            "attributes": {
+                                "aria-expanded": "false",
+                                "aria-label": "Open {props.ariaLabel}",
+                                "class": "etch-burger"
+                            },
+                            "block": {
+                                "type": "html",
+                                "tag": "button"
+                            }
+                        }
+                    }
+                },
+                "innerBlocks": [
+                    {
+                        "blockName": "core/paragraph",
+                        "attrs": {
+                            "metadata": {
+                                "etchData": {
+                                    "origin": "etch",
+                                    "styles": [
+                                        "ryfb9cv"
+                                    ],
+                                    "attributes": {
+                                        "class": "etch-burger__lines"
+                                    },
+                                    "block": {
+                                        "type": "html",
+                                        "tag": "span"
+                                    },
+                                    "removeWrapper": true,
+                                    "nestedData": {
+                                        "jmlgw8s": {
+                                            "origin": "etch",
+                                            "styles": [
+                                                "ryfb9cv"
+                                            ],
+                                            "attributes": {
+                                                "class": "etch-burger__lines"
+                                            },
+                                            "block": {
+                                                "type": "html",
+                                                "tag": "span"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "innerBlocks": [],
+                        "innerHTML": "<p><span data-etch-ref=\"jmlgw8s\"></span></p>",
+                        "innerContent": [
+                            "<p><span data-etch-ref=\"jmlgw8s\"></span></p>"
+                        ]
+                    }
+                ],
+                "innerHTML": "<div class=\"wp-block-group\"></div>",
+                "innerContent": [
+                    "<div class=\"wp-block-group\">",
+                    null,
+                    "</div>"
+                ]
+            }
+        ]
+    },
+    "styles": {
+        "pv6hyoq": {
+            "type": "class",
+            "selector": ".etch-burger",
+            "collection": "default",
+            "css": "--burger-width: 30px;\n  --burger-line-thickness: 2px;\n  --burger-line-spacing: 6px;\n  --burger-dark-color: #242424;\n  --transition-duration: 0.3s;\n  --transition-timing-function: ease-in-out;\n  \n  inline-size: var(--burger-width);\n  block-size: calc(var(--burger-line-thickness) * 3 + var(--burger-line-spacing) * 2);\n  padding: 0;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  \n  /* Hide Burger above X breakpoint */\n  @media (min-width: 768px) {\n    display: none;\n  }\n  \n  .etch-burger__lines {\n    position: relative;\n    width: var(--burger-width);\n    height: var(--burger-line-thickness);\n    min-height: 0;\n    min-width: 0;\n    background: var(--burger-dark-color);\n    transition:\n      transform var(--transition-duration) var(--transition-timing-function),\n      background var(--transition-duration) var(--transition-timing-function);\n    \n    &::before,\n    &::after {\n      content: '';\n      position: absolute;\n      left: 0;\n      width: 100%;\n      height: var(--burger-line-thickness);\n      background: var(--burger-dark-color);\n      transition:\n        transform var(--transition-duration) var(--transition-timing-function),\n        opacity var(--transition-duration) var(--transition-timing-function);\n    }\n    \n    &::before {\n      top: calc(-1 * (var(--burger-line-thickness) + var(--burger-line-spacing)));\n    }\n    \n    &::after {\n      bottom: calc(-1 * (var(--burger-line-thickness) + var(--burger-line-spacing)));\n    }\n  }\n  \n  /* Animated state */\n  &[aria-expanded='true'] .etch-burger__lines {\n    background: transparent;\n    \n    &::before {\n      transform: translateY(calc(var(--burger-line-thickness) + var(--burger-line-spacing))) rotate(45deg);\n    }\n    \n    &::after {\n      transform: translateY(calc(-1 * (var(--burger-line-thickness) + var(--burger-line-spacing)))) rotate(-45deg);\n    }\n  }",
+            "readonly": false
+        },
+        "ryfb9cv": {
+            "type": "class",
+            "selector": ".etch-burger__lines",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        }
+    },
+    "componentInstance": {
+        "blockName": "core/block",
+        "attrs": {
+            "metadata": {
+                "etchData": {
+                    "origin": "etch",
+                    "block": {
+                        "type": "component",
+                        "component": 1255,
+                        "innerBlocks": []
+                    }
+                }
+            },
+            "ref": 1255
+        },
+        "innerBlocks": [],
+        "innerHTML": "",
+        "innerContent": []
+    }
+}

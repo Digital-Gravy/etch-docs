@@ -1,0 +1,993 @@
+{
+    "type": "component",
+    "def": {
+        "id": 918,
+        "name": "EtchNavComponent",
+        "key": "EtchNavComponent",
+        "properties": [
+            {
+                "key": "basicNav",
+                "name": "Basic Nav",
+                "keyTouched": true,
+                "type": {
+                    "primitive": "string",
+                    "specialized": "array"
+                },
+                "default": "basicNav"
+            },
+            {
+                "key": "navAriaLabel",
+                "name": "Nav Aria Label",
+                "keyTouched": false,
+                "type": {
+                    "primitive": "string"
+                },
+                "default": "Navigation"
+            },
+            {
+                "key": "mouseSubmenu",
+                "name": "Mouse Submenu",
+                "keyTouched": false,
+                "type": {
+                    "primitive": "string",
+                    "specialized": "select"
+                },
+                "selectOptionsString": "Hover : hover\nClick : click\nClick (+ Hover Flyout) : click-sub-hover",
+                "default": "hover"
+            }
+        ],
+        "description": "",
+        "legacyId": "",
+        "blocks": [
+            {
+                "blockName": "core/group",
+                "attrs": {
+                    "metadata": {
+                        "etchData": {
+                            "origin": "etch",
+                            "script": {
+                                "code": "Y2xhc3MgRXRjaE5hdlNjcmlwdCB7Cgljb25zdHJ1Y3RvcihuYXZFbGVtZW50LCBvcHRpb25zID0ge30pIHsKCQl0aGlzLm5hdkVsID0gbmF2RWxlbWVudDsKCQl0aGlzLm9wdGlvbnMgPSBvcHRpb25zOwoJCXRoaXMuaG92ZXJUaW1lb3V0cyA9IG5ldyBNYXAoKTsKCQl0aGlzLmlzVG91Y2hEZXZpY2UgPSB0aGlzLmRldGVjdFRvdWNoRGV2aWNlKCk7CgkJdGhpcy5pbml0KCk7Cgl9CgoJZGV0ZWN0VG91Y2hEZXZpY2UoKSB7CgkJcmV0dXJuICdvbnRvdWNoc3RhcnQnIGluIHdpbmRvdyB8fCBuYXZpZ2F0b3IubWF4VG91Y2hQb2ludHMgPiAwOwoJfQoKCWluaXQoKSB7CgkJaWYgKCF0aGlzLm5hdkVsKSByZXR1cm4gY29uc29sZS5lcnJvcignQ2Fubm90IGZpbmQgTmF2IGVsZW1lbnQnKTsKCgkJdGhpcy5uYXZMaXN0ID0gdGhpcy5nZXROYXZMaXN0KCk7CgkJdGhpcy50b3BMZXZlbE5hdkl0ZW1zID0gdGhpcy5nZXRUb3BMZXZlbE5hdkl0ZW1zKHRoaXMubmF2TGlzdCk7CgkJdGhpcy5zZXRUYWJJbmRleCh0aGlzLnRvcExldmVsTmF2SXRlbXMpOwoKCQl0aGlzLmludGVyYWN0aW9uTW9kZSA9IHRoaXMubmF2RWwuZGF0YXNldD8ubmF2SW50ZXJhY3Rpb24gfHwgJ2hvdmVyJzsKCgkJW3RoaXMuZHJvcGRvd25CdXR0b25zLCB0aGlzLmZseW91dEJ1dHRvbnNdID0gdGhpcy5nZXRCdXR0b25zKAoJCQl0aGlzLm5hdkxpc3QKCQkpOwoJCVt0aGlzLmRyb3Bkb3duTmF2LCB0aGlzLmZseW91dE5hdl0gPSB0aGlzLmdldEFyZWFOYXYodGhpcy5uYXZMaXN0KTsKCgkJdGhpcy5zZXRCdXR0b25OYXZNYXAoKTsKCQl0aGlzLmJ1aWxkRm9jdXNNYXBzKCk7CgoJCXRoaXMuYXR0YWNoRXZlbnRMaXN0ZW5lcnMoKTsKCQl0aGlzLnNldEluaXRpYWxOYXZTdGF0ZXMoKTsKCgkJaWYgKHRoaXMuaXNBcmlhQ3VycmVudFBhZ2VFbmFibGVkKCkpIHsKCQkJdGhpcy5zZXRBcmlhQ3VycmVudFBhZ2UoKTsKCQl9Cgl9CgoJZ2V0TmF2TGlzdCgpIHsKCQlyZXR1cm4gdGhpcy5uYXZFbC5xdWVyeVNlbGVjdG9yKCcuZXRjaC1uYXZfX2xpc3QnKTsKCX0KCglnZXRBcmlhQ3VycmVudFBhZ2VDb25maWcoKSB7CgkJY29uc3QgdmFsdWUgPSB0aGlzLm9wdGlvbnM/LmFyaWFDdXJyZW50UGFnZTsKCgkJaWYgKHZhbHVlID09PSB0cnVlKQoJCQlyZXR1cm4gewoJCQkJZW5hYmxlZDogdHJ1ZSwKCQkJCWhvbWVQYWdlOiB0cnVlCgkJCX07CgoJCWlmICh2YWx1ZSAmJiB0eXBlb2YgdmFsdWUgPT09ICdvYmplY3QnKQoJCQlyZXR1cm4gewoJCQkJZW5hYmxlZDogdHJ1ZSwKCQkJCWhvbWVQYWdlOiB2YWx1ZS5ob21lUGFnZSA9PT0gZmFsc2UgPyBmYWxzZSA6IHRydWUKCQkJfTsKCgkJcmV0dXJuIHsKCQkJZW5hYmxlZDogZmFsc2UKCQl9OwoJfQoKCXNldEFyaWFDdXJyZW50UGFnZSgpIHsKCQljb25zdCB7IGhvbWVQYWdlIH0gPSB0aGlzLmdldEFyaWFDdXJyZW50UGFnZUNvbmZpZygpOwoKCQljb25zdCBjdXJyZW50VXJsID0gdGhpcy5ub3JtYWxpemVVcmwod2luZG93LmxvY2F0aW9uLmhyZWYpOwoJCWNvbnN0IGhvbWVwYWdlVXJsID0gdGhpcy5ub3JtYWxpemVVcmwod2luZG93LmxvY2F0aW9uLm9yaWdpbik7CgoJCWlmICghaG9tZVBhZ2UgJiYgY3VycmVudFVybCA9PT0gaG9tZXBhZ2VVcmwpIHJldHVybjsKCgkJY29uc3QgbmF2TGlua3MgPSB0aGlzLnRvcExldmVsTmF2SXRlbXMuZmlsdGVyKAoJCQkoZWwpID0+CgkJCQllbC5jbGFzc0xpc3QuY29udGFpbnMoJ2V0Y2gtbmF2X19saW5rJykgJiYKCQkJCWVsLmhhc0F0dHJpYnV0ZSgnaHJlZicpCgkJKTsKCgkJZm9yIChjb25zdCBpdGVtIG9mIG5hdkxpbmtzKSB7CgkJCWNvbnN0IGl0ZW1VcmwgPSB0aGlzLm5vcm1hbGl6ZVVybCgKCQkJCW5ldyBVUkwoaXRlbS5ocmVmLCB3aW5kb3cubG9jYXRpb24ub3JpZ2luKS5ocmVmCgkJCSk7CgkJCWlmIChpdGVtVXJsID09PSBjdXJyZW50VXJsKSB7CgkJCQlpdGVtLnNldEF0dHJpYnV0ZSgnYXJpYS1jdXJyZW50JywgJ3BhZ2UnKTsKCQkJCWJyZWFrOwoJCQl9CgkJfQoJfQoKCWlzQXJpYUN1cnJlbnRQYWdlRW5hYmxlZCgpIHsKCQlyZXR1cm4gdGhpcy5nZXRBcmlhQ3VycmVudFBhZ2VDb25maWcoKS5lbmFibGVkOwoJfQoKCW5vcm1hbGl6ZVVybCh1cmwpIHsKCQlsZXQgbm9ybWFsaXplZCA9IHVybC5yZXBsYWNlKC9cLyskLywgJycpOwoJCWlmIChub3JtYWxpemVkID09PSB3aW5kb3cubG9jYXRpb24ub3JpZ2luKSB7CgkJCW5vcm1hbGl6ZWQgKz0gJy8nOwoJCX0KCQlyZXR1cm4gbm9ybWFsaXplZDsKCX0KCglnZXRUb3BMZXZlbE5hdkl0ZW1zKG5hdkxpc3QpIHsKCQlyZXR1cm4gQXJyYXkuZnJvbShuYXZMaXN0LmNoaWxkcmVuKS5mbGF0TWFwKChsaSkgPT4KCQkJQXJyYXkuZnJvbShsaS5jaGlsZHJlbikuZmlsdGVyKAoJCQkJKGVsKSA9PgoJCQkJCWVsLmNsYXNzTGlzdC5jb250YWlucygnZXRjaC1uYXZfX2xpbmsnKSB8fAoJCQkJCWVsLmNsYXNzTGlzdC5jb250YWlucygnZXRjaC1uYXZfX2J1dHRvbicpCgkJCSkKCQkpOwoJfQoKCWdldEJ1dHRvbnMobmF2TGlzdCkgewoJCXJldHVybiBbCgkJCUFycmF5LmZyb20oCgkJCQluYXZMaXN0LnF1ZXJ5U2VsZWN0b3JBbGwoJy5ldGNoLW5hdl9fYnV0dG9uLS1kcm9wZG93bi10b2dnbGUnKQoJCQkpLAoJCQlBcnJheS5mcm9tKAoJCQkJbmF2TGlzdC5xdWVyeVNlbGVjdG9yQWxsKCcuZXRjaC1uYXZfX2J1dHRvbi0tZmx5b3V0LXRvZ2dsZScpCgkJCSkKCQldOwoJfQoKCWdldEFyZWFOYXYobmF2TGlzdCkgewoJCXJldHVybiBbCgkJCUFycmF5LmZyb20obmF2TGlzdC5xdWVyeVNlbGVjdG9yQWxsKCcuZXRjaC1uYXZfX2Ryb3Bkb3duJykpLAoJCQlBcnJheS5mcm9tKG5hdkxpc3QucXVlcnlTZWxlY3RvckFsbCgnLmV0Y2gtbmF2X19mbHlvdXQnKSkKCQldOwoJfQoKCWdldEZvY3VzYWJsZUFyZWFFbGVtZW50cyhhcmVhTmF2KSB7CgkJcmV0dXJuIEFycmF5LmZyb20oYXJlYU5hdi5jaGlsZHJlbikuZmxhdE1hcCgobGkpID0+CgkJCUFycmF5LmZyb20oCgkJCQlsaS5xdWVyeVNlbGVjdG9yQWxsKAoJCQkJCSc6c2NvcGUgPiBhLCA6c2NvcGUgPiBidXR0b24sIDpzY29wZSA+IFt0YWJpbmRleF06bm90KFt0YWJpbmRleD0iLTEiXSknCgkJCQkpCgkJCSkKCQkpOwoJfQoKCWdldE9wZW5GbHlvdXRzSW5Ecm9wZG93bihkcm9wZG93bikgewoJCWNvbnN0IGZseW91dHMgPSBkcm9wZG93bi5xdWVyeVNlbGVjdG9yQWxsKCcuZXRjaC1uYXZfX2ZseW91dCcpOwoJCXJldHVybiBBcnJheS5mcm9tKGZseW91dHMpLmZpbHRlcigoZmx5b3V0KSA9PiB7CgkJCWNvbnN0IGJ1dHRvbiA9IHRoaXMuYXJlYVRyaWdnZXJNYXAuZ2V0KGZseW91dCk7CgkJCXJldHVybiBidXR0b24/LmdldEF0dHJpYnV0ZSgnYXJpYS1leHBhbmRlZCcpID09PSAndHJ1ZSc7CgkJfSk7Cgl9CgoJZ2V0T3Blbk5hdkZyb21CdXR0b24oYnV0dG9uKSB7CgkJY29uc3QgbmF2ID0gdGhpcy5idXR0b25OYXZNYXAuZ2V0KGJ1dHRvbik7CgkJY29uc3QgaXNPcGVuID0gYnV0dG9uLmdldEF0dHJpYnV0ZSgnYXJpYS1leHBhbmRlZCcpID09PSAndHJ1ZSc7CgkJcmV0dXJuIGlzT3BlbiA/IG5hdiA6IG51bGw7Cgl9CgoJZ2V0Q29udGV4dEZvclRhcmdldCh0YXJnZXQpIHsKCQljb25zdCBhcmVhID0gdGhpcy5lbGVtZW50QXJlYU1hcC5nZXQodGFyZ2V0KTsKCQlpZiAoIWFyZWEpIHsKCQkJcmV0dXJuIHsKCQkJCXR5cGU6ICd0b3AtbGV2ZWwnLAoJCQkJaXRlbXM6IHRoaXMudG9wTGV2ZWxOYXZJdGVtcywKCQkJCWFyZWE6IG51bGwKCQkJfTsKCQl9CgkJY29uc3QgaXRlbXMgPSB0aGlzLmFyZWFGb2N1c01hcC5nZXQoYXJlYSk7CgkJY29uc3QgdHlwZSA9IGFyZWEuY2xhc3NMaXN0LmNvbnRhaW5zKCdldGNoLW5hdl9fZmx5b3V0JykKCQkJPyAnZmx5b3V0JwoJCQk6ICdkcm9wZG93bic7CgkJcmV0dXJuIHsgdHlwZSwgaXRlbXMsIGFyZWEgfTsKCX0KCglnZXRQYXJlbnREcm9wZG93bihlbGVtZW50KSB7CgkJbGV0IHBhcmVudCA9IGVsZW1lbnQucGFyZW50RWxlbWVudDsKCQl3aGlsZSAocGFyZW50KSB7CgkJCWlmIChwYXJlbnQuY2xhc3NMaXN0LmNvbnRhaW5zKCdldGNoLW5hdl9fZHJvcGRvd24nKSkgcmV0dXJuIHBhcmVudDsKCQkJcGFyZW50ID0gcGFyZW50LnBhcmVudEVsZW1lbnQ7CgkJfQoJCXJldHVybiBudWxsOwoJfQoKCXNldFRhYkluZGV4KGl0ZW1zKSB7CgkJaXRlbXMuZm9yRWFjaCgoZWwpID0+IGVsLnNldEF0dHJpYnV0ZSgndGFiaW5kZXgnLCAnMCcpKTsKCX0KCglzZXRCdXR0b25OYXZNYXAoKSB7CgkJdGhpcy5idXR0b25OYXZNYXAgPSBuZXcgTWFwKCk7CgoJCXRoaXMuZHJvcGRvd25CdXR0b25zPy5mb3JFYWNoKChidXR0b24pID0+IHsKCQkJY29uc3QgbGkgPSBidXR0b24uY2xvc2VzdCgnbGknKTsKCQkJY29uc3QgZHJvcGRvd24gPSB0aGlzLmRyb3Bkb3duTmF2LmZpbmQoCgkJCQkobSkgPT4gbS5jbG9zZXN0KCdsaScpID09PSBsaQoJCQkpOwoJCQlpZiAoZHJvcGRvd24pIHRoaXMuYnV0dG9uTmF2TWFwLnNldChidXR0b24sIGRyb3Bkb3duKTsKCQl9KTsKCgkJdGhpcy5mbHlvdXRCdXR0b25zPy5mb3JFYWNoKChidXR0b24pID0+IHsKCQkJY29uc3QgbGkgPSBidXR0b24uY2xvc2VzdCgnbGknKTsKCQkJY29uc3QgZmx5b3V0ID0gdGhpcy5mbHlvdXROYXYuZmluZCgobSkgPT4gbS5jbG9zZXN0KCdsaScpID09PSBsaSk7CgkJCWlmIChmbHlvdXQpIHRoaXMuYnV0dG9uTmF2TWFwLnNldChidXR0b24sIGZseW91dCk7CgkJfSk7Cgl9CgoJc2V0QXJlYU5hdlN0YXRlKGJ1dHRvbiwgb3BlbikgewoJCWNvbnN0IG5hdiA9IHRoaXMuYnV0dG9uTmF2TWFwLmdldChidXR0b24pOwoJCWlmICghbmF2KSByZXR1cm47CgoJCWJ1dHRvbi5zZXRBdHRyaWJ1dGUoJ2FyaWEtZXhwYW5kZWQnLCBTdHJpbmcob3BlbikpOwoKCQlpZiAob3BlbikgewoJCQl0aGlzLnNldEV4cGFuZGVkTmF2SGVpZ2h0KG5hdik7CgkJfSBlbHNlIHsKCQkJdGhpcy5zZXRDb2xsYXBzZWROYXZIZWlnaHQobmF2KTsKCgkJCWlmIChuYXYuY2xhc3NMaXN0LmNvbnRhaW5zKCdldGNoLW5hdl9fZHJvcGRvd24nKSkgewoJCQkJY29uc3Qgb3BlbkZseW91dHMgPSB0aGlzLmdldE9wZW5GbHlvdXRzSW5Ecm9wZG93bihuYXYpOwoJCQkJZm9yIChjb25zdCBmbHlvdXQgb2Ygb3BlbkZseW91dHMpIHsKCQkJCQljb25zdCBmbHlvdXRCdXR0b24gPSB0aGlzLmFyZWFUcmlnZ2VyTWFwLmdldChmbHlvdXQpOwoJCQkJCWZseW91dEJ1dHRvbj8uc2V0QXR0cmlidXRlKCdhcmlhLWV4cGFuZGVkJywgJ2ZhbHNlJyk7CiAgICAgICAgICAgICAgICAgIGZseW91dC5zdHlsZS5tYXhIZWlnaHQgPSAnMHB4JzsKCQkJCX0KCQkJfQoKCQl9CgoJCWlmIChuYXYuY2xhc3NMaXN0LmNvbnRhaW5zKCdldGNoLW5hdl9fZmx5b3V0JykpIHsKCQkJdGhpcy5jYWxjdWxhdGVEcm9wZG93bkV4dHJhSGVpZ2h0KG5hdik7CgkJfQoJfQoKCXNldEluaXRpYWxOYXZTdGF0ZXMoKSB7CgkJZm9yIChjb25zdCBbYnV0dG9uXSBvZiB0aGlzLmJ1dHRvbk5hdk1hcC5lbnRyaWVzKCkpIHsKCQkJY29uc3QgaXNPcGVuID0gYnV0dG9uLmdldEF0dHJpYnV0ZSgnYXJpYS1leHBhbmRlZCcpID09PSAndHJ1ZSc7CgkJCXRoaXMuc2V0QXJlYU5hdlN0YXRlKGJ1dHRvbiwgaXNPcGVuKTsKCQl9Cgl9CgoJc2V0RXhwYW5kZWROYXZIZWlnaHQobmF2KSB7CgkJY29uc3QgaGVpZ2h0ID0gdGhpcy5jYWxjdWxhdGVOYXZIZWlnaHQobmF2KTsKCQluYXYuc3R5bGUubWF4SGVpZ2h0ID0gJzBweCc7CgkJbmF2Lm9mZnNldEhlaWdodDsgLy8gZm9yY2UgcmVmbG93CgkJbmF2LnN0eWxlLm1heEhlaWdodCA9IGAke2hlaWdodH1weGA7Cgl9CgoJc2V0Q29sbGFwc2VkTmF2SGVpZ2h0KG5hdikgewoJCW5hdi5zdHlsZS5tYXhIZWlnaHQgPSBgJHtuYXYuc2Nyb2xsSGVpZ2h0fXB4YDsKCQluYXYub2Zmc2V0SGVpZ2h0OyAvLyBmb3JjZSByZWZsb3cKCQluYXYuc3R5bGUubWF4SGVpZ2h0ID0gJzBweCc7Cgl9CgoJYnVpbGRGb2N1c01hcHMoKSB7CgkJdGhpcy5hcmVhRm9jdXNNYXAgPSBuZXcgTWFwKCk7CgkJdGhpcy5hcmVhVHJpZ2dlck1hcCA9IG5ldyBNYXAoKTsKCQl0aGlzLmVsZW1lbnRBcmVhTWFwID0gbmV3IE1hcCgpOwoKCQlmb3IgKGNvbnN0IGVsIG9mIHRoaXMudG9wTGV2ZWxOYXZJdGVtcykgewoJCQl0aGlzLmVsZW1lbnRBcmVhTWFwLnNldChlbCwgdW5kZWZpbmVkKTsKCQl9CgoJCVsuLi50aGlzLmRyb3Bkb3duTmF2LCAuLi50aGlzLmZseW91dE5hdl0uZm9yRWFjaCgobmF2KSA9PiB7CgkJCWNvbnN0IGJ1dHRvbiA9IFsuLi50aGlzLmJ1dHRvbk5hdk1hcC5lbnRyaWVzKCldLmZpbmQoCgkJCQkoWywgbV0pID0+IG0gPT09IG5hdgoJCQkpPy5bMF07CgkJCWlmICghYnV0dG9uKSByZXR1cm47CgoJCQljb25zdCBpdGVtcyA9IHRoaXMuZ2V0Rm9jdXNhYmxlQXJlYUVsZW1lbnRzKG5hdik7CgoJCQl0aGlzLmFyZWFGb2N1c01hcC5zZXQobmF2LCBpdGVtcyk7CgkJCXRoaXMuYXJlYVRyaWdnZXJNYXAuc2V0KG5hdiwgYnV0dG9uKTsKCgkJCWZvciAoY29uc3QgaXRlbSBvZiBpdGVtcykgewoJCQkJdGhpcy5lbGVtZW50QXJlYU1hcC5zZXQoaXRlbSwgbmF2KTsKCQkJfQoJCX0pOwoJfQoKCWNhbGN1bGF0ZU5hdkhlaWdodChuYXYpIHsKCQlpZiAobmF2LmNsYXNzTGlzdC5jb250YWlucygnZXRjaC1uYXZfX2ZseW91dCcpKSB7CgkJCXJldHVybiBuYXYuc2Nyb2xsSGVpZ2h0OwoJCX0KCgkJY29uc3QgZHJvcGRvd25NYXhIZWlnaHQgPSBuYXYuc3R5bGUubWF4SGVpZ2h0OwoJCW5hdi5zdHlsZS5tYXhIZWlnaHQgPSAnbm9uZSc7CgkJbGV0IHRvdGFsSGVpZ2h0ID0gbmF2LnNjcm9sbEhlaWdodDsKCQluYXYuc3R5bGUubWF4SGVpZ2h0ID0gZHJvcGRvd25NYXhIZWlnaHQ7CgoJCWNvbnN0IG9wZW5GbHlvdXRzID0gdGhpcy5nZXRPcGVuRmx5b3V0c0luRHJvcGRvd24obmF2KTsKCQlmb3IgKGNvbnN0IGZseW91dCBvZiBvcGVuRmx5b3V0cykgewoJCQl0b3RhbEhlaWdodCArPSBmbHlvdXQuc2Nyb2xsSGVpZ2h0OwoJCX0KCgkJcmV0dXJuIHRvdGFsSGVpZ2h0OwoJfQoKCS8vIFRoaXMgbWV0aG9kIG1hdGNoZXMgdGhlIGRyb3Bkb3duIGhlaWdodCB3aGVuIGEgZmx5b3V0IGlzIG9wZW5lZAoJY2FsY3VsYXRlRHJvcGRvd25FeHRyYUhlaWdodChmbHlvdXQpIHsKCQljb25zdCBwYXJlbnREcm9wZG93biA9IHRoaXMuZ2V0UGFyZW50RHJvcGRvd24oZmx5b3V0KTsKCQlpZiAoIXBhcmVudERyb3Bkb3duKSByZXR1cm47CgoJCWNvbnN0IGJ1dHRvbiA9IHRoaXMuYXJlYVRyaWdnZXJNYXAuZ2V0KHBhcmVudERyb3Bkb3duKTsKCQlpZiAoYnV0dG9uPy5nZXRBdHRyaWJ1dGUoJ2FyaWEtZXhwYW5kZWQnKSA9PT0gJ3RydWUnKSB7CgkJCWNvbnN0IGhlaWdodCA9IHRoaXMuY2FsY3VsYXRlTmF2SGVpZ2h0KHBhcmVudERyb3Bkb3duKTsKCQkJcGFyZW50RHJvcGRvd24uc3R5bGUubWF4SGVpZ2h0ID0gYCR7aGVpZ2h0fXB4YDsKCQl9Cgl9CgoJdG9nZ2xlQXJlYU5hdihidXR0b24pIHsKCQl0aGlzLmNsZWFySG92ZXJUaW1lb3V0KGJ1dHRvbik7CgoJCWNvbnN0IGlzT3BlbiA9IGJ1dHRvbi5nZXRBdHRyaWJ1dGUoJ2FyaWEtZXhwYW5kZWQnKSA9PT0gJ3RydWUnOwoJCXRoaXMuc2V0QXJlYU5hdlN0YXRlKGJ1dHRvbiwgIWlzT3Blbik7CgkJaWYgKCFpc09wZW4pIHsKCQkJdGhpcy5jbG9zZVNpYmxpbmdOYXYoYnV0dG9uKTsKCQkJdGhpcy5oYW5kbGVNb2JpbGVNZW51Rm9jdXMoYnV0dG9uKTsKCQl9Cgl9CgoJaGFuZGxlTW9iaWxlTWVudUZvY3VzKGJ1dHRvbikgewoJCWNvbnN0IGlzTW9iaWxlTWVudU9wZW4gPQoJCQl0aGlzLm5hdkVsLmdldEF0dHJpYnV0ZSgnYXJpYS1leHBhbmRlZCcpID09PSAndHJ1ZSc7CgkJaWYgKCFpc01vYmlsZU1lbnVPcGVuKSByZXR1cm47CgoJCWNvbnN0IG5hdiA9IHRoaXMuYnV0dG9uTmF2TWFwLmdldChidXR0b24pOwoJCWNvbnN0IGl0ZW1zID0gdGhpcy5hcmVhRm9jdXNNYXAuZ2V0KG5hdik7CgkJaWYgKCFpdGVtcz8ubGVuZ3RoKSByZXR1cm47CgoJCWNvbnN0IGZvY3VzRmlyc3RJdGVtID0gKCkgPT4gewoJCQlpdGVtc1swXS5mb2N1cygpOwoJCX07CgoJCWNvbnN0IHJlbW92ZUxpc3RlbmVycyA9ICgpID0+IHsKCQkJbmF2LnJlbW92ZUV2ZW50TGlzdGVuZXIoJ3RyYW5zaXRpb25lbmQnLCBmb2N1c0ZpcnN0SXRlbSk7CgkJCW5hdi5yZW1vdmVFdmVudExpc3RlbmVyKCdhbmltYXRpb25lbmQnLCBmb2N1c0ZpcnN0SXRlbSk7CgkJfTsKCgkJbmF2LmFkZEV2ZW50TGlzdGVuZXIoJ3RyYW5zaXRpb25lbmQnLCBmb2N1c0ZpcnN0SXRlbSwgeyBvbmNlOiB0cnVlIH0pOwoJCW5hdi5hZGRFdmVudExpc3RlbmVyKCdhbmltYXRpb25lbmQnLCBmb2N1c0ZpcnN0SXRlbSwgeyBvbmNlOiB0cnVlIH0pOwoKCQlzZXRUaW1lb3V0KCgpID0+IHsKCQkJcmVtb3ZlTGlzdGVuZXJzKCk7CgkJCWZvY3VzRmlyc3RJdGVtKCk7CgkJfSwgMTAwKTsKCX0KCgljbG9zZVNpYmxpbmdOYXYoY3VycmVudEJ1dHRvbikgewoJCWZvciAoY29uc3QgW2J1dHRvbl0gb2YgdGhpcy5idXR0b25OYXZNYXAuZW50cmllcygpKSB7CgkJCWlmICgKCQkJCWJ1dHRvbiAhPT0gY3VycmVudEJ1dHRvbiAmJgoJCQkJYnV0dG9uLmNsb3Nlc3QoJ3VsJykgPT09IGN1cnJlbnRCdXR0b24uY2xvc2VzdCgndWwnKSAmJgoJCQkJYnV0dG9uLmdldEF0dHJpYnV0ZSgnYXJpYS1leHBhbmRlZCcpID09PSAndHJ1ZScKCQkJKSB7CgkJCQl0aGlzLnNldEFyZWFOYXZTdGF0ZShidXR0b24sIGZhbHNlKTsKCQkJfQoJCX0KCX0KCgljbG9zZUFsbE5hdnMoKSB7CgkJZm9yIChjb25zdCBbYnV0dG9uXSBvZiB0aGlzLmJ1dHRvbk5hdk1hcC5lbnRyaWVzKCkpIHsKCQkJdGhpcy5zZXRBcmVhTmF2U3RhdGUoYnV0dG9uLCBmYWxzZSk7CgkJfQoJfQoKCWNsb3NlTmF2QW5kUmV0dXJuRm9jdXMoYXJlYSkgewogICAgICBjb25zb2xlLmxvZygnY2xvc2VOYXZBbmRSZXR1cm5Gb2N1cyBjYWxsZWQnKQoJCWNvbnN0IGJ1dHRvbiA9IHRoaXMuYXJlYVRyaWdnZXJNYXAuZ2V0KGFyZWEpOwoJCWlmIChidXR0b24pIHsKCQkJdGhpcy5zZXRBcmVhTmF2U3RhdGUoYnV0dG9uLCBmYWxzZSk7CgkJCWJ1dHRvbi5mb2N1cygpOwoJCX0KCX0KCglmb2N1c0ZpcnN0Q2hpbGROYXZJdGVtSWZPcGVuKGJ1dHRvbikgewoJCWNvbnN0IG5hdiA9IHRoaXMuZ2V0T3Blbk5hdkZyb21CdXR0b24oYnV0dG9uKTsKCQlpZiAoIW5hdikgcmV0dXJuIHsgZm9jdXNlZDogZmFsc2UsIHR5cGU6IG51bGwgfTsKCgkJY29uc3QgaXRlbXMgPSB0aGlzLmFyZWFGb2N1c01hcC5nZXQobmF2KTsKCQlpZiAoaXRlbXM/Lmxlbmd0aCkgaXRlbXNbMF0uZm9jdXMoKTsKCgkJY29uc3QgdHlwZSA9IG5hdi5jbGFzc0xpc3QuY29udGFpbnMoJ2V0Y2gtbmF2X19mbHlvdXQnKQoJCQk/ICdmbHlvdXQnCgkJCTogJ2Ryb3Bkb3duJzsKCQlyZXR1cm4geyBmb2N1c2VkOiB0cnVlLCB0eXBlIH07Cgl9CgoJbW92ZUZvY3VzKGl0ZW1zLCBkaXJlY3Rpb24pIHsKCQljb25zdCBhY3RpdmUgPSBkb2N1bWVudC5hY3RpdmVFbGVtZW50OwoJCWxldCBpbmRleCA9IGl0ZW1zLmluZGV4T2YoYWN0aXZlKTsKCQlpZiAoaW5kZXggPT09IC0xKSBpbmRleCA9IDA7CgoJCWxldCBuZXh0ID0gaW5kZXggKyBkaXJlY3Rpb247CgkJaWYgKG5leHQgPj0gaXRlbXMubGVuZ3RoKSBuZXh0ID0gMDsKCQlpZiAobmV4dCA8IDApIG5leHQgPSBpdGVtcy5sZW5ndGggLSAxOwoKCQlpdGVtc1tuZXh0XT8uZm9jdXM/LigpOwoJfQoKCWhhbmRsZUZvY3VzSW4oZSkgewoJCWNvbnN0IG5ld2x5Rm9jdXNlZEVsZW1lbnQgPSBlLnRhcmdldDsKCQljb25zdCBpc1RvcExldmVsSXRlbSA9CgkJCXRoaXMudG9wTGV2ZWxOYXZJdGVtcy5pbmNsdWRlcyhuZXdseUZvY3VzZWRFbGVtZW50KTsKCgkJY29uc3QgaXNJbk9wZW5OYXYgPSBbLi4udGhpcy5idXR0b25OYXZNYXAuZW50cmllcygpXS5zb21lKAoJCQkoW2J0biwgbmF2XSkgPT4gewoJCQkJY29uc3QgaXNCdXR0b25PcGVuID0KCQkJCQlidG4uZ2V0QXR0cmlidXRlKCdhcmlhLWV4cGFuZGVkJykgPT09ICd0cnVlJzsKCQkJCWNvbnN0IGlzV2l0aGluTmF2ID0KCQkJCQluYXYuY29udGFpbnMobmV3bHlGb2N1c2VkRWxlbWVudCkgfHwKCQkJCQlidG4gPT09IG5ld2x5Rm9jdXNlZEVsZW1lbnQ7CgoJCQkJcmV0dXJuIGlzQnV0dG9uT3BlbiAmJiBpc1dpdGhpbk5hdjsKCQkJfQoJCSk7CgoJCWlmIChpc1RvcExldmVsSXRlbSAmJiAhaXNJbk9wZW5OYXYpIHsKCQkJdGhpcy5jbG9zZUFsbE5hdnMoKTsKCQl9Cgl9CgoJYXR0YWNoRXZlbnRMaXN0ZW5lcnMoKSB7CgkJdGhpcy5hdHRhY2hDbGlja0V2ZW50TGlzdGVuZXJzKCk7CgkJdGhpcy5hdHRhY2hIb3ZlckV2ZW50TGlzdGVuZXJzKCk7CgoJCXRoaXMubmF2RWwuYWRkRXZlbnRMaXN0ZW5lcigna2V5ZG93bicsIChlKSA9PiB0aGlzLmhhbmRsZUtleURvd24oZSkpOwoJCXRoaXMubmF2RWwuYWRkRXZlbnRMaXN0ZW5lcignZm9jdXNpbicsIChlKSA9PiB0aGlzLmhhbmRsZUZvY3VzSW4oZSkpOwoKCQlpZiAoWydjbGljaycsICdjbGljay1zdWItaG92ZXInXS5pbmNsdWRlcyh0aGlzLmludGVyYWN0aW9uTW9kZSkpIHsKCQkJdGhpcy5hdHRhY2hDbGlja091dHNpZGVMaXN0ZW5lcigpOwoJCX0KCX0KCglhdHRhY2hDbGlja0V2ZW50TGlzdGVuZXJzKCkgewoJCVsuLi50aGlzLmRyb3Bkb3duQnV0dG9ucywgLi4udGhpcy5mbHlvdXRCdXR0b25zXS5mb3JFYWNoKChidG4pID0+CgkJCWJ0bi5hZGRFdmVudExpc3RlbmVyKCdjbGljaycsICgpID0+IHRoaXMudG9nZ2xlQXJlYU5hdihidG4pKQoJCSk7Cgl9CgoJYXR0YWNoSG92ZXJFdmVudExpc3RlbmVycygpIHsKCQlpZiAodGhpcy5pc1RvdWNoRGV2aWNlIHx8IHRoaXMuaW50ZXJhY3Rpb25Nb2RlID09PSAnY2xpY2snKSByZXR1cm47CgoJCWNvbnN0IGJ1dHRvbnNUb0hvdmVyID0KCQkJdGhpcy5pbnRlcmFjdGlvbk1vZGUgPT09ICdjbGljay1zdWItaG92ZXInCgkJCQk/IHRoaXMuZmx5b3V0QnV0dG9ucwoJCQkJOiBbLi4udGhpcy5kcm9wZG93bkJ1dHRvbnMsIC4uLnRoaXMuZmx5b3V0QnV0dG9uc107CgoJCWJ1dHRvbnNUb0hvdmVyLmZvckVhY2goKGJ1dHRvbikgPT4gewoJCQljb25zdCBuYXYgPSB0aGlzLmJ1dHRvbk5hdk1hcC5nZXQoYnV0dG9uKTsKCQkJaWYgKCFuYXYpIHJldHVybjsKCgkJCWNvbnN0IGNsZWFyID0gKCkgPT4gdGhpcy5jbGVhckhvdmVyVGltZW91dChidXR0b24pOwoJCQljb25zdCBzY2hlZHVsZSA9ICgpID0+IHRoaXMuc2NoZWR1bGVIb3ZlclRpbWVvdXQoYnV0dG9uLCBuYXYpOwoKCQkJYnV0dG9uLmFkZEV2ZW50TGlzdGVuZXIoJ21vdXNlZW50ZXInLCAoKSA9PiB7CgkJCQljb25zdCBpc09wZW4gPSBidXR0b24uZ2V0QXR0cmlidXRlKCdhcmlhLWV4cGFuZGVkJykgPT09ICd0cnVlJzsKCQkJCWlmICghaXNPcGVuKSB0aGlzLnNldEFyZWFOYXZTdGF0ZShidXR0b24sIHRydWUpOwoJCQl9KTsKCgkJCWJ1dHRvbi5hZGRFdmVudExpc3RlbmVyKCdtb3VzZWxlYXZlJywgc2NoZWR1bGUpOwoJCQluYXYuYWRkRXZlbnRMaXN0ZW5lcignbW91c2VsZWF2ZScsIHNjaGVkdWxlKTsKCQkJbmF2LmFkZEV2ZW50TGlzdGVuZXIoJ21vdXNlZW50ZXInLCBjbGVhcik7CgkJfSk7Cgl9CgoJYXR0YWNoQ2xpY2tPdXRzaWRlTGlzdGVuZXIoKSB7CgkJdGhpcy5fb25DbGlja091dHNpZGUgPSAoZSkgPT4gewoJCQlpZiAoIXRoaXMubmF2RWwuY29udGFpbnMoZS50YXJnZXQpKSB7CgkJCQl0aGlzLmNsb3NlQWxsTmF2cygpOwoJCQl9CgkJfTsKCgkJZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCB0aGlzLl9vbkNsaWNrT3V0c2lkZSk7Cgl9CgoJc2NoZWR1bGVIb3ZlclRpbWVvdXQoYnV0dG9uLCBuYXYpIHsKCQl0aGlzLmNsZWFySG92ZXJUaW1lb3V0KGJ1dHRvbik7CgoJCWNvbnN0IHRpbWVvdXQgPSBzZXRUaW1lb3V0KCgpID0+IHsKCQkJY29uc3QgaXNIb3ZlcmluZyA9CgkJCQlidXR0b24ubWF0Y2hlcygnOmhvdmVyJykgfHwKCQkJCW5hdi5tYXRjaGVzKCc6aG92ZXInKSB8fAoJCQkJbmF2LmNvbnRhaW5zKGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJzpob3ZlcicpKTsKCgkJCWlmICghaXNIb3ZlcmluZykgdGhpcy5zZXRBcmVhTmF2U3RhdGUoYnV0dG9uLCBmYWxzZSk7CgkJCXRoaXMuaG92ZXJUaW1lb3V0cy5kZWxldGUoYnV0dG9uKTsKCQl9LCAyNSk7CgoJCXRoaXMuaG92ZXJUaW1lb3V0cy5zZXQoYnV0dG9uLCB0aW1lb3V0KTsKCX0KCgljbGVhckhvdmVyVGltZW91dChidXR0b24pIHsKCQlpZiAodGhpcy5ob3ZlclRpbWVvdXRzLmhhcyhidXR0b24pKSB7CgkJCWNsZWFyVGltZW91dCh0aGlzLmhvdmVyVGltZW91dHMuZ2V0KGJ1dHRvbikpOwoJCQl0aGlzLmhvdmVyVGltZW91dHMuZGVsZXRlKGJ1dHRvbik7CgkJfQoJfQoKCWhhbmRsZUtleURvd24oZSkgewoJCWNvbnN0IHsga2V5LCB0YXJnZXQgfSA9IGU7CgkJY29uc3QgeyB0eXBlLCBpdGVtcywgYXJlYSB9ID0gdGhpcy5nZXRDb250ZXh0Rm9yVGFyZ2V0KHRhcmdldCk7CgoJCXN3aXRjaCAoa2V5KSB7CgkJCWNhc2UgJ0Fycm93UmlnaHQnOgoJCQljYXNlICdBcnJvd0xlZnQnOgoJCQljYXNlICdBcnJvd1VwJzoKCQkJY2FzZSAnQXJyb3dEb3duJzoKCQkJCWUucHJldmVudERlZmF1bHQoKTsKCQkJCXRoaXMuaGFuZGxlRGlyZWN0aW9uYWxBcnJvdyhrZXksIHR5cGUsIGl0ZW1zLCB0YXJnZXQsIGFyZWEpOwoJCQkJYnJlYWs7CgkJCWNhc2UgJ1RhYic6CgkJCQlpZiAoZS5zaGlmdEtleSAmJiBhcmVhICYmIGl0ZW1zLmluZGV4T2YodGFyZ2V0KSA9PT0gMCkgewoJCQkJCWUucHJldmVudERlZmF1bHQoKTsKCQkJCQl0aGlzLmNsb3NlTmF2QW5kUmV0dXJuRm9jdXMoYXJlYSk7CgkJCQl9CgkJCQlicmVhazsKCQkJY2FzZSAnRW50ZXInOgoJCQljYXNlICcgJzoKCQkJCWlmICh0aGlzLmJ1dHRvbk5hdk1hcC5oYXModGFyZ2V0KSkgewoJCQkJCWUucHJldmVudERlZmF1bHQoKTsKCQkJCQl0aGlzLnRvZ2dsZUFyZWFOYXYodGFyZ2V0KTsKCQkJCX0KCQkJCWJyZWFrOwoJCQljYXNlICdFc2NhcGUnOgoJCQkJZS5wcmV2ZW50RGVmYXVsdCgpOwogICAgICAgICAgICAgICAgZS5zdG9wUHJvcGFnYXRpb24oKTsKCQkJCXRoaXMuaGFuZGxlRXNjYXBlS2V5KGFyZWEpOwoJCQkJYnJlYWs7CgkJfQoJfQoKCWhhbmRsZUVzY2FwZUtleShhcmVhKSB7CgkJaWYgKGFyZWEpIHsKICAgICAgICAgIGNvbnNvbGUubG9nKCdhcmVhIGlzJywgYXJlYSkKCQkJdGhpcy5jbG9zZU5hdkFuZFJldHVybkZvY3VzKGFyZWEpOwoJCX0gZWxzZSB7CiAgICAgICAgICBjb25zb2xlLmxvZygnYXJlYSBzaG91bGQgbm90IGJlJykKCQkJdGhpcy5jbG9zZUFsbE5hdnMoKTsKCQl9Cgl9CgoJaGFuZGxlRGlyZWN0aW9uYWxBcnJvdyhrZXksIHR5cGUsIGl0ZW1zLCB0YXJnZXQsIGFyZWEpIHsKCQljb25zdCBpbmRleCA9IGl0ZW1zLmluZGV4T2YodGFyZ2V0KTsKCQljb25zdCBpc0ZpcnN0ID0gaW5kZXggPT09IDA7CgoJCXN3aXRjaCAoa2V5KSB7CgkJCWNhc2UgJ0Fycm93UmlnaHQnOgoJCQkJaWYgKHR5cGUgPT09ICd0b3AtbGV2ZWwnIHx8IHR5cGUgPT09ICdmbHlvdXQnKSB7CgkJCQkJdGhpcy5tb3ZlRm9jdXMoaXRlbXMsIDEpOwoJCQkJfSBlbHNlIGlmICh0eXBlID09PSAnZHJvcGRvd24nKSB7CgkJCQkJY29uc3QgeyBmb2N1c2VkLCB0eXBlOiBuZXh0VHlwZSB9ID0KCQkJCQkJdGhpcy5mb2N1c0ZpcnN0Q2hpbGROYXZJdGVtSWZPcGVuKHRhcmdldCk7CgkJCQkJaWYgKCFmb2N1c2VkIHx8IG5leHRUeXBlICE9PSAnZmx5b3V0JykKCQkJCQkJdGhpcy5tb3ZlRm9jdXMoaXRlbXMsIDEpOwoJCQkJfQoJCQkJYnJlYWs7CgkJCWNhc2UgJ0Fycm93TGVmdCc6CgkJCQlpZiAodHlwZSA9PT0gJ3RvcC1sZXZlbCcgfHwgdHlwZSA9PT0gJ2Ryb3Bkb3duJykgewoJCQkJCXRoaXMubW92ZUZvY3VzKGl0ZW1zLCAtMSk7CgkJCQl9IGVsc2UgaWYgKHR5cGUgPT09ICdmbHlvdXQnKSB7CgkJCQkJaWYgKCFpc0ZpcnN0KSB0aGlzLm1vdmVGb2N1cyhpdGVtcywgLTEpOwoJCQkJCWVsc2UgdGhpcy5jbG9zZU5hdkFuZFJldHVybkZvY3VzKGFyZWEpOwoJCQkJfQoJCQkJYnJlYWs7CgkJCWNhc2UgJ0Fycm93VXAnOgoJCQkJaWYgKHR5cGUgPT09ICdkcm9wZG93bicpIHsKCQkJCQlpZiAoIWlzRmlyc3QpIHRoaXMubW92ZUZvY3VzKGl0ZW1zLCAtMSk7CgkJCQkJZWxzZSB0aGlzLmNsb3NlTmF2QW5kUmV0dXJuRm9jdXMoYXJlYSk7CgkJCQl9IGVsc2UgaWYgKHR5cGUgPT09ICdmbHlvdXQnKSB7CgkJCQkJdGhpcy5tb3ZlRm9jdXMoaXRlbXMsIC0xKTsKCQkJCX0KCQkJCWJyZWFrOwoJCQljYXNlICdBcnJvd0Rvd24nOgoJCQkJaWYgKHR5cGUgPT09ICd0b3AtbGV2ZWwnKSB7CgkJCQkJdGhpcy5mb2N1c0ZpcnN0Q2hpbGROYXZJdGVtSWZPcGVuKHRhcmdldCk7CgkJCQl9IGVsc2UgewoJCQkJCXRoaXMubW92ZUZvY3VzKGl0ZW1zLCAxKTsKCQkJCX0KCQkJCWJyZWFrOwoJCX0KCX0KfQoKZnVuY3Rpb24gaW5zdGFudGlhdGVOYXZDbGFzcyhvcHRpb25zID0ge30pIHsKCS8vIGV0Y2ggbmF2IGVsZW1lbnQgKCBpZiB5b3UgY2hhbmdlZCB0aGUgZGF0YS1ldGNoLW5hdiBhdHRyaWJ1dGUgdmFsdWUgaW4gaHRtbCwgaXQgbmVlZCB0byBiZSByZWZsZWN0ZWQgaGVyZSBhcyB3ZWxsKQoJY29uc3QgbmF2RWwgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCdbZGF0YS1ldGNoLW5hdj0ibWFpbiJdJyk7CgoJaWYgKCFuYXZFbCkgewoJCWNvbnNvbGUuZXJyb3IoCgkJCSdDYW5ub3QgZmluZCBOYXYgZWxlbWVudCwgaXMgdGhlIFtkYXRhLWV0Y2gtbmF2PSIiXSBhdHRyaWJ1dGUgY29ycmVjdD8nCgkJKTsKCQlyZXR1cm47Cgl9CgoJLy8gY3JlYXRlIGFuIGluc3RhbmNlIG9mIHRoZSBuYXYgc2NyaXB0Cgljb25zdCBuYXZJbnN0YW5jZSA9IG5ldyBFdGNoTmF2U2NyaXB0KG5hdkVsLCBvcHRpb25zKTsKCgkvLyB1c2UgZXRjaEVsZW1lbnRzIHdpbmRvdyBvYmplY3Qgb3IgY3JlYXRlIGEgbmV3IG9uZSBpZiBkb2VzbnQgZXhpc3QKCXdpbmRvdy5ldGNoRWxlbWVudHMgPSB3aW5kb3cuZXRjaEVsZW1lbnRzIHx8IFtdOwoJLy8gY3JlYXRlIGFuIGluc3RhbmNlIG9mIG5hdkluc3RhbmNlIG9uIHRoZSB3aW5kb3cKCXdpbmRvdy5ldGNoRWxlbWVudHMuZXRjaE5hdiA9IG5hdkluc3RhbmNlOwp9CgppbnN0YW50aWF0ZU5hdkNsYXNzKHsKCWFyaWFDdXJyZW50UGFnZTogdHJ1ZQp9KTsK",
+                                "id": "8e1nyur"
+                            },
+                            "styles": [
+                                "9sb87z1"
+                            ],
+                            "attributes": {
+                                "aria-label": "{props.navAriaLabel}",
+                                "data-etch-nav": "main",
+                                "aria-expanded": "false",
+                                "data-nav-interaction": "{props.mouseSubmenu}",
+                                "class": "etch-nav"
+                            },
+                            "block": {
+                                "type": "html",
+                                "tag": "nav"
+                            }
+                        }
+                    }
+                },
+                "innerBlocks": [
+                    {
+                        "blockName": "core/group",
+                        "attrs": {
+                            "metadata": {
+                                "etchData": {
+                                    "origin": "etch",
+                                    "styles": [
+                                        "gcfht3i"
+                                    ],
+                                    "attributes": {
+                                        "class": "etch-nav__list"
+                                    },
+                                    "block": {
+                                        "type": "html",
+                                        "tag": "ul"
+                                    }
+                                }
+                            }
+                        },
+                        "innerBlocks": [
+                            {
+                                "blockName": "core/group",
+                                "attrs": {
+                                    "metadata": {
+                                        "etchData": {
+                                            "origin": "etch",
+                                            "block": {
+                                                "type": "loop",
+                                                "loop": {
+                                                    "targetItemId": "props",
+                                                    "targetPath": "basicNav",
+                                                    "itemId": "item"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "innerBlocks": [
+                                    {
+                                        "blockName": "core/group",
+                                        "attrs": {
+                                            "metadata": {
+                                                "etchData": {
+                                                    "origin": "etch",
+                                                    "block": {
+                                                        "type": "condition",
+                                                        "condition": {
+                                                            "leftHand": "item.children",
+                                                            "operator": "isFalsy",
+                                                            "rightHand": null
+                                                        },
+                                                        "conditionString": "!item.children"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "innerBlocks": [
+                                            {
+                                                "blockName": "core/group",
+                                                "attrs": {
+                                                    "metadata": {
+                                                        "etchData": {
+                                                            "origin": "etch",
+                                                            "styles": [
+                                                                "m0dvyl7"
+                                                            ],
+                                                            "attributes": {
+                                                                "class": "etch-nav__item"
+                                                            },
+                                                            "block": {
+                                                                "type": "html",
+                                                                "tag": "li"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "innerBlocks": [
+                                                    {
+                                                        "blockName": "core/paragraph",
+                                                        "attrs": {
+                                                            "metadata": {
+                                                                "etchData": {
+                                                                    "removeWrapper": true,
+                                                                    "block": {
+                                                                        "type": "html",
+                                                                        "tag": "p"
+                                                                    },
+                                                                    "origin": "etch",
+                                                                    "nestedData": {
+                                                                        "p4cgck0": {
+                                                                            "origin": "etch",
+                                                                            "styles": [
+                                                                                "tz9p9fh"
+                                                                            ],
+                                                                            "attributes": {
+                                                                                "href": "{item.url}",
+                                                                                "class": "etch-nav__link"
+                                                                            },
+                                                                            "block": {
+                                                                                "type": "html",
+                                                                                "tag": "a"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "innerBlocks": [],
+                                                        "innerHTML": "<p><a data-etch-ref=\"p4cgck0\">{item.label}</a></p>",
+                                                        "innerContent": [
+                                                            "<p><a data-etch-ref=\"p4cgck0\">{item.label}</a></p>"
+                                                        ]
+                                                    }
+                                                ],
+                                                "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                "innerContent": [
+                                                    "<div class=\"wp-block-group\">",
+                                                    null,
+                                                    "</div>"
+                                                ]
+                                            }
+                                        ],
+                                        "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                        "innerContent": [
+                                            "<div class=\"wp-block-group\">",
+                                            null,
+                                            "</div>"
+                                        ]
+                                    },
+                                    {
+                                        "blockName": "core/group",
+                                        "attrs": {
+                                            "metadata": {
+                                                "etchData": {
+                                                    "origin": "etch",
+                                                    "block": {
+                                                        "type": "condition",
+                                                        "condition": {
+                                                            "leftHand": "item.children",
+                                                            "operator": "isTruthy",
+                                                            "rightHand": null
+                                                        },
+                                                        "conditionString": "item.children"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "innerBlocks": [
+                                            {
+                                                "blockName": "core/group",
+                                                "attrs": {
+                                                    "metadata": {
+                                                        "etchData": {
+                                                            "origin": "etch",
+                                                            "styles": [
+                                                                "m0dvyl7",
+                                                                "m3koz7f"
+                                                            ],
+                                                            "attributes": {
+                                                                "class": "etch-nav__item etch-nav__item--has-dropdown"
+                                                            },
+                                                            "block": {
+                                                                "type": "html",
+                                                                "tag": "li"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "innerBlocks": [
+                                                    {
+                                                        "blockName": "core/group",
+                                                        "attrs": {
+                                                            "metadata": {
+                                                                "etchData": {
+                                                                    "origin": "etch",
+                                                                    "styles": [
+                                                                        "x9d1tax",
+                                                                        "rawqrcq"
+                                                                    ],
+                                                                    "attributes": {
+                                                                        "aria-label": "open {item.label} navigation",
+                                                                        "aria-haspopup": "true",
+                                                                        "aria-expanded": "false",
+                                                                        "class": "etch-nav__button etch-nav__button--dropdown-toggle"
+                                                                    },
+                                                                    "block": {
+                                                                        "type": "html",
+                                                                        "tag": "button"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "innerBlocks": [
+                                                            {
+                                                                "blockName": "core/paragraph",
+                                                                "attrs": {
+                                                                    "metadata": {
+                                                                        "etchData": {
+                                                                            "origin": "etch",
+                                                                            "block": {
+                                                                                "type": "html",
+                                                                                "tag": "span"
+                                                                            },
+                                                                            "removeWrapper": true,
+                                                                            "nestedData": {
+                                                                                "fq2pab0": {
+                                                                                    "origin": "etch",
+                                                                                    "block": {
+                                                                                        "type": "html",
+                                                                                        "tag": "span"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "innerBlocks": [],
+                                                                "innerHTML": "<p><span data-etch-ref=\"fq2pab0\">{item.label}</span></p>",
+                                                                "innerContent": [
+                                                                    "<p><span data-etch-ref=\"fq2pab0\">{item.label}</span></p>"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "blockName": "core/group",
+                                                                "attrs": {
+                                                                    "metadata": {
+                                                                        "etchData": {
+                                                                            "origin": "etch",
+                                                                            "attributes": {
+                                                                                "width": "24",
+                                                                                "height": "24",
+                                                                                "viewBox": "0 0 24 24",
+                                                                                "fill": "none",
+                                                                                "xmlns": "http://www.w3.org/2000/svg"
+                                                                            },
+                                                                            "block": {
+                                                                                "type": "html",
+                                                                                "tag": "svg"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "innerBlocks": [
+                                                                    {
+                                                                        "blockName": "core/group",
+                                                                        "attrs": {
+                                                                            "metadata": {
+                                                                                "etchData": {
+                                                                                    "origin": "etch",
+                                                                                    "attributes": {
+                                                                                        "fill": "currentColor",
+                                                                                        "d": "M17 9.17a1 1 0 0 0-1.41 0L12 12.71L8.46 9.17a1 1 0 0 0-1.41 0a1 1 0 0 0 0 1.42l4.24 4.24a1 1 0 0 0 1.42 0L17 10.59a1 1 0 0 0 0-1.42"
+                                                                                    },
+                                                                                    "block": {
+                                                                                        "type": "html",
+                                                                                        "tag": "path"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "innerBlocks": [],
+                                                                        "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                                        "innerContent": [
+                                                                            "<div class=\"wp-block-group\">",
+                                                                            "</div>"
+                                                                        ]
+                                                                    }
+                                                                ],
+                                                                "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                                "innerContent": [
+                                                                    "<div class=\"wp-block-group\">",
+                                                                    null,
+                                                                    "</div>"
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                        "innerContent": [
+                                                            "<div class=\"wp-block-group\">",
+                                                            null,
+                                                            null,
+                                                            "</div>"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "blockName": "core/group",
+                                                        "attrs": {
+                                                            "metadata": {
+                                                                "etchData": {
+                                                                    "origin": "etch",
+                                                                    "styles": [
+                                                                        "qfq1cjn"
+                                                                    ],
+                                                                    "attributes": {
+                                                                        "aria-label": "{item.label} navigation",
+                                                                        "class": "etch-nav__dropdown"
+                                                                    },
+                                                                    "block": {
+                                                                        "type": "html",
+                                                                        "tag": "ul"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "innerBlocks": [
+                                                            {
+                                                                "blockName": "core/group",
+                                                                "attrs": {
+                                                                    "metadata": {
+                                                                        "etchData": {
+                                                                            "origin": "etch",
+                                                                            "block": {
+                                                                                "type": "loop",
+                                                                                "loop": {
+                                                                                    "targetItemId": "item",
+                                                                                    "targetPath": "children",
+                                                                                    "itemId": "dropdownItem"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "innerBlocks": [
+                                                                    {
+                                                                        "blockName": "core/group",
+                                                                        "attrs": {
+                                                                            "metadata": {
+                                                                                "etchData": {
+                                                                                    "origin": "etch",
+                                                                                    "block": {
+                                                                                        "type": "condition",
+                                                                                        "condition": {
+                                                                                            "leftHand": "dropdownItem.children",
+                                                                                            "operator": "isFalsy",
+                                                                                            "rightHand": null
+                                                                                        },
+                                                                                        "conditionString": "!dropdownItem.children"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "innerBlocks": [
+                                                                            {
+                                                                                "blockName": "core/group",
+                                                                                "attrs": {
+                                                                                    "metadata": {
+                                                                                        "etchData": {
+                                                                                            "origin": "etch",
+                                                                                            "styles": [
+                                                                                                "m0dvyl7"
+                                                                                            ],
+                                                                                            "attributes": {
+                                                                                                "class": "etch-nav__item"
+                                                                                            },
+                                                                                            "block": {
+                                                                                                "type": "html",
+                                                                                                "tag": "li"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                "innerBlocks": [
+                                                                                    {
+                                                                                        "blockName": "core/paragraph",
+                                                                                        "attrs": {
+                                                                                            "metadata": {
+                                                                                                "etchData": {
+                                                                                                    "removeWrapper": true,
+                                                                                                    "block": {
+                                                                                                        "type": "html",
+                                                                                                        "tag": "p"
+                                                                                                    },
+                                                                                                    "origin": "etch",
+                                                                                                    "nestedData": {
+                                                                                                        "fsads9g": {
+                                                                                                            "origin": "etch",
+                                                                                                            "styles": [
+                                                                                                                "tz9p9fh"
+                                                                                                            ],
+                                                                                                            "attributes": {
+                                                                                                                "href": "{dropdownItem.url}",
+                                                                                                                "class": "etch-nav__link"
+                                                                                                            },
+                                                                                                            "block": {
+                                                                                                                "type": "html",
+                                                                                                                "tag": "a"
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "innerBlocks": [],
+                                                                                        "innerHTML": "<p><a data-etch-ref=\"fsads9g\">{dropdownItem.label}</a></p>",
+                                                                                        "innerContent": [
+                                                                                            "<p><a data-etch-ref=\"fsads9g\">{dropdownItem.label}</a></p>"
+                                                                                        ]
+                                                                                    }
+                                                                                ],
+                                                                                "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                                                "innerContent": [
+                                                                                    "<div class=\"wp-block-group\">",
+                                                                                    null,
+                                                                                    "</div>"
+                                                                                ]
+                                                                            }
+                                                                        ],
+                                                                        "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                                        "innerContent": [
+                                                                            "<div class=\"wp-block-group\">",
+                                                                            null,
+                                                                            "</div>"
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "blockName": "core/group",
+                                                                        "attrs": {
+                                                                            "metadata": {
+                                                                                "etchData": {
+                                                                                    "origin": "etch",
+                                                                                    "block": {
+                                                                                        "type": "condition",
+                                                                                        "condition": {
+                                                                                            "leftHand": "dropdownItem.children",
+                                                                                            "operator": "isTruthy",
+                                                                                            "rightHand": null
+                                                                                        },
+                                                                                        "conditionString": "dropdownItem.children"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "innerBlocks": [
+                                                                            {
+                                                                                "blockName": "core/group",
+                                                                                "attrs": {
+                                                                                    "metadata": {
+                                                                                        "etchData": {
+                                                                                            "origin": "etch",
+                                                                                            "styles": [
+                                                                                                "m0dvyl7",
+                                                                                                "98tymqj"
+                                                                                            ],
+                                                                                            "attributes": {
+                                                                                                "class": "etch-nav__item etch-nav__item--has-flyout"
+                                                                                            },
+                                                                                            "block": {
+                                                                                                "type": "html",
+                                                                                                "tag": "li"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                "innerBlocks": [
+                                                                                    {
+                                                                                        "blockName": "core/group",
+                                                                                        "attrs": {
+                                                                                            "metadata": {
+                                                                                                "etchData": {
+                                                                                                    "origin": "etch",
+                                                                                                    "styles": [
+                                                                                                        "x9d1tax",
+                                                                                                        "v7qh3w4"
+                                                                                                    ],
+                                                                                                    "attributes": {
+                                                                                                        "aria-label": "open {dropdownItem.label} navigation",
+                                                                                                        "aria-haspopup": "true",
+                                                                                                        "aria-expanded": "false",
+                                                                                                        "class": "etch-nav__button etch-nav__button--flyout-toggle"
+                                                                                                    },
+                                                                                                    "block": {
+                                                                                                        "type": "html",
+                                                                                                        "tag": "button"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "innerBlocks": [
+                                                                                            {
+                                                                                                "blockName": "core/paragraph",
+                                                                                                "attrs": {
+                                                                                                    "metadata": {
+                                                                                                        "etchData": {
+                                                                                                            "origin": "etch",
+                                                                                                            "block": {
+                                                                                                                "type": "html",
+                                                                                                                "tag": "span"
+                                                                                                            },
+                                                                                                            "removeWrapper": true,
+                                                                                                            "nestedData": {
+                                                                                                                "ogee421": {
+                                                                                                                    "origin": "etch",
+                                                                                                                    "block": {
+                                                                                                                        "type": "html",
+                                                                                                                        "tag": "span"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                },
+                                                                                                "innerBlocks": [],
+                                                                                                "innerHTML": "<p><span data-etch-ref=\"ogee421\">{dropdownItem.label}</span></p>",
+                                                                                                "innerContent": [
+                                                                                                    "<p><span data-etch-ref=\"ogee421\">{dropdownItem.label}</span></p>"
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "blockName": "core/group",
+                                                                                                "attrs": {
+                                                                                                    "metadata": {
+                                                                                                        "etchData": {
+                                                                                                            "origin": "etch",
+                                                                                                            "attributes": {
+                                                                                                                "width": "24",
+                                                                                                                "height": "24",
+                                                                                                                "viewBox": "0 0 24 24",
+                                                                                                                "fill": "none",
+                                                                                                                "xmlns": "http://www.w3.org/2000/svg"
+                                                                                                            },
+                                                                                                            "block": {
+                                                                                                                "type": "html",
+                                                                                                                "tag": "svg"
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                },
+                                                                                                "innerBlocks": [
+                                                                                                    {
+                                                                                                        "blockName": "core/group",
+                                                                                                        "attrs": {
+                                                                                                            "metadata": {
+                                                                                                                "etchData": {
+                                                                                                                    "origin": "etch",
+                                                                                                                    "attributes": {
+                                                                                                                        "fill": "currentColor",
+                                                                                                                        "d": "M17 9.17a1 1 0 0 0-1.41 0L12 12.71L8.46 9.17a1 1 0 0 0-1.41 0a1 1 0 0 0 0 1.42l4.24 4.24a1 1 0 0 0 1.42 0L17 10.59a1 1 0 0 0 0-1.42"
+                                                                                                                    },
+                                                                                                                    "block": {
+                                                                                                                        "type": "html",
+                                                                                                                        "tag": "path"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        },
+                                                                                                        "innerBlocks": [],
+                                                                                                        "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                                                                        "innerContent": [
+                                                                                                            "<div class=\"wp-block-group\">",
+                                                                                                            "</div>"
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ],
+                                                                                                "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                                                                "innerContent": [
+                                                                                                    "<div class=\"wp-block-group\">",
+                                                                                                    null,
+                                                                                                    "</div>"
+                                                                                                ]
+                                                                                            }
+                                                                                        ],
+                                                                                        "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                                                        "innerContent": [
+                                                                                            "<div class=\"wp-block-group\">",
+                                                                                            null,
+                                                                                            null,
+                                                                                            "</div>"
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "blockName": "core/group",
+                                                                                        "attrs": {
+                                                                                            "metadata": {
+                                                                                                "etchData": {
+                                                                                                    "origin": "etch",
+                                                                                                    "styles": [
+                                                                                                        "5dnoalh"
+                                                                                                    ],
+                                                                                                    "attributes": {
+                                                                                                        "aria-label": "{dropdownItem.label} navigation",
+                                                                                                        "class": "etch-nav__flyout"
+                                                                                                    },
+                                                                                                    "block": {
+                                                                                                        "type": "html",
+                                                                                                        "tag": "ul"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "innerBlocks": [
+                                                                                            {
+                                                                                                "blockName": "core/group",
+                                                                                                "attrs": {
+                                                                                                    "metadata": {
+                                                                                                        "etchData": {
+                                                                                                            "origin": "etch",
+                                                                                                            "block": {
+                                                                                                                "type": "loop",
+                                                                                                                "loop": {
+                                                                                                                    "targetItemId": "dropdownItem",
+                                                                                                                    "targetPath": "children",
+                                                                                                                    "itemId": "flyoutItem"
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                },
+                                                                                                "innerBlocks": [
+                                                                                                    {
+                                                                                                        "blockName": "core/group",
+                                                                                                        "attrs": {
+                                                                                                            "metadata": {
+                                                                                                                "etchData": {
+                                                                                                                    "origin": "etch",
+                                                                                                                    "styles": [
+                                                                                                                        "m0dvyl7"
+                                                                                                                    ],
+                                                                                                                    "attributes": {
+                                                                                                                        "class": "etch-nav__item"
+                                                                                                                    },
+                                                                                                                    "block": {
+                                                                                                                        "type": "html",
+                                                                                                                        "tag": "li"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        },
+                                                                                                        "innerBlocks": [
+                                                                                                            {
+                                                                                                                "blockName": "core/paragraph",
+                                                                                                                "attrs": {
+                                                                                                                    "metadata": {
+                                                                                                                        "etchData": {
+                                                                                                                            "removeWrapper": true,
+                                                                                                                            "block": {
+                                                                                                                                "type": "html",
+                                                                                                                                "tag": "p"
+                                                                                                                            },
+                                                                                                                            "origin": "etch",
+                                                                                                                            "nestedData": {
+                                                                                                                                "c8qfwwa": {
+                                                                                                                                    "origin": "etch",
+                                                                                                                                    "styles": [
+                                                                                                                                        "tz9p9fh"
+                                                                                                                                    ],
+                                                                                                                                    "attributes": {
+                                                                                                                                        "href": "{flyoutItem.url}",
+                                                                                                                                        "class": "etch-nav__link"
+                                                                                                                                    },
+                                                                                                                                    "block": {
+                                                                                                                                        "type": "html",
+                                                                                                                                        "tag": "a"
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                },
+                                                                                                                "innerBlocks": [],
+                                                                                                                "innerHTML": "<p><a data-etch-ref=\"c8qfwwa\">{flyoutItem.label}</a></p>",
+                                                                                                                "innerContent": [
+                                                                                                                    "<p><a data-etch-ref=\"c8qfwwa\">{flyoutItem.label}</a></p>"
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                                                                        "innerContent": [
+                                                                                                            "<div class=\"wp-block-group\">",
+                                                                                                            null,
+                                                                                                            "</div>"
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ],
+                                                                                                "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                                                                "innerContent": [
+                                                                                                    "<div class=\"wp-block-group\">",
+                                                                                                    null,
+                                                                                                    "</div>"
+                                                                                                ]
+                                                                                            }
+                                                                                        ],
+                                                                                        "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                                                        "innerContent": [
+                                                                                            "<div class=\"wp-block-group\">",
+                                                                                            null,
+                                                                                            "</div>"
+                                                                                        ]
+                                                                                    }
+                                                                                ],
+                                                                                "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                                                "innerContent": [
+                                                                                    "<div class=\"wp-block-group\">",
+                                                                                    null,
+                                                                                    null,
+                                                                                    "</div>"
+                                                                                ]
+                                                                            }
+                                                                        ],
+                                                                        "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                                        "innerContent": [
+                                                                            "<div class=\"wp-block-group\">",
+                                                                            null,
+                                                                            "</div>"
+                                                                        ]
+                                                                    }
+                                                                ],
+                                                                "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                                "innerContent": [
+                                                                    "<div class=\"wp-block-group\">",
+                                                                    null,
+                                                                    null,
+                                                                    "</div>"
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                        "innerContent": [
+                                                            "<div class=\"wp-block-group\">",
+                                                            null,
+                                                            "</div>"
+                                                        ]
+                                                    }
+                                                ],
+                                                "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                "innerContent": [
+                                                    "<div class=\"wp-block-group\">",
+                                                    null,
+                                                    null,
+                                                    "</div>"
+                                                ]
+                                            }
+                                        ],
+                                        "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                        "innerContent": [
+                                            "<div class=\"wp-block-group\">",
+                                            null,
+                                            "</div>"
+                                        ]
+                                    }
+                                ],
+                                "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                "innerContent": [
+                                    "<div class=\"wp-block-group\">",
+                                    null,
+                                    null,
+                                    "</div>"
+                                ]
+                            }
+                        ],
+                        "innerHTML": "<div class=\"wp-block-group\"></div>",
+                        "innerContent": [
+                            "<div class=\"wp-block-group\">",
+                            null,
+                            "</div>"
+                        ]
+                    }
+                ],
+                "innerHTML": "<div class=\"wp-block-group\"></div>",
+                "innerContent": [
+                    "<div class=\"wp-block-group\">",
+                    null,
+                    "</div>"
+                ]
+            }
+        ]
+    },
+    "styles": {
+        "9sb87z1": {
+            "type": "class",
+            "selector": ".etch-nav",
+            "collection": "default",
+            "css": "/* Nav */\n  --nav-background-color: #fff;\n  --nav-foreground-color: #000;\n  --nav-mobile-background-color: #fff;\n  --nav-z-index: 999;\n\n  /* Nav List */\n  --nav-list-style: none;\n  --nav-list-padding: 0;\n  --nav-list-margin: 0;\n\n  /* Nav Items */\n  --nav-item-block-padding: 0.5rem;\n  --nav-item-inline-padding: 1rem;\n  --nav-item-padding: var(--nav-item-block-padding) var(--nav-item-inline-padding);\n  --nav-item-focus-line: 2px;\n  --nav-item-focus-outline-color: var(--nav-foreground-color);\n  --transition-duration: 0.3s;\n  --transition-timing-function: ease-in-out;\n  --nav-item-icon-rotation: 180deg;\n\n  /* Nav Current Active Item */\n  --nav-item-current-active-decoration: underline;\n  --nav-item-current-active-offset: 5px;\n\n  /* Nav Button Icons */\n  --nav-button-icon-size: 20px;\n\n  /* Nav Links */\n  --nav-link-padding: 0.5em 1em;\n  --nav-link-color: var(--nav-foreground-color);\n  --nav-link-color-contrast: var(--nav-background-color);\n  --nav-link-color-hover: var(--primary, #444);\n  --nav-link-background-hover: transparent;\n\n  /* Nav Dropdowns and flyouts */\n  --nav-dropdown-background: var(--nav-background-color);\n  --nav-flyout-background: var(--nav-background-color);\n  --nav-flyout-icon-desktop-initial-angle: -90deg;\n  --nav-flyout-icon-desktop-rotation: 90deg;\n\n  /* Set header to relative */\n  header:has(&) {\n    position: relative;\n  }\n\n  background-color: var(--nav-background-color);\n  display: none;\n  z-index: var(--nav-z-index);\n\n  &[aria-expanded='true'] {\n    --nav-background-color: var(--nav-mobile-background-color);\n    display: flex;\n    position: absolute;\n    top: 100%;\n    left: 0;\n    right: 0;\n  }\n\n  :where(.etch-nav__list) {\n    display: flex;\n    flex-direction: column;\n    width: 100%;\n    margin: var(--nav-list-margin);\n    padding: var(--nav-list-padding);\n    list-style: var(--nav-list-style);\n  }\n\n  :where(.etch-nav__list, .etch-nav__dropdown, .etch-nav__flyout) {\n    margin: var(--nav-list-margin);\n    padding: var(--nav-list-padding);\n    list-style: var(--nav-list-style);\n  }\n\n  :where(.etch-nav__item) {\n    display: flex;\n    flex-direction: column;\n  }\n\n  :where(.etch-nav__link:focus, .etch-nav__link:focus-visible, .etch-nav__button:focus, .etch-nav__button:focus-visible) {\n    outline: var(--nav-item-focus-line) solid var(--nav-item-focus-outline-color);\n  }\n\n  :where(.etch-nav__item .etch-nav__link, .etch-nav__item .etch-nav__button) {\n    text-decoration: none;\n    color: var(--nav-link-color);\n    padding: var(--nav-item-padding);\n  }\n\n  :where(.etch-nav__link[aria-current='page']) {\n    text-decoration: var(--nav-item-current-active-decoration);\n    text-underline-offset: var(--nav-item-current-active-offset);\n  }\n\n  :where(.etch-nav__button) {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    color: var(--nav-link-color);\n\n    svg {\n      width: var(--nav-button-icon-size);\n      min-width: var(--nav-button-icon-size); /* There seems to be some issue with etch.reset and max-width 100%*/\n      height: var(--nav-button-icon-size);\n      transition: transform var(--transition-duration) var(--transition-timing-function);\n    }\n  }\n\n  :where(.etch-nav__button--dropdown-toggle[aria-expanded='true'] svg, .etch-nav__button--flyout-toggle[aria-expanded='true'] svg) {\n    transform: rotate(var(--nav-item-icon-rotation));\n  }\n\n  :where(.etch-nav__item:hover > .etch-nav__link, .etch-nav__item:hover > .etch-nav__button[aria-expanded='true']) {\n    color: var(--nav-link-color-hover);\n    background-color: var(--nav-link-background-hover);\n  }\n\n  :where(.etch-nav__item--has-dropdown, .etch-nav__item--has-flyout) {\n    position: relative;\n  }\n\n  :where(.etch-nav__dropdown) {\n    position: relative;\n    background-color: var(--nav-dropdown-background);\n    transition:\n      max-height calc(var(--transition-duration) / 2) var(--transition-timing-function),\n      opacity var(--transition-duration) var(--transition-timing-function),\n      visibility var(--transition-duration) var(--transition-timing-function);\n  }\n\n  :where(.etch-nav__button--dropdown-toggle[aria-expanded='false'] ~ .etch-nav__dropdown, .etch-nav__button--flyout-toggle[aria-expanded='false'] ~ .etch-nav__flyout) {\n    opacity: 0;\n    pointer-events: none;\n    visibility: hidden;\n    transition:\n      max-height var(--transition-duration) var(--transition-timing-function),\n      opacity var(--transition-duration) var(--transition-timing-function),\n      visibility var(--transition-duration) var(--transition-timing-function);\n  }\n\n  :where(.etch-nav__flyout) {\n    background-color: var(--nav-flyout-background);\n    transition:\n      max-height calc(var(--transition-duration) / 2) var(--transition-timing-function),\n      opacity var(--transition-duration) var(--transition-timing-function),\n      visibility var(--transition-duration) var(--transition-timing-function);\n  }\n\n  /* Set the desired breakpoint */\n  @media (min-width: 768px) {\n    display: flex;\n\n    :where(.etch-nav__item) {\n      text-wrap: nowrap;\n    }\n\n    :where(.etch-nav__list) {\n      flex-direction: row;\n    }\n\n    :where(.etch-nav__button:nth-child(2)) {\n      padding-inline: 0 var(--nav-item-horizontal-padding);\n    }\n\n    :where(.etch-nav__dropdown) {\n      position: absolute;\n      top: 100%;\n      left: 0;\n      overflow: inherit;\n      max-height: 0; /* desktop flicker fix */\n      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);\n    }\n\n    :where(.etch-nav__button--flyout-toggle svg) {\n      transform: rotate(var(--nav-flyout-icon-desktop-initial-angle));\n    }\n\n    :where(.etch-nav__button--flyout-toggle[aria-expanded='true'] svg) {\n      transform: rotate(var(--nav-flyout-icon-desktop-rotation));\n    }\n\n    :where(.etch-nav__flyout) {\n      position: absolute;\n      top: 0;\n      left: 100%;\n      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);\n    }\n  }",
+            "readonly": false
+        },
+        "gcfht3i": {
+            "type": "class",
+            "selector": ".etch-nav__list",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        },
+        "m0dvyl7": {
+            "type": "class",
+            "selector": ".etch-nav__item",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        },
+        "tz9p9fh": {
+            "type": "class",
+            "selector": ".etch-nav__link",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        },
+        "m3koz7f": {
+            "type": "class",
+            "selector": ".etch-nav__item--has-dropdown",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        },
+        "x9d1tax": {
+            "type": "class",
+            "selector": ".etch-nav__button",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        },
+        "rawqrcq": {
+            "type": "class",
+            "selector": ".etch-nav__button--dropdown-toggle",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        },
+        "qfq1cjn": {
+            "type": "class",
+            "selector": ".etch-nav__dropdown",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        },
+        "98tymqj": {
+            "type": "class",
+            "selector": ".etch-nav__item--has-flyout",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        },
+        "v7qh3w4": {
+            "type": "class",
+            "selector": ".etch-nav__button--flyout-toggle",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        },
+        "5dnoalh": {
+            "type": "class",
+            "selector": ".etch-nav__flyout",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        }
+    },
+    "componentInstance": {
+        "blockName": "core/block",
+        "attrs": {
+            "metadata": {
+                "etchData": {
+                    "origin": "etch",
+                    "attributes": {
+                        "navAriaLabel": "default menu",
+                        "basicNav": "basicNav"
+                    },
+                    "block": {
+                        "type": "component",
+                        "component": 918,
+                        "innerBlocks": []
+                    }
+                }
+            },
+            "ref": 918
+        },
+        "innerBlocks": [],
+        "innerHTML": "",
+        "innerContent": []
+    },
+    "loops": {
+        "etch1r1": {
+            "name": "Basic Nav",
+            "key": "basicNav",
+            "global": true,
+            "config": {
+                "type": "json",
+                "data": [
+                    {
+                        "label": "Home",
+                        "url": "/"
+                    },
+                    {
+                        "label": "Accordion",
+                        "url": "/accordion"
+                    },
+                    {
+                        "label": "Item 3",
+                        "url": "/page",
+                        "children": [
+                            {
+                                "label": "Item 3.1",
+                                "children": [
+                                    {
+                                        "label": "submenu item",
+                                        "url": "/dropdown1"
+                                    }
+                                ]
+                            },
+                            {
+                                "label": "Item 3.2",
+                                "url": "/dropdown2"
+                            },
+                            {
+                                "label": "Item 3.3",
+                                "url": "/dropdown3"
+                            },
+                            {
+                                "label": "Item 3.4",
+                                "url": "/dropdown4"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "About",
+                        "url": "/about"
+                    },
+                    {
+                        "label": "Item 5",
+                        "url": "/contact-us"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,93 @@
+---
+title: Accordion
+---
+
+import CopyToClipboard from '@site/src/components/CopyToClipboard/CopyToClipboard';
+import AccordionJSON from '../components-json/accordion-component.json';
+
+
+export const ACCORDION_JSON = JSON.stringify(AccordionJSON, null, 2);
+
+# Accordion
+
+:::note
+This page documents the recommended way to add an Accordion by importing the prebuilt component with Copy/Paste JSON below.
+:::
+
+## Setup
+
+- Add a container or a flex-div on your site if you don’t already have one.
+- You’ll paste the Accordion component into the container or flex-div in the next step.
+
+## Importing the Component
+
+Use the button below to copy the ready-to-use Accordion component as JSON.
+Then, in Etch, press <kbd>cmd</kbd> + <kbd>v</kbd> (Mac) or <kbd>ctrl</kbd> + <kbd>v</kbd> (Windows) anywhere in the builder to insert the component.
+
+<div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+  <CopyToClipboard label="Copy Accordion Component" value={ACCORDION_JSON} />
+</div>
+
+### Steps
+- Click "Copy Accordion Component" above, then in Etch press <kbd>cmd</kbd> + <kbd>v</kbd> (Mac) / <kbd>ctrl</kbd> + <kbd>v</kbd> (Windows) anywhere in the builder to insert the component
+- Arrange the component inside your container or flex-div.
+- Verify the component.
+
+### Configuration
+- A `recent_posts` loop should already be in Etch and already wired in the component ( it queries the default post from WordPress ).
+- CSS, JS, and props are bundled inside the component—no setup required. You can edit prop values to customize behavior.
+- Styling: tweak CSS variables on `.etch-accordion` (e.g., colors, icon sizes).
+
+:::warning
+Transition variables:
+```css
+--etch-accordion-transition-duration
+--etch-accordion-transition-timing-function
+```
+Are used along the CSS but are managed through Javascript. See [Advanced Javascript Options](#accordion-javascript-options) for more details.
+:::
+
+## Configuring Your Accordion
+
+You obviously don't want sample data in your Accordion, so let's customize it.
+
+### Loop Configuration
+1. Open the Loop Manager.
+2. Click on `recent_posts` loop or create a new loop and select the post type you want to query.
+
+### Static Configuration
+1. Open the HTML panel and remove the loop.
+2. Duplicate the `<div class="etch-accordion__item">`
+3. Replace the `{item.title}` and `{item.content}` with another elements or anything you need.
+
+### Accordion Javascript Options
+| Option           | Type                      | Default | Description |
+| ---------------- | ------------------------- | ------- | ----------- |
+| `openFirstItem` | `boolean` | `true` | If false, the first accordion item is not opened by default when the accordion is rendered. |
+| `allowMultiple`    | `boolean`             | `false`  | If true, multiple accordion items can be open at the same time. If false, opening one closes others. |
+| `transitionDuration`    | `string`             | `'0.35s'`  | Duration of the open/close animation (any valid CSS time value, e.g. '0.5s', '200ms'). |
+| `transitionTimingFunction`    | `string`             | `'ease-in-out'`  | The CSS timing function used for accordion panel transitions (e.g., 'ease', 'linear', 'ease-in-out'). |
+
+### Accordion Component Props
+
+| Option           | Type                      | Default | Description |
+| ---------------- | ------------------------- | ------- | ----------- |
+| `accordionLoop`        | Loop (array of items)     | preset  | Data source for your accordion. Preinstalled in Etch; edit via Loop Manager. |
+
+
+## Customization
+
+After you paste/import the components, you can open the Navigation or Burger component and edit its JS to customize behavior. This is optional—the defaults work out of the box.
+
+:::warning
+The example below might differ from the javascript provided in the component for brevity.
+:::
+
+```js
+instantiateAccordionClass({
+	openFirstItem: true,
+	allowMultiple: false,
+	transitionDuration: '0.35s',
+	transitionTimingFunction: 'ease-in-out',
+});
+```

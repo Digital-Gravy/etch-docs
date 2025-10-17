@@ -199,7 +199,7 @@ Then, pass the current post’s first category ID (as an example) from the templ
 
 ```html
 <ul class="related-posts-grid">
-{#loop relatedPosts($post_id: this.id, $taxonomy: "category", $term_id: this.categories.0.id) as post}
+{#loop relatedPosts($post_id: this.id, $taxonomy: "category", $term_id: this.categories.at(0).id) as post}
   <li class="related-post-card">
     <h3>{post.title}</h3>
     <!-- other info here -->
