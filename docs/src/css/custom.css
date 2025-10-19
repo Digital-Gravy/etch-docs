@@ -251,26 +251,28 @@ td p:last-child {
 	margin-bottom: 0;
 }
 
-/* Show line numbers on all code blocks */
+/* Show line numbers on code blocks with 5+ lines */
 .prism-code {
 	counter-reset: line-number;
 }
 
-.prism-code .token-line::before {
+.prism-code:has(.token-line:nth-child(5)) .token-line::before {
 	counter-increment: line-number;
 	content: counter(line-number);
 	display: inline-block;
-	width: 3em;
+	width: 1em;
 	padding-right: 1em;
-	margin-right: 0.5em;
+	margin-right: 1.25em;
 	text-align: right;
 	color: var(--ifm-color-emphasis-600);
 	user-select: none;
 	border-right: 1px solid var(--ifm-color-emphasis-300);
+	opacity: 0.5;
 }
 
 /* Adjust for dark mode */
-[data-theme='dark'] .prism-code .token-line::before {
+[data-theme='dark'] .prism-code:has(.token-line:nth-child(5)) .token-line::before {
 	color: var(--ifm-color-emphasis-500);
 	border-right-color: var(--ifm-color-emphasis-200);
+	opacity: 0.25;
 }

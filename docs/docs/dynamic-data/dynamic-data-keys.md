@@ -1,6 +1,8 @@
 ---
 title: Dynamic Data Keys
 sidebar_position: 50
+last_update:
+  date: 2025-10-19
 ---
 
 # Dynamic Data Keys
@@ -72,6 +74,26 @@ This page will serve as the master doc page for all dynamic data keys. Feel free
 | `site.language`    | The site language code.                                    |
 | `site.isMultisite` | Whether the site is part of a multisite network (boolean). |
 | `site.currentDate` | References the current date.                               |
+
+## Options Keys
+
+The `options` key provides access to global site options configured via options pages. These values are available everywhere (pages, templates, loops, headers/footers, etc.).
+
+- Current providers: **ACF** via the `acf` extension
+- Planned providers: **Meta Box** (`metabox`), **Etch Options** (`etch`)
+
+### Example Usage
+
+`{options.acf.business_email}`
+
+- Replace `business_email` with your ACF field key/name from the ACF Options Page.
+- Access nested objects/arrays as usual (e.g., `options.acf.address.city`).
+
+### Notes
+
+- Requires an Options Page created in the provider plugin.
+- Keys resolve globally; no post context is required.
+- For complex fields (repeaters, groups, galleries), use standard access patterns and loops. See [Options Pages](/integrations/custom-fields/options-pages) for details.
 
 ## URL Keys
 

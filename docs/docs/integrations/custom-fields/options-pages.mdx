@@ -1,0 +1,86 @@
+---
+title: Options Pages
+sidebar_position: 10
+last_update:
+  date: 2025-10-19
+---
+
+import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
+
+# Options Pages
+
+<VersionBadge version="1.0.0-alpha-3" />
+
+Options pages let you manage global site settings (e.g., business phone, address, social links) and reference them anywhere in Etch. Etch exposes these as dynamic data via the global `options` key.
+
+## General Usage
+
+Use the `options` key with the provider namespace that owns your options page fields.
+
+```html
+<!-- General syntax -->
+{options.provider.field_name}
+```
+
+- Available now: **Advanced Custom Fields (ACF)** via `options.acf.*`
+- Planned: **Meta Box** via `options.metabox.*`, **Etch Options** via `options.etch.*`
+
+Works globally (templates, pages, loops, headers/footers, etc.). No post context is required.
+
+## Plugin-Specific Usage
+
+### Advanced Custom Fields (ACF)
+
+#### Accessing Option Values
+
+```html
+{options.acf.business_email}
+```
+
+- Replace `business_email` with your ACF field name/key defined on the ACF Options Page.
+
+#### Common Examples
+
+##### Basic Fields
+```html
+<a href="mailto:{options.acf.business_email}">{options.acf.business_email}</a>
+<a href="{options.acf.facebook_url}">Facebook</a>
+```
+
+##### Group Fields
+```html
+<div class="address">
+  <div>{options.acf.address.street}</div>
+  <div>{options.acf.address.city}, {options.acf.address.state} {options.acf.address.zip}</div>
+</div>
+```
+
+##### Image Fields
+```html
+<img src="{options.acf.logo.url}" alt="{options.acf.logo.alt}" />
+```
+
+##### Repeater Fields
+```html
+<ul class="hours">
+  {#loop options.acf.hours as hour}
+    <li>
+      <span class="day">{hour.day}</span>
+      <span class="time">{hour.open}–{hour.close}</span>
+    </li>
+  {/loop}
+</ul>
+```
+
+#### Notes
+
+- Ensure an ACF Options Page exists and fields are assigned to it.
+- Access patterns mirror post-level custom fields. The only difference is the top-level `options` scope.
+- For arrays and complex structures, use standard loops and dot notation.
+
+## Troubleshooting
+
+If `{options._._}` outputs nothing:
+  - Confirm the field exists on an Options Page (not a post).
+  - Verify the field name/key matches exactly.
+  - Check that the field has a saved value.

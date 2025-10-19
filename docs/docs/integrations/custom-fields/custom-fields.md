@@ -1,6 +1,8 @@
 ---
 title: Custom Fields
 sidebar_position: 1
+last_update:
+  date: 2025-10-19
 ---
 
 # Custom Fields
@@ -59,3 +61,4 @@ For information about Etch native fields and WordPress meta fields, see the [Dyn
 - **[Repeater Fields](./repeater-fields.md)** - Working with repeatable field groups
 - **[Relationship Fields](./relationship-fields.md)** - Working with connections between posts, pages, or custom post types
 - **[ACF Flexible Content Loops](./flexible-content-fields.md)** - Creating dynamic layouts with ACF Flexible Content
+- **[Options Pages](./options-pages.md)** - Global site settings accessible via the `options` key
