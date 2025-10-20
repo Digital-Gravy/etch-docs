@@ -1,401 +1,6 @@
 {
-    "type": "component",
-    "def": {
-        "id": 2205,
-        "name": "EtchAccordion",
-        "key": "EtchAccordion",
-        "properties": [
-            {
-                "key": "accordionLoop",
-                "name": "Accordion Loop",
-                "keyTouched": true,
-                "type": {
-                    "primitive": "string",
-                    "specialized": "array"
-                },
-                "default": "recent_posts"
-            }
-        ],
-        "description": "",
-        "legacyId": "",
-        "blocks": [
-            {
-                "blockName": "core/group",
-                "attrs": {
-                    "metadata": {
-                        "name": "Accordion",
-                        "etchData": {
-                            "origin": "etch",
-                            "name": "Accordion",
-                            "script": {
-                                "code": "CmNsYXNzIEV0Y2hBY2NvcmRpb25TY3JpcHQgewoJY29uc3RydWN0b3IoYWNjb3JkaW9uRWwsIG9wdGlvbnMgPSB7fSkgewoJCXRoaXMuYWNjb3JkaW9uRWwgPSBhY2NvcmRpb25FbDsKCQl0aGlzLm9wdGlvbnMgPSBvcHRpb25zOwoJCXRoaXMuaXRlbXMgPSBbXTsKICAgICAgICB0aGlzLmluRXRjaCA9IHdpbmRvdyAhPT0gd2luZG93LnRvcCAmJiB3aW5kb3cuZnJhbWVFbGVtZW50Py5pZCA9PT0gJ2V0Y2gtaWZyYW1lJzsKICAgICAgCgkJdGhpcy5pbml0KCk7Cgl9CgoJaW5pdCgpIHsKCQlpZiAoIXRoaXMuYWNjb3JkaW9uRWwpIHJldHVybiBjb25zb2xlLmVycm9yKCdDYW5ub3QgZmluZCBBY2NvcmRpb24gZWxlbWVudCcpOwoKCQl0aGlzLml0ZW1zID0gdGhpcy5nZXRBY2NvcmRpb25JdGVtcygpOwoKICAgICAgICBpZiAoIXRoaXMuaW5FdGNoKSB7CiAgICAJCXRoaXMuc2V0QWNjb3JkaW9uSWRzKCk7CiAgICAJCXRoaXMuc2V0QXJpYUNvbnRyb2xzKCk7CiAgICAJCXRoaXMuc2V0QXJpYUxhYmVsbGVkYnkoKTsKICAgICAgICB9CgogICAgICAgIHRoaXMuc2V0VHJhbnNpdGlvblZhcmlhYmxlcygpOwoKCQl0aGlzLnNldEluaXRpYWxTdGF0ZXMoKTsKCQl0aGlzLmF0dGFjaEV2ZW50TGlzdGVuZXJzKCk7Cgl9CgoJZ2V0QWNjb3JkaW9uSXRlbXMoKSB7CgkJcmV0dXJuIEFycmF5LmZyb20odGhpcy5hY2NvcmRpb25FbC5xdWVyeVNlbGVjdG9yQWxsKCcuZXRjaC1hY2NvcmRpb25fX2l0ZW0nKSkubWFwKGl0ZW0gPT4gewoJCQljb25zdCBidXR0b24gPSBpdGVtLnF1ZXJ5U2VsZWN0b3IoJy5ldGNoLWFjY29yZGlvbl9fYnV0dG9uJyk7CgkJCWNvbnN0IHBhbmVsID0gaXRlbS5xdWVyeVNlbGVjdG9yKCcuZXRjaC1hY2NvcmRpb25fX3BhbmVsJyk7CgkJCXJldHVybiB7IGl0ZW0sIGJ1dHRvbiwgcGFuZWwgfTsKCQl9KTsKCX0KCglzZXRJbml0aWFsT3Blbkl0ZW0oKSB7CgkJaWYgKHRoaXMuZ2V0QWNjb3JkaW9uQ29uZmlnKCkub3BlbkZpcnN0SXRlbSkgewoJCQl0aGlzLm9wZW5JdGVtKDApOwoJCX0KCX0KCiAgICBzZXRUcmFuc2l0aW9uVmFyaWFibGVzKCkgewogICAgICAgIGNvbnN0IHsgdHJhbnNpdGlvbkR1cmF0aW9uLCB0cmFuc2l0aW9uVGltaW5nRnVuY3Rpb24gfSA9IHRoaXMuZ2V0QWNjb3JkaW9uQ29uZmlnKCk7CiAgICAgICAgY29uc3QgcHJlZmVyc1JlZHVjZWRNb3Rpb24gPSB3aW5kb3cubWF0Y2hNZWRpYT8uKCcocHJlZmVycy1yZWR1Y2VkLW1vdGlvbjogcmVkdWNlKScpPy5tYXRjaGVzOwogICAgICAgIGNvbnN0IGR1cmF0aW9uID0gcHJlZmVyc1JlZHVjZWRNb3Rpb24gPyAnMHMnIDogdHJhbnNpdGlvbkR1cmF0aW9uOwogICAgCiAgICAgICAgY29uc3Qgcm9vdCA9IHRoaXMuYWNjb3JkaW9uRWwuc3R5bGU7CiAgICAgICAgcm9vdC5zZXRQcm9wZXJ0eSgnLS1ldGNoLWFjY29yZGlvbi10cmFuc2l0aW9uLWR1cmF0aW9uJywgZHVyYXRpb24pOwogICAgICAgIHJvb3Quc2V0UHJvcGVydHkoJy0tZXRjaC1hY2NvcmRpb24tdHJhbnNpdGlvbi10aW1pbmctZnVuY3Rpb24nLCB0cmFuc2l0aW9uVGltaW5nRnVuY3Rpb24pOwogICAgfQoKCXNldEluaXRpYWxTdGF0ZXMoKSB7CgkJY29uc3QgeyBvcGVuRmlyc3RJdGVtLCB0cmFuc2l0aW9uRHVyYXRpb24sIHRyYW5zaXRpb25UaW1pbmdGdW5jdGlvbiB9ID0gdGhpcy5nZXRBY2NvcmRpb25Db25maWcoKTsKCgkJdGhpcy5pdGVtcy5mb3JFYWNoKCh7IGJ1dHRvbiwgcGFuZWwgfSwgaWR4KSA9PiB7CgkJCXBhbmVsLnN0eWxlLnRyYW5zaXRpb24gPSAnbm9uZSc7CgkJCXBhbmVsLnN0eWxlLm92ZXJmbG93ID0gJyc7CgoJCQlpZiAob3BlbkZpcnN0SXRlbSAmJiBpZHggPT09IDApIHsKCQkJCWJ1dHRvbi5zZXRBdHRyaWJ1dGUoJ2FyaWEtZXhwYW5kZWQnLCAndHJ1ZScpOwoJCQkJcGFuZWwucmVtb3ZlQXR0cmlidXRlKCdoaWRkZW4nKTsKCQkJCXBhbmVsLnN0eWxlLm1heEhlaWdodCA9IHBhbmVsLnNjcm9sbEhlaWdodCArICdweCc7CgkJCX0gZWxzZSB7CgkJCQlidXR0b24uc2V0QXR0cmlidXRlKCdhcmlhLWV4cGFuZGVkJywgJ2ZhbHNlJyk7CgkJCQlwYW5lbC5zZXRBdHRyaWJ1dGUoJ2hpZGRlbicsICcnKTsKCQkJCXBhbmVsLnN0eWxlLm1heEhlaWdodCA9ICcwcHgnOwoJCQl9CgkJfSk7CgoJCXJlcXVlc3RBbmltYXRpb25GcmFtZSgoKSA9PiB7CgkJCXRoaXMuaXRlbXMuZm9yRWFjaCgoeyBwYW5lbCB9KSA9PiB7CgkJCQlwYW5lbC5zdHlsZS50cmFuc2l0aW9uID0gYG1heC1oZWlnaHQgJHt0cmFuc2l0aW9uRHVyYXRpb259ICR7dHJhbnNpdGlvblRpbWluZ0Z1bmN0aW9ufWA7CgkJCX0pOwoJCX0pOwoJfQoKCWdldEFjY29yZGlvbkNvbmZpZygpIHsKCQlyZXR1cm4gewoJCQlvcGVuRmlyc3RJdGVtOiB0aGlzLm9wdGlvbnM/Lm9wZW5GaXJzdEl0ZW0gPT09IHRydWUgPyB0cnVlIDogZmFsc2UsCgkJCWFsbG93TXVsdGlwbGU6IHRoaXMub3B0aW9ucz8uYWxsb3dNdWx0aXBsZSA9PT0gdHJ1ZSA/IHRydWUgOiBmYWxzZSwKCQkJdHJhbnNpdGlvbkR1cmF0aW9uOiB0aGlzLm9wdGlvbnM/LnRyYW5zaXRpb25EdXJhdGlvbiB8fCAnMC4zNXMnLAoJCQl0cmFuc2l0aW9uVGltaW5nRnVuY3Rpb246IHRoaXMub3B0aW9ucz8udHJhbnNpdGlvblRpbWluZ0Z1bmN0aW9uIHx8ICdlYXNlLWluLW91dCcsCgkJfQoJfQoKCXNldEFjY29yZGlvbklkcygpIHsKCQljb25zdCBodW1hbkluZGV4ID0gMTsKCgkJdGhpcy5pdGVtcy5mb3JFYWNoKCh7IGJ1dHRvbiwgcGFuZWwgfSwgaW5kZXgpID0+IHsKCQkJaWYgKCFidXR0b24uaWQpIGJ1dHRvbi5pZCA9IGBldGNoLWFjY29yZGlvbi1oZWFkZXItJHtpbmRleCArIGh1bWFuSW5kZXh9YDsKCQkJaWYgKCFwYW5lbC5pZCkgcGFuZWwuaWQgPSBgZXRjaC1hY2NvcmRpb24tcGFuZWwtJHtpbmRleCArIGh1bWFuSW5kZXh9YDsKCQl9KQoJfQoKCXNldEFyaWFDb250cm9scygpIHsKCQl0aGlzLml0ZW1zLmZvckVhY2goKHsgYnV0dG9uLCBwYW5lbCB9KSA9PiB7CgkJCWJ1dHRvbi5zZXRBdHRyaWJ1dGUoJ2FyaWEtY29udHJvbHMnLCBwYW5lbC5pZCk7CgkJfSkKCX0KCglzZXRBcmlhTGFiZWxsZWRieSgpIHsKCQl0aGlzLml0ZW1zLmZvckVhY2goKHsgYnV0dG9uLCBwYW5lbCB9KSA9PiB7CgkJCXBhbmVsLnNldEF0dHJpYnV0ZSgnYXJpYS1sYWJlbGxlZGJ5JywgYnV0dG9uLmlkKTsKCQl9KQoJfQoKCWF0dGFjaEV2ZW50TGlzdGVuZXJzKCkgewoJCXRoaXMuaXRlbXMuZm9yRWFjaCgoeyBidXR0b24gfSwgaW5kZXgpID0+IHsKCQkJYnV0dG9uLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgKCkgPT4gdGhpcy50b2dnbGVJdGVtKGluZGV4KSk7CgkJCWJ1dHRvbi5hZGRFdmVudExpc3RlbmVyKCdrZXlkb3duJywgZSA9PiB0aGlzLmhhbmRsZUtleURvd24oZSwgaW5kZXgpKTsKCQl9KTsKCX0KCgltb3ZlRm9jdXMoaXRlbXMsIGRpcmVjdGlvbikgewoJCWNvbnN0IGFjdGl2ZSA9IGRvY3VtZW50LmFjdGl2ZUVsZW1lbnQ7CgkJbGV0IGluZGV4ID0gaXRlbXMuaW5kZXhPZihhY3RpdmUpOwoJCWlmIChpbmRleCA9PT0gLTEpIGluZGV4ID0gMDsKCgkJbGV0IG5leHQgPSBpbmRleCArIGRpcmVjdGlvbjsKCQlpZiAobmV4dCA+PSBpdGVtcy5sZW5ndGgpIG5leHQgPSAwOwoJCWlmIChuZXh0IDwgMCkgbmV4dCA9IGl0ZW1zLmxlbmd0aCAtIDE7CgoJCWl0ZW1zW25leHRdPy5mb2N1cz8uKCk7Cgl9CgoJdG9nZ2xlSXRlbShpbmRleCkgewoJCWNvbnN0IHsgYnV0dG9uIH0gPSB0aGlzLml0ZW1zW2luZGV4XTsKCQljb25zdCBpc09wZW4gPSBidXR0b24uZ2V0QXR0cmlidXRlKCdhcmlhLWV4cGFuZGVkJykgPT09ICd0cnVlJzsKCgkJY29uc3QgYWxsb3dNdWx0aXBsZSA9IHRoaXMuZ2V0QWNjb3JkaW9uQ29uZmlnKCkuYWxsb3dNdWx0aXBsZTsKCgkJaWYgKGlzT3BlbikgewoJCQl0aGlzLmNsb3NlSXRlbShpbmRleCk7CgkJfSBlbHNlIHsKCQkJaWYgKCFhbGxvd011bHRpcGxlKSB0aGlzLml0ZW1zLmZvckVhY2goKF8sIGkpID0+IHRoaXMuY2xvc2VJdGVtKGkpKTsKCQkJdGhpcy5vcGVuSXRlbShpbmRleCk7CgkJfQoJfQoKCW9wZW5JdGVtKGluZGV4KSB7CgkJY29uc3QgeyBidXR0b24sIHBhbmVsIH0gPSB0aGlzLml0ZW1zW2luZGV4XTsKCgkJYnV0dG9uLnNldEF0dHJpYnV0ZSgnYXJpYS1leHBhbmRlZCcsICd0cnVlJyk7CgkJcGFuZWwucmVtb3ZlQXR0cmlidXRlKCdoaWRkZW4nKTsKCQl0aGlzLmNsZWFyVHJhbnNpdGlvbkhhbmRsZXIocGFuZWwpOwoKCQlwYW5lbC5zdHlsZS5vdmVyZmxvdyA9ICdoaWRkZW4nOwoJCXBhbmVsLnN0eWxlLm1heEhlaWdodCA9ICcwcHgnOwoJCS8vIEZvcmNlIHJlZmxvdyB0aGVuIGFuaW1hdGUgdG8gc2Nyb2xsSGVpZ2h0CgkJcGFuZWwub2Zmc2V0SGVpZ2h0OwoJCXBhbmVsLnN0eWxlLm1heEhlaWdodCA9IHBhbmVsLnNjcm9sbEhlaWdodCArICdweCc7CgoKCQl0aGlzLnNldFRyYW5zaXRpb25FbmQocGFuZWwsICgpID0+IHsKCQkJcGFuZWwuc3R5bGUub3ZlcmZsb3cgPSAnJzsKCQkJcGFuZWwuc3R5bGUudHJhbnNpdGlvbiA9ICcnOwoJCX0pOwoJfQoKCWNsb3NlSXRlbShpbmRleCkgewoJCWNvbnN0IHsgYnV0dG9uLCBwYW5lbCB9ID0gdGhpcy5pdGVtc1tpbmRleF07CgkJY29uc3Qgc3RhcnQgPSBwYW5lbC5zY3JvbGxIZWlnaHQ7CgoJCWJ1dHRvbi5zZXRBdHRyaWJ1dGUoJ2FyaWEtZXhwYW5kZWQnLCAnZmFsc2UnKTsKCQl0aGlzLmNsZWFyVHJhbnNpdGlvbkhhbmRsZXIocGFuZWwpOwoKCQlwYW5lbC5zdHlsZS5vdmVyZmxvdyA9ICdoaWRkZW4nOwoJCXBhbmVsLnN0eWxlLm1heEhlaWdodCA9IGAke3N0YXJ0fXB4YDsKCQkvLyBGb3JjZSByZWZsb3cgdGhlbiBhbmltYXRlIHRvIDAKCQlwYW5lbC5vZmZzZXRIZWlnaHQ7CgkJcGFuZWwuc3R5bGUubWF4SGVpZ2h0ID0gJzBweCc7CgoJCXRoaXMuc2V0VHJhbnNpdGlvbkVuZChwYW5lbCwgKCkgPT4gewoJCQlwYW5lbC5zZXRBdHRyaWJ1dGUoJ2hpZGRlbicsICcnKTsKCQkJcGFuZWwuc3R5bGUub3ZlcmZsb3cgPSAnJzsKCQkJcGFuZWwuc3R5bGUudHJhbnNpdGlvbiA9ICcnOwoJCQlwYW5lbC5zdHlsZS5tYXhIZWlnaHQgPSAnMHB4JzsKCQl9KTsKCX0KCglzZXRUcmFuc2l0aW9uRW5kKHBhbmVsLCBjYWxsYmFjaykgewoKCQl0aGlzLmNsZWFyVHJhbnNpdGlvbkhhbmRsZXIocGFuZWwpOwoKCQljb25zdCBvbkVuZCA9IChlKSA9PiB7CgkJCWlmIChlLnRhcmdldCAhPT0gcGFuZWwgfHwgZS5wcm9wZXJ0eU5hbWUgIT09ICdtYXgtaGVpZ2h0JykgcmV0dXJuOwoJCQlwYW5lbC5yZW1vdmVFdmVudExpc3RlbmVyKCd0cmFuc2l0aW9uZW5kJywgb25FbmQpOwoJCQlwYW5lbC50cmFuc2l0aW9uSGFuZGxlciA9IG51bGw7CgkJCWlmICh0eXBlb2YgY2FsbGJhY2sgPT09ICdmdW5jdGlvbicpIGNhbGxiYWNrKCk7CgkJfTsKCgkJcGFuZWwudHJhbnNpdGlvbkhhbmRsZXIgPSBvbkVuZDsKCQlwYW5lbC5hZGRFdmVudExpc3RlbmVyKCd0cmFuc2l0aW9uZW5kJywgb25FbmQpOwoJfQoKCWNsZWFyVHJhbnNpdGlvbkhhbmRsZXIocGFuZWwpIHsKCQlpZiAocGFuZWwudHJhbnNpdGlvbkhhbmRsZXIpIHsKCQkJcGFuZWwucmVtb3ZlRXZlbnRMaXN0ZW5lcigndHJhbnNpdGlvbmVuZCcsIHBhbmVsLnRyYW5zaXRpb25IYW5kbGVyKTsKCQkJcGFuZWwudHJhbnNpdGlvbkhhbmRsZXIgPSBudWxsOwoJCX0KCX0KCgloYW5kbGVLZXlEb3duKGUsIGluZGV4KSB7CgkJY29uc3QgeyBrZXkgfSA9IGU7CgkJY29uc3QgaXRlbXMgPSB0aGlzLml0ZW1zLm1hcChpdGVtID0+IGl0ZW0uYnV0dG9uKTsKCgkJc3dpdGNoIChrZXkpIHsKCQkJY2FzZSAnQXJyb3dEb3duJzoKCQkJCWUucHJldmVudERlZmF1bHQoKTsKCQkJCXRoaXMubW92ZUZvY3VzKGl0ZW1zLCAxKTsKCQkJCWJyZWFrOwoJCQljYXNlICdBcnJvd1VwJzoKCQkJCWUucHJldmVudERlZmF1bHQoKTsKCQkJCXRoaXMubW92ZUZvY3VzKGl0ZW1zLCAtMSk7CgkJCQlicmVhazsKCQkJY2FzZSAnSG9tZSc6CgkJCQllLnByZXZlbnREZWZhdWx0KCk7CgkJCQlpdGVtc1swXS5mb2N1cygpOwoJCQkJYnJlYWs7CgkJCWNhc2UgJ0VuZCc6CgkJCQllLnByZXZlbnREZWZhdWx0KCk7CgkJCQlpdGVtc1tpdGVtcy5sZW5ndGggLSAxXS5mb2N1cygpOwoJCQkJYnJlYWs7CgkJCWNhc2UgJ0VudGVyJzoKCQkJY2FzZSAnICc6CgkJCQllLnByZXZlbnREZWZhdWx0KCk7CgkJCQl0aGlzLnRvZ2dsZUl0ZW0oaW5kZXgpOwoJCQkJYnJlYWs7CgkJfQoJfQp9CgpmdW5jdGlvbiBpbnN0YW50aWF0ZUFjY29yZGlvbkNsYXNzKG9wdGlvbnMgPSB7fSkgewogICAgY29uc3QgYWNjb3JkaW9uRWxzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnW2RhdGEtZXRjaC1hY2NvcmRpb25dJyk7Cgljb25zdCBhY2NvcmRpb25FbCA9IGFjY29yZGlvbkVsc1swXTsKCglpZiAoIWFjY29yZGlvbkVsKSB7CgkJY29uc29sZS5lcnJvcignQ2Fubm90IGZpbmQgQWNjb3JkaW9uIGVsZW1lbnQsIGlzIHRoZSBbZGF0YS1ldGNoLWFjY29yZGlvbj0iIl0gYXR0cmlidXRlIGNvcnJlY3Q/Jyk7CgkJcmV0dXJuOwoJfQogIAoJY29uc3QgYWNjSW5zdGFuY2UgPSBuZXcgRXRjaEFjY29yZGlvblNjcmlwdChhY2NvcmRpb25FbCwgb3B0aW9ucyk7CgoJd2luZG93LmV0Y2hFbGVtZW50cyA9IHdpbmRvdy5ldGNoRWxlbWVudHMgfHwgW107Cgl3aW5kb3cuZXRjaEVsZW1lbnRzLmV0Y2hBY2NvcmRpb24gPSBhY2NJbnN0YW5jZTsKfQoKaW5zdGFudGlhdGVBY2NvcmRpb25DbGFzcyh7CglvcGVuRmlyc3RJdGVtOiB0cnVlLAoJYWxsb3dNdWx0aXBsZTogZmFsc2UsCgl0cmFuc2l0aW9uRHVyYXRpb246ICcwLjM1cycsCgl0cmFuc2l0aW9uVGltaW5nRnVuY3Rpb246ICdlYXNlLWluLW91dCcsCn0pOw==",
-                                "id": "l2b5syu"
-                            },
-                            "styles": [
-                                "9r4viso"
-                            ],
-                            "attributes": {
-                                "data-etch-accordion": "etch-accordion",
-                                "class": "etch-accordion"
-                            },
-                            "block": {
-                                "type": "html",
-                                "tag": "div"
-                            }
-                        }
-                    }
-                },
-                "innerBlocks": [
-                    {
-                        "blockName": "core/group",
-                        "attrs": {
-                            "metadata": {
-                                "name": "Loop",
-                                "etchData": {
-                                    "origin": "etch",
-                                    "name": "Loop",
-                                    "block": {
-                                        "type": "loop",
-                                        "loop": {
-                                            "targetItemId": "props",
-                                            "targetPath": "accordionLoop",
-                                            "itemId": "item"
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "innerBlocks": [
-                            {
-                                "blockName": "core/group",
-                                "attrs": {
-                                    "metadata": {
-                                        "etchData": {
-                                            "origin": "etch",
-                                            "styles": [
-                                                "qtbt7zq"
-                                            ],
-                                            "attributes": {
-                                                "class": "etch-accordion__item"
-                                            },
-                                            "block": {
-                                                "type": "html",
-                                                "tag": "div"
-                                            }
-                                        }
-                                    }
-                                },
-                                "innerBlocks": [
-                                    {
-                                        "blockName": "core/group",
-                                        "attrs": {
-                                            "metadata": {
-                                                "etchData": {
-                                                    "origin": "etch",
-                                                    "styles": [
-                                                        "b3q2rxj"
-                                                    ],
-                                                    "attributes": {
-                                                        "class": "etch-accordion__header"
-                                                    },
-                                                    "block": {
-                                                        "type": "html",
-                                                        "tag": "h3"
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        "innerBlocks": [
-                                            {
-                                                "blockName": "core/group",
-                                                "attrs": {
-                                                    "metadata": {
-                                                        "etchData": {
-                                                            "origin": "etch",
-                                                            "styles": [
-                                                                "srzz1jp"
-                                                            ],
-                                                            "attributes": {
-                                                                "aria-expanded": "true",
-                                                                "class": "etch-accordion__button"
-                                                            },
-                                                            "block": {
-                                                                "type": "html",
-                                                                "tag": "button"
-                                                            }
-                                                        }
-                                                    }
-                                                },
-                                                "innerBlocks": [
-                                                    {
-                                                        "blockName": "core/paragraph",
-                                                        "attrs": {
-                                                            "metadata": {
-                                                                "etchData": {
-                                                                    "origin": "etch",
-                                                                    "styles": [
-                                                                        "bo86b55"
-                                                                    ],
-                                                                    "attributes": {
-                                                                        "class": "etch-accordion__button-text"
-                                                                    },
-                                                                    "block": {
-                                                                        "type": "html",
-                                                                        "tag": "span"
-                                                                    },
-                                                                    "removeWrapper": true,
-                                                                    "nestedData": {
-                                                                        "d99mkf9": {
-                                                                            "origin": "etch",
-                                                                            "styles": [
-                                                                                "bo86b55"
-                                                                            ],
-                                                                            "attributes": {
-                                                                                "class": "etch-accordion__button-text"
-                                                                            },
-                                                                            "block": {
-                                                                                "type": "html",
-                                                                                "tag": "span"
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        },
-                                                        "innerBlocks": [],
-                                                        "innerHTML": "<p><span data-etch-ref=\"d99mkf9\">{item.title}</span></p>",
-                                                        "innerContent": [
-                                                            "<p><span data-etch-ref=\"d99mkf9\">{item.title}</span></p>"
-                                                        ]
-                                                    },
-                                                    {
-                                                        "blockName": "core/group",
-                                                        "attrs": {
-                                                            "metadata": {
-                                                                "etchData": {
-                                                                    "origin": "etch",
-                                                                    "attributes": {
-                                                                        "width": "24",
-                                                                        "height": "24",
-                                                                        "viewBox": "0 0 24 24",
-                                                                        "fill": "none",
-                                                                        "xmlns": "http://www.w3.org/2000/svg"
-                                                                    },
-                                                                    "block": {
-                                                                        "type": "html",
-                                                                        "tag": "svg"
-                                                                    }
-                                                                }
-                                                            }
-                                                        },
-                                                        "innerBlocks": [
-                                                            {
-                                                                "blockName": "core/group",
-                                                                "attrs": {
-                                                                    "metadata": {
-                                                                        "etchData": {
-                                                                            "origin": "etch",
-                                                                            "attributes": {
-                                                                                "fill": "currentColor",
-                                                                                "d": "M17 9.17a1 1 0 0 0-1.41 0L12 12.71L8.46 9.17a1 1 0 0 0-1.41 0a1 1 0 0 0 0 1.42l4.24 4.24a1 1 0 0 0 1.42 0L17 10.59a1 1 0 0 0 0-1.42"
-                                                                            },
-                                                                            "block": {
-                                                                                "type": "html",
-                                                                                "tag": "path"
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                },
-                                                                "innerBlocks": [],
-                                                                "innerHTML": "<div class=\"wp-block-group\"></div>",
-                                                                "innerContent": [
-                                                                    "<div class=\"wp-block-group\">",
-                                                                    "</div>"
-                                                                ]
-                                                            }
-                                                        ],
-                                                        "innerHTML": "<div class=\"wp-block-group\"></div>",
-                                                        "innerContent": [
-                                                            "<div class=\"wp-block-group\">",
-                                                            null,
-                                                            "</div>"
-                                                        ]
-                                                    }
-                                                ],
-                                                "innerHTML": "<div class=\"wp-block-group\"></div>",
-                                                "innerContent": [
-                                                    "<div class=\"wp-block-group\">",
-                                                    null,
-                                                    null,
-                                                    "</div>"
-                                                ]
-                                            }
-                                        ],
-                                        "innerHTML": "<div class=\"wp-block-group\"></div>",
-                                        "innerContent": [
-                                            "<div class=\"wp-block-group\">",
-                                            null,
-                                            "</div>"
-                                        ]
-                                    },
-                                    {
-                                        "blockName": "core/group",
-                                        "attrs": {
-                                            "metadata": {
-                                                "etchData": {
-                                                    "origin": "etch",
-                                                    "styles": [
-                                                        "pkn5tb9"
-                                                    ],
-                                                    "attributes": {
-                                                        "role": "region",
-                                                        "hidden": "hidden",
-                                                        "class": "etch-accordion__panel"
-                                                    },
-                                                    "block": {
-                                                        "type": "html",
-                                                        "tag": "div"
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        "innerBlocks": [
-                                            {
-                                                "blockName": "core/group",
-                                                "attrs": {
-                                                    "metadata": {
-                                                        "etchData": {
-                                                            "origin": "etch",
-                                                            "styles": [
-                                                                "ohes321"
-                                                            ],
-                                                            "attributes": {
-                                                                "class": "etch-accordion__content"
-                                                            },
-                                                            "block": {
-                                                                "type": "html",
-                                                                "tag": "div"
-                                                            }
-                                                        }
-                                                    }
-                                                },
-                                                "innerBlocks": [
-                                                    {
-                                                        "blockName": "core/paragraph",
-                                                        "attrs": {
-                                                            "metadata": {
-                                                                "name": "Text",
-                                                                "etchData": {
-                                                                    "origin": "etch",
-                                                                    "name": "Text",
-                                                                    "block": {
-                                                                        "type": "text"
-                                                                    },
-                                                                    "removeWrapper": true
-                                                                }
-                                                            }
-                                                        },
-                                                        "innerBlocks": [],
-                                                        "innerHTML": "<p>{item.content}</p>",
-                                                        "innerContent": [
-                                                            "<p>{item.content}</p>"
-                                                        ]
-                                                    }
-                                                ],
-                                                "innerHTML": "<div class=\"wp-block-group\"></div>",
-                                                "innerContent": [
-                                                    "<div class=\"wp-block-group\">",
-                                                    null,
-                                                    "</div>"
-                                                ]
-                                            }
-                                        ],
-                                        "innerHTML": "<div class=\"wp-block-group\"></div>",
-                                        "innerContent": [
-                                            "<div class=\"wp-block-group\">",
-                                            null,
-                                            "</div>"
-                                        ]
-                                    }
-                                ],
-                                "innerHTML": "<div class=\"wp-block-group\"></div>",
-                                "innerContent": [
-                                    "<div class=\"wp-block-group\">",
-                                    null,
-                                    null,
-                                    "</div>"
-                                ]
-                            }
-                        ],
-                        "innerHTML": "<div class=\"wp-block-group\"></div>",
-                        "innerContent": [
-                            "<div class=\"wp-block-group\">",
-                            null,
-                            "</div>"
-                        ]
-                    }
-                ],
-                "innerHTML": "<div class=\"wp-block-group\"></div>",
-                "innerContent": [
-                    "<div class=\"wp-block-group\">",
-                    null,
-                    "</div>"
-                ]
-            }
-        ]
-    },
-    "styles": {
-        "9r4viso": {
-            "type": "class",
-            "selector": ".etch-accordion",
-            "collection": "default",
-            "css": "/* etch accordion */\n  --etch-accordion-gap: 0.5rem;\n  --etch-accordion-background: #fff;\n\n  /* etch accordion item */\n  --etch-accordion-item-border-radius: 0.5rem;\n  --etch-accordion-item-border: 1px solid #e7e7e7;\n  --etch-accordion-item-text-color: #222;\n  --etch-accordion-item-padding-inline: 1rem;\n  --etch-accordion-item-padding-block: 1rem;\n\n  /* etch accordion button */\n  --etch-accordion-button-padding: var(--etch-accordion-item-padding-inline) var(--etch-accordion-item-padding-block);\n  --etch-accordion-button-outline: 2px solid #2466e8;\n  --etch-accordion-button-outline-offset: 2px;\n  --etch-accordion-button-background: #ebf0f9;\n\n  /* etch accordion svg */\n  --etch-accordion-svg-rotate: 180deg;\n  --etch-accordion-svg-transition-duration: var(--etch-accordion-transition-duration);\n  --etch-accordion-svg-transition-timing-function: var(--etch-accordion-transition-timing-function);\n\n  /* etch accordion panel */\n  --etch-accordion-panel-padding-inline: var(--etch-accordion-item-padding-inline);\n  --etch-accordion-panel-transition-duration: var(--etch-accordion-transition-duration);\n  --etch-accordion-panel-transition-timing-function: var(--etch-accordion-transition-timing-function);\n\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  gap: var(--etch-accordion-gap);\n  background: var(--etch-accordion-background);\n\n  :where(.etch-accordion__item) {\n    color: var(--etch-accordion-item-text-color);\n    border: var(--etch-accordion-item-border);\n    border-radius: var(--etch-accordion-item-border-radius);\n  }\n\n  :where(.etch-accordion__button) {\n    display: flex;\n    justify-content: space-between;\n    width: 100%;\n    padding: var(--etch-accordion-button-padding);\n    color: var(--etch-accordion-item-text-color);\n    cursor: pointer;\n  }\n\n  :where(.etch-accordion__button:focus-visible) {\n    outline: var(--etch-accordion-button-outline);\n    outline-offset: var(--etch-accordion-button-outline-offset);\n    background: var(--etch-accordion-button-background);\n  }\n\n  :where(.etch-accordion__button:hover) {\n    background: var(--etch-accordion-button-background);\n  }\n\n  :where(.etch-accordion__button svg) {\n    transition: transform var(--etch-accordion-svg-transition-duration) var(--etch-accordion-svg-transition-timing-function);\n  }\n\n  :where(.etch-accordion__button[aria-expanded='true']) {\n    border-bottom: var(--etch-accordion-item-border);\n  }\n\n  :where(.etch-accordion__button[aria-expanded='true'] svg) {\n    transform: rotate(var(--etch-accordion-svg-rotate));\n  }\n\n  :where(.etch-accordion__panel) {\n    /* keep at 0px to avoid animation issues */\n    max-height: 0;\n    overflow: hidden;\n    transition: max-height var(--etch-accordion-panel-transition-duration) var(--etch-accordion-panel-transition-timing-function);\n  }\n\n  :where(.etch-accordion__panel[hidden]) {\n    display: none;\n  }\n\n  :where(.etch-accordion__content) {\n    padding-inline: var(--etch-accordion-item-padding-inline);\n    padding-block: var(--etch-accordion-item-padding-block);\n  }",
-            "readonly": false
-        },
-        "qtbt7zq": {
-            "type": "class",
-            "selector": ".etch-accordion__item",
-            "collection": "default",
-            "css": "",
-            "readonly": false
-        },
-        "b3q2rxj": {
-            "type": "class",
-            "selector": ".etch-accordion__header",
-            "collection": "default",
-            "css": "",
-            "readonly": false
-        },
-        "srzz1jp": {
-            "type": "class",
-            "selector": ".etch-accordion__button",
-            "collection": "default",
-            "css": "",
-            "readonly": false
-        },
-        "bo86b55": {
-            "type": "class",
-            "selector": ".etch-accordion__button-text",
-            "collection": "default",
-            "css": "",
-            "readonly": false
-        },
-        "pkn5tb9": {
-            "type": "class",
-            "selector": ".etch-accordion__panel",
-            "collection": "default",
-            "css": "",
-            "readonly": false
-        },
-        "ohes321": {
-            "type": "class",
-            "selector": ".etch-accordion__content",
-            "collection": "default",
-            "css": "",
-            "readonly": false
-        }
-    },
-    "componentInstance": {
+    "type": "block",
+    "gutenbergBlock": {
         "blockName": "core/block",
         "attrs": {
             "metadata": {
@@ -403,19 +8,71 @@
                     "origin": "etch",
                     "block": {
                         "type": "component",
-                        "component": 2205,
+                        "component": 80,
                         "innerBlocks": []
                     }
                 }
             },
-            "ref": 2205
+            "ref": 80
         },
         "innerBlocks": [],
         "innerHTML": "",
         "innerContent": []
     },
+    "version": 2,
+    "styles": {
+        "2g6odej": {
+            "type": "class",
+            "selector": ".etch-accordion",
+            "collection": "default",
+            "css": "/* etch accordion */\n  --etch-accordion-gap: 0.5rem;\n  --etch-accordion-background: #fff;\n\n  /* etch accordion item */\n  --etch-accordion-item-border-radius: 0.5rem;\n  --etch-accordion-item-border: 1px solid #e7e7e7;\n  --etch-accordion-item-text-color: #222;\n  --etch-accordion-item-padding-inline: 1rem;\n  --etch-accordion-item-padding-block: 1rem;\n\n  /* etch accordion button */\n  --etch-accordion-button-padding: var(--etch-accordion-item-padding-inline) var(--etch-accordion-item-padding-block);\n  --etch-accordion-button-outline: 2px solid #2466e8;\n  --etch-accordion-button-outline-offset: 2px;\n  --etch-accordion-button-background: #ebf0f9;\n\n  /* etch accordion svg */\n  --etch-accordion-svg-rotate: 180deg;\n  --etch-accordion-svg-transition-duration: var(--etch-accordion-transition-duration);\n  --etch-accordion-svg-transition-timing-function: var(--etch-accordion-transition-timing-function);\n\n  /* etch accordion panel */\n  --etch-accordion-panel-padding-inline: var(--etch-accordion-item-padding-inline);\n  --etch-accordion-panel-transition-duration: var(--etch-accordion-transition-duration);\n  --etch-accordion-panel-transition-timing-function: var(--etch-accordion-transition-timing-function);\n\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  gap: var(--etch-accordion-gap);\n  background: var(--etch-accordion-background);\n\n  :where(.etch-accordion__item) {\n    color: var(--etch-accordion-item-text-color);\n    border: var(--etch-accordion-item-border);\n    border-radius: var(--etch-accordion-item-border-radius);\n  }\n\n  :where(.etch-accordion__button) {\n    display: flex;\n    justify-content: space-between;\n    width: 100%;\n    padding: var(--etch-accordion-button-padding);\n    color: var(--etch-accordion-item-text-color);\n    cursor: pointer;\n  }\n\n  :where(.etch-accordion__button:focus-visible) {\n    outline: var(--etch-accordion-button-outline);\n    outline-offset: var(--etch-accordion-button-outline-offset);\n    background: var(--etch-accordion-button-background);\n  }\n\n  :where(.etch-accordion__button:hover) {\n    background: var(--etch-accordion-button-background);\n  }\n\n  :where(.etch-accordion__button svg) {\n    transition: transform var(--etch-accordion-svg-transition-duration) var(--etch-accordion-svg-transition-timing-function);\n  }\n\n  :where(.etch-accordion__button[aria-expanded='true']) {\n    border-bottom: var(--etch-accordion-item-border);\n  }\n\n  :where(.etch-accordion__button[aria-expanded='true'] svg) {\n    transform: rotate(var(--etch-accordion-svg-rotate));\n  }\n\n  :where(.etch-accordion__panel) {\n    /* keep at 0px to avoid animation issues */\n    max-height: 0;\n    overflow: hidden;\n    transition: max-height var(--etch-accordion-panel-transition-duration) var(--etch-accordion-panel-transition-timing-function);\n  }\n\n  :where(.etch-accordion__panel[hidden]) {\n    display: none;\n  }\n\n  :where(.etch-accordion__content) {\n    padding-inline: var(--etch-accordion-item-padding-inline);\n    padding-block: var(--etch-accordion-item-padding-block);\n  }",
+            "readonly": false
+        },
+        "xcpipzo": {
+            "type": "class",
+            "selector": ".etch-accordion__item",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        },
+        "gktwb7t": {
+            "type": "class",
+            "selector": ".etch-accordion__header",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        },
+        "bpsjwm9": {
+            "type": "class",
+            "selector": ".etch-accordion__button",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        },
+        "7zakrol": {
+            "type": "class",
+            "selector": ".etch-accordion__button-text",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        },
+        "0y2jhjm": {
+            "type": "class",
+            "selector": ".etch-accordion__panel",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        },
+        "syxs2vs": {
+            "type": "class",
+            "selector": ".etch-accordion__content",
+            "collection": "default",
+            "css": "",
+            "readonly": false
+        }
+    },
     "loops": {
-        "k7mrbkq": {
+        "x4ukpob": {
             "name": "Recent Posts",
             "key": "recent_posts",
             "global": true,
@@ -429,6 +86,351 @@
                     "post_status": "publish"
                 }
             }
+        }
+    },
+    "components": {
+        "80": {
+            "id": 80,
+            "name": "EtchAccordion",
+            "key": "EtchAccordion",
+            "blocks": [
+                {
+                    "blockName": "core/group",
+                    "attrs": {
+                        "metadata": {
+                            "name": "Accordion",
+                            "etchData": {
+                                "origin": "etch",
+                                "name": "Accordion",
+                                "script": {
+                                    "code": "CmNsYXNzIEV0Y2hBY2NvcmRpb25TY3JpcHQgewoJY29uc3RydWN0b3IoYWNjb3JkaW9uRWwsIG9wdGlvbnMgPSB7fSkgewoJCXRoaXMuYWNjb3JkaW9uRWwgPSBhY2NvcmRpb25FbDsKCQl0aGlzLm9wdGlvbnMgPSBvcHRpb25zOwoJCXRoaXMuaXRlbXMgPSBbXTsKICAgICAgICB0aGlzLmluRXRjaCA9IHdpbmRvdyAhPT0gd2luZG93LnRvcCAmJiB3aW5kb3cuZnJhbWVFbGVtZW50Py5pZCA9PT0gJ2V0Y2gtaWZyYW1lJzsKICAgICAgCgkJdGhpcy5pbml0KCk7Cgl9CgoJaW5pdCgpIHsKCQlpZiAoIXRoaXMuYWNjb3JkaW9uRWwpIHJldHVybiBjb25zb2xlLmVycm9yKCdDYW5ub3QgZmluZCBBY2NvcmRpb24gZWxlbWVudCcpOwoKCQl0aGlzLml0ZW1zID0gdGhpcy5nZXRBY2NvcmRpb25JdGVtcygpOwoKICAgICAgICBpZiAoIXRoaXMuaW5FdGNoKSB7CiAgICAJCXRoaXMuc2V0QWNjb3JkaW9uSWRzKCk7CiAgICAJCXRoaXMuc2V0QXJpYUNvbnRyb2xzKCk7CiAgICAJCXRoaXMuc2V0QXJpYUxhYmVsbGVkYnkoKTsKICAgICAgICB9CgogICAgICAgIHRoaXMuc2V0VHJhbnNpdGlvblZhcmlhYmxlcygpOwoKCQl0aGlzLnNldEluaXRpYWxTdGF0ZXMoKTsKCQl0aGlzLmF0dGFjaEV2ZW50TGlzdGVuZXJzKCk7Cgl9CgoJZ2V0QWNjb3JkaW9uSXRlbXMoKSB7CgkJcmV0dXJuIEFycmF5LmZyb20odGhpcy5hY2NvcmRpb25FbC5xdWVyeVNlbGVjdG9yQWxsKCcuZXRjaC1hY2NvcmRpb25fX2l0ZW0nKSkubWFwKGl0ZW0gPT4gewoJCQljb25zdCBidXR0b24gPSBpdGVtLnF1ZXJ5U2VsZWN0b3IoJy5ldGNoLWFjY29yZGlvbl9fYnV0dG9uJyk7CgkJCWNvbnN0IHBhbmVsID0gaXRlbS5xdWVyeVNlbGVjdG9yKCcuZXRjaC1hY2NvcmRpb25fX3BhbmVsJyk7CgkJCXJldHVybiB7IGl0ZW0sIGJ1dHRvbiwgcGFuZWwgfTsKCQl9KTsKCX0KCglzZXRJbml0aWFsT3Blbkl0ZW0oKSB7CgkJaWYgKHRoaXMuZ2V0QWNjb3JkaW9uQ29uZmlnKCkub3BlbkZpcnN0SXRlbSkgewoJCQl0aGlzLm9wZW5JdGVtKDApOwoJCX0KCX0KCiAgICBzZXRUcmFuc2l0aW9uVmFyaWFibGVzKCkgewogICAgICAgIGNvbnN0IHsgdHJhbnNpdGlvbkR1cmF0aW9uLCB0cmFuc2l0aW9uVGltaW5nRnVuY3Rpb24gfSA9IHRoaXMuZ2V0QWNjb3JkaW9uQ29uZmlnKCk7CiAgICAgICAgY29uc3QgcHJlZmVyc1JlZHVjZWRNb3Rpb24gPSB3aW5kb3cubWF0Y2hNZWRpYT8uKCcocHJlZmVycy1yZWR1Y2VkLW1vdGlvbjogcmVkdWNlKScpPy5tYXRjaGVzOwogICAgICAgIGNvbnN0IGR1cmF0aW9uID0gcHJlZmVyc1JlZHVjZWRNb3Rpb24gPyAnMHMnIDogdHJhbnNpdGlvbkR1cmF0aW9uOwogICAgCiAgICAgICAgY29uc3Qgcm9vdCA9IHRoaXMuYWNjb3JkaW9uRWwuc3R5bGU7CiAgICAgICAgcm9vdC5zZXRQcm9wZXJ0eSgnLS1ldGNoLWFjY29yZGlvbi10cmFuc2l0aW9uLWR1cmF0aW9uJywgZHVyYXRpb24pOwogICAgICAgIHJvb3Quc2V0UHJvcGVydHkoJy0tZXRjaC1hY2NvcmRpb24tdHJhbnNpdGlvbi10aW1pbmctZnVuY3Rpb24nLCB0cmFuc2l0aW9uVGltaW5nRnVuY3Rpb24pOwogICAgfQoKCXNldEluaXRpYWxTdGF0ZXMoKSB7CgkJY29uc3QgeyBvcGVuRmlyc3RJdGVtLCB0cmFuc2l0aW9uRHVyYXRpb24sIHRyYW5zaXRpb25UaW1pbmdGdW5jdGlvbiB9ID0gdGhpcy5nZXRBY2NvcmRpb25Db25maWcoKTsKCgkJdGhpcy5pdGVtcy5mb3JFYWNoKCh7IGJ1dHRvbiwgcGFuZWwgfSwgaWR4KSA9PiB7CgkJCXBhbmVsLnN0eWxlLnRyYW5zaXRpb24gPSAnbm9uZSc7CgkJCXBhbmVsLnN0eWxlLm92ZXJmbG93ID0gJyc7CgoJCQlpZiAob3BlbkZpcnN0SXRlbSAmJiBpZHggPT09IDApIHsKCQkJCWJ1dHRvbi5zZXRBdHRyaWJ1dGUoJ2FyaWEtZXhwYW5kZWQnLCAndHJ1ZScpOwoJCQkJcGFuZWwucmVtb3ZlQXR0cmlidXRlKCdoaWRkZW4nKTsKCQkJCXBhbmVsLnN0eWxlLm1heEhlaWdodCA9IHBhbmVsLnNjcm9sbEhlaWdodCArICdweCc7CgkJCX0gZWxzZSB7CgkJCQlidXR0b24uc2V0QXR0cmlidXRlKCdhcmlhLWV4cGFuZGVkJywgJ2ZhbHNlJyk7CgkJCQlwYW5lbC5zZXRBdHRyaWJ1dGUoJ2hpZGRlbicsICcnKTsKCQkJCXBhbmVsLnN0eWxlLm1heEhlaWdodCA9ICcwcHgnOwoJCQl9CgkJfSk7CgoJCXJlcXVlc3RBbmltYXRpb25GcmFtZSgoKSA9PiB7CgkJCXRoaXMuaXRlbXMuZm9yRWFjaCgoeyBwYW5lbCB9KSA9PiB7CgkJCQlwYW5lbC5zdHlsZS50cmFuc2l0aW9uID0gYG1heC1oZWlnaHQgJHt0cmFuc2l0aW9uRHVyYXRpb259ICR7dHJhbnNpdGlvblRpbWluZ0Z1bmN0aW9ufWA7CgkJCX0pOwoJCX0pOwoJfQoKCWdldEFjY29yZGlvbkNvbmZpZygpIHsKCQlyZXR1cm4gewoJCQlvcGVuRmlyc3RJdGVtOiB0aGlzLm9wdGlvbnM/Lm9wZW5GaXJzdEl0ZW0gPT09IHRydWUgPyB0cnVlIDogZmFsc2UsCgkJCWFsbG93TXVsdGlwbGU6IHRoaXMub3B0aW9ucz8uYWxsb3dNdWx0aXBsZSA9PT0gdHJ1ZSA/IHRydWUgOiBmYWxzZSwKCQkJdHJhbnNpdGlvbkR1cmF0aW9uOiB0aGlzLm9wdGlvbnM/LnRyYW5zaXRpb25EdXJhdGlvbiB8fCAnMC4zNXMnLAoJCQl0cmFuc2l0aW9uVGltaW5nRnVuY3Rpb246IHRoaXMub3B0aW9ucz8udHJhbnNpdGlvblRpbWluZ0Z1bmN0aW9uIHx8ICdlYXNlLWluLW91dCcsCgkJfQoJfQoKCXNldEFjY29yZGlvbklkcygpIHsKCQljb25zdCBodW1hbkluZGV4ID0gMTsKCgkJdGhpcy5pdGVtcy5mb3JFYWNoKCh7IGJ1dHRvbiwgcGFuZWwgfSwgaW5kZXgpID0+IHsKCQkJaWYgKCFidXR0b24uaWQpIGJ1dHRvbi5pZCA9IGBldGNoLWFjY29yZGlvbi1oZWFkZXItJHtpbmRleCArIGh1bWFuSW5kZXh9YDsKCQkJaWYgKCFwYW5lbC5pZCkgcGFuZWwuaWQgPSBgZXRjaC1hY2NvcmRpb24tcGFuZWwtJHtpbmRleCArIGh1bWFuSW5kZXh9YDsKCQl9KQoJfQoKCXNldEFyaWFDb250cm9scygpIHsKCQl0aGlzLml0ZW1zLmZvckVhY2goKHsgYnV0dG9uLCBwYW5lbCB9KSA9PiB7CgkJCWJ1dHRvbi5zZXRBdHRyaWJ1dGUoJ2FyaWEtY29udHJvbHMnLCBwYW5lbC5pZCk7CgkJfSkKCX0KCglzZXRBcmlhTGFiZWxsZWRieSgpIHsKCQl0aGlzLml0ZW1zLmZvckVhY2goKHsgYnV0dG9uLCBwYW5lbCB9KSA9PiB7CgkJCXBhbmVsLnNldEF0dHJpYnV0ZSgnYXJpYS1sYWJlbGxlZGJ5JywgYnV0dG9uLmlkKTsKCQl9KQoJfQoKCWF0dGFjaEV2ZW50TGlzdGVuZXJzKCkgewoJCXRoaXMuaXRlbXMuZm9yRWFjaCgoeyBidXR0b24gfSwgaW5kZXgpID0+IHsKCQkJYnV0dG9uLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgKCkgPT4gdGhpcy50b2dnbGVJdGVtKGluZGV4KSk7CgkJCWJ1dHRvbi5hZGRFdmVudExpc3RlbmVyKCdrZXlkb3duJywgZSA9PiB0aGlzLmhhbmRsZUtleURvd24oZSwgaW5kZXgpKTsKCQl9KTsKCX0KCgltb3ZlRm9jdXMoaXRlbXMsIGRpcmVjdGlvbikgewoJCWNvbnN0IGFjdGl2ZSA9IGRvY3VtZW50LmFjdGl2ZUVsZW1lbnQ7CgkJbGV0IGluZGV4ID0gaXRlbXMuaW5kZXhPZihhY3RpdmUpOwoJCWlmIChpbmRleCA9PT0gLTEpIGluZGV4ID0gMDsKCgkJbGV0IG5leHQgPSBpbmRleCArIGRpcmVjdGlvbjsKCQlpZiAobmV4dCA+PSBpdGVtcy5sZW5ndGgpIG5leHQgPSAwOwoJCWlmIChuZXh0IDwgMCkgbmV4dCA9IGl0ZW1zLmxlbmd0aCAtIDE7CgoJCWl0ZW1zW25leHRdPy5mb2N1cz8uKCk7Cgl9CgoJdG9nZ2xlSXRlbShpbmRleCkgewoJCWNvbnN0IHsgYnV0dG9uIH0gPSB0aGlzLml0ZW1zW2luZGV4XTsKCQljb25zdCBpc09wZW4gPSBidXR0b24uZ2V0QXR0cmlidXRlKCdhcmlhLWV4cGFuZGVkJykgPT09ICd0cnVlJzsKCgkJY29uc3QgYWxsb3dNdWx0aXBsZSA9IHRoaXMuZ2V0QWNjb3JkaW9uQ29uZmlnKCkuYWxsb3dNdWx0aXBsZTsKCgkJaWYgKGlzT3BlbikgewoJCQl0aGlzLmNsb3NlSXRlbShpbmRleCk7CgkJfSBlbHNlIHsKCQkJaWYgKCFhbGxvd011bHRpcGxlKSB0aGlzLml0ZW1zLmZvckVhY2goKF8sIGkpID0+IHRoaXMuY2xvc2VJdGVtKGkpKTsKCQkJdGhpcy5vcGVuSXRlbShpbmRleCk7CgkJfQoJfQoKCW9wZW5JdGVtKGluZGV4KSB7CgkJY29uc3QgeyBidXR0b24sIHBhbmVsIH0gPSB0aGlzLml0ZW1zW2luZGV4XTsKCgkJYnV0dG9uLnNldEF0dHJpYnV0ZSgnYXJpYS1leHBhbmRlZCcsICd0cnVlJyk7CgkJcGFuZWwucmVtb3ZlQXR0cmlidXRlKCdoaWRkZW4nKTsKCQl0aGlzLmNsZWFyVHJhbnNpdGlvbkhhbmRsZXIocGFuZWwpOwoKCQlwYW5lbC5zdHlsZS5vdmVyZmxvdyA9ICdoaWRkZW4nOwoJCXBhbmVsLnN0eWxlLm1heEhlaWdodCA9ICcwcHgnOwoJCS8vIEZvcmNlIHJlZmxvdyB0aGVuIGFuaW1hdGUgdG8gc2Nyb2xsSGVpZ2h0CgkJcGFuZWwub2Zmc2V0SGVpZ2h0OwoJCXBhbmVsLnN0eWxlLm1heEhlaWdodCA9IHBhbmVsLnNjcm9sbEhlaWdodCArICdweCc7CgoKCQl0aGlzLnNldFRyYW5zaXRpb25FbmQocGFuZWwsICgpID0+IHsKCQkJcGFuZWwuc3R5bGUub3ZlcmZsb3cgPSAnJzsKCQkJcGFuZWwuc3R5bGUudHJhbnNpdGlvbiA9ICcnOwoJCX0pOwoJfQoKCWNsb3NlSXRlbShpbmRleCkgewoJCWNvbnN0IHsgYnV0dG9uLCBwYW5lbCB9ID0gdGhpcy5pdGVtc1tpbmRleF07CgkJY29uc3Qgc3RhcnQgPSBwYW5lbC5zY3JvbGxIZWlnaHQ7CgoJCWJ1dHRvbi5zZXRBdHRyaWJ1dGUoJ2FyaWEtZXhwYW5kZWQnLCAnZmFsc2UnKTsKCQl0aGlzLmNsZWFyVHJhbnNpdGlvbkhhbmRsZXIocGFuZWwpOwoKCQlwYW5lbC5zdHlsZS5vdmVyZmxvdyA9ICdoaWRkZW4nOwoJCXBhbmVsLnN0eWxlLm1heEhlaWdodCA9IGAke3N0YXJ0fXB4YDsKCQkvLyBGb3JjZSByZWZsb3cgdGhlbiBhbmltYXRlIHRvIDAKCQlwYW5lbC5vZmZzZXRIZWlnaHQ7CgkJcGFuZWwuc3R5bGUubWF4SGVpZ2h0ID0gJzBweCc7CgoJCXRoaXMuc2V0VHJhbnNpdGlvbkVuZChwYW5lbCwgKCkgPT4gewoJCQlwYW5lbC5zZXRBdHRyaWJ1dGUoJ2hpZGRlbicsICcnKTsKCQkJcGFuZWwuc3R5bGUub3ZlcmZsb3cgPSAnJzsKCQkJcGFuZWwuc3R5bGUudHJhbnNpdGlvbiA9ICcnOwoJCQlwYW5lbC5zdHlsZS5tYXhIZWlnaHQgPSAnMHB4JzsKCQl9KTsKCX0KCglzZXRUcmFuc2l0aW9uRW5kKHBhbmVsLCBjYWxsYmFjaykgewoKCQl0aGlzLmNsZWFyVHJhbnNpdGlvbkhhbmRsZXIocGFuZWwpOwoKCQljb25zdCBvbkVuZCA9IChlKSA9PiB7CgkJCWlmIChlLnRhcmdldCAhPT0gcGFuZWwgfHwgZS5wcm9wZXJ0eU5hbWUgIT09ICdtYXgtaGVpZ2h0JykgcmV0dXJuOwoJCQlwYW5lbC5yZW1vdmVFdmVudExpc3RlbmVyKCd0cmFuc2l0aW9uZW5kJywgb25FbmQpOwoJCQlwYW5lbC50cmFuc2l0aW9uSGFuZGxlciA9IG51bGw7CgkJCWlmICh0eXBlb2YgY2FsbGJhY2sgPT09ICdmdW5jdGlvbicpIGNhbGxiYWNrKCk7CgkJfTsKCgkJcGFuZWwudHJhbnNpdGlvbkhhbmRsZXIgPSBvbkVuZDsKCQlwYW5lbC5hZGRFdmVudExpc3RlbmVyKCd0cmFuc2l0aW9uZW5kJywgb25FbmQpOwoJfQoKCWNsZWFyVHJhbnNpdGlvbkhhbmRsZXIocGFuZWwpIHsKCQlpZiAocGFuZWwudHJhbnNpdGlvbkhhbmRsZXIpIHsKCQkJcGFuZWwucmVtb3ZlRXZlbnRMaXN0ZW5lcigndHJhbnNpdGlvbmVuZCcsIHBhbmVsLnRyYW5zaXRpb25IYW5kbGVyKTsKCQkJcGFuZWwudHJhbnNpdGlvbkhhbmRsZXIgPSBudWxsOwoJCX0KCX0KCgloYW5kbGVLZXlEb3duKGUsIGluZGV4KSB7CgkJY29uc3QgeyBrZXkgfSA9IGU7CgkJY29uc3QgaXRlbXMgPSB0aGlzLml0ZW1zLm1hcChpdGVtID0+IGl0ZW0uYnV0dG9uKTsKCgkJc3dpdGNoIChrZXkpIHsKCQkJY2FzZSAnQXJyb3dEb3duJzoKCQkJCWUucHJldmVudERlZmF1bHQoKTsKCQkJCXRoaXMubW92ZUZvY3VzKGl0ZW1zLCAxKTsKCQkJCWJyZWFrOwoJCQljYXNlICdBcnJvd1VwJzoKCQkJCWUucHJldmVudERlZmF1bHQoKTsKCQkJCXRoaXMubW92ZUZvY3VzKGl0ZW1zLCAtMSk7CgkJCQlicmVhazsKCQkJY2FzZSAnSG9tZSc6CgkJCQllLnByZXZlbnREZWZhdWx0KCk7CgkJCQlpdGVtc1swXS5mb2N1cygpOwoJCQkJYnJlYWs7CgkJCWNhc2UgJ0VuZCc6CgkJCQllLnByZXZlbnREZWZhdWx0KCk7CgkJCQlpdGVtc1tpdGVtcy5sZW5ndGggLSAxXS5mb2N1cygpOwoJCQkJYnJlYWs7CgkJCWNhc2UgJ0VudGVyJzoKCQkJY2FzZSAnICc6CgkJCQllLnByZXZlbnREZWZhdWx0KCk7CgkJCQl0aGlzLnRvZ2dsZUl0ZW0oaW5kZXgpOwoJCQkJYnJlYWs7CgkJfQoJfQp9CgpmdW5jdGlvbiBpbnN0YW50aWF0ZUFjY29yZGlvbkNsYXNzKG9wdGlvbnMgPSB7fSkgewogICAgY29uc3QgYWNjb3JkaW9uRWxzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnW2RhdGEtZXRjaC1hY2NvcmRpb25dJyk7Cgljb25zdCBhY2NvcmRpb25FbCA9IGFjY29yZGlvbkVsc1swXTsKCglpZiAoIWFjY29yZGlvbkVsKSB7CgkJY29uc29sZS5lcnJvcignQ2Fubm90IGZpbmQgQWNjb3JkaW9uIGVsZW1lbnQsIGlzIHRoZSBbZGF0YS1ldGNoLWFjY29yZGlvbj0iIl0gYXR0cmlidXRlIGNvcnJlY3Q/Jyk7CgkJcmV0dXJuOwoJfQogIAoJY29uc3QgYWNjSW5zdGFuY2UgPSBuZXcgRXRjaEFjY29yZGlvblNjcmlwdChhY2NvcmRpb25FbCwgb3B0aW9ucyk7CgoJd2luZG93LmV0Y2hFbGVtZW50cyA9IHdpbmRvdy5ldGNoRWxlbWVudHMgfHwgW107Cgl3aW5kb3cuZXRjaEVsZW1lbnRzLmV0Y2hBY2NvcmRpb24gPSBhY2NJbnN0YW5jZTsKfQoKaW5zdGFudGlhdGVBY2NvcmRpb25DbGFzcyh7CglvcGVuRmlyc3RJdGVtOiB0cnVlLAoJYWxsb3dNdWx0aXBsZTogZmFsc2UsCgl0cmFuc2l0aW9uRHVyYXRpb246ICcwLjM1cycsCgl0cmFuc2l0aW9uVGltaW5nRnVuY3Rpb246ICdlYXNlLWluLW91dCcsCn0pOw==",
+                                    "id": "em9ja55"
+                                },
+                                "styles": [
+                                    "2g6odej"
+                                ],
+                                "attributes": {
+                                    "data-etch-accordion": "etch-accordion",
+                                    "class": "etch-accordion"
+                                },
+                                "block": {
+                                    "type": "html",
+                                    "tag": "div"
+                                }
+                            }
+                        }
+                    },
+                    "innerBlocks": [
+                        {
+                            "blockName": "core/group",
+                            "attrs": {
+                                "metadata": {
+                                    "name": "Loop",
+                                    "etchData": {
+                                        "origin": "etch",
+                                        "name": "Loop",
+                                        "block": {
+                                            "type": "loop",
+                                            "loop": {
+                                                "target": "props.accordionLoop",
+                                                "itemId": "item"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "innerBlocks": [
+                                {
+                                    "blockName": "core/group",
+                                    "attrs": {
+                                        "metadata": {
+                                            "etchData": {
+                                                "origin": "etch",
+                                                "styles": [
+                                                    "xcpipzo"
+                                                ],
+                                                "attributes": {
+                                                    "class": "etch-accordion__item"
+                                                },
+                                                "block": {
+                                                    "type": "html",
+                                                    "tag": "div"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "innerBlocks": [
+                                        {
+                                            "blockName": "core/group",
+                                            "attrs": {
+                                                "metadata": {
+                                                    "etchData": {
+                                                        "origin": "etch",
+                                                        "styles": [
+                                                            "gktwb7t"
+                                                        ],
+                                                        "attributes": {
+                                                            "class": "etch-accordion__header"
+                                                        },
+                                                        "block": {
+                                                            "type": "html",
+                                                            "tag": "h3"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "innerBlocks": [
+                                                {
+                                                    "blockName": "core/group",
+                                                    "attrs": {
+                                                        "metadata": {
+                                                            "etchData": {
+                                                                "origin": "etch",
+                                                                "styles": [
+                                                                    "bpsjwm9"
+                                                                ],
+                                                                "attributes": {
+                                                                    "aria-expanded": "true",
+                                                                    "class": "etch-accordion__button"
+                                                                },
+                                                                "block": {
+                                                                    "type": "html",
+                                                                    "tag": "button"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "innerBlocks": [
+                                                        {
+                                                            "blockName": "core/paragraph",
+                                                            "attrs": {
+                                                                "metadata": {
+                                                                    "etchData": {
+                                                                        "origin": "etch",
+                                                                        "styles": [
+                                                                            "7zakrol"
+                                                                        ],
+                                                                        "attributes": {
+                                                                            "class": "etch-accordion__button-text"
+                                                                        },
+                                                                        "block": {
+                                                                            "type": "html",
+                                                                            "tag": "span"
+                                                                        },
+                                                                        "removeWrapper": true,
+                                                                        "nestedData": {
+                                                                            "bm4blpe": {
+                                                                                "origin": "etch",
+                                                                                "styles": [
+                                                                                    "7zakrol"
+                                                                                ],
+                                                                                "attributes": {
+                                                                                    "class": "etch-accordion__button-text"
+                                                                                },
+                                                                                "block": {
+                                                                                    "type": "html",
+                                                                                    "tag": "span"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "innerBlocks": [],
+                                                            "innerHTML": "<p><span data-etch-ref=\"bm4blpe\">{item.title}</span></p>",
+                                                            "innerContent": [
+                                                                "<p><span data-etch-ref=\"bm4blpe\">{item.title}</span></p>"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "blockName": "core/group",
+                                                            "attrs": {
+                                                                "metadata": {
+                                                                    "etchData": {
+                                                                        "origin": "etch",
+                                                                        "attributes": {
+                                                                            "width": "24",
+                                                                            "height": "24",
+                                                                            "viewBox": "0 0 24 24",
+                                                                            "fill": "none",
+                                                                            "xmlns": "http://www.w3.org/2000/svg"
+                                                                        },
+                                                                        "block": {
+                                                                            "type": "html",
+                                                                            "tag": "svg"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "innerBlocks": [
+                                                                {
+                                                                    "blockName": "core/group",
+                                                                    "attrs": {
+                                                                        "metadata": {
+                                                                            "etchData": {
+                                                                                "origin": "etch",
+                                                                                "attributes": {
+                                                                                    "fill": "currentColor",
+                                                                                    "d": "M17 9.17a1 1 0 0 0-1.41 0L12 12.71L8.46 9.17a1 1 0 0 0-1.41 0a1 1 0 0 0 0 1.42l4.24 4.24a1 1 0 0 0 1.42 0L17 10.59a1 1 0 0 0 0-1.42"
+                                                                                },
+                                                                                "block": {
+                                                                                    "type": "html",
+                                                                                    "tag": "path"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "innerBlocks": [],
+                                                                    "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                                    "innerContent": [
+                                                                        "<div class=\"wp-block-group\">",
+                                                                        "</div>"
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                            "innerContent": [
+                                                                "<div class=\"wp-block-group\">",
+                                                                null,
+                                                                "</div>"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                    "innerContent": [
+                                                        "<div class=\"wp-block-group\">",
+                                                        null,
+                                                        null,
+                                                        "</div>"
+                                                    ]
+                                                }
+                                            ],
+                                            "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                            "innerContent": [
+                                                "<div class=\"wp-block-group\">",
+                                                null,
+                                                "</div>"
+                                            ]
+                                        },
+                                        {
+                                            "blockName": "core/group",
+                                            "attrs": {
+                                                "metadata": {
+                                                    "etchData": {
+                                                        "origin": "etch",
+                                                        "styles": [
+                                                            "0y2jhjm"
+                                                        ],
+                                                        "attributes": {
+                                                            "role": "region",
+                                                            "hidden": "hidden",
+                                                            "class": "etch-accordion__panel"
+                                                        },
+                                                        "block": {
+                                                            "type": "html",
+                                                            "tag": "div"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "innerBlocks": [
+                                                {
+                                                    "blockName": "core/group",
+                                                    "attrs": {
+                                                        "metadata": {
+                                                            "etchData": {
+                                                                "origin": "etch",
+                                                                "styles": [
+                                                                    "syxs2vs"
+                                                                ],
+                                                                "attributes": {
+                                                                    "class": "etch-accordion__content"
+                                                                },
+                                                                "block": {
+                                                                    "type": "html",
+                                                                    "tag": "div"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "innerBlocks": [
+                                                        {
+                                                            "blockName": "core/paragraph",
+                                                            "attrs": {
+                                                                "metadata": {
+                                                                    "name": "Text",
+                                                                    "etchData": {
+                                                                        "origin": "etch",
+                                                                        "name": "Text",
+                                                                        "block": {
+                                                                            "type": "text"
+                                                                        },
+                                                                        "removeWrapper": true
+                                                                    }
+                                                                }
+                                                            },
+                                                            "innerBlocks": [],
+                                                            "innerHTML": "<p>{item.content}</p>",
+                                                            "innerContent": [
+                                                                "<p>{item.content}</p>"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                                    "innerContent": [
+                                                        "<div class=\"wp-block-group\">",
+                                                        null,
+                                                        "</div>"
+                                                    ]
+                                                }
+                                            ],
+                                            "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                            "innerContent": [
+                                                "<div class=\"wp-block-group\">",
+                                                null,
+                                                "</div>"
+                                            ]
+                                        }
+                                    ],
+                                    "innerHTML": "<div class=\"wp-block-group\"></div>",
+                                    "innerContent": [
+                                        "<div class=\"wp-block-group\">",
+                                        null,
+                                        null,
+                                        "</div>"
+                                    ]
+                                }
+                            ],
+                            "innerHTML": "<div class=\"wp-block-group\"></div>",
+                            "innerContent": [
+                                "<div class=\"wp-block-group\">",
+                                null,
+                                "</div>"
+                            ]
+                        }
+                    ],
+                    "innerHTML": "<div class=\"wp-block-group\"></div>",
+                    "innerContent": [
+                        "<div class=\"wp-block-group\">",
+                        null,
+                        "</div>"
+                    ]
+                }
+            ],
+            "properties": [
+                {
+                    "key": "accordionLoop",
+                    "name": "Accordion Loop",
+                    "keyTouched": true,
+                    "type": {
+                        "primitive": "string",
+                        "specialized": "array"
+                    },
+                    "default": "recent_posts"
+                }
+            ],
+            "description": "",
+            "legacyId": ""
         }
     }
 }

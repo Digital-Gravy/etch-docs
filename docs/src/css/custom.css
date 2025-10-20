@@ -274,5 +274,18 @@ td p:last-child {
 [data-theme='dark'] .prism-code:has(.token-line:nth-child(5)) .token-line::before {
 	color: var(--ifm-color-emphasis-500);
 	border-right-color: var(--ifm-color-emphasis-200);
-	opacity: 0.25;
+}
+
+/* Sidebar badge */
+.menu__link-badge {
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.4rem 0.1rem;
+  font-size: 0.65rem;
+  line-height: 1.2;
+  border-radius: 100vw;
+  background: var(--ifm-color-primary);
+  color: var(--ifm-background-surface-color);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-weight: 600;
 }

@@ -73,7 +73,7 @@ This page will serve as the master doc page for all dynamic data keys. Feel free
 | `site.version`     | The WordPress version.                                     |
 | `site.language`    | The site language code.                                    |
 | `site.isMultisite` | Whether the site is part of a multisite network (boolean). |
-| `site.currentDate` | References the current date.                               |
+| `site.currentDate` | References the current date. Is returned as a unix timestamp. |
 
 ## Options Keys
 
