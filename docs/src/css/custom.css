@@ -68,6 +68,16 @@ body {
 	box-shadow: 0 0 0 2px rgba(var(--ifm-color-primary-rgb), 0.2);
 }
 
+.markdown > h3 {
+	--ifm-h3-font-size: 1.75rem;
+}
+.markdown > h4 {
+	--ifm-h4-font-size: 1.4rem;
+}
+.markdown > h5 {
+	--ifm-h5-font-size: 1.125rem;
+}
+
 /* Keyboard shortcut hint */
 .navbar__search-input::placeholder {
 	color: var(--ifm-color-emphasis-600);
@@ -251,26 +261,47 @@ td p:last-child {
 	margin-bottom: 0;
 }
 
-/* Show line numbers on all code blocks */
+/* Show line numbers on code blocks with 5+ lines */
 .prism-code {
 	counter-reset: line-number;
 }
 
-.prism-code .token-line::before {
+.prism-code:has(.token-line:nth-child(5)) .token-line::before {
 	counter-increment: line-number;
 	content: counter(line-number);
 	display: inline-block;
-	width: 3em;
+	width: 1em;
 	padding-right: 1em;
-	margin-right: 0.5em;
+	margin-right: 1.25em;
 	text-align: right;
 	color: var(--ifm-color-emphasis-600);
 	user-select: none;
 	border-right: 1px solid var(--ifm-color-emphasis-300);
+	opacity: 0.5;
 }
 
 /* Adjust for dark mode */
-[data-theme='dark'] .prism-code .token-line::before {
+[data-theme='dark'] .prism-code:has(.token-line:nth-child(5)) .token-line::before {
 	color: var(--ifm-color-emphasis-500);
 	border-right-color: var(--ifm-color-emphasis-200);
+}
+
+/* Adjust version badges for light / dark mode */
+body [class^="versionBadge_"] {
+	background-color: var(--ifm-color-primary);
+	color: var(--ifm-background-surface-color);
+}
+
+/* Sidebar badge */
+.menu__link-badge {
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.4rem 0.1rem;
+  font-size: 0.65rem;
+  line-height: 1.2;
+  border-radius: 100vw;
+  background: var(--ifm-color-primary);
+  color: var(--ifm-background-surface-color);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-weight: 600;
 }

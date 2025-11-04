@@ -1,10 +1,11 @@
 ---
-title: Basic Nav
+title: Nav - Basic
+sidebar_position: 120
 ---
 
-import CopyToClipboard from '@site/src/components/CopyToClipboard/CopyToClipboard';
-import NavJSON from '../components-json/basic-nav-component.json';
-import BurgerJSON from '../components-json/burger-component.json';
+import CopyToClipboard from "@site/src/components/CopyToClipboard/CopyToClipboard";
+import NavJSON from "../components-json/basic-nav-component.json";
+import BurgerJSON from "../components-json/burger-component.json";
 
 export const NAV_JSON = JSON.stringify(NavJSON, null, 2);
 export const BURGER_JSON = JSON.stringify(BurgerJSON, null, 2);
@@ -26,18 +27,20 @@ This page documents the recommended way to add a Basic Nav by importing the preb
 Use the buttons below to copy the ready-to-use Navigation and Burger components as JSON.
 Then, in Etch, press <kbd>cmd</kbd> + <kbd>v</kbd> (Mac) or <kbd>ctrl</kbd> + <kbd>v</kbd> (Windows) anywhere in the builder to insert the component.
 
-<div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+<div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
   <CopyToClipboard label="Copy Navigation Component" value={NAV_JSON} />
   <CopyToClipboard label="Copy Burger Component" value={BURGER_JSON} />
 </div>
 
 ### Steps
+
 - Click "Copy Navigation Component" above, then in Etch press <kbd>cmd</kbd> + <kbd>v</kbd> (Mac) / <kbd>ctrl</kbd> + <kbd>v</kbd> (Windows) anywhere in the builder to insert the component
 - Repeat for the Burger Component.
 - Arrange both inside your Header (for example, place Navigation in the right slot and Burger next to it for mobile).
 - Verify desktop dropdowns/flyouts and mobile toggle behavior.
 
 ### Configuration
+
 - The `basicNav` loop is preinstalled in Etch and already wired in the component.
 - CSS, JS, and props are bundled inside these components—no setup required. You can edit prop values to customize behavior.
 - Accessibility features (including `aria-current` behavior) are enabled by default.
@@ -126,6 +129,7 @@ Here's some sample JSON:
   }
 ]
 ```
+
 - Each label/url pair is a navigation link.
 - The "children" object defines children for a navigation item. Children links will automatically be placed in a dropdown.
 - If a child has children, this defines a grandchildren relationship. Grandchildren will automatically be placed in a flyout.
@@ -135,23 +139,24 @@ Use relative URL references, not full static URLs.
 :::
 
 ### Nav Javascript Options
-| Option           | Type                      | Default | Description |
-| ---------------- | ------------------------- | ------- | ----------- |
+
+| Option            | Type                  | Default | Description                                                                                                                                                      |
+| ----------------- | --------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ariaCurrentPage` | `boolean` or `object` | `false` | Enables automatic setting of `aria-current="page"` on the current navigation link. Pass `true` for basic usage, or an object for advanced configuration.         |
-|   • `homePage`    | `boolean`             | `true`  | *(Only if `ariaCurrentPage` is an object)* — If `true`, the homepage link will also be marked as the current page. Set to `false` to skip homepage highlighting. |
+|   • `homePage`    | `boolean`             | `true`  | _(Only if `ariaCurrentPage` is an object)_ — If `true`, the homepage link will also be marked as the current page. Set to `false` to skip homepage highlighting. |
 
 **See** [Nav Behavior](#nav-behavior) for more information.
 
 ### Nav Component Props
 
-| Option           | Type                      | Default | Description |
-| ---------------- | ------------------------- | ------- | ----------- |
-| `jsonNav`        | Loop (array of items)     | preset  | Data source for your menu. Preinstalled in Etch; edit via Loop Manager. |
-| `navAriaLabel`   | `string`                  | `"Menu"` | Sets the nav `aria-label`. |
-| `mouseSubmenu`   | select                    | `"hover"` | Interaction mode. Options: `hover`, `click`, `click-sub-hover` (click for dropdowns, hover for flyouts on desktop). |
-
+| Option         | Type                  | Default   | Description                                                                                                         |
+| -------------- | --------------------- | --------- | ------------------------------------------------------------------------------------------------------------------- |
+| `jsonNav`      | Loop (array of items) | preset    | Data source for your menu. Preinstalled in Etch; edit via Loop Manager.                                             |
+| `navAriaLabel` | `string`              | `"Menu"`  | Sets the nav `aria-label`.                                                                                          |
+| `mouseSubmenu` | select                | `"hover"` | Interaction mode. Options: `hover`, `click`, `click-sub-hover` (click for dropdowns, hover for flyouts on desktop). |
 
 ### Burger Javascript Options
+
 | Option             | Type                        | Default     | Description                                                                  |
 | ------------------ | --------------------------- | ----------- | ---------------------------------------------------------------------------- |
 | `button`           | `HTMLElement`               | `undefined` | **Required** – The burger toggle element where click handling is attached.   |
@@ -167,9 +172,9 @@ Use relative URL references, not full static URLs.
 
 ### Burger Component Props
 
-| Option      | Type     | Default | Description                                  |
-| ----------- | -------- | ------- | -------------------------------------------- |
-| `ariaLabel` | `string` | "Menu"  | Sets the burger button `aria-label` text.    |
+| Option      | Type     | Default | Description                               |
+| ----------- | -------- | ------- | ----------------------------------------- |
+| `ariaLabel` | `string` | "Menu"  | Sets the burger button `aria-label` text. |
 
 **Example** of using the `onToggle` or `onClose` to execute custom functions:
 :::warning
@@ -179,6 +184,7 @@ The example below might differ from the javascript provided in the burger compon
 ## Styling Your Nav / Burger
 
 Both components are styled via locally scoped CSS variables inside each component:
+
 - `.etch-nav` (Navigation): colors, spacing, icon sizes, dropdown/flyout visuals, etc.
 - `.etch-burger` (Burger): width, line thickness/spacing, colors, etc.
 
@@ -202,17 +208,18 @@ The examples below might differ from the javascript provided in the components f
 ### Nav Behavior
 
 **Example**: customize the `aria-current` behavior:
+
 ```js
 instantiateNavClass({
-	ariaCurrentPage: {
-		homePage: false
-	}
+  ariaCurrentPage: {
+    homePage: false,
+  },
 });
 ```
+
 ### Burger Behavior
 
 **Example**: trigger a method from another component when the burger closes via `onClose`:
-
 
 ```js
 const burgerInstance = new EtchBurgerScript({
@@ -220,13 +227,13 @@ const burgerInstance = new EtchBurgerScript({
   target: etchNav,
   selfAriaExpanded: true,
   targetOptions: {
-    ariaExpanded: true
+    ariaExpanded: true,
   },
-  onClose
+  onClose,
 });
 
 function closeEtchNav() {
-	window.etchElements?.etchNav?.closeAllNavs();
+  window.etchElements?.etchNav?.closeAllNavs();
 }
 
 instantiateBurgerClass(etchNav, closeEtchNav);

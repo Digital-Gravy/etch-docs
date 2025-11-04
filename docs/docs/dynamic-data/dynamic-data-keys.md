@@ -1,6 +1,8 @@
 ---
 title: Dynamic Data Keys
 sidebar_position: 50
+last_update:
+  date: 2025-10-24
 ---
 
 # Dynamic Data Keys
@@ -71,7 +73,21 @@ This page will serve as the master doc page for all dynamic data keys. Feel free
 | `site.version`     | The WordPress version.                                     |
 | `site.language`    | The site language code.                                    |
 | `site.isMultisite` | Whether the site is part of a multisite network (boolean). |
-| `site.currentDate` | References the current date.                               |
+| `site.currentDate` | References the current date. Is returned as a unix timestamp. |
+
+## Options Keys
+
+The `options` key provides access to global site options configured via options pages. These values are available everywhere (pages, templates, loops, headers/footers, etc.).
+
+For up-to-date integrations, namespaces, and scoping patterns, see the [Options Pages](/integrations/custom-fields/options-pages) documentation. It covers:
+- Which integrations are currently supported.
+- The required namespace for each integration (e.g., `acf`, `metabox`, `jetengine`).
+- Integration-specific syntax (for example, Meta Box requiring a option page name: `options.metabox.option_page_name.field_name`).
+
+### Notes
+
+- Requires an Options Page created in the integration plugin.
+- Keys resolve globally; no post context is required.
 
 ## URL Keys
 

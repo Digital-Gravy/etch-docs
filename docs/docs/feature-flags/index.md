@@ -46,3 +46,4 @@ You can choose from the available flags below. Their default state is listed.
 | `REMOVE_WP_DEFAULT_CSS` | Removes WordPress default CSS | `on` |
 | `ENABLE_WAF_COMPATIBILITY_WORKAROUND` | Improves compatibility with WAF that don't allow `PUT`, `PATCH` or `DELETE` requests | `on`
 | `UNSAVED_CHANGES_WARNING` | Enables warning before closing tab with unsaved changes| `on` |
+| `RETURN_ACF_DYNAMIC_DATA` | Enables returning data based on the ACF field settings. | `off` |

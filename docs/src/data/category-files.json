@@ -5,6 +5,7 @@
     "creating-component-variations.md",
     "intro-components.md",
     "mapping-component-props.md",
+    "prop-slot.md",
     "using-a-component-dynamic.md",
     "using-a-component-static.md"
   ],
@@ -14,7 +15,6 @@
     "prop-image.md",
     "prop-object.md",
     "prop-select.md",
-    "prop-slot.md",
     "prop-text.md"
   ],
   "docs/conditional-logic": [
@@ -24,8 +24,11 @@
   ],
   "docs/dynamic-data": [
     "dynamic-data-intro.md",
-    "dynamic-data-keys.md",
-    "dynamic-data-modifiers.md"
+    "dynamic-data-keys.md"
+  ],
+  "docs/dynamic-data/dynamic-data-modifiers": [
+    "basic-modfiers.mdx",
+    "comparison-modifiers.mdx"
   ],
   "docs/elements/basic-elements": [
     "anchor.md",
@@ -94,6 +97,7 @@
     "flexible-content-fields.md",
     "gallery-fields.md",
     "image-fields.md",
+    "options-pages.mdx",
     "relationship-fields.md",
     "repeater-fields.md",
     "text-fields.md"

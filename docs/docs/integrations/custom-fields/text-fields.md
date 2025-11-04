@@ -30,6 +30,22 @@ ACF text fields can be accessed using the `acf` namespace:
 {this.acf.field_name}
 ```
 
+### Meta Box
+
+Meta Box text fields can be accessed using the `metabox` namespace:
+
+```html
+{this.metabox.field_name}
+```
+
+### Jet Engine
+
+Jet Engine text fields can be accessed using the `jetengine` namespace:
+
+```html
+{this.jetengine.field_name}
+```
+
 ## Examples
 
 ### Simple Text Field

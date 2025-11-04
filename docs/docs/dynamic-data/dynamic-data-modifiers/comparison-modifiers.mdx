@@ -1,0 +1,351 @@
+---
+title: Comparison Modifiers
+sidebar_position: 60
+sidebar_custom_props:
+  badge: "New"
+---
+
+import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
+
+# Comparison Modifiers
+
+<VersionBadge version="1.0.0-alpha-4" />
+
+Comparison modifiers can be applied to custom data just like basic modifiers.  
+They can be used as simple true/false checks, or you can override the true and false values to conditionally output custom content based on the comparison result.
+
+## Returning Custom Values from Comparison Modifiers
+
+One of the most powerful features of comparison modifiers is their ability to return **custom values** based on the result of a comparison.
+By default, they return a boolean value (`true` or `false`), but you can override these to return any value you choose for either outcome.
+
+This allows you to create **dynamic content that adapts to your data**. For example, conditionally adding CSS classes, displaying alternate text, or adjusting attributes based on specific conditions.
+
+### Example: Conditional CSS Classes Based on Product Price
+
+Suppose you have a product loop, and you want to assign different CSS classes depending on each product’s price:
+
+* Products with a price **greater than 10** should receive the class `product--expensive`.
+* Products priced at **10 or less** should receive the class `product--affordable`.
+
+Without comparison modifiers, you’d have to use multiple conditionals and duplicate markup:
+
+```html
+{#loop products as product}
+  {#if product.price > 10}
+    <div class="product--expensive">
+      <p>Price: {product.price}</p>
+    </div>
+  {/if}
+  {#if product.price <= 10}
+    <div class="product--affordable">
+      <p>Price: {product.price}</p>
+    </div>
+  {/if}
+{/loop}
+```
+
+With comparison modifiers, you can handle both cases in one clean block of markup using `.greater()` with custom true and false values.<br/>
+Making your templates **more concise and easier to maintain**:
+
+```html
+{#loop products as product}
+  <div class="{product.price.greater(10, 'product--expensive', 'product--affordable')}">
+    <p>Price: {product.price}</p>
+  </div>
+{/loop}
+```
+
+
+## Available Modifiers
+
+<table>
+  <tr>
+    <th width="20%">Modifier</th>
+    <th width="40%">Description</th>
+    <th width="40%">Example</th>
+  </tr>
+  <tbody>
+    <tr>
+      <td><code>.startsWith()</code></td>
+      <td>
+        Checks if a *string* starts with a given string.
+        <a href="#startsWith">More Details</a>
+      </td>
+      <td>
+        <code>value = "Hello World!"</code><br /><br /><code>&#123;item.value.startsWith('Hel')&#125;</code> → <code>true</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.endsWith()</code></td>
+      <td>
+        Checks if a *string* ends with a given string.<br/>
+        <a href="#endsWith">More Details</a>
+      </td>
+      <td>
+        <code>value = "Hello World!"</code><br /><br /><code>&#123;item.value.endsWith('ld!')&#125;</code> → <code>true</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.includes()</code></td>
+      <td>
+        Checks if a *string* contains a *substring* OR an *array* contains a *value*.<br/>
+        <a href="#includes">More Details</a>
+      </td>
+      <td><code>user.userRoles = ["author", "editor"]</code><br /><br /><code>&#123;user.userRoles.includes('editor')&#125;</code> → <code>true</code></td>
+    </tr>
+    <tr>
+        <td><code>.less()</code></td>
+        <td>
+            Checks if the current value is less than the given value.<br />
+            <a href="#less">More Details</a>
+        </td>
+        <td><code>user.age = 25</code><br /><br />
+            <code>&#123;user.age.less(30)&#125;</code> → <code>true</code><br />
+            <code>&#123;user.age.less(20)&#125;</code> → <code>false</code></td>
+    </tr>
+    <tr>
+        <td><code>.lessOrEqual()</code></td>
+        <td>
+          Checks if the current value is less than or equal to the given value.<br />
+          <a href="#lessOrEqual">More Details</a>
+        </td>
+        <td><code>score = 80</code><br /><br />
+            <code>&#123;score.lessOrEqual(80)&#125;</code> → <code>true</code><br />
+            <code>&#123;score.lessOrEqual(79)&#125;</code> → <code>false</code></td>
+    </tr>
+    <tr>
+        <td><code>.greater()</code></td>
+        <td>
+          Checks if the current value is greater than the given value.<br />
+          <a href="#greater">More Details</a>
+        </td>
+        <td><code>count = 5</code><br /><br />
+            <code>&#123;count.greater(3)&#125;</code> → <code>true</code><br />
+            <code>&#123;count.greater(10)&#125;</code> → <code>false</code></td>
+    </tr>
+    <tr>
+        <td><code>.greaterOrEqual()</code></td>
+        <td>
+            Checks if the current value is greater than or equal to the given value.<br />
+            <a href="#greaterOrEqual">More Details</a>
+        </td>
+        <td><code>count = 22</code><br /><br />
+            <code>&#123;count.greaterOrEqual(22)&#125;</code> → <code>true</code><br />
+            <code>&#123;count.greaterOrEqual(25)&#125;</code> → <code>false</code></td>
+    </tr>
+    <tr>
+        <td><code>.equal()</code></td>
+        <td>
+          Checks if the current value is equal to the given value.<br />
+          <a href="#equal">More Details</a>
+        </td>
+        <td><code>status = "active"</code><br /><br />
+            <code>&#123;status.equal("active")&#125;</code> → <code>true</code><br />
+            <code>&#123;status.equal("inactive")&#125;</code> → <code>false</code></td>
+    </tr>
+  </tbody>
+</table>
+
+
+## Detailed Modifier Reference
+
+Below is a more detailed disriptiopn of the above modifiers.
+
+### `.startsWith()`
+**Returns:** boolean (`true`/`false`) or custom true/false values
+
+The `.startsWith()` method checks whether a string starts with a given substring. The check is case-sensitive.
+
+| Argument | Type   | Default | Description                          |
+| -------- | ------ | ------- | ------------------------------------ |
+| `search` | string | —       | Substring to find at the start of the string |
+| `trueValue` | any    | `true`  | Value to return if the check is true  |
+| `falseValue` | any   | `false` | Value to return if the check is false |
+
+#### Examples:
+- value = `"Hello World!"`
+  - `{item.value.startsWith("Hello")}` → `true`
+  - `{item.value.startsWith("H")}` → `true`
+  - `{item.value.startsWith("hello")}` → `false` (case-sensitive)
+  - `{item.value.startsWith("World")}` → `false`
+  - `{item.value.startsWith("Hello", "Yes", "No")}` → `"Yes"`
+  - `{item.value.startsWith("World", "Yes", "No")}` → `"No"`
+
+---
+
+### `.endsWith()`
+**Returns:** boolean (`true`/`false`) or custom true/false values
+
+The `.endsWith()` method checks whether a string ends with a given substring. The check is case-sensitive.
+
+| Argument | Type   | Default | Description                        |
+| -------- | ------ | ------- | ---------------------------------- |
+| `search` | string | —       | Substring to find at the end of the string |
+| `trueValue` | any    | `true`  | Value to return if the check is true  |
+| `falseValue` | any   | `false` | Value to return if the check is false |
+
+#### Examples:
+- value = `"Hello World!"`
+  - `{item.value.endsWith("ld!")}` → `true`
+  - `{item.value.endsWith("!")}` → `true`
+  - `{item.value.endsWith("LD!")}` → `false` (case-sensitive)
+  - `{item.value.endsWith("Hello")}` → `false`
+  - `{item.value.endsWith("ld!", "Yes", "No")}` → `"Yes"`
+  - `{item.value.endsWith("Hello", "Yes", "No")}` → `"No"`
+
+---
+
+### `.includes()`
+**Returns:** boolean (`true`/`false`) or custom true/false values
+
+The `.includes()` method checks whether a string contains a given substring or an array contains a given value. String checks are case-sensitive. Array checks require an exact element match (substrings within array elements do not count as a match).
+
+| Argument | Type          | Default | Description                                  |
+| -------- | ------------- | ------- | -------------------------------------------- |
+| `search` | string or any | —       | Substring to find (strings) or value to find (arrays) |
+| `trueValue` | any           | `true`  | Value to return if the check is true        |
+| `falseValue` | any          | `false` | Value to return if the check is false       |
+
+#### String Examples:
+- value = `"foo bar"`
+  - `{item.value.includes("foo")}` → `true`
+  - `{item.value.includes("oo")}` → `true`
+  - `{item.value.includes("Foo")}` → `false` (case-sensitive)
+  - `{item.value.includes("test")}` → `false`
+  - `{item.value.includes("bar", "Yes", "No")}` → `"Yes"`
+  - `{item.value.includes("baz", "Yes", "No")}` → `"No"`
+
+#### Array Examples:
+- value = `["foo", "bar"]`
+  - `{item.value.includes("foo")}` → `true`
+  - `{item.value.includes("oo")}` → `false` (no substring matching)
+  - `{item.value.includes("Foo")}` → `false` (case-sensitive)
+  - `{item.value.includes("test")}` → `false`
+  - `{item.value.includes("bar", "Yes", "No")}` → `"Yes"`
+  - `{item.value.includes("baz", "Yes", "No")}` → `"No"`
+
+---
+
+### `.less()`
+**Returns:** boolean (`true`/`false`) or custom true/false values
+
+The `.less()` method checks if the current numeric or string value is less than the given value.
+| Argument     | Type    | Default | Description                          |
+| ------------ | ------- | ------- | ------------------------------------ |
+| `compareTo`  | number or string | —       | Value to compare against               |
+| `trueValue`  | any     | `true`  | Value to return if the check is true  |
+| `falseValue` | any     | `false` | Value to return if the check is false |
+
+#### Examples:
+- value = `25`
+  - `{item.value.less(30)}` → `true`
+  - `{item.value.less(20)}` → `false`
+  - `{item.value.less(25, "Is Less", "Is More")}` → `"Is More"`
+  - `{item.value.less(30, "Is Less", "Is More")}` → `"Is Less"`
+
+- value = `"apple"`
+  - `{item.value.less("banana")}` → `true`
+  - `{item.value.less("apple")}` → `false`
+  - `{item.value.less("banana", "Is Less", "Is More")}` → `"Is Less"`
+  - `{item.value.less("apple", "Is Less", "Is More")}` → `"Is More"`
+
+
+---
+
+### `.lessOrEqual()`
+**Returns:** boolean (`true`/`false`) or custom true/false values
+
+The `.lessOrEqual()` method checks if the current numeric or string value is less than or equal to the given value.
+
+| Argument     | Type    | Default | Description                          |
+| ------------ | ------- | ------- | ------------------------------------ |
+| `compareTo`  | number or string | —       | Value to compare against               |
+| `trueValue`  | any     | `true`  | Value to return if the check is true  |
+| `falseValue` | any     | `false` | Value to return if the check is false |
+
+#### Examples:
+- value = `80`
+  - `{item.value.lessOrEqual(80)}` → `true`
+  - `{item.value.lessOrEqual(79)}` → `false`
+  - `{item.value.lessOrEqual(80, "Is Less or Equal", "Is Greater")}` → `"Is Less or Equal"`
+  - `{item.value.lessOrEqual(79, "Is Less or Equal", "Is Greater")}` → `"Is Greater"`
+
+- value = `"banana"`
+  - `{item.value.lessOrEqual("banana")}` → `true`
+  - `{item.value.lessOrEqual("apple")}` → `false`
+  - `{item.value.lessOrEqual("banana", "Is Less or Equal", "Is Greater")}` → `"Is Less or Equal"`
+  - `{item.value.lessOrEqual("apple", "Is Less or Equal", "Is Greater")}` → `"Is Greater"`
+
+---
+
+### `.greater()`
+**Returns:** boolean (`true`/`false`) or custom true/false values
+
+The `.greater()` method checks if the current numeric or string value is greater than the given value.
+
+| Argument     | Type    | Default | Description                          |
+| ------------ | ------- | ------- | ------------------------------------ |
+| `compareTo`  | number or string | —       | Value to compare against               |
+| `trueValue`  | any     | `true`  | Value to return if the check is true  |
+| `falseValue` | any     | `false` |  Value to return if the check is false |
+
+
+#### Examples:
+- value = `5`
+  - `{item.value.greater(3)}` → `true`
+  - `{item.value.greater(10)}` → `false`
+  - `{item.value.greater(3, "Is Greater", "Is Not Greater")}` → `"Is Greater"`
+  - `{item.value.greater(10, "Is Greater", "Is Not Greater")}` → `"Is Not Greater"`
+
+- value = `"banana"`
+  - `{item.value.greater("apple")}` → `true`
+  - `{item.value.greater("banana")}` → `false`
+  - `{item.value.greater("apple", "Is Greater", "Is Not Greater")}` → `"Is Greater"`
+  - `{item.value.greater("banana", "Is Greater", "Is Not Greater")}` → `"Is Not Greater"`
+
+
+---
+
+### `.greaterOrEqual()`
+**Returns:** boolean (`true`/`false`) or custom true/false values
+The `.greaterOrEqual()` method checks if the current numeric or string value is greater than or equal to the given value.
+
+| Argument     | Type    | Default | Description                          |
+| ------------ | ------- | ------- | ------------------------------------ |
+| `compareTo`  | number or string | —       | Value to compare against               |
+| `trueValue`  | any     | `true`  | Value to return if the check is true  |
+| `falseValue` | any     | `false` | Value to return if the check is false |
+
+#### Examples:
+- value = `22`
+  - `{item.value.greaterOrEqual(22)}` → `true`
+  - `{item.value.greaterOrEqual(25)}` → `false`
+  - `{item.value.greaterOrEqual(22, "Is Greater or Equal", "Is Less")}` → `"Is Greater or Equal"`
+  - `{item.value.greaterOrEqual(25, "Is Greater or Equal", "Is Less")}` → `"Is Less"`
+
+- value = `"banana"`
+  - `{item.value.greaterOrEqual("banana")}` → `true`
+  - `{item.value.greaterOrEqual("cherry")}` → `false`
+  - `{item.value.greaterOrEqual("banana", "Is Greater or Equal", "Is Less")}` → `"Is Greater or Equal"`
+  - `{item.value.greaterOrEqual("cherry", "Is Greater or Equal", "Is Less")}` → `"Is Less"`
+
+---
+
+### `.equal()`
+**Returns:** boolean (`true`/`false`) or custom true/false values
+
+The `.equal()` method checks if the current value is equal to the given value.
+
+| Argument     | Type    | Default | Description                          |
+| ------------ | ------- | ------- | ------------------------------------ |
+| `compareTo`  | any     | —       | Value to compare against               |
+| `trueValue`  | any     | `true`  | Value to return if the check is true  |
+| `falseValue` | any     | `false` | Value to return if the check is false |
+
+#### Examples:
+- value = `"active"`
+  - `{item.value.equal("active")}` → `true`
+  - `{item.value.equal("inactive")}` → `false`
+  - `{item.value.equal("active", "Is Equal", "Is Not Equal")}` → `"Is Equal"`
+  - `{item.value.equal("inactive", "Is Equal", "Is Not Equal")}` → `"Is Not Equal"`

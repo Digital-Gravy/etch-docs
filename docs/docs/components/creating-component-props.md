@@ -64,7 +64,7 @@ Next, click on the prop type that you're wanting:
 - **[Select](./props/prop-select)** - Dropdown options for choosing from predefined values (like sizes, categories, or themes).
 - **[Image](./props/prop-image)** - Image upload and selection for photos, icons, logos, or any visual content.
 - **[Array](./props/prop-array)** - Multiple values or objects for lists, collections, or complex data structures.
-- **[Slot](./props/prop-slot)** - Content areas where you can drag and drop other components or elements.
+- **[Slot](./prop-slot)** - Content areas where you can drag and drop other components or elements.
 
 Once added, you'll see it in the Component Editor.
 

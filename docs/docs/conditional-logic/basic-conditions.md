@@ -1,6 +1,8 @@
 ---
 title: Basic Conditions
 sidebar_position: 20
+last_update:
+  date: 2025-10-28
 ---
 
 # Basic Conditions
@@ -35,41 +37,40 @@ When you click the condition element in the structure panel, you'll also see an 
 
 When using the UI like this, you have to remember that the `{#if}` was already written for you. So all you're doing is checking the data.
 
-For the "is user logged in" check, all you have to do is write the literal dynamic data key in the box:
+And since conditions are blocks in the editor, you are free to drag whatever elements you want into either condition. It's very flexible. You don't need one condition per element – a single condition can control an entire collection of elements.
 
-```
-user.loggedIn
-```
+## Boolean Conditions
 
-In the code, this outputs as:
+Boolean conditions evaluate to true/false directly (e.g., `user.loggedIn`). These are the simplest and most common checks. Use them whenever you can keep your logic as a straightforward yes/no.
+
+### Practical Examples
+
+#### Check if user is logged in
+Write the boolean key directly. You don't need to compare to `true`.
 
 ```html
 {#if user.loggedIn}
-  <!-- logout link -->
+  <!-- Show logout link -->
 {/if}
 ```
 
-You don't have to do this: `{#if user.loggedIn == true}` because a boolean check is implied for boolean values.
+#### Check if user is NOT logged in
+Prefix the key with `!` to invert the boolean.
 
-Now, let's tackle the "is user **not** logged in" side of things.
-
-Add another condition block (outside of the first one) and put another link inside of it. This will be for the "login" link (since the user is logged out if this condition is true).
-
-Ask yourself the two questions again:
-
-- **What data do I want to check?**: Once again, we want to check the [Dynamic Data Key](/dynamic-data/dynamic-data-keys), `user.loggedIn`.
-- **Should I write the statement as positive or negative to show the element?**: In this case, we want to write it as a negative so that it resolves to true (and shows our element) if the user is not logged in.
-
-How do we check if it's false? By putting a "!" in front of the key.
-
+```html
+{#if !user.loggedIn}
+  <!-- Show login link -->
+{/if}
 ```
-!user.loggedIn
+
+#### Check if a post has a specific category
+You can also use data modifiers in conditions. For example, you can check a post's assigned category terms without the need for looping by combining [.pluck()](/dynamic-data/dynamic-data-modifiers/basic-modfiers#pluck) and [.includes()](/dynamic-data/dynamic-data-modifiers/comparison-modifiers#includes).
+
+```html
+{#if this.categories.pluck("name").includes("ABCs")}
+  <!-- Render content only if post has the ABCs category -->
+{/if}
 ```
-That's it!
-
-You've now created two very basic conditions for a very common scenario in web design!
-
-And since conditions are blocks in the editor, you are free to drag whatever elements you want into either condition. It's very flexible. You don't need one condition per element – a single condition can control an entire collection of elements.
 
 ## Non-Boolean Conditions
 
@@ -84,6 +85,8 @@ If you need to check a specific value, like the value of a custom field, then yo
 For more information about the difference between loose and strict comparisons, see the [Advanced Conditions](/conditional-logic/advanced-conditions#loose-vs-strict-comparisons) guide.
 
 ### Practical Examples
+
+#### Star rating with strict comparisons
 
 For this example, let's say you're creating a star rating component. We'll keep it simple and say the rating can be whole numbers from 1 to 5.
 

@@ -1,0 +1,93 @@
+---
+title: Options Pages
+sidebar_position: 10
+last_update:
+  date: 2025-10-24
+sidebar_custom_props:
+  badge: "New"
+---
+
+import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
+
+# Options Pages
+
+<VersionBadge version="1.0.0-alpha-3" />
+
+Options pages let you manage global site settings (e.g., business phone, address, social links) and reference them anywhere in Etch. Etch exposes these as dynamic data via the global `options` key.
+
+## General Usage
+
+Use the `options` key with the provider namespace that owns your options page fields.
+
+```html
+<!-- ACF syntax -->
+{options.acf.field_name}
+
+<!-- Meta Box syntax -->
+{options.metabox.option_page_name.field_name}
+
+<!-- Jet Engine syntax -->
+{options.jetengine.option_page_name.field_name}
+```
+
+Works globally (templates, pages, loops, headers/footers, etc.). No post context is required.
+
+## Quick Reference
+
+| Integration | Namespace   | Syntax example                                   |
+| ----------- | ----------- | -------------------------------------------------------- |
+| ACF         | `acf`       | `{options.acf.field_name}`                               |
+| Meta Box    | `metabox`   | `{options.metabox.option_page_slug.field_name}`          |
+| JetEngine   | `jetengine` | `{options.jetengine.option_page_slug.field_name}`        |
+
+## Common Examples
+
+These examples are provider-agnostic. Replace `provider` with the integration namespace (e.g., `acf`, `metabox`, `jetengine`). 
+
+**Note:** Meta Box and JetEngine require an option page slug in the path (e.g., `options.metabox.my_options.field_name`).
+
+### Basic Fields
+
+```html
+<a class="contact__email" href="mailto:{options.provider.business_email}">{options.provider.business_email}</a>
+<a class="social-links__link" href="{options.provider.facebook_url}">Facebook</a>
+```
+
+### Group Fields
+
+```html
+<div class="address">
+  <div class="address__street">{options.provider.address.street}</div>
+  <div class="address__line">{options.provider.address.city}, {options.provider.address.state} {options.provider.address.zip}</div>
+</div>
+```
+
+### Image Fields
+
+```html
+<img class="logo" src="{options.provider.logo.url}" alt="{options.provider.logo.alt}" />
+```
+
+### Repeater Fields
+
+```html
+<ul class="hours">
+  {#loop options.provider.hours as hour}
+    <li class="hours__item">
+      <span class="hours__day">{hour.day}</span>
+      <span class="hours__time">{hour.open}–{hour.close}</span>
+    </li>
+  {/loop}
+</ul>
+```
+
+## Troubleshooting
+
+If `{options._._}` outputs nothing:
+  - Confirm the field exists on an Options Page (not a post).
+  - Verify the field name/key matches exactly.
+  - Check that the field has a saved value.
+  - Ensure an Options Page exists in your chosen provider and fields are assigned to it.
+  - For Meta Box and JetEngine, ensure you included the correct option page slug in the path (e.g., `options.metabox.my_options.field_name`).
+  - Access patterns mirror post-level custom fields. The only difference is the top-level `options` scope.
+  - For arrays and complex structures, use standard loops and dot notation.

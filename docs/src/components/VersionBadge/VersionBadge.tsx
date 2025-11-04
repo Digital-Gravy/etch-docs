@@ -2,8 +2,9 @@ import styles from './VersionBadge.module.css';
 
 type VersionBadgeProps = {
   version: string;
+  style?: React.CSSProperties;
 };
 
-export default function VersionBadge({ version }: VersionBadgeProps) {
-  return <div className={styles.versionBadge}>Available Since: {version}</div>;
+export default function VersionBadge({ version, style }: VersionBadgeProps) {
+  return <div className={styles.versionBadge} style={style}>Available Since: {version}</div>;
 }
