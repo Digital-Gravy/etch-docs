@@ -286,12 +286,6 @@ td p:last-child {
 	border-right-color: var(--ifm-color-emphasis-200);
 }
 
-/* Adjust version badges for light / dark mode */
-body [class^="versionBadge_"] {
-	background-color: var(--ifm-color-primary);
-	color: var(--ifm-background-surface-color);
-}
-
 /* Sidebar badge */
 .menu__link-badge {
   margin-left: 0.5rem;
@@ -304,4 +298,18 @@ body [class^="versionBadge_"] {
   text-transform: uppercase;
   letter-spacing: 0.02em;
   font-weight: 600;
+  min-width: fit-content;
+}
+
+/* Subtle variant for badges (generic) */
+.menu__link-badge--subtle {
+  background: transparent;
+  color: var(--ifm-color-emphasis-600);
+  border: 1px solid var(--ifm-color-emphasis-500);
+  font-weight: 600;
+}
+
+[data-theme='dark'] .menu__link-badge--subtle {
+  color: var(--ifm-color-emphasis-400);
+  border-color: var(--ifm-color-emphasis-200);
 }

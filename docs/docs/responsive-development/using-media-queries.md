@@ -1,6 +1,8 @@
 ---
 title: Using Media Queries
 sidebar_position: 3
+sidebar_custom_props:
+  badge: "Doc WIP"
 ---
 
 # Using Media Queries

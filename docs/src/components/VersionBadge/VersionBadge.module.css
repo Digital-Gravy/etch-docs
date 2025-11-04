@@ -9,3 +9,8 @@
   margin-bottom: 2rem; /* md files are not creating a margin for react components */
   font-family: var(--ifm-font-family-base);
 }
+/* Adjust version badges for light / dark mode */
+body [class^="versionBadge_"] {
+	background-color: var(--ifm-color-primary);
+	color: var(--ifm-background-surface-color);
+}

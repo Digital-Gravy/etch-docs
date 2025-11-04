@@ -1,6 +1,8 @@
 ---
 title: Lightbox
 sidebar_position: 80
+sidebar_custom_props:
+  badge: "Planned"
 ---
 
 # Lightbox

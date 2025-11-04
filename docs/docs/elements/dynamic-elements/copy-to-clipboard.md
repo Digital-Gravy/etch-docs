@@ -1,6 +1,8 @@
 ---
 title: Copy to Clipboard
 sidebar_position: 50
+sidebar_custom_props:
+  badge: "Planned"
 ---
 
 # Copy to Clipboard

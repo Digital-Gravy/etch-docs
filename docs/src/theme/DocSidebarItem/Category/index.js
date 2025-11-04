@@ -1,9 +1,11 @@
 import React from 'react';
 import OriginalCategory from '@theme-original/DocSidebarItem/Category';
+import { getBadgeClass } from '../badgeUtils';
 
 export default function Category(props) {
   const { item } = props;
   const badge = item?.customProps?.badge;
+  const badgeClass = getBadgeClass(badge);
 
   const newItem = badge
     ? {
@@ -11,7 +13,7 @@ export default function Category(props) {
         label: (
           <>
             {item.label}
-            <span className="menu__link-badge">{badge}</span>
+            <span className={badgeClass}>{badge}</span>
           </>
         ),
       }

@@ -1,6 +1,8 @@
 ---
 title: Map
 sidebar_position: 90
+sidebar_custom_props:
+  badge: "Planned"
 ---
 
 # Map

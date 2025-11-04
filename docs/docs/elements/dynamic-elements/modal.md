@@ -1,6 +1,8 @@
 ---
 title: Modal
 sidebar_position: 100
+sidebar_custom_props:
+  badge: "Planned"
 ---
 
 # Modal

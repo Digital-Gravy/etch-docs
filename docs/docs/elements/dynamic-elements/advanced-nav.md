@@ -1,6 +1,8 @@
 ---
 title: Nav - Advanced
 sidebar_position: 110
+sidebar_custom_props:
+  badge: "Planned"
 ---
 
 # Advanced Nav

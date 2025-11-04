@@ -6,5 +6,5 @@ type VersionBadgeProps = {
 };
 
 export default function VersionBadge({ version, style }: VersionBadgeProps) {
-  return <div className={styles.versionBadge} style={style}>Available Since: {version}</div>;
+  return <div className={styles.versionBadge} style={style}>Since: {version}</div>;
 }

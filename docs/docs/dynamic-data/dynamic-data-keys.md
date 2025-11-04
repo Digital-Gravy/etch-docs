@@ -28,6 +28,7 @@ This page will serve as the master doc page for all dynamic data keys. Feel free
 | `image.url`          | The URL to the image.                                                                  |
 | `image.alt`          | The image's alt text.                                                                  |
 | `date`               | The publish date of the item.                                                          |
+| `modified`           | The last modified date of the item.                                                    |
 | `status`             | The status of the item (e.g., `publish`, `draft`).                                     |
 | `type`               | The post type (e.g., `post`, `page`, `product`).                                       |
 | `thumbnail`          | The URL of the thumbnail image for the item.                                           |
@@ -64,15 +65,15 @@ This page will serve as the master doc page for all dynamic data keys. Feel free
 
 ## Site Keys
 
-| Key                | Description                                                |
-| ------------------ | ---------------------------------------------------------- |
-| `site.name`        | The site name/title.                                       |
-| `site.description` | The site tagline/description.                              |
-| `site.home_url`    | The home URL of the site.                                  |
-| `site.url`         | The site URL.                                              |
-| `site.version`     | The WordPress version.                                     |
-| `site.language`    | The site language code.                                    |
-| `site.isMultisite` | Whether the site is part of a multisite network (boolean). |
+| Key                | Description                                                   |
+| ------------------ | ------------------------------------------------------------- |
+| `site.name`        | The site name/title.                                          |
+| `site.description` | The site tagline/description.                                 |
+| `site.home_url`    | The home URL of the site.                                     |
+| `site.url`         | The site URL.                                                 |
+| `site.version`     | The WordPress version.                                        |
+| `site.language`    | The site language code.                                       |
+| `site.isMultisite` | Whether the site is part of a multisite network (boolean).    |
 | `site.currentDate` | References the current date. Is returned as a unix timestamp. |
 
 ## Options Keys
@@ -80,6 +81,7 @@ This page will serve as the master doc page for all dynamic data keys. Feel free
 The `options` key provides access to global site options configured via options pages. These values are available everywhere (pages, templates, loops, headers/footers, etc.).
 
 For up-to-date integrations, namespaces, and scoping patterns, see the [Options Pages](/integrations/custom-fields/options-pages) documentation. It covers:
+
 - Which integrations are currently supported.
 - The required namespace for each integration (e.g., `acf`, `metabox`, `jetengine`).
 - Integration-specific syntax (for example, Meta Box requiring a option page name: `options.metabox.option_page_name.field_name`).
@@ -126,8 +128,9 @@ Etch integrates with third-party custom field solutions like Advanced Custom Fie
 For detailed information on working with third-party custom fields, see the [Custom Fields](/integrations/custom-fields) section in Integrations.
 
 ## Tips for Working with Dynamic Data
+
 - Not all keys are available for every item type. Availability depends on the context (e.g., posts, pages, custom post types).
-    - Use the Loop Manager (or just output `{this}` on the page/template) to view the data available for the the post type you are working with. This will show the full JSON object for the item in question, which can be helpful for understanding what data is available.
+  - Use the Loop Manager (or just output `{this}` on the page/template) to view the data available for the the post type you are working with. This will show the full JSON object for the item in question, which can be helpful for understanding what data is available.
 - Some keys output the data directly (e.g., `{item.title}`, `{this.content}`, etc). If your key outputs a string, you can use it directly in your page or template.
 - Some keys are objects (e.g., `author`, `template`). These are inside of curly braces `{}`. If your key outputs an object, you need to drill down to a sub-key (e.g., `{item.author.name}`, `{this.template.slug`) to get to the data you're looking for.
 - Some keys are arrays (e.g., `categories`, `tags`). These are inside of square brackets `[]`. If your key outputs an array, you can `{#loop}` through it or access a specific item by index (e.g., `{this.categories.at(0).name}`). See the [Accessing Data in Arrays](#accessing-data-in-arrays) section below for more information.
@@ -138,26 +141,29 @@ For detailed information on working with third-party custom fields, see the [Cus
 Some dynamic data keys return arrays (for example, `categories`, `tags`, etc). You can work with these arrays in two common ways:
 
 **1) Loop through the items**
+
 - Create a loop that returns the array items you want to render, then output each item’s fields.
 
-*Example: Loop categories for the current post:*
+_Example: Loop categories for the current post:_
 
 ```html
 {#loop categories as category}
-  <span>{category.name}</span>
+<span>{category.name}</span>
 {/loop}
 ```
 
 **2) Access a specific item by index (zero-based)**
+
 - Us the `.at()` modifier to access a specific item.
 
-*Example: Get the first category’s name for the current post:*
+_Example: Get the first category’s name for the current post:_
 
 ```html
 {this.categories.at(0).name}
 ```
 
 **Notes:**
+
 - Indexing is zero-based (`0` is the first item, `1` is the second, etc.).
 - It is possible to get the last item with `-1`, or the second to last item with `-2` and so on.
 - Ensure the array and the requested index exist before using them (e.g., a post may have no categories).

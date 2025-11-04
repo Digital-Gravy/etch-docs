@@ -1,6 +1,8 @@
 ---
 title: Intrinsic Responsiveness
 sidebar_position: 4
+sidebar_custom_props:
+  badge: "Doc WIP"
 ---
 
 # Intrinsic Responsiveness
