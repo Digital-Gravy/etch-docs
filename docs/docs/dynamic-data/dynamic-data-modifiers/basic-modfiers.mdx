@@ -426,5 +426,5 @@ This first retrieves the original string, then reapplies the dynamic data, resul
 ---
 
 ## Additional Notes
-- **Combining:** You can combine/stack modifiers. They are applied in the order they are written. For example, you could use `{user.fullName.toSlug().toUpperCase()}` to transform a user named "Thomas Müller" to "THOMAS-MUELLER".
+- **Combining:** You can combine/stack modifiers. They are applied in the order they are written. For example, you could use `{user.fullName.toSlug().toUpperCase()}` to transform a user named "Thomas Müller" to "THOMAS-MULLER".
 - **Unknown modifiers:** If a modifier name isn’t recognized, the internal call returns `null`, which results in an empty string.
