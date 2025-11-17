@@ -1,8 +1,9 @@
 ---
 title: Modal
+sidebar_position: 100
 ---
 import CopyToClipboard from '@site/src/components/CopyToClipboard/CopyToClipboard';
-import ModalJSON from '../components-json/modal-component.json';
+import ModalJSON from '../components-native/components-native-json/modal-component.json';
 
 export const MODAL_JSON = JSON.stringify(ModalJSON, null, 2);
 
@@ -72,11 +73,12 @@ On that Panel there will be a prop called `triggerSelector`, type there a .class
 
 | Option           | Type                      | Default | Description |
 | ---------------- | ------------------------- | ------- | ----------- |
+| `showEditor` | `boolean` | `true` | Used internally to hide / show the dialog in Etch Editor. |
 | `closeMethod` | `select` | `any` | The method to close the modal. |
 |   • `any` |  |  | Any (Allow all methods) |
 |   • `closerequest` |  |  | Close Request (Esc key or developer action) |
 |   • `none` |  |  | None (Only developer-defined actions) |
-| `triggerSelector` | `string` | `undefined` | The selector of the trigger element, must be a .class or #id of an element on the page |
+| `triggerSelector` | `string` | `.open-dialog` | The selector of the trigger element, must be a .class or #id of an element on the page |
 | `dialogPlacement` | `select` | `center` | The placement of the modal. |
 |   • `center` |  |  | Positions the modal in the center of the screen |
 |   • `center-left` |  |  | Positions the modal to the left of the screen |
@@ -88,9 +90,15 @@ On that Panel there will be a prop called `triggerSelector`, type there a .class
 |   • `bottom-center` |  |  | Positions the modal to the bottom center of the screen |
 |   • `bottom-right` |  |  | Positions the modal to the bottom right of the screen |
 |   • `custom` |  | custom | removes any positioning and allows you to set the modal to a custom position with CSS or any other method |
-| `useCloseButton` | `boolean` | `true` | Whether to use a close button. If you set this to false, you will need to add a close button to the modal or a close method. |
-| `dialogId` | `string` | `undefined` | The unique id of the modal. This is required to have multiple modals on the same page, must be alphanumeric and unique. |
-
+| `closeButtonType` | `select` | `label` | The type of close button if any |
+|   • `Label` |  |  | Button with label only |
+|   • `Icon` |  |  | Button with icon only (SVG by default) |
+|   • `Label + Icon` |  |  | Button with label and Icon |
+|   • `none` |  |  | Without Close button |
+| `dialogId` | `string` | `etch-dialog` | The unique id of the modal. This is required to have multiple modals on the same page, must be alphanumeric and unique. |
+| `maxWidth` | `string` | `400px` | The maximum width for the Dialog, sets scoped variable inline |
+| `dialogBackgroundColor` | `string` | `white` | The background color for the Dialog body, sets scoped variable inline |
+| `dialogBackdropColor` | `string` | `rgba(0, 0, 0, 0.5)` | The background color for the Dialog backdrop, sets scoped variable inline |
 
 #### Close Method
 :::tip
