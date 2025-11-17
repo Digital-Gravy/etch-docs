@@ -53,7 +53,7 @@ Most dynamic elements support:
 
 ## Need Help?
 
-If you can't find the specific element you're looking for, check our [Basic Elements](../basic-elements/) section for simpler components, or explore our [Components](../../components/) for more complex functionality.
+If you can't find the specific element you're looking for, check our [Elements](../elements/) section for simpler components, or explore our [Components](../../components/) for more complex functionality.
 `;
 
   fs.writeFileSync(outputFile, content);
@@ -62,8 +62,8 @@ If you can't find the specific element you're looking for, check our [Basic Elem
 
 // Usage example:
 // generateCategoryList(
-//   './docs/elements/dynamic-elements',
-//   './docs/elements/dynamic-elements/index.md'
+//   './docs/components-native',
+//   './docs/components-native/index.md'
 // );
 
 module.exports = { generateCategoryList }; 

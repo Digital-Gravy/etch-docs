@@ -25,6 +25,11 @@ Custom fields created with Advanced Custom Fields can be accessed with the `acf`
 {item.acf.field_id}
 ```
 
+:::info
+- Since **alpha-3**, the system has returned a full object by default for fields where users can configure the return format — including `Posts`, `Taxonomies`, `Users`, `Relationships`, and Links. This approach provided access to more comprehensive data.
+- Since **alpha-8**, a [Feature Flag (`RETURN_ACF_DYNAMIC_DATA`)](../../feature-flags/index.md) has been introduced, allowing users to enable the return of data according to the ACF field’s configured return setting — for example, returning a *Post ID* instead of a *Post Object*.
+:::
+
 ### JetEngine
 
 Custom fields created with JetEngine can be accessed with the `jetengine` namespace.

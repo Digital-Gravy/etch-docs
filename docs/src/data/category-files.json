@@ -5,6 +5,7 @@
     "creating-component-variations.md",
     "intro-components.md",
     "mapping-component-props.md",
+    "prop-slot.md",
     "using-a-component-dynamic.md",
     "using-a-component-static.md"
   ],
@@ -14,39 +15,9 @@
     "prop-image.md",
     "prop-object.md",
     "prop-select.md",
-    "prop-slot.md",
     "prop-text.md"
   ],
-  "docs/conditional-logic": [
-    "advanced-conditions.md",
-    "basic-conditions.md",
-    "intro-to-conditional-logic.md"
-  ],
-  "docs/dynamic-data": [
-    "dynamic-data-intro.md",
-    "dynamic-data-keys.md"
-  ],
-  "docs/dynamic-data/dynamic-data-modifiers": [
-    "basic-modfiers.mdx",
-    "comparison-modifiers.mdx"
-  ],
-  "docs/elements/basic-elements": [
-    "anchor.md",
-    "condition.md",
-    "container.md",
-    "div.md",
-    "element.mdx",
-    "empty-elements.md",
-    "flex-div.md",
-    "heading.md",
-    "iframe.md",
-    "image.md",
-    "loop.md",
-    "section.md",
-    "svg.md",
-    "text.md"
-  ],
-  "docs/elements/dynamic-elements": [
+  "docs/components-native": [
     "accordion.mdx",
     "advanced-nav.md",
     "alert.md",
@@ -68,6 +39,37 @@
     "table.md",
     "tabs.md",
     "tooltip.md"
+  ],
+  "docs/conditional-logic": [
+    "advanced-conditions.md",
+    "basic-conditions.md",
+    "intro-to-conditional-logic.md"
+  ],
+  "docs/dynamic-data": [
+    "dynamic-data-intro.md",
+    "dynamic-data-keys.md"
+  ],
+  "docs/dynamic-data/dynamic-data-modifiers": [
+    "basic-modfiers.mdx",
+    "comparison-modifiers.mdx"
+  ],
+  "docs/elements": [
+    "anchor.md",
+    "condition.md",
+    "container.md",
+    "div.md",
+    "element.mdx",
+    "empty-elements.md",
+    "flex-div.md",
+    "heading.md",
+    "html.mdx",
+    "iframe.md",
+    "image.md",
+    "loop.md",
+    "section.md",
+    "shortcode.mdx",
+    "svg.md",
+    "text.md"
   ],
   "docs/feature-flags": [
     "index.md"
@@ -138,10 +140,10 @@
     "404-template.md",
     "archive-templates.md",
     "author-template.md",
-    "content-slot.md",
     "index-template-catch-all.md",
     "intro-to-templates.md",
     "page-templates.md",
+    "post-content-slot.md",
     "search-results-template.md",
     "single-post-templates.md",
     "tax-archive-templates.md",
@@ -152,5 +154,15 @@
   ],
   "docs/utilities": [
     "functions.md"
+  ],
+  "docs/utilities/recipes": [
+    "accessibility-recipes.md",
+    "color-recipes.md",
+    "custom.md",
+    "fade-recipes.md",
+    "flex-recipes.md",
+    "grid-recipes.md",
+    "intro.md",
+    "miscellaneous-recipes.md"
   ]
 }

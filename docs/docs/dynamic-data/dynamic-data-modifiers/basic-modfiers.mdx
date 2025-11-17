@@ -1,6 +1,8 @@
 ---
 title: Basic Modifiers
 sidebar_position: 60
+last_update:
+  date: 2025-10-28
 ---
 
 import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
@@ -189,6 +191,15 @@ This allows you to format or transform values before they are displayed.
       <td><code>user.userRoles = ["author", "editor"]</code><br /><br /><code>&#123;user.userRoles.indexOf('editor')&#125;</code> → <code>1</code></td>
     </tr>
     <tr>
+      <td><code>.pluck()</code></td>
+      <td>
+        Extracts a property from each object in an array and returns the values as a new array. <br />
+        <a href="#pluck">More Details</a>
+        <VersionBadge version="1.0.0-alpha-8" style={{marginBottom: 0}}/>
+      </td>
+      <td><code>this.categories = [&#123; name: "ABCs", slug: "abcs" &#125;, &#123; name: "XYZs", slug: "xyzs" &#125;]</code><br /><br /><code>&#123;this.categories.pluck("name")&#125;</code> → <code>["ABCs", "XYZs"]</code></td>
+    </tr>
+    <tr>
       <td><code>.split()</code></td>
       <td>
         Splits a string by the given separator and returns the result as an array.
@@ -303,6 +314,61 @@ The `.toBool()` method normalizes common truthy/falsey inputs into a strict bool
 
 ---
 
+### `.pluck()`
+**Returns:** array
+
+The `.pluck()` method extracts the value at a given property path from each element in an array of objects and returns those values as a new array. Similar to `array_column()` in PHP or `pluck()` in Laravel.
+- Pluck paths can be nested using dot notation (e.g., `"author.name"`) to get a nested property's values, so `.pluck("author.name")` on an array like `[ {"author": { "name": "John" } } ]` will return `["John"]`. 
+- If the property does not exist for an element, `null` is used for that element.
+- If called on a non-array value, an empty array (`[]`) is returned.
+
+#### Example arrays
+
+##### Plucking the term name from a Category array of term objects
+```json
+"categories": [
+  { name: "ABCs", slug: "abcs" },
+  { name: "XYZs", slug: "xyzs" }
+]
+```
+**Results:** `{this.categories.pluck("name")}` → `["ABCs", "XYZs"]`
+
+##### Attempting to pluck a missing value
+```json
+"missingExample": [
+  { title: "A" },
+  { title: "B" }
+]
+```
+**Result:** `{this.missingExample.pluck("slug")}` → `[null, null]`
+
+##### Attempting to pluck a value from a non-array
+```json
+"value": "foo"
+```
+**Result:** `{this.value.pluck("anything")}` → `[]`
+
+#### Example use case: Conditional logic to check if a post has a specific category
+You can of course combine pluck with other modifiers to create more complex conditions. For example, you can use it with the `.includes()` method to check if a specific value exists in the array.
+
+**Before `.pluck()`, you would have to do a loop with a condition inside it:**
+```
+{#loop this.categories as category}
+  {#if category.name === "ABCs"}
+    true
+  {/if}
+{/loop}`
+```
+
+**Now with `.pluck()`, you can now do it in a single condition:**
+```
+{#if this.categories.pluck("name").includes("ABCs")}
+  true
+{/if}
+```
+
+---
+
 ### `.at()`
 **Returns:** any (element at the given index)
 
@@ -314,9 +380,11 @@ Negative integers count back from the last item in the array.
 | `index`              | int    | —       | Zero-based index of the array element to be returned  |
 
 #### Examples:
-- value = `[5, 12, 8, 130, 44]`<br />
-  - `{item.value.at(2)}` → `8`
-  - `{item.value.at(-2)}` → `130`
+```json
+"value": [5, 12, 8, 130, 44]
+```
+- `{item.value.at(2)}` → `8`
+- `{item.value.at(-2)}` → `130`
 
 ---
 
@@ -333,10 +401,12 @@ Extraction happens up to but not including end.
 | `end`                | int    | array length       | Zero-based index at which to end extraction           |
 
 #### Examples:
-- value = `["ant", "bison", "camel", "duck", "elephant"]`<br />
-  - `{item.value.slice(2)}` → `["camel", "duck", "elephant"]`
-  - `{item.value.slice(2, 4)}` → `["camel", "duck"]`
-  - `{item.value.slice(-2)}` → `["duck", "elephant"]`
+```json
+"value": ["ant", "bison", "camel", "duck", "elephant"]
+```
+- `{item.value.slice(2)}` → `["camel", "duck", "elephant"]`
+- `{item.value.slice(2, 4)}` → `["camel", "duck"]`
+- `{item.value.slice(-2)}` → `["duck", "elephant"]`
 
 ---
 
@@ -356,5 +426,5 @@ This first retrieves the original string, then reapplies the dynamic data, resul
 ---
 
 ## Additional Notes
-- **Combining:** You can combine/stack modifiers. They are applied in the order they are written. For example, you could use `{user.fullName.toSlug().toUpperCase()}` to transform a user named "Thomas Müller" to "THOMAS-MUELLER".
+- **Combining:** You can combine/stack modifiers. They are applied in the order they are written. For example, you could use `{user.fullName.toSlug().toUpperCase()}` to transform a user named "Thomas Müller" to "THOMAS-MULLER".
 - **Unknown modifiers:** If a modifier name isn’t recognized, the internal call returns `null`, which results in an empty string.

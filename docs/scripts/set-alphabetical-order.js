@@ -31,4 +31,4 @@ function setAlphabeticalOrder(folderPath) {
 }
 
 // Usage
-setAlphabeticalOrder('./docs/elements/dynamic-elements'); 
+setAlphabeticalOrder('./docs/components-native'); 

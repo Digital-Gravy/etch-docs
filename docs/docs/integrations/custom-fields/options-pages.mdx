@@ -2,7 +2,7 @@
 title: Options Pages
 sidebar_position: 10
 last_update:
-  date: 2025-10-19
+  date: 2025-10-24
 sidebar_custom_props:
   badge: "New"
 ---
@@ -20,109 +20,66 @@ Options pages let you manage global site settings (e.g., business phone, address
 Use the `options` key with the provider namespace that owns your options page fields.
 
 ```html
-<!-- General syntax -->
-{options.provider.field_name}
-```
+<!-- ACF syntax -->
+{options.acf.field_name}
 
-- Available now: **Advanced Custom Fields (ACF)** via `options.acf.*`
-- Planned: **Meta Box** via `options.metabox.*`, **Etch Options** via `options.etch.*`
+<!-- Meta Box syntax -->
+{options.metabox.option_page_name.field_name}
+
+<!-- Jet Engine syntax -->
+{options.jetengine.option_page_name.field_name}
+```
 
 Works globally (templates, pages, loops, headers/footers, etc.). No post context is required.
 
-## Plugin-Specific Usage
+## Quick Reference
 
-### Advanced Custom Fields (ACF)
+| Integration | Namespace   | Syntax example                                   |
+| ----------- | ----------- | -------------------------------------------------------- |
+| ACF         | `acf`       | `{options.acf.field_name}`                               |
+| Meta Box    | `metabox`   | `{options.metabox.option_page_slug.field_name}`          |
+| JetEngine   | `jetengine` | `{options.jetengine.option_page_slug.field_name}`        |
 
-#### Accessing Option Values
+## Common Examples
+
+These examples are provider-agnostic. Replace `provider` with the integration namespace (e.g., `acf`, `metabox`, `jetengine`). 
+
+**Note:** Meta Box and JetEngine require an option page slug in the path (e.g., `options.metabox.my_options.field_name`).
+
+### Basic Fields
 
 ```html
-{options.acf.business_email}
+<a class="contact__email" href="mailto:{options.provider.business_email}">{options.provider.business_email}</a>
+<a class="social-links__link" href="{options.provider.facebook_url}">Facebook</a>
 ```
 
-- Replace `business_email` with your ACF field name/key defined on the ACF Options Page.
+### Group Fields
 
-#### Common Examples
-
-##### Basic Fields
-```html
-<a href="mailto:{options.acf.business_email}">{options.acf.business_email}</a>
-<a href="{options.acf.facebook_url}">Facebook</a>
-```
-
-##### Group Fields
 ```html
 <div class="address">
-  <div>{options.acf.address.street}</div>
-  <div>{options.acf.address.city}, {options.acf.address.state} {options.acf.address.zip}</div>
+  <div class="address__street">{options.provider.address.street}</div>
+  <div class="address__line">{options.provider.address.city}, {options.provider.address.state} {options.provider.address.zip}</div>
 </div>
 ```
 
-##### Image Fields
+### Image Fields
+
 ```html
-<img src="{options.acf.logo.url}" alt="{options.acf.logo.alt}" />
+<img class="logo" src="{options.provider.logo.url}" alt="{options.provider.logo.alt}" />
 ```
 
-##### Repeater Fields
+### Repeater Fields
+
 ```html
 <ul class="hours">
-  {#loop options.acf.hours as hour}
-    <li>
-      <span class="day">{hour.day}</span>
-      <span class="time">{hour.open}–{hour.close}</span>
+  {#loop options.provider.hours as hour}
+    <li class="hours__item">
+      <span class="hours__day">{hour.day}</span>
+      <span class="hours__time">{hour.open}–{hour.close}</span>
     </li>
   {/loop}
 </ul>
 ```
-
-### Meta Box
-
-#### Accessing Option Values
-
-```html
-{options.metabox.option_page_name.field_name}
-```
-
-- Replace `option_page_name` with your Settings Page ID or Option name defined on the Meta Box Settings Page.
-- Replace `field_name` with your Meta Box field name/key defined on the Meta Box Custom Fields page.
-
-#### Common Examples
-
-##### Basic Fields
-```html
-<a href="mailto:{options.metabox.company.business_email}">{options.metabox.company.business_email}</a>
-<a href="{options.metabox.company.facebook_url}">Facebook</a>
-```
-
-##### Group Fields
-```html
-<div class="address">
-  <div>{options.metabox.company.address.street}</div>
-  <div>{options.metabox.company.address.city}, {options.metabox.company.address.state} {options.metabox.company.address.zip}</div>
-</div>
-```
-
-##### Image Fields
-```html
-<img src="{options.metabox.company.logo.url}" alt="{options.metabox.company.logo.alt}" />
-```
-
-##### Repeater Fields
-```html
-<ul class="hours">
-  {#loop options.metabox.company.hours as hour}
-    <li>
-      <span class="day">{hour.day}</span>
-      <span class="time">{hour.open}–{hour.close}</span>
-    </li>
-  {/loop}
-</ul>
-```
-
-### Notes
-
-- Ensure an Option Page exists and fields are assigned to it.
-- Access patterns mirror post-level custom fields. The only difference is the top-level `options` scope.
-- For arrays and complex structures, use standard loops and dot notation.
 
 ## Troubleshooting
 
@@ -130,3 +87,7 @@ If `{options._._}` outputs nothing:
   - Confirm the field exists on an Options Page (not a post).
   - Verify the field name/key matches exactly.
   - Check that the field has a saved value.
+  - Ensure an Options Page exists in your chosen provider and fields are assigned to it.
+  - For Meta Box and JetEngine, ensure you included the correct option page slug in the path (e.g., `options.metabox.my_options.field_name`).
+  - Access patterns mirror post-level custom fields. The only difference is the top-level `options` scope.
+  - For arrays and complex structures, use standard loops and dot notation.

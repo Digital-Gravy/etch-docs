@@ -1,0 +1,61 @@
+---
+title: HTML
+sidebar_custom_props:
+  badge: "New"
+---
+
+import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
+
+# The HTML Element
+
+<VersionBadge version="1.0.0-alpha-10" />
+
+The HTML Element accepts and parses raw HTML. Since Etch already has a native HTML editor that allows raw HTML, this might seem redundant. It's necessary, though, for one specific reason.
+
+The HTML Element is used in dynamic data situations (e.g. component/template authoring) where you're pulling content from the database or a component prop that contains HTML (a rich text field, for example).
+
+## Adding the HTML Element
+
+There are two ways to add the HTML Element:
+
+1. You can click the icon for it when editing a component or a template.
+2. You can write it manually in the HTML editor.
+
+:::note
+Since the HTML Element is most useful when working with components and templates, we've only added it to the Elements Bar in these contexts.
+:::
+
+### Adding the HTML Element in the Component Editor
+
+![Etch HTML Element](img/etch-html-element.webp)
+
+When editing a component or template, you'll see a purple HTML element icon. Click this icon to add the HTML Element to your component.
+
+### Adding the HTML Element in the Code Editor'
+
+Even though the icon for the HTML Element only shows up in the component editor, the element will function anywhere and can be used anywhere. You just have to write it manually to create it, since it's not a commonly used element outside of components/templates.
+
+You can add the HTML Element via the code editor any time by writing `<etch:html />`. 
+
+:::info The HTML Element is Self-Closing
+Note that the HTML element is a self-closing element. Write it like `<etch:html />` and not `<etch:html>foo</etch:html>`.
+:::
+
+## Using the HTML Element
+
+The HTML Element has two attributes:
+
+- **content**: This is where you put the dynamic data or prop key.
+- **unsafe**: Boolean attribute that accepts `true` or `false`. The default is `false`, which means Etch sanitizes the HTML. If you want to allow the HTML to pass through unsanitized, set this value to `true`.
+
+:::danger Security Alert
+Setting the `unsafe` attribute to `true` has major security implications. You should only do this under tightly controlled circumstances. If you don't understand the implications, do not set to `true`.
+:::
+
+Here's an example of the final string:
+
+```html
+<etch:html content={item.your-rich-text} unsafe="false" />
+```
+
+Note: The `unsafe` attribute is optional.

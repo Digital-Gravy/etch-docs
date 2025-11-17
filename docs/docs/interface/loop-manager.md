@@ -9,7 +9,7 @@ The Loop Manager allows you to manage all main loops for your project, whether t
 
 ![Etch Loop Manager](img/etch-loop-manager.webp)
 
-The loops you define in the Loop Manager are accessible via the [Loop element](/elements/basic-elements/loop).
+The loops you define in the Loop Manager are accessible via the [Loop element](/elements/loop).
 
 ## Interface Overview
 
@@ -23,4 +23,4 @@ Working from left to right, you can click on a saved loop or create a new loop, 
 
 Once you're done viewing, editing, or creating a loop, you can click the arrow or hit `esc` to return to site building mode.
 
-For more information on using loops, see [Basic Loops](/elements/basic-elements/loop).
+For more information on using loops, see [Basic Loops](/loops/basic-loops).
