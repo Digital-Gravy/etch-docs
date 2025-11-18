@@ -150,7 +150,7 @@ For detailed information on working with third-party custom fields, see the [Cus
 
 ## Custom Integration
 
-Etch allows to extend Dynamic Data through filter hooks. This way, all main keys ([post](./dynamic-data-integration/post-dynamic-data-integration.md), [user](./dynamic-data-integration/user-dynamic-data-integration.md), [term](./dynamic-data-integration/term-dynamic-data-integration.md), and [options](./dynamic-data-integration/option-dynamic-data-integration.md)) can be extended.
+Etch allows you to extend Dynamic Data through filter hooks. This way, all main keys ([post](./dynamic-data-integration/post-dynamic-data-integration.md), [user](./dynamic-data-integration/user-dynamic-data-integration.md), [term](./dynamic-data-integration/term-dynamic-data-integration.md), and [options](./dynamic-data-integration/option-dynamic-data-integration.md)) can be extended.
 
 ## Tips for Working with Dynamic Data
 
