@@ -68,7 +68,7 @@ On that Panel there will be a prop called `triggerSelector`, type there a .class
 
 | Option           | Type                      | Default | Description |
 | ---------------- | ------------------------- | ------- | ----------- |
-| `showEditor` | `boolean` | `true` | Used internally to hide / show the dialog in Etch Editor. |
+| `showEditor` | `boolean` | `true` | Used internally to hide / show the modal in Etch Editor. |
 | `closeMethod` | `select` | `any` | The method to close the modal. |
 |   • `any` |  |  | Any (Allow all methods) |
 |   • `closerequest` |  |  | Close Request (Esc key or developer action) |
@@ -85,16 +85,17 @@ On that Panel there will be a prop called `triggerSelector`, type there a .class
 |   • `bottom-center` |  |  | Positions the modal to the bottom center of the screen |
 |   • `bottom-right` |  |  | Positions the modal to the bottom right of the screen |
 |   • `custom` |  | custom | removes any positioning and allows you to set the modal to a custom position with CSS or any other method |
-| `closeButtonType` | `select` | `label` | The type of close button if any |
+| `closeButtonType` | `select` | `icon` | The type of close button if any |
 |   • `Label` |  |  | Button with label only |
 |   • `Icon` |  |  | Button with icon only (SVG by default) |
 |   • `Label + Icon` |  |  | Button with label and Icon |
 |   • `none` |  |  | Without Close button |
 | `closeButtonLabel` | `string` | `Close` | Text for the close button |
-| `dialogId` | `string` | `etch-dialog` | The unique id of the modal. This is required to have multiple modals on the same page, must be alphanumeric and unique. |
-| `maxWidth` | `string` | `400px` | The maximum width for the Dialog, sets scoped variable inline |
-| `dialogBackgroundColor` | `string` | `white` | The background color for the Dialog body, sets scoped variable inline |
-| `dialogBackdropColor` | `string` | `rgba(0, 0, 0, 0.5)` | The background color for the Dialog backdrop, sets scoped variable inline |
+| `dialogId` | `string` | `etch-dialog` | The unique id of the Modal. This is required to have multiple modals on the same page, must be alphanumeric and unique. |
+| `maxWidth` | `string` | `400px` | The maximum width for the Modal, sets scoped variable inline |
+| `dialogBackgroundColor` | `string` | `white` | The background color for the Modal body, sets scoped variable inline |
+| `dialogBackdropColor` | `string` | `rgba(0, 0, 0, 0.5)` | The background color for the Modal backdrop, sets scoped variable inline |
+| `dialogPadding` | `string` | `1em` | Padding for the Modal |
 
 #### Close Method
 :::tip
