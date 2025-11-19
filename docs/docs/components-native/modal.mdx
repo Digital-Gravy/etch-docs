@@ -40,27 +40,22 @@ Then, in Etch, press <kbd>cmd</kbd> + <kbd>v</kbd> (Mac) or <kbd>ctrl</kbd> + <k
 
 ## Editing the Modal
 
-Modal comes with 2 slots, if you open the modal and you don't see the slots, you will need to add them.
+Modal comes with 1 slot, if you open the modal and you don't see the slot, you will need to add it.
 
-### Adding the slots ( if they are not already there )
+### Adding the slot ( if the slot is not already there )
 
-Once you select the modal, on the bottom bar where are all the elements, you will see 2 slots icons on the left, click on them and you should see the slots appear on the modal.
+Once you select the modal, on the bottom bar where all the elements are, you will see 1 slot icons on the left, click on it and you should see the slot appear on the modal.
 
-Now your modal should contain 2 slots named `closebutton` and `dialogcontent`
+Now your modal should contain 1 slot named `dialogcontent`
 
-### Adding content to the slots
-- You can add content to the modal by adding content to the slots.
-
-- `closebutton` slot is the button that will close the modal.
-  - Set the prop `Use Close Button` to true so that the button will be rendered.
-  - You **only need to add the content** for the button. The button itself **already exists**.
-  - You can add text, icons, etc.
+### Adding content to the slot
+- You can add content to the modal by adding content to the slot.
 - `dialogcontent` slot is the content that will be displayed in the modal.
   - You can add any content to the slot.
   - You can add text, images, create cards, use divs, the slot is a normal div container.
 
 :::tip
-You can edit the content while the modal is open by adding a trigger to the modal.
+You can edit the content while the modal is open by adding Switching (Show / Hide Editor).
 :::
 
 ### Adding a trigger to the modal
@@ -95,6 +90,7 @@ On that Panel there will be a prop called `triggerSelector`, type there a .class
 |   • `Icon` |  |  | Button with icon only (SVG by default) |
 |   • `Label + Icon` |  |  | Button with label and Icon |
 |   • `none` |  |  | Without Close button |
+| `closeButtonLabel` | `string` | `Close` | Text for the close button |
 | `dialogId` | `string` | `etch-dialog` | The unique id of the modal. This is required to have multiple modals on the same page, must be alphanumeric and unique. |
 | `maxWidth` | `string` | `400px` | The maximum width for the Dialog, sets scoped variable inline |
 | `dialogBackgroundColor` | `string` | `white` | The background color for the Dialog body, sets scoped variable inline |
