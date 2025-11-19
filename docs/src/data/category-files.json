@@ -46,6 +46,7 @@
     "intro-to-conditional-logic.md"
   ],
   "docs/dynamic-data": [
+    "dynamic-data-integration.md",
     "dynamic-data-intro.md",
     "dynamic-data-keys.md"
   ],

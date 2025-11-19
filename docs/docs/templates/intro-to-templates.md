@@ -41,7 +41,7 @@ Templates provide several key benefits:
 
 ## WordPress FSE Integration
 
-All templates created in Etch are automatically authored to WordPress' Full Site Editing (FSE) templating system. This liberates your templates the same way your page development is liberated into core blocks.
+All templates created in Etch are automatically authored to WordPress' Full Site Editing (FSE) templating system. This liberates your templates the same way your page development is liberated into custom blocks.
 
 ## Getting Started
 
