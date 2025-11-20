@@ -1,0 +1,94 @@
+---
+title: Off Canvas
+sidebar_position: 100
+sidebar_custom_props:
+  badge: "New"
+---
+import CopyToClipboard from '@site/src/components/CopyToClipboard/CopyToClipboard';
+import DrawerJSON from '../components-native/components-native-json/drawer-component.json';
+
+export const DRAWER_JSON = JSON.stringify(DrawerJSON, null, 2);
+
+# Off Canvas
+
+:::note
+This page documents the recommended way to add an Off Canvas (Drawer) by importing the prebuilt component with Copy/Paste JSON below.
+:::
+
+## Setup
+
+- Add a container or a flex-div on your site if you don't already have one.
+- You'll paste the Off Canvas component into the container or flex-div in the next step.
+
+## Importing the Component
+
+Use the button below to copy the ready-to-use Off Canvas component as JSON.
+Then, in Etch, press <kbd>cmd</kbd> + <kbd>v</kbd> (Mac) or <kbd>ctrl</kbd> + <kbd>v</kbd> (Windows) anywhere in the builder to insert the component.
+
+<div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+  <CopyToClipboard label="Copy Off Canvas Component" value={DRAWER_JSON} />
+</div>
+
+### Steps
+- Click "Copy Off Canvas Component" above, then in Etch press <kbd>cmd</kbd> + <kbd>v</kbd> (Mac) / <kbd>ctrl</kbd> + <kbd>v</kbd> (Windows) anywhere in the builder to insert the component
+- Arrange the component inside your container or flex-div.
+- Verify the component.
+
+### Configuration
+- CSS, JS, and props are bundled inside the component—no setup required. You can edit prop values to customize behavior.
+- Styling: tweak CSS variables on `.etch-drawer` (e.g., colors, icon sizes).
+- Fill the props in the Elements Settings panel.
+
+
+## Editing the Off Canvas
+
+Off Canvas comes with 1 slot, if you open the drawer and you don't see the slot, you will need to add it.
+
+### Adding the slot ( if the slot is not already there )
+
+Once you select the drawer, on the bottom bar where all the elements are, you will see 1 slot icons on the left, click on it and you should see the slot appear on the drawer.
+
+Now your drawer should contain 1 slot named `drawerContent`
+
+### Adding content to the slot
+- You can add content to the drawer by adding content to the slot.
+- `drawerContent` slot is the content that will be displayed in the drawer.
+  - You can add any content to the slot.
+  - You can add text, images, create cards, use divs, the slot is a normal div container.
+
+:::tip
+You can edit the content while the drawer is open by adding Switching (Show / Hide Editor).
+:::
+
+### Adding a trigger to the drawer
+
+Lets select the drawer component and see the Elements Settings panel.
+
+On that Panel there will be a prop called `triggerSelector`, type there a .class or an #id from the element that you want to trigger the drawer from.
+
+### Off Canvas Component Props
+
+| Option           | Type                      | Default | Description |
+| ---------------- | ------------------------- | ------- | ----------- |
+| `showEditor` | `boolean` | `false` | Used internally to hide / show the drawer in Etch Editor. |
+| `triggerSelector` | `string` | `.open-drawer` | The selector of the trigger element, must be a .class or #id of an element on the page |
+| `drawerPlacement` | `select` | `left` | The placement of the drawer. |
+|   • `left` |  |  | Positions the drawer from the left side of the screen |
+|   • `right` |  |  | Positions the drawer from the right side of the screen |
+|   • `top` |  |  | Positions the drawer from the top of the screen |
+|   • `bottom` |  |  | Positions the drawer from the bottom of the screen |
+| `drawerDisplayMethod` | `select` | `overlap` | How the drawer displays when opened. |
+|   • `overlap` |  |  | The drawer overlaps the content |
+|   • `pushBody` |  |  | The drawer pushes the body content when opened |
+| `closeButtonVariant` | `select` | `icon` | The type of close button |
+|   • `Icon` |  |  | Button with icon only (SVG by default) |
+|   • `Label` |  |  | Button with label only |
+|   • `Label and Icon` |  |  | Button with label and Icon |
+| `closeButtonLabel` | `string` | `Close` | Text for the close button |
+| `drawerId` | `string` | `etch-drawer` | The unique id of the Drawer. This is required to have multiple drawers on the same page, must be alphanumeric and unique. |
+| `maxWidth` | `string` | `400px` | The maximum width for the Drawer, sets scoped variable inline |
+| `maxHeight` | `string` | `100px` | The maximum height for the Drawer (used for top/bottom placements), sets scoped variable inline |
+| `drawerBackgroundColor` | `string` | `white` | The background color for the Drawer body, sets scoped variable inline |
+| `drawerBackdropColor` | `string` | `rgba(0, 0, 0, 0.5)` | The background color for the Drawer backdrop, sets scoped variable inline |
+| `drawerPadding` | `string` | `1em` | Padding for the Drawer |
+| `cloneSelector` | `string` |  | Optional. A selector (.class or #id) of an element that will be cloned and moved into the drawer when opened. The element will be restored to its original position when the drawer closes. |
