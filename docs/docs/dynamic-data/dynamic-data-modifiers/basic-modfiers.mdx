@@ -219,8 +219,8 @@ This allows you to format or transform values before they are displayed.
     </tr>
     <tr>
       <td><code>.unserializePhp()</code></td>
-      <td>takes a serialized PHP string and converts it back to a usable value<br /><a href="#applydata">More Details</a></td>
-      <td><code>item.text = "a:3:{i:0;s:5:"apple";i:1;s:6:"banana";i:2;s:6:"cherry";}"</code><br /><br /><code>&#123;item.text.unserializePhp()&#125;</code> → <code>["apple", "banana", "cherry"]</code></td>
+      <td>takes a serialized PHP string and converts it back to a usable value<br /><a href="#unserializephp">More Details</a></td>
+      <td><code>item.text = "a:3:\{i:0;s:5:"apple";i:1;s:6:"banana";i:2;s:6:"cherry";\}"</code><br /><br /><code>&#123;item.text.unserializePhp()&#125;</code> → <code>["apple", "banana", "cherry"]</code></td>
     </tr>
   </tbody>
 </table>
@@ -442,6 +442,8 @@ If you output `{post.specialField}` directly, it will render as: <br /> `a:3:{i:
 
 To use this value correctly, call `.unserializePhp()` on the value: `{post.specialField.unserializePhp()}` <br />
 This first retrieves the original string, then converts it back to a usable value, resulting in an actual array: <br />`["apple", "banana", "cherry"]`. Which you could then loop over or use other modifiers on.
+
+Or `a:2:{s:3:"foo";s:3:"bar";s:3:"baz";i:42;}` would become `{"foo": "bar", "baz": 42}` which then could be accessed like normal dynamic data: `{post.specialField.unserializePhp().foo}` → `bar`.
 
 It also works with other serialized PHP data types, like integers or booleans. If you attempt to unserialize an actual PHP object however, it will return null for safety reasons.
 
