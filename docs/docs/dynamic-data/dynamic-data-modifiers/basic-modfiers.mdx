@@ -86,7 +86,6 @@ This allows you to format or transform values before they are displayed.
       <td><code>.stripTags()</code></td>
       <td>
           Removes HTML tags from a string.
-          <VersionBadge version="1.0.0-alpha-5" style={{marginBottom: 0}}/>
       </td>
       <td><code>value = "&lt;a href="#"&gt;Link&lt;/a&gt;"</code><br /><br /><code>&#123;item.value.stripTags()&#125;</code> → <code>"Link"</code></td>
     </tr>
@@ -216,6 +215,15 @@ This allows you to format or transform values before they are displayed.
       <td><code>.applyData()</code></td>
       <td>Reapplies available dynamic data to the given value.<br /><a href="#applydata">More Details</a></td>
       <td><code>item.text = "Hello &#123;user.name&#125;"</code><br /><br /><code>&#123;item.text.applyData()&#125;</code> → <code>"Hello John"</code></td>
+    </tr>
+    <tr>
+      <td><code>.unserializePhp()</code></td>
+      <td>
+        Takes a serialized PHP string and converts it back to a usable value <br />
+        <a href="#unserializephp">More Details</a> 
+        <VersionBadge version="1.0.0-beta-1" style={{marginBottom: 0}}/>
+       </td>
+      <td><code>item.text = "a:3:\{i:0;s:5:"apple";i:1;s:6:"banana";i:2;s:6:"cherry";\}"</code><br /><br /><code>&#123;item.text.unserializePhp()&#125;</code> → <code>["apple", "banana", "cherry"]</code></td>
     </tr>
   </tbody>
 </table>
@@ -422,6 +430,25 @@ If you output `{this.etch.header}` directly, it will render as: <br /> `"Welcome
 
 To resolve the dynamic data, call `.applyData()` on the value: `{this.etch.header.applyData()}` <br />
 This first retrieves the original string, then reapplies the dynamic data, resulting in: <br />`"Welcome to Etch!` (or whatever value `{this.title}` resolves to).
+
+---
+
+### `.unserializePhp()`
+**Returns:** Returns the unserialized value, or the original value if the input is not a valid serialized string or null if you attempt to unserialize an actual PHP object.
+
+The `unserializePhp()` method is an advanced feature that can be used to convert serialized PHP strings back into usable values.
+
+#### Examples:
+
+You might have a plugin that saves serialized PHP strings in a CPT field, for example it could save an array as a string like this on a post: `a:3:{i:0;s:5:"apple";i:1;s:6:"banana";i:2;s:6:"cherry";}` <br/>
+If you output `{post.specialField}` directly, it will render as: <br /> `a:3:{i:0;s:5:"apple";i:1;s:6:"banana";i:2;s:6:"cherry";}` — without converting it back to an array.
+
+To use this value correctly, call `.unserializePhp()` on the value: `{post.specialField.unserializePhp()}` <br />
+This first retrieves the original string, then converts it back to a usable value, resulting in an actual array: <br />`["apple", "banana", "cherry"]`. Which you could then loop over or use other modifiers on.
+
+Or `a:2:{s:3:"foo";s:3:"bar";s:3:"baz";i:42;}` would become `{"foo": "bar", "baz": 42}` which then could be accessed like normal dynamic data: `{post.specialField.unserializePhp().foo}` → `bar`.
+
+It also works with other serialized PHP data types, like integers or booleans. If you attempt to unserialize an actual PHP object however, it will return null for safety reasons.
 
 ---
 
