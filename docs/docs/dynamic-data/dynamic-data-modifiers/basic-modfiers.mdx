@@ -86,7 +86,6 @@ This allows you to format or transform values before they are displayed.
       <td><code>.stripTags()</code></td>
       <td>
           Removes HTML tags from a string.
-          <VersionBadge version="1.0.0-alpha-5" style={{marginBottom: 0}}/>
       </td>
       <td><code>value = "&lt;a href="#"&gt;Link&lt;/a&gt;"</code><br /><br /><code>&#123;item.value.stripTags()&#125;</code> → <code>"Link"</code></td>
     </tr>
@@ -219,7 +218,11 @@ This allows you to format or transform values before they are displayed.
     </tr>
     <tr>
       <td><code>.unserializePhp()</code></td>
-      <td>takes a serialized PHP string and converts it back to a usable value<br /><a href="#unserializephp">More Details</a></td>
+      <td>
+        Takes a serialized PHP string and converts it back to a usable value <br />
+        <a href="#unserializephp">More Details</a> 
+        <VersionBadge version="1.0.0-beta-1" style={{marginBottom: 0}}/>
+       </td>
       <td><code>item.text = "a:3:\{i:0;s:5:"apple";i:1;s:6:"banana";i:2;s:6:"cherry";\}"</code><br /><br /><code>&#123;item.text.unserializePhp()&#125;</code> → <code>["apple", "banana", "cherry"]</code></td>
     </tr>
   </tbody>
