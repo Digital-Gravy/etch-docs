@@ -160,7 +160,6 @@ Etch allows you to extend Dynamic Data through filter hooks. This way, all main 
 - Some keys are objects (e.g., `author`, `template`). These are inside of curly braces `{}`. If your key outputs an object, you need to drill down to a sub-key (e.g., `{item.author.name}`, `{this.template.slug`) to get to the data you're looking for.
 - Some object keys contain special characters (spaces, dashes, etc.) that don't work with dot notation.
   For these cases, you can use bracket notation with quotes:
-
   - Keys with spaces: `{item["full name"]}`
   - Keys with dashes: `{item["post-meta"]}`
   - Keys with numbers: `{item[0]}` (for arrays)
@@ -195,13 +194,25 @@ _Example: Loop categories for the current post:_
 
 **2) Access a specific item by index (zero-based)**
 
-- Use the `.at()` modifier to access a specific item.
+You can use either **dot notation with the `.at()` modifier** or **bracket notation** to access a specific item:
 
-_Example: Get the first category’s name for the current post:_
+**Dot notation (using .at() modifier):**
 
-```html
+```
 {this.categories.at(0).name}
 ```
+
+**Bracket notation (direct array access):**
+
+```
+{this.categories[0].name}
+```
+
+Both approaches are equivalent. Continue using dot notation for simple property names (e.g., `{this.title}`, `{item.name}`). Use bracket notation only when needed for properties with special characters or spaces (e.g., `{this["author-name"]}`, `{item["full name"]}`).
+
+:::info
+We've updated the syntax to align with standard JavaScript and PHP conventions. Bracket notation is now available as an option for properties with special characters or spaces. Aligning with industry standards allows us to extend the functionality of dynamic data even further and will make it possible to add support for advanced features like mathematical operations in the future. The "old" syntax (dashes/spaces in dot notation) will no longer be supported, but standard dot notation like `{this.title}` remains unchanged and is the recommended approach for regular property names.
+:::
 
 **Notes:**
 
