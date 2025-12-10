@@ -99,6 +99,9 @@
   "docs/integrations": [
     "integrations.md"
   ],
+  "docs/integrations/controls": [
+    "controls.md"
+  ],
   "docs/integrations/custom-fields": [
     "custom-fields.md",
     "flexible-content-fields.md",
