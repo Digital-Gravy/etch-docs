@@ -135,6 +135,7 @@
     "basic-loops.mdx",
     "loop-arguments.md",
     "looping-attachments.md",
+    "main-query.md",
     "nested-loops.md"
   ],
   "docs/responsive-development": [
