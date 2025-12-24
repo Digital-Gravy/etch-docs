@@ -87,8 +87,8 @@
     "sort.md"
   ],
   "docs/facets/third-party-facets": [
-    "wp-grid-builder.md",
-    "facetwp.md"
+    "facetwp.md",
+    "wp-grid-builder.md"
   ],
   "docs/feature-flags": [
     "index.md"

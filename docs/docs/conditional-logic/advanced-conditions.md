@@ -112,6 +112,9 @@ In most cases, strict comparisons (`===`, `!==`) are safer and prevent unexpecte
 
 3. **Be careful with type conversion** - Remember from the Basic Conditions guide that loose comparisons (`==`, `!=`) perform type conversion while strict comparisons (`===`, `!==`) do not.
 
+:::tip
+When using `{#if}` statements, remember they are block-level conditions that wrap elements. If you need an inline conditional (for example, inside an attribute value like a `class`), use [Comparison Modifiers](/dynamic-data/dynamic-data-modifiers/comparison-modifiers) instead.
+:::
 
 ## Debugging Advanced Conditions
 

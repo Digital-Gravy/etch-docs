@@ -19,6 +19,9 @@ They can be used as simple true/false checks, or you can override the true and f
 One of the most powerful features of comparison modifiers is their ability to return **custom values** based on the result of a comparison.
 By default, they return a boolean value (`true` or `false`), but you can override these to return any value you choose for either outcome.
 
+This is the way to do **inline “if/else” conditional logic** in Etch.
+Because `{#if}` blocks can’t be used inline (for example, inside an attribute value), comparison modifiers let you conditionally return one value or another right where you need it.
+
 This allows you to create **dynamic content that adapts to your data**. For example, conditionally adding CSS classes, displaying alternate text, or adjusting attributes based on specific conditions.
 
 ### Example: Conditional CSS Classes Based on Product Price

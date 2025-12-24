@@ -154,6 +154,10 @@ That's a critical distinction that many beginners get wrong.
 3. **Use mathematical operators (`>=`, `<=`, `>`, `<`) for numerical ranges**
 4. **For more complex conditions**, refer to the [Advanced Conditions](/conditional-logic/advanced-conditions) guide
 
+:::tip
+When using `{#if}` statements, remember they are block-level conditions that wrap elements. If you need an inline conditional (for example, inside an attribute value like a `class`), use [Comparison Modifiers](/dynamic-data/dynamic-data-modifiers/comparison-modifiers) instead.
+:::
+
 ## Practice Makes Perfect
 
 The first step to learning how to use conditions is to not be afraid of them.
