@@ -17,9 +17,9 @@ The easiest example to understand is an accordion component for Frequently Asked
 
 The accordion heading is almost always just text, so you can easily use a text prop. This will allow us to write the "question" part of the FAQ.
 
-What about the content of the accordion, though — the answer part of the FAQ? 
+What about the content of the accordion, though - the answer part of the FAQ?
 
-Should it be text? Should it be a combination of text and images? How much text? How many images? What if I want to include a link? What if I want to include a button? How do we determine what style of button? 
+Should it be text? Should it be a combination of text and images? How much text? How many images? What if I want to include a link? What if I want to include a button? How do we determine what style of button?
 
 That's a lot of questions. And if we have to configure props and conditional logic for all the possibilities, that's going to be a tremendously complex component that still ends up with a lot of limitations.
 
@@ -43,17 +43,83 @@ You can also define your slot simply by writing `{@slot yourSlotName}` in the HT
 
 ![Add Slot in Etch](img/etch-use-slot-squashed.webp)
 
-When you add a component to the page, any defined slots will show up automatically.
-
-If for some reason the slots don't show up when using your component, you'll see an icon in the Elements Bar for them. You can use this icon to add your slot so you can start adding content to it.
-
-![Add Slot in Etch](img/etch-use-slot-icon-squashed.webp)
+When you add a component to the page, all defined slots will automatically appear and be ready for content.
 
 You can also add your slot simply by writing `{#slot yourSlotName}{/slot}` in the HTML editor.
 
 :::note Don't Get it Twisted
-A slot is an empty drop-zone that you define at the component level. This means each component instance will have a slot available for unique content. You should not try to add content to the slot from inside the component editor — slots are for adding content to each instance from *outside* the component editing context (e.g. the normal page development workflow).
+A slot is an empty drop-zone that you define at the component level. This means each component instance will have a slot available for unique content. You should not try to add content to the slot from inside the component editor — slots are for adding content to each instance from *outside* the component editing context (e.g. the normal page development workflow).
 :::
+
+## The Slots Object
+
+Inside your components, you have access to a special `slots` object that provides information about each slot. This works similarly to how `props` gives you access to your component's properties.
+
+The `slots` object contains an entry for each defined slot, with the following structure:
+```
+slots.yourSlotName.empty  // true if the slot has no content, false otherwise
+```
+
+For example, if you have a component with two slots named `header` and `content`:
+```
+slots.header.empty   // true or false
+slots.content.empty  // true or false
+```
+
+This allows you to build conditional logic based on whether users have added content to your slots.
+
+## Defining Default Slot Content
+
+A common use case is showing default (fallback) content when a slot is empty. You can achieve this by combining the `slots` object with an `{#if}` condition.
+
+Here's how to define default content for a slot:
+```html
+{#if slots.default.empty}
+  <p>This is the default content — it will only show if the slot is empty.</p>
+{/if}
+{@slot default}
+```
+
+When a user adds content to the slot, the default content disappears and their content is shown instead.
+
+### Practical Example: CTA Card with Optional Image
+
+Imagine a Call-to-Action card component with an optional image slot. You want to show a placeholder when no image is provided:
+```html
+<div class="cta-card">
+  <div class="cta-image">
+    {#if slots.image.empty}
+      <div class="placeholder-icon">🖼️</div>
+    {/if}
+    {@slot image}
+  </div>
+  <div class="cta-content">
+    {@slot content}
+  </div>
+</div>
+```
+
+This way, users see a helpful placeholder in the builder, but if they add an image to the slot, the placeholder is automatically replaced.
+
+## Conditional Wrappers
+
+Another useful pattern is hiding wrapper elements entirely when a slot is empty. This keeps your front-end HTML clean:
+```html
+{#if !slots.footer.empty}
+  <div class="card-footer">
+    {@slot footer}
+  </div>
+{/if}
+```
+
+The `.card-footer` div won't render at all if the slot is empty — no empty wrappers cluttering your HTML!
+
+## Automatic Slot Management
+
+Etch automatically manages slots for you:
+
+- **Slots appear automatically**: When you use a component, all available slots are instantly ready — no manual setup needed.
+- **Invalid slots are cleaned up**: If you remove a slot definition from your component (e.g., delete `{@slot oldSlot}` from your code), empty slot instances will be automatically removed from your pages. Slots that contain content are preserved to prevent data loss.
 
 ## FAQs about Slots
 
@@ -67,31 +133,42 @@ Yep, there's no limit to how many slots a component can have.
 <details>
 <summary>What happens if nothing is added to a slot?</summary>
 
-If nothing is added to a slot, Etch won't render anything on the front-end. There's no need for conditional logic — slot content is rendered and empty slots are not rendered. You'll never be left with empty wrappers.
+If nothing is added to a slot, Etch won't render anything on the front-end. There's no need for conditional logic — slot content is rendered and empty slots are not rendered. You'll never be left with empty wrappers.
 
 </details>
 
 <details>
 <summary>What kind of content can I put in a slot?</summary>
 
-There's no limitations on what can go inside a slot. 
+There's no limitations on what can go inside a slot.
 
 </details>
+
 <details>
 <summary>Does content I put in slots apply to all instances of my components?</summary>
 
 Nope. Slot content is per-instance. If you want something to apply to all instances of your component it should be hard-coded into your component and not placed in a slot.
 
 </details>
+
 <details>
 <summary>Can I limit slots to specific types of content?</summary>
 
 No, if you want to limit the user to placing certain types of content, then you should use existing prop types with conditional logic. Slots are specifically designed as generic drop zones.
 
 </details>
-<details>
-<summary>Can slots have default starter content or fallback content?</summary>
 
-Not yet, but we're planning on adding the ability to define default slot content or "fallback" content because we recognize the value and additional flexibility this would bring to components.
+<details>
+<summary>Can I show default content when a slot is empty?</summary>
+
+Yes! Use the `slots` object to check if a slot is empty and conditionally render fallback content:
+```html
+{#if slots.yourSlotName.empty}
+  <p>Default content here</p>
+{/if}
+{@slot yourSlotName}
+```
+
+See the "Defining Default Slot Content" section above for more examples.
 
 </details>
