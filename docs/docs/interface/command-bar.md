@@ -11,8 +11,7 @@ It includes different modes, and actions relvant to those modes and the current.
 
 ## Accessing the Command Bar and its modes
 
-***NEED TO UPDATE SCREENSHOT***
-![Screenshot of the Command Bar in Etch, open in its default "Action" mode](./img/attributes-bar.avif)
+![Screenshot of the Command Bar in Etch, open in its default "Action" mode](./img/command-bar.avif)
 
 You can invoke the Command Bar by pressing <kbd>Cmd</kbd> + <kbd>k</kbd> on Mac, or <kbd>Ctrl</kbd> + <kbd>k</kbd> on Windows/Linux.
 

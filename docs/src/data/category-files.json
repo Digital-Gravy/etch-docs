@@ -5,7 +5,7 @@
     "creating-component-variations.md",
     "intro-components.md",
     "mapping-component-props.md",
-    "prop-slot.md",
+    "prop-slot.mdx",
     "using-a-component-dynamic.md",
     "using-a-component-static.md"
   ],
@@ -131,6 +131,7 @@
   ],
   "docs/interface": [
     "attributes-bar.md",
+    "command-bar.md",
     "content-manager.md",
     "css-panel.md",
     "elements-bar.md",
