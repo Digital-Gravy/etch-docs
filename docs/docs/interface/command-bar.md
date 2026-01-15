@@ -1,6 +1,8 @@
 ---
 title: Command Bar
 sidebar_position: 50
+sidebar_custom_props:
+  badge: "New"
 ---
 
 # Command Bar
