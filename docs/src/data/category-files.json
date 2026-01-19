@@ -47,7 +47,7 @@
   ],
   "docs/dynamic-data": [
     "dynamic-data-intro.md",
-    "dynamic-data-keys.md"
+    "dynamic-data-keys.mdx"
   ],
   "docs/dynamic-data/dynamic-data-integration": [
     "option-dynamic-data-integration.md",

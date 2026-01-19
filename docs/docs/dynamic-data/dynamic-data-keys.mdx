@@ -130,6 +130,31 @@ For security, all URL parameters are automatically sanitized using WordPress's `
 This key is case sensitive. If you have a parameter of `Name` in your URL, you need to use `{url.parameter.Name}`, not `{url.parameter.name}`
 :::
 
+## Environment Keys
+
+| Key                        | Description                                   |
+| -------------------------- | --------------------------------------------- |
+| `environment.current`      | The active rendering environment.             |
+
+`environment.current` exposes the name of the environment in which the content is currently being rendered. Possible values are:
+* `"etch"`
+* `"gutenberg"`
+* `"frontend"`
+
+This key is primarily intended for conditional rendering, allowing you to tailor output based on where the content is displayed.
+
+### Example: Environment-specific content
+
+You can use `environment.current` to include content that should only appear in editor contexts and be excluded from the frontend.
+```
+{#if environment.current === "etch" || environment.current === "gutenberg"}
+  <div class="developer-note">
+    This is a developer note that only appears in Etch and Gutenberg.
+  </div>
+{/if}
+```
+In this example, the developer note is visible in Etch and Gutenberg but omitted from the frontend render.
+
 ## Etch Custom Fields Support
 
 Custom fields created within Etch can be accessed with the `etch` extension.
