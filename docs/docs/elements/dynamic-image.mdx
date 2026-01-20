@@ -1,8 +1,14 @@
 ---
 title: Dynamic Image
+sidebar_custom_props:
+  badge: 'New'
 ---
 
+import VersionBadge from '@site/src/components/VersionBadge/VersionBadge'
+
 # Dynamic Image
+
+<VersionBadge version="1.0.0-beta-14" />
 
 The Dynamic Image Element in Etch is a special element that handles images dynamically. It's the default/recommended way of inserting images in Etch and is compatible with component props as well.
 
@@ -30,7 +36,7 @@ If you do not want to use `srcset` and `sizes`, you can disable this feature by 
 
 ## Using Dynamic Images With Components
 
-Since the Dynamic Image element just needs a media id to render an image, it works perfectly with component props. Just pass the media id via a text prop or via the Media prop. This of course also works with dynamic data sources.
+Since the Dynamic Image element just needs a media id to render an image, it works perfectly with component props. Just pass the media id via the media prop, or the text prop. This of course also works with dynamic data sources.
 
 For example, if you want to create a gallery, you can loop over an array of media ids and pass each id to the Dynamic Image element inside the loop.
 
