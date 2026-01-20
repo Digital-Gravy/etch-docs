@@ -1,5 +1,5 @@
 ---
-title: Dynamic Image (<etch:img/>)
+title: Dynamic Image
 ---
 
 # Dynamic Image
@@ -12,7 +12,7 @@ Etch has native support for IMG HTML, but this is separate from Etch's Dynamic I
 
 To get started, add the Dynamic Image element to the page by clicking the Dynamic Image element in the Elements Bar.
 
-![Etch SVG Element](img/etch-svg-element.webp)
+![Etch Dynamic Image Element](img/etch-dynamic-image-element.webp)
 
 In the code editor you will see `<etch:img />`, but the output on the front-end will be the image with a few additional attributes.
 
@@ -26,7 +26,7 @@ You can also choose a specific maximum image size by choosing from the `Maximum 
 
 If you do not want to use `srcset` and `sizes`, you can disable this feature by toggling off the `Use SRCSET` option in the Attributes Panel, or set the `useSrcSet` attribute to `false`.
 
-![Etch SVG Attribute Panel](img/etch-svg-attribute-panel.webp)
+![Etch Dynamic Image Attribute Panel](img/etch-dynamic-image-attribute-panel.webp)
 
 ## Using Dynamic Images With Components
 
