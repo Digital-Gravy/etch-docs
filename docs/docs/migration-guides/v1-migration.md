@@ -24,13 +24,13 @@ This release includes required migration steps and **must not be skipped**.
 
 When opening Etch on `alpha-15`, a modal will appear prompting you to complete the migration process. Follow the instructions in the modal carefully to ensure a successful upgrade.
 
-### 3. Upgrade alpha instances to the latest beta
+### 3. Upgrade alpha and beta instances to the latest beta
 Once you are on the latest alpha, upgrade to the most recent beta release to transition to the stabilized pre-v1 architecture.
 
 The latest beta release is **`1.0.0-beta-15`**.
 
-### 4. Upgrade beta instances to 1.0.0
-Finally, upgrade from the latest beta to **`1.0.0`**.
+### 4. Upgrade beta or RC instances straight to 1.0.0
+Finally, upgrade from the latest beta or RC to **`1.0.0`**.
 
 ## Known Caveats
 
