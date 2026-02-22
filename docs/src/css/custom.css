@@ -14,6 +14,7 @@
   --ifm-color-primary-lighter: #55f7e4;
   --ifm-color-primary-lightest: #c6ece7;
   --ifm-code-font-size: 95%;
+  --ifm-code-block-tab-size: 2;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
@@ -69,10 +70,10 @@ body {
 }
 
 .markdown > h3 {
-	--ifm-h3-font-size: 1.75rem;
+	--ifm-h3-font-size: 1.5rem;
 }
 .markdown > h4 {
-	--ifm-h4-font-size: 1.4rem;
+	--ifm-h4-font-size: 1.35rem;
 }
 .markdown > h5 {
 	--ifm-h5-font-size: 1.125rem;
@@ -278,6 +279,10 @@ td p:last-child {
 	user-select: none;
 	border-right: 1px solid var(--ifm-color-emphasis-300);
 	opacity: 0.5;
+}
+
+.theme-code-block pre {
+  tab-size: var(--ifm-code-block-tab-size);
 }
 
 /* Adjust for dark mode */

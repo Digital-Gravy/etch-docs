@@ -173,6 +173,7 @@
   ],
   "docs/responsive-development": [
     "container-queries.md",
+    "custom-media.mdx",
     "intrinsic-responsiveness.md",
     "philosophy.md",
     "using-media-queries.md",

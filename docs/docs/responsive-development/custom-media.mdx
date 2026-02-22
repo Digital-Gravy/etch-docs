@@ -1,0 +1,94 @@
+---
+title: Tokenized Media Queries
+sidebar_position: 3.5
+sidebar_custom_props:
+  badge: 'New'
+last_update:
+  date: 2026-02-22
+---
+
+import VersionBadge from '@site/src/components/VersionBadge/VersionBadge'
+
+# Tokenized Media Queries
+
+<VersionBadge version="1.2.0" />
+
+Etch supports CSS `@custom-media` definitions so you can name your most common media/container queries once and reuse them throughout your project.
+
+This is especially useful when you want consistent sizing for responsiveness (for example: `--small`, `--nav-collapse`, `--wide-layout`) without copying and pasting query conditions across multiple selectors.
+
+This follows the `@custom-media` CSS spec being developed by the CSS Working Group. Etch isn’t inventing a new syntax here — it’s bringing `@custom-media` to Etch users early, ahead of broad native browser support.
+
+## Enable the feature
+
+`@custom-media` support is currently gated behind the Etch experimental settings toggle.
+
+Once enabled, Etch will create a Global Stylesheet named **Custom Media Definitions** where you can define your custom media queries.
+
+## Define your custom media queries
+
+Add `@custom-media` rules to the **Custom Media Definitions** stylesheet:
+
+```css
+/* Global (site-wide) queries */
+@custom-media --small-screen (width <= 600px);
+@custom-media --large-screen (width >= 1200px);
+@custom-media --landscape-wide screen and (width >= 900px) and (orientation: landscape);
+
+/* Component-specific queries */
+@custom-media --news-card-wide (width >= 421px);
+```
+
+Etch will extract these definitions and make them available to all other global stylesheets.
+
+## Sharing & portability
+
+When you copy an element that uses tokenized media queries, Etch will bring along your custom media definitions.
+
+That means if you share an element with someone else, they’ll get your `@custom-media` definitions too when they import it.
+
+## Use custom media in queries
+
+Once defined, you can reference a custom media name anywhere you would normally write a query condition.
+
+### Global aliases in media queries
+
+Global aliases are best for viewport-driven concerns like overall layout changes or top-level element behavior.
+
+```css
+@media (--small-screen) {
+	.my-component {
+		...
+	}
+}
+```
+
+### Component-specific aliases in container queries
+
+Component-specific aliases are ideal when you want a component to respond to the space it has available, regardless of where it’s placed.
+
+```css
+.news-card {
+	display: grid;
+	gap: 1rem;
+	
+	:has(> &) {
+		container-type: inline-size;
+	}
+
+	@container (--news-card-wide) {
+		.news-card {
+			grid-template-columns: 160px 1fr;
+		}
+	}
+}
+```
+
+You can still use global aliases in container queries (and vice versa), but using intent-specific names like `--news-card-wide` helps keep responsive rules readable.
+
+## Syntax & naming conventions
+
+- **Use `@custom-media`**, then add the name and query condition.
+- **When choosing a name, prefix with `--`** (required by the syntax).
+- **Use “intent-based” names** for clarity and maintainability
+	- e.g. `--nav-collapse`, `--sidebar-stacks`, `--content-narrow`
