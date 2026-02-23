@@ -13,11 +13,11 @@ import VersionBadge from '@site/src/components/VersionBadge/VersionBadge'
 
 <VersionBadge version="1.2.0" />
 
-Etch supports CSS `@custom-media` definitions so you can name your most common media/container queries once and reuse them throughout your project.
+Etch supports CSS `@custom-media` definitions so you can tokenize your most common media/container queries once and reuse them throughout your project.
 
 This is especially useful when you want consistent sizing for responsiveness (for example: `--small`, `--nav-collapse`, `--wide-layout`) without copying and pasting query conditions across multiple selectors.
 
-This follows the `@custom-media` CSS spec being developed by the CSS Working Group. Etch isn’t inventing a new syntax here — it’s bringing `@custom-media` to Etch users early, ahead of broad native browser support.
+This feature follows the `@custom-media` CSS spec being developed by the CSS Working Group. Etch isn’t inventing a new syntax here — it’s bringing `@custom-media` to Etch users early, ahead of broad native browser support.
 
 ## Enable the feature
 
@@ -39,7 +39,7 @@ Add `@custom-media` rules to the **Custom Media Definitions** stylesheet:
 @custom-media --news-card-wide (width >= 421px);
 ```
 
-Etch will extract these definitions and make them available to all other global stylesheets.
+Etch will extract these definitions and make them available to all other stylesheets.
 
 ## Sharing & portability
 
@@ -88,7 +88,7 @@ You can still use global aliases in container queries (and vice versa), but usin
 
 ## Syntax & naming conventions
 
-- **Use `@custom-media`**, then add the name and query condition.
-- **When choosing a name, prefix with `--`** (required by the syntax).
-- **Use “intent-based” names** for clarity and maintainability
+- **Use `@custom-media`**, then add the token name and query condition.
+- **When choosing a token name, prefix with `--`** (required by the syntax).
+- **Use “intent-based” tokens** for clarity and maintainability
 	- e.g. `--nav-collapse`, `--sidebar-stacks`, `--content-narrow`
