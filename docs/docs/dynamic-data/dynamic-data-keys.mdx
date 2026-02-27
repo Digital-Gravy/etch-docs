@@ -137,16 +137,28 @@ This key is case sensitive. If you have a parameter of `Name` in your URL, you n
 
 <VersionBadge version="1.0.0-beta-14" />
 
-| Key                        | Description                                   |
-| -------------------------- | --------------------------------------------- |
-| `environment.current`      | The active rendering environment.             |
+| Key                   | Description                                              |
+| --------------------- | -------------------------------------------------------- |
+| `environment.current` | The active rendering environment.                        |
+| `environment.context` | Provides additional context for the current environment. |
 
-`environment.current` exposes the name of the environment in which the content is currently being rendered. Possible values are:
-* `"etch"`
-* `"gutenberg"`
-* `"frontend"`
+`environment.current` exposes the name of the environment in which the content is currently being rendered.
 
-This key is primarily intended for conditional rendering, allowing you to tailor output based on where the content is displayed.
+**Possible values:**
+
+- `"etch"`
+- `"gutenberg"`
+- `"frontend"`
+
+This key is primarily intended for conditional rendering, allowing you to tailor output depending on where the content is displayed.
+
+---
+
+In most scenarios `environment.context` will be unset.
+
+It is set to `"componentEditor"` when rendering inside the component editor. This allows you to conditionally display content only while editing a component.
+
+
 
 ### Example: Environment-specific content
 
