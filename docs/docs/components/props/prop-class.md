@@ -3,7 +3,11 @@ title: Class Prop
 sidebar_position: 56
 ---
 
+import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
+
 # Class Prop
+
+<VersionBadge version="1.3.0" />
 
 The Class Prop lets you apply CSS classes to elements inside a component from the outside. This gives component users the ability to customize styling without editing the component's internal structure.
 
