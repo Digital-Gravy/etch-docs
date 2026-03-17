@@ -1,0 +1,79 @@
+---
+title: Group Prop
+sidebar_position: 60
+---
+
+import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
+
+# Group Prop
+
+<VersionBadge version="1.4.0" />
+
+The Group Prop lets you bundle multiple properties under a single key. This is useful when you want to organize related data together instead of managing many separate top-level props.
+
+You can think of it like building a structured object (similar to JSON) inside your component.
+
+## Adding a Group Prop
+
+In the component editor, select **"Group"** from the props list.
+
+![Etch Group Prop](../img/etch-group-prop.webp)
+
+
+## Defining the Group
+
+After adding a Group Prop, you’ll need to:
+
+- Set a **label** (for the UI)
+- Set a **key** (used in your code)
+
+The key is important because all nested props are accessed through it.
+
+For example, if your group key is `hero`, you would access a nested prop like this: `{props.hero.tile}`
+
+
+## Adding Props to the Group
+
+Once your group is created, you can add properties inside it:
+
+- **Drag** existing props into the group, or
+- Use the **add button** to create new props directly inside the group
+
+Every prop inside the group becomes part of the same structured object.
+
+
+## Preview Data
+
+The group automatically generates preview data from the default values of its nested props.
+
+If you add a **Text Prop** called `title` with a default of `"Welcome Post"`, referencing {props.hero} gives you:
+
+```json
+{
+  "title": "Welcome Post"
+}
+```
+
+## Example: Hero Section
+
+A Group Prop is a natural fit for a hero section. Rather than four separate top-level props (`title`, `description`, `image`, `buttonText`), you group them all under `hero`:
+
+```json
+{
+  "title": "Welcome to our site",
+  "description": "We build amazing things.",
+  "image": "/hero.jpg",
+  "buttonText": "Get Started"
+}
+```
+
+```html
+<h1>{props.hero.title}</h1>
+<p>{props.hero.description}</p>
+<img src="{props.hero.image}" />
+<button>{props.hero.buttonText}</button>
+```
+
+## Using the Group in Your Component
+
+When your component is used, each nested prop appears as its own input, respecting its prop type, so users can edit all related values together in one place. The whole group is then available as a single structured object.
