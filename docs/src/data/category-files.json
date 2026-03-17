@@ -10,14 +10,14 @@
     "creating-component-variations.md",
     "intro-components.md",
     "mapping-component-props.md",
-    "prop-slot.mdx",
+    "slots.mdx",
     "using-a-component-dynamic.md",
     "using-a-component-static.md"
   ],
   "docs/components/props": [
-    "prop-array.mdx",
     "prop-boolean.md",
-    "prop-image.md",
+    "prop-loop.mdx",
+    "prop-media.md",
     "prop-object.md",
     "prop-select.md",
     "prop-text.md"

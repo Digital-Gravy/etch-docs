@@ -62,9 +62,12 @@ Next, click on the prop type that you're wanting:
 - **[Text](./props/prop-text)** - A simple text input for titles, descriptions, labels, or any string content.
 - **[Boolean](./props/prop-boolean)** - True/false values for controlling visibility, states, or conditional behavior.
 - **[Select](./props/prop-select)** - Dropdown options for choosing from predefined values (like sizes, categories, or themes).
-- **[Image](./props/prop-image)** - Image upload and selection for photos, icons, logos, or any visual content.
-- **[Array](./props/prop-array)** - Multiple values or objects for lists, collections, or complex data structures.
-- **[Slot](./prop-slot)** - Content areas where you can drag and drop other components or elements.
+- **[Media](./props/prop-media)** - Media upload and selection for photos, icons, logos, or any other media uploaded to the WordPress media library.
+- **[Loop](./props/prop-loop)** - Allows selection of a loop source to be used in the component.
+- **[Object](./props/prop-object)** - JSON like structure for complex data structures.
+- **[Class](./props/prop-class)** - CSS class names for styling structure within the component from the outside.
+- **[Group](./props/prop-group)** - A way to group multiple props together for better organization and management.
+
 
 Once added, you'll see it in the Component Editor.
 
