@@ -30,7 +30,7 @@ After adding a Condition Prop, you can give it a **label** to identify it in the
 Unlike most other props, the Condition Prop does not have a key. This is intentional: the props nested inside a Condition are added directly to the current level, just as if they were defined outside the condition. No wrapping object is created.
 :::
 
-Next, define the condition itself by specifying a condition string similar to how you would for an if element:
+Next, define the condition itself by specifying a condition string similar to how you would for an [if element](/conditional-logic/basic-conditions.md):
 
 
 <div style={{textAlign: 'center'}}>
@@ -106,3 +106,11 @@ When the logged-in user is not an administrator, the `cssClass` and `debugMode` 
 In the component preview, the Condition Prop is treated as transparent. It has no effect on the data structure. All props inside it appear at the same level as props outside it, regardless of whether the condition would be met at runtime.
 
 This means your preview data always includes every prop, so you can preview all nested props freely during development.
+
+---
+
+ ## Nesting
+
+  Condition Props can be nested inside Group Props, and vice versa. You can also nest a Condition inside another Condition to combine multiple checks.
+
+  However, keep nesting shallow. Deeply nested conditions make your props harder to understand and maintain. If you find yourself nesting more than two levels, consider simplifying your data structure.
