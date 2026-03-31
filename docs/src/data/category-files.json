@@ -17,6 +17,7 @@
   "docs/components/props": [
     "prop-boolean.md",
     "prop-class.md",
+    "prop-condition.mdx",
     "prop-group.mdx",
     "prop-loop.mdx",
     "prop-media.md",
