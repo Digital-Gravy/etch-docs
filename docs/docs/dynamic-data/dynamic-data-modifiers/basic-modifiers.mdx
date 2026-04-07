@@ -231,6 +231,24 @@ This allows you to format or transform values before they are displayed.
       <td><code>user.userRoles = ["author", "editor"]</code><br /><br /><code>&#123;user.userRoles.join(", ")&#125;</code> → <code>"author, editor"</code></td>
     </tr>
     <tr>
+      <td><code>.replace()</code></td>
+      <td>
+        Replaces the **first** occurrence of a search string with a replacement string (strings only).
+        <details><summary>Arguments</summary><code>search</code>: the substring to find<br/><code>replace</code>: the string to replace it with</details>
+        <a href="#replace">More Details</a>
+      </td>
+      <td><code>value = "hello world"</code><br /><br /><code>&#123;item.value.replace("world", "there")&#125;</code> → <code>"hello there"</code></td>
+    </tr>
+    <tr>
+      <td><code>.replaceAll()</code></td>
+      <td>
+        Replaces **all** occurrences of a search string with a replacement string (strings only).
+        <details><summary>Arguments</summary><code>search</code>: the substring to find<br/><code>replace</code>: the string to replace it with</details>
+        <a href="#replaceall">More Details</a>
+      </td>
+      <td><code>value = "one fish two fish"</code><br /><br /><code>&#123;item.value.replaceAll("fish", "cat")&#125;</code> → <code>"one cat two cat"</code></td>
+    </tr>
+    <tr>
       <td><code>.applyData()</code></td>
       <td>Reapplies available dynamic data to the given value.<br /><a href="#applydata">More Details</a></td>
       <td><code>item.text = "Hello &#123;user.name&#125;"</code><br /><br /><code>&#123;item.text.applyData()&#125;</code> → <code>"Hello John"</code></td>
@@ -549,6 +567,48 @@ Extraction happens up to but not including end.
 - `{item.value.slice(2)}` → `["camel", "duck", "elephant"]`
 - `{item.value.slice(2, 4)}` → `["camel", "duck"]`
 - `{item.value.slice(-2)}` → `["duck", "elephant"]`
+
+---
+
+### `.replace()`
+**Returns:** string or original value
+
+The `.replace()` method replaces the **first** occurrence of a search string with a replacement string. Both arguments are required. If the value, search, or replacement are not strings, the original value is returned unchanged. Mirrors the behaviour of JavaScript's [`String.prototype.replace()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace) when called with string arguments.
+
+| Argument  | Type   | Default | Description                      |
+| --------- | ------ | ------- | -------------------------------- |
+| `search`  | string | —       | The substring to search for      |
+| `replace` | string | —       | The string to replace it with    |
+
+#### Examples:
+- value = `"hello world world"`<br />
+  - `{item.value.replace("world", "there")}` → `"hello there world"`
+- value = `"foo-bar-baz"`<br />
+  - `{item.value.replace("-", " ")}` → `"foo bar-baz"`
+
+---
+
+### `.replaceAll()`
+**Returns:** string or original value
+
+The `.replaceAll()` method replaces **all** occurrences of a search string with a replacement string. Both arguments are required. If the value, search, or replacement are not strings, the original value is returned unchanged. Mirrors the behaviour of JavaScript's [`String.prototype.replaceAll()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll).
+
+| Argument  | Type   | Default | Description                      |
+| --------- | ------ | ------- | -------------------------------- |
+| `search`  | string | —       | The substring to search for      |
+| `replace` | string | —       | The string to replace it with    |
+
+#### Examples:
+- value = `"hello world world"`<br />
+  - `{item.value.replaceAll("world", "there")}` → `"hello there there"`
+- value = `"foo-bar-baz"`<br />
+  - `{item.value.replaceAll("-", " ")}` → `"foo bar baz"`
+
+#### Example use case: Clean up display values
+```
+{item.slug.replaceAll("-", " ").toUpperCase()}
+```
+Transforms `"my-blog-post"` → `"MY BLOG POST"`.
 
 ---
 
