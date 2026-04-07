@@ -5,6 +5,8 @@ last_update:
   date: 2025-10-28
 ---
 
+import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
+
 # Basic Dynamic Data Modifiers
 
 Dynamic data can be customized by applying modifiers directly to the data path.
@@ -571,6 +573,8 @@ Extraction happens up to but not including end.
 ---
 
 ### `.replace()`
+<VersionBadge version="1.4.9" />
+
 **Returns:** string or original value
 
 The `.replace()` method replaces the **first** occurrence of a search string with a replacement string. Both arguments are required. If the value, search, or replacement are not strings, the original value is returned unchanged. Mirrors the behaviour of JavaScript's [`String.prototype.replace()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace) when called with string arguments.
@@ -589,6 +593,8 @@ The `.replace()` method replaces the **first** occurrence of a search string wit
 ---
 
 ### `.replaceAll()`
+<VersionBadge version="1.4.9" />
+
 **Returns:** string or original value
 
 The `.replaceAll()` method replaces **all** occurrences of a search string with a replacement string. Both arguments are required. If the value, search, or replacement are not strings, the original value is returned unchanged. Mirrors the behaviour of JavaScript's [`String.prototype.replaceAll()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll).
