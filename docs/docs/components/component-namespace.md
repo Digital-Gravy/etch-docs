@@ -87,17 +87,6 @@ The `component` namespace is **only available inside the component's own HTML**.
 
 This follows the same scoping rules as `props`: component internals stay internal.
 
-## Relationship to Other Namespaces
-
-| Namespace | Scope | Purpose |
-|---|---|---|
-| `this` | Templates | Current post/page data |
-| `item` | Loops | Current loop iteration data |
-| `props` | Components | Instance prop values (what was passed in) |
-| `component` | Components | Component metadata and prop defaults |
-| `site` | Global | Site-wide information |
-| `url` | Global | Current URL data |
-| `environment` | Global | Rendering environment info |
 
 :::tip
 `props` gives you what the user **passed in** (or the default if nothing was passed). `component.defaults` always gives you the **original default**, regardless of what the instance received. Together, they let you detect overrides and build smarter conditional logic.
