@@ -5,7 +5,7 @@ sidebar_position: 55
 
 import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
 
-<VersionBadge version="1.4.14" />
+<VersionBadge version="1.4.15" />
 
 # Component Namespace
 
