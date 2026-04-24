@@ -5,6 +5,7 @@
     "build-mode.md"
   ],
   "docs/components": [
+    "component-namespace.md",
     "creating-a-component.md",
     "creating-component-props.md",
     "creating-component-variations.md",
