@@ -22,16 +22,14 @@ Bug fixes, general improvements, and minor features are not listed here. The pur
 | Feature                        | Description                                                                                      |
 |--------------------------------|--------------------------------------------------------------------------------------------------|
 | **Native AI** | Agent-powered workflow |
-| **Expanded Component Functionality** | Groups, Repeaters |
 | **Components API** | A way for 3rd party devs to create/register native Etch elements for custom functionality and for internal use for creating Etch dynamic elements. |
+| **Native Components** | Prioritization of our native [components (native)](../components-native/overview). |
 
 ## High Priority Items (Soon)
 
 | Feature                        | Description                                                                                      |
 |--------------------------------|--------------------------------------------------------------------------------------------------|
 | **PHP Authoring** | PHP authoring inside the HTML editor |
-| **Native Components** | Prioritization of our native [components (native)](../components-native/overview). |
-| **Recipes** | Custom/importable/exportable code snippets for maximum development efficiency. |
 | **Facets/Filters** | Facets and filters for loops. |
 | **Loop Through External API** | External API support for loops. |
 | **Shortcuts** | Customizable shortcut architecture |
