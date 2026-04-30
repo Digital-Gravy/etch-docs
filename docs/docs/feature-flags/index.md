@@ -45,3 +45,4 @@ You can choose from the available flags below. Their default state is listed.
 | `ENABLE_SERVER_TIMING` | Enables server timing headers for performance monitoring | `off` |
 | `RETURN_ACF_DYNAMIC_DATA` | Enables returning data based on the ACF field settings. | `off` |
 | `ENABLE_WAF_BLOCK_REQUEST_WORKAROUND` | Improve compatibility with Hostinger WAF that block the save request. | `off` |
+| `ENABLE_CLEAR_BUFFER_IN_STREAM_REQUEST` | Force-clears PHP output buffers on AI streaming requests. Enable this if the AI assistant's response comes back empty on your host. | `off` |
