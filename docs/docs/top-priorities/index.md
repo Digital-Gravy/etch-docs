@@ -21,7 +21,7 @@ Bug fixes, general improvements, and minor features are not listed here. The pur
 
 | Feature                        | Description                                                                                      |
 |--------------------------------|--------------------------------------------------------------------------------------------------|
-| **Native AI** | Agent-powered workflow |
+| **Etch Static** | Build & deploy static websites (includes work on popular areas like media manager, content hub, etc.) | 
 | **Components API** | A way for 3rd party devs to create/register native Etch elements for custom functionality and for internal use for creating Etch dynamic elements. |
 | **Native Components** | Prioritization of our native [components (native)](../components-native/overview). |
 
@@ -29,6 +29,7 @@ Bug fixes, general improvements, and minor features are not listed here. The pur
 
 | Feature                        | Description                                                                                      |
 |--------------------------------|--------------------------------------------------------------------------------------------------|
+| **AI Capability Expansion** | Agent-powered workflow features |
 | **PHP Authoring** | PHP authoring inside the HTML editor |
 | **Facets/Filters** | Facets and filters for loops. |
 | **Loop Through External API** | External API support for loops. |
