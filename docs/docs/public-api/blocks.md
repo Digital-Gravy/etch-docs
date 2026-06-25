@@ -91,6 +91,8 @@ const id = etch.blocks.create({
 etch.blocks.create({ type: "etch/text", version: 1, context: {}, children: [], tag: "div" });
 ```
 
+Creating a block under a parent that cannot contain it — a text block, a void element like `img`, or a text container handed a block-level child — throws `WRONG_BLOCK_TYPE`. The same rule applies to `move()` (the block is left in place) and to indexed `pasteAsync()`.
+
 ### update()
 
 `update()` patches only the editable surface of a block:
@@ -128,7 +130,7 @@ await etch.saveAsync();
 **Placement** mirrors [`create()`](#create):
 
 - **No `targetId`** (omitted or `null`) — appended to the document root, or inserted there at `index` when given.
-- **`targetId` + `index`** — inserted as a child of the target at `index`.
+- **`targetId` + `index`** — inserted as a child of the target at `index`. Throws `WRONG_BLOCK_TYPE` when the target can't contain the block: an explicit `index` is a deliberate "place it here as a child" request, so an impossible target is an error rather than a silent miss.
 - **`targetId`, no `index`** — inserted into the target when it accepts children, otherwise immediately after it (handy for "paste near this block").
 
 `index` is clamped to the valid range; a negative `index` counts from the end (`-1` appends).
