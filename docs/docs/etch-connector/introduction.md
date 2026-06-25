@@ -25,22 +25,6 @@ There are three pieces:
 
 You connect by clicking the AI sparkles button in the builder, then pasting that command in chat. Once the assistant confirms the connection, it can send changes through the connector and they appear live in your tab.
 
-```
-Your AI assistant (Claude Code, Cowork, …)
-      │  "add a hero section to the homepage"
-      ▼
-  Etch Connector  (your assistant runs this for you)
-      │  ▲
-      ▼  │
-  Your open Etch builder tab  ──►  changes appear live
-```
-
-Everything runs locally on your own machine — nothing is sent to an outside server. See [Security](./security.md) for more.
-
-:::warning New chat? Run the command again
-Any time you start a **new chat context**, tell the agent to run `npx @digital-gravy/etch-connector serve` again. The builder connection can stay active, but each new chat needs that command — see [Usage](./usage.md).
-:::
-
 ## Get started
 
 - [Usage](./usage.md) — turn on the AI Connector, open your builder, and connect from chat. **Start here.**

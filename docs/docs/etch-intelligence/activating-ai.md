@@ -1,11 +1,11 @@
 ---
-title: Activating AI in Etch
+title: Activating Etch Intelligence
 sidebar_position: 10
 ---
 
-# Activating AI in Etch
+# Activating Etch Intelligence
 
-Etch includes an AI assistant that provides chat-based guidance and assistance. The AI feature is currently experimental and requires an OpenAI API key.
+Etch Intelligence is an AI assistant that provides chat-based guidance and assistance. The feature is currently experimental and requires an OpenAI API key.
 
 ## Getting an OpenAI API Key
 
@@ -21,8 +21,8 @@ Keep your API key private. Never share it publicly or commit it to version contr
 
 You'll also need to add a payment method to your OpenAI account. API usage is billed separately from ChatGPT subscriptions — even if you pay for ChatGPT Plus, you still need API credits. You can set usage limits in your OpenAI account settings to control spending.
 
-## Enabling AI in Etch
-![AI Assistant settings in Etch](img/etch-ai-settings.png)
+## Enabling Etch Intelligence
+![Etch Intelligence settings in Etch](img/etch-ai-settings.png)
 
 1. Open the Etch builder
 2. Go to **Settings** (gear icon)
@@ -32,7 +32,7 @@ You'll also need to add a payment method to your OpenAI account. API usage is bi
 6. Click **Save**
 
 
-The AI assistant is now available in the builder. Once activated, the AI panel will appear automatically. You can show or hide it at any time like any other panel in Etch — it doesn't need to be visible to stay enabled.
+Etch Intelligence is now available in the builder. Once activated, the panel will appear automatically. You can show or hide it at any time like any other panel in Etch — it doesn't need to be visible to stay enabled.
 
 ## Future LLM Support
 

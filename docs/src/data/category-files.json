@@ -1,9 +1,4 @@
 {
-  "docs/ai": [
-    "activating-ai.md",
-    "ask-mode.md",
-    "build-mode.md"
-  ],
   "docs/components": [
     "component-namespace.md",
     "creating-a-component.md",
@@ -100,9 +95,15 @@
   "docs/etch-connector": [
     "ai-agent-guide.md",
     "cli-reference.md",
-    "index.md",
+    "introduction.md",
     "security.md",
+    "training-and-guidance.md",
     "usage.md"
+  ],
+  "docs/etch-intelligence": [
+    "activating-ai.md",
+    "ask-mode.md",
+    "build-mode.md"
   ],
   "docs/facets": [
     "apply.md",
