@@ -5,7 +5,7 @@ sidebar_position: 10
 
 # Activating Etch Intelligence
 
-Etch Intelligence is an AI assistant that provides chat-based guidance and assistance. The feature is currently experimental and requires an OpenAI API key.
+Etch Intelligence requires an OpenAI API key to use. This page walks you through getting a key and turning the feature on. For an overview of what Etch Intelligence is, see the [Introduction](./introduction.md).
 
 ## Getting an OpenAI API Key
 

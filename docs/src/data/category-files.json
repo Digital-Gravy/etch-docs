@@ -103,7 +103,8 @@
   "docs/etch-intelligence": [
     "activating-ai.md",
     "ask-mode.md",
-    "build-mode.md"
+    "build-mode.md",
+    "introduction.md"
   ],
   "docs/facets": [
     "apply.md",
