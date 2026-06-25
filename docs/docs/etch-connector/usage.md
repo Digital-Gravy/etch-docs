@@ -33,17 +33,13 @@ Open the page or template you want to work on **in the Etch builder**, and leave
 
 Click the sparkles button again any time to disconnect.
 
-:::warning New chat? Run the command again
-Any time you start a **new chat context**, you must tell the agent to run `npx @digital-gravy/etch-connector serve` again. You can keep using the same builder connection (the sparkles button can stay lit), but the new chat needs that command to know how to proceed.
-:::
+## Multi-Agent & Maintaining Connection
 
-:::note Keep the builder tab open
-The connection lives in your open builder tab. Don't close or navigate away from the Etch builder tab — that ends the connection.
-:::
+The connection stays alive as long as the chat where you ran `npx @digital-gravy/etch-connector serve` is still open. You can start as many new chats as you want and keep working through the same connection — there's no need to re-run the command each time. You only need to run it again if you close the original chat, which ends the connection.
 
-:::warning Multiple sites vs. multiple tabs
-You can work on **multiple sites at the same time** — connect a builder tab on each site and the agent can switch between them. Do **not** connect multiple builder tabs on the **same site**. Stick to one connected tab per site.
-:::
+The connection also lives in your open builder tab. Don't close or navigate away from the Etch builder tab — that ends the connection.
+
+You can work on multiple sites at the same time — connect a builder tab on each site and the agent can switch between them. Do not connect multiple builder tabs on the same site. Stick to one connected tab per site.
 
 ## Troubleshooting
 
@@ -51,6 +47,6 @@ You can work on **multiple sites at the same time** — connect a builder tab on
 
 The button only appears when the **AI Connector** setting is on. In the builder, open **Settings → AI** and turn on **AI Connector**, then look for the AI sparkles button in the toolbar.
 
-### It worked before, but a new chat can't reach Etch
+### It worked before, but a chat can't reach Etch
 
-Each chat context is separate — the agent doesn't carry over what the previous chat knew. Paste `npx @digital-gravy/etch-connector serve` in the new chat again. If the sparkles button is still lit in the builder, you don't need to click it again.
+The connection is tied to the chat where you first ran the command. If you **closed that original chat**, the connection ended — run `npx @digital-gravy/etch-connector serve` again in a chat to restart it. As long as the original chat is still open, any new chat can use the connection without re-running the command. If the sparkles button is still lit in the builder, you don't need to click it again.

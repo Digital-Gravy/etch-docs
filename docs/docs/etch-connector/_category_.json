@@ -1,4 +1,7 @@
 {
   "label": "Etch Connector",
-  "position": 330
+  "position": 330,
+  "customProps": {
+    "badge": "New"
+  }
 }

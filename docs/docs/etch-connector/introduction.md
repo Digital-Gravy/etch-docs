@@ -1,8 +1,6 @@
 ---
 title: Introduction
 sidebar_position: 0
-sidebar_custom_props:
-  badge: "New"
 last_update:
   date: 2026-06-22
 ---
