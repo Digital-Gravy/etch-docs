@@ -181,6 +181,34 @@ etch.blocks.setAttribute(svgBlockId, "src", "/icons/logo.svg");
 etch.blocks.setAttribute(svgBlockId, "stripColors", "true");
 ```
 
+## Block scripts
+
+Any block can carry an optional `script` field. The code is enqueued in the document `<head>` as a deferred `type="module"` — the same way all JavaScript works in Etch. The script has no runtime link to the block's element, so you must always target it by selector.
+
+```ts
+interface EtchBlockScript {
+  code: string;
+}
+```
+
+```ts
+const id = etch.blocks.create({
+  type: "etch/element",
+  version: 1,
+  context: { name: "My Block" },
+  options: {},
+  children: [...],
+  tag: "div",
+  attributes: { class: "my-block" },
+  script: {
+    code: `document.querySelectorAll(".my-block").forEach(function (el) {
+  // initialise each instance
+});`,
+  },
+});
+```
+
+
 ## Component props
 
 A component **instance** (`etch/component`) exposes its bound props as block attributes. Set them with `setAttribute` / `update` and read them with `getAttribute` — the same methods you use for HTML attributes.

@@ -42,7 +42,7 @@ interface EtchBlockContext {
 }
 
 interface EtchBlockScript {
-  code: string;
+  code: string; // see Block scripts in blocks.md for usage
 }
 
 interface EtchBlockOptions {
