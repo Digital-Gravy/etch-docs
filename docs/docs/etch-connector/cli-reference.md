@@ -7,10 +7,10 @@ last_update:
 
 # CLI Reference
 
-The full set of commands. **You don't run these yourself** — your AI assistant runs them for you when you connect from chat (see [Usage](./usage.md)). This page is here for reference, so you can see what the assistant is doing.
+The full set of commands. **You don't run these yourself** — your AI agent runs them for you when you connect from chat (see [Usage](./usage.md)). This page is here for reference, so you can see what the agent is doing.
 
 :::note Command names
-The assistant runs the connector via `npx` (e.g. `npx @digital-gravy/etch-connector serve`). For readability, the examples below use the short `etch-connector` form.
+The agent runs the connector via `npx` (e.g. `npx @digital-gravy/etch-connector serve`). For readability, the examples below use the short `etch-connector` form.
 :::
 
 ```
@@ -51,7 +51,7 @@ etch-connector tabs [--json]
 
 ### `eval`
 
-Runs a command in a connected tab. This is what your assistant uses to make changes.
+Runs a command in a connected tab. This is what your agent uses to make changes.
 
 ```bash
 etch-connector eval [code] [-t|--tab name] [-f|--file path] [--timeout ms]
@@ -69,11 +69,11 @@ When `eval` runs, results come back in a predictable way so a tool can read them
 
 - The command's **result** is printed as the main output.
 - Any **log messages** the script produced are printed separately.
-- A **success/failure code** tells the assistant whether it worked: `0` means success, `2` means the script hit an error, and `1` means something operational went wrong (the tab wasn't found, the request timed out, or the connector wasn't reachable).
+- A **success/failure code** tells the agent whether it worked: `0` means success, `2` means the script hit an error, and `1` means something operational went wrong (the tab wasn't found, the request timed out, or the connector wasn't reachable).
 
 ## Screenshots & inspection (advanced)
 
-The connector has a second mode, called **CDP**, that connects to Chrome's developer tools instead of going through your Etch tab. It can do a few things the normal mode can't — take screenshots, read rendered HTML, and check the final computed styles of an element. It's mainly useful for letting an assistant *verify* its own work visually.
+The connector has a second mode, called **CDP**, that connects to Chrome's developer tools instead of going through your Etch tab. It can do a few things the normal mode can’t — take screenshots, read rendered HTML, and check the final computed styles of an element. It’s mainly useful for letting an agent *verify* its own work visually.
 
 To use it, start Chrome with remote debugging enabled (`--remote-debugging-port=9222`) and add `--cdp` to the commands below.
 

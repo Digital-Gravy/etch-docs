@@ -7,7 +7,7 @@ last_update:
 
 # Usage
 
-You connect Etch to your AI assistant from chat. There's nothing to install — you paste one command into your assistant and click a button in the builder.
+You connect Etch to your AI agent from chat. There's nothing to install — you paste one command into your AI agent and click a button in the builder.
 
 ## 1. Turn on the AI Connector (once)
 
@@ -21,15 +21,15 @@ Open the page or template you want to work on **in the Etch builder**, and leave
 
 1. In the Etch builder toolbar, click the **AI sparkles** button (its tooltip reads _"Connect external AI agent"_). The button is waiting for the connector to start — it won't light up yet.
 
-2. In your AI assistant's chat (Claude Code, Codex, Opencode, or similar), paste and send:
+2. In your AI agent’s chat (Claude Code, Codex, Opencode, or similar), paste and send:
 
    ```bash
    npx @digital-gravy/etch-connector serve
    ```
 
-   Your assistant runs this for you — you don't need a separate terminal or a global install.
+   Your agent runs this for you — you don't need a separate terminal or a global install.
 
-3. Once the assistant confirms the connection, the sparkles button in the builder lights up. You're linked — describe what you want in chat ("add a hero section to the homepage", "create a card component", …) and the assistant builds it in your open tab.
+3. Once the agent confirms the connection, the sparkles button in the builder lights up. You're linked — describe what you want in chat ("add a hero section to the homepage", "create a card component", …) and the agent builds it in your open tab.
 
 Click the sparkles button again any time to disconnect.
 
