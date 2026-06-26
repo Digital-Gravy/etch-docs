@@ -21,7 +21,7 @@ Open the page or template you want to work on **in the Etch builder**, and leave
 
 1. In the Etch builder toolbar, click the **AI sparkles** button (its tooltip reads _"Connect external AI agent"_). The button is waiting for the connector to start — it won't light up yet.
 
-2. In your AI assistant's chat (Claude Code, Cowork, or similar), paste and send:
+2. In your AI assistant's chat (Claude Code, Codex, Opencode, or similar), paste and send:
 
    ```bash
    npx @digital-gravy/etch-connector serve

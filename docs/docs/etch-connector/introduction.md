@@ -7,7 +7,7 @@ last_update:
 
 # Etch Connector
 
-**Etch Connector** lets an AI coding assistant — like Claude Code or Cowork — work directly in a live Etch builder tab. Once it's connected, you can ask the assistant to build pages, add styles, create components, and more, and it makes those changes in the tab you have open.
+**Etch Connector** lets an AI coding assistant — like Claude Code or Codex — work directly in a live Etch builder tab. Once it's connected, you can ask the assistant to build pages, add styles, create components, and more, and it makes those changes in the tab you have open.
 
 Under the hood it does this by running small scripts against [Etch's Public API](../public-api/index.md) (the same `etch.*` commands you can use yourself from the browser console). You don't have to write those scripts — the assistant does. The connector is just the link that lets it reach your open tab.
 
