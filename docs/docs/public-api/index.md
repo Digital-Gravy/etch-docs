@@ -30,10 +30,10 @@ getEtch(options?: ConnectOptions): Etch
 isEtchAvailable(): boolean
 ```
 
-| Function | Returns | Notes |
-| --- | --- | --- |
-| `isEtchAvailable()` | `boolean` | `true` when `window.etch` is present. Use it to guard code that should no-op outside the builder. |
-| `getEtch(options?)` | `Etch` | Returns the typed API. **Throws** `EtchApiError` with code `NOT_AVAILABLE` when the builder isn't loaded. |
+| Function            | Returns   | Notes                                                                                                     |
+| ------------------- | --------- | --------------------------------------------------------------------------------------------------------- |
+| `isEtchAvailable()` | `boolean` | `true` when `window.etch` is present. Use it to guard code that should no-op outside the builder.         |
+| `getEtch(options?)` | `Etch`    | Returns the typed API. **Throws** `EtchApiError` with code `NOT_AVAILABLE` when the builder isn't loaded. |
 
 ```ts
 import { getEtch, isEtchAvailable } from "@digital-gravy/etch-public-api";
@@ -68,7 +68,7 @@ const etch = await whenEtchReady();
 ```ts
 interface ConnectOptions {
   apiVersion?: string; // e.g. "^1.0" — reserved for the future 1.x runtime
-  id?: string;         // your plugin identifier, for telemetry
+  id?: string; // your plugin identifier, for telemetry
 }
 ```
 
@@ -80,7 +80,7 @@ const etch = getEtch({ apiVersion: "^1.0", id: "my-plugin" });
 
 ## The `Etch` object
 
-`getEtch()` returns the root `Etch` interface — nine namespaces plus a few top-level members:
+`getEtch()` returns the root `Etch` interface — ten namespaces plus a few top-level members:
 
 ```ts
 interface Etch {
@@ -93,25 +93,27 @@ interface Etch {
   fields: EtchFieldsApi;
   ui: EtchUiApi;
   history: EtchHistoryApi;
+  skills: EtchSkillsApi;
 
   saveAsync(): Promise<void>;
   connect?(options?: ConnectOptions): Etch; // reserved for the future stable runtime
-  readonly apiVersion: string;              // scripting contract version, e.g. "0.x"
-  readonly version: string;                 // Etch product version
+  readonly apiVersion: string; // scripting contract version, e.g. "0.x"
+  readonly version: string; // Etch product version
 }
 ```
 
-| Namespace | Page | What it covers |
-| --- | --- | --- |
-| `etch.blocks` | [Blocks](./blocks.md) | Select, read, create, mutate, and delete blocks; component edit mode |
-| `etch.styles` | [Styles](./styles.md) | CSS rules and `:root` custom properties (variables) |
-| `etch.stylesheets` | [Stylesheets](./stylesheets.md) | Global stylesheets and `@custom-media` definitions |
-| `etch.components` | [Components](./components.md) | Reusable component definitions and their properties |
-| `etch.loops` | [Loops](./loops.md) | Loop definitions (WP queries, JSON) and block binding |
-| `etch.navigation` | [Navigation](./navigation.md) | Move around the builder UI; switch posts/templates |
-| `etch.fields` | [Custom Fields](./fields.md) | Custom field groups and per-post values |
-| `etch.ui` / `etch.history` | [UI & History](./ui-and-history.md) | Color scheme, chrome visibility, undo/redo |
-| — | [Types Reference](./types-reference.md) | Block JSON union, shared types, errors |
+| Namespace                  | Page                                    | What it covers                                                       |
+| -------------------------- | --------------------------------------- | -------------------------------------------------------------------- |
+| `etch.blocks`              | [Blocks](./blocks.md)                   | Select, read, create, mutate, and delete blocks; component edit mode |
+| `etch.styles`              | [Styles](./styles.md)                   | CSS rules and `:root` custom properties (variables)                  |
+| `etch.stylesheets`         | [Stylesheets](./stylesheets.md)         | Global stylesheets and `@custom-media` definitions                   |
+| `etch.components`          | [Components](./components.md)           | Reusable component definitions and their properties                  |
+| `etch.loops`               | [Loops](./loops.md)                     | Loop definitions (WP queries, JSON) and block binding                |
+| `etch.navigation`          | [Navigation](./navigation.md)           | Move around the builder UI; switch posts/templates                   |
+| `etch.fields`              | [Custom Fields](./fields.md)            | Custom field groups and per-post values                              |
+| `etch.ui` / `etch.history` | [UI & History](./ui-and-history.md)     | Color scheme, chrome visibility, undo/redo                           |
+| `etch.skills`              | [Skills](./skills.md)                   | Bundled, read-only authoring guides (e.g. ACSS conventions)          |
+| —                          | [Types Reference](./types-reference.md) | Block JSON union, shared types, errors                               |
 
 ## Saving and the persistence model
 
@@ -184,14 +186,18 @@ export { EtchApiError, isEtchApiError } from "@digital-gravy/etch-public-api";
 export { ETCH_API_VERSION } from "@digital-gravy/etch-public-api"; // "0.x"
 
 // Types (all contract interfaces, unions, and the Etch root)
-export type { Etch, ConnectOptions, EtchApiErrorCode /* …and the rest */ } from "@digital-gravy/etch-public-api";
+export type {
+  Etch,
+  ConnectOptions,
+  EtchApiErrorCode /* …and the rest */,
+} from "@digital-gravy/etch-public-api";
 ```
 
-| Export | Kind | Description |
-| --- | --- | --- |
-| `getEtch` | function | Acquire the API from `window.etch` |
-| `isEtchAvailable` | function | Check whether the API is present |
-| `isEtchApiError` | function | Type guard for `EtchApiError` |
-| `EtchApiError` | class | Typed error with a `code` property |
-| `ETCH_API_VERSION` | const | `"0.x"` — the contract version this package targets |
-| `Etch` + all contract types | type | The root interface plus every namespace/type |
+| Export                      | Kind     | Description                                         |
+| --------------------------- | -------- | --------------------------------------------------- |
+| `getEtch`                   | function | Acquire the API from `window.etch`                  |
+| `isEtchAvailable`           | function | Check whether the API is present                    |
+| `isEtchApiError`            | function | Type guard for `EtchApiError`                       |
+| `EtchApiError`              | class    | Typed error with a `code` property                  |
+| `ETCH_API_VERSION`          | const    | `"0.x"` — the contract version this package targets |
+| `Etch` + all contract types | type     | The root interface plus every namespace/type        |
