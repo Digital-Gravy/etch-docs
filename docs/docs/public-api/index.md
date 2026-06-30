@@ -80,7 +80,7 @@ const etch = getEtch({ apiVersion: "^1.0", id: "my-plugin" });
 
 ## The `Etch` object
 
-`getEtch()` returns the root `Etch` interface — ten namespaces plus a few top-level members:
+`getEtch()` returns the root `Etch` interface — eleven namespaces plus a few top-level members:
 
 ```ts
 interface Etch {
@@ -94,6 +94,7 @@ interface Etch {
   ui: EtchUiApi;
   history: EtchHistoryApi;
   skills: EtchSkillsApi;
+  ai: EtchAiApi;
 
   saveAsync(): Promise<void>;
   connect?(options?: ConnectOptions): Etch; // reserved for the future stable runtime
@@ -113,6 +114,7 @@ interface Etch {
 | `etch.fields`              | [Custom Fields](./fields.md)            | Custom field groups and per-post values                              |
 | `etch.ui` / `etch.history` | [UI & History](./ui-and-history.md)     | Color scheme, chrome visibility, undo/redo                           |
 | `etch.skills`              | [Skills](./skills.md)                   | Bundled, read-only authoring guides (e.g. ACSS conventions)          |
+| `etch.ai`                  | [AI Presence](./ai.md)                  | Advertise an external agent's presence and phase to the builder      |
 | —                          | [Types Reference](./types-reference.md) | Block JSON union, shared types, errors                               |
 
 ## Saving and the persistence model

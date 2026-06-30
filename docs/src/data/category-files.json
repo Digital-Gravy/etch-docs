@@ -191,12 +191,14 @@
     "v1-migration.md"
   ],
   "docs/public-api": [
+    "ai.md",
     "blocks.md",
     "components.md",
     "fields.md",
     "index.md",
     "loops.md",
     "navigation.md",
+    "skills.md",
     "styles.md",
     "stylesheets.md",
     "types-reference.md",
