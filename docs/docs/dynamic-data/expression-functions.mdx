@@ -1,0 +1,238 @@
+---
+title: Expression Functions
+sidebar_position: 150
+last_update:
+  date: 2026-07-08
+---
+
+import VersionBadge from "@site/src/components/VersionBadge/VersionBadge";
+
+# Expression Functions
+
+<VersionBadge version="1.6.3" />
+
+Expression functions create values directly. Unlike modifiers, they don't operate on an existing value or data path.
+
+A modifier is called on an existing value:
+
+```text
+{item.value.toUpperCase()}
+```
+
+An expression function returns a value directly:
+
+```text
+{range(1, 6)}
+```
+
+Since expression functions return normal values, you can chain modifiers onto them, pass dynamic arguments, and use them anywhere dynamic expressions are supported, including inline text, loops, and conditions.
+
+## Available Functions
+
+<table
+  className="modifiers-table"
+  style={{ width: "100%", tableLayout: "fixed" }}
+>
+  <colgroup>
+    <col style={{ width: "22%" }} />
+    <col style={{ width: "43%" }} />
+    <col style={{ width: "35%" }} />
+  </colgroup>
+  <tr>
+    <th>Function</th>
+    <th>Description</th>
+    <th>Example</th>
+  </tr>
+  <tbody>
+    <tr>
+      <td>
+        <code>range()</code>
+      </td>
+      <td>
+        Returns an array of consecutive integers. The end value is exclusive.
+        <a href="#range">More Details</a>
+      </td>
+      <td>
+        <code>&#123;range(1, 6)&#125;</code> → <code>1, 2, 3, 4, 5</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>rand()</code>
+      </td>
+      <td>
+        Returns a random number as either a float or an integer, depending on
+        the arguments. <br />
+        <a href="#rand">More Details</a>
+      </td>
+      <td>
+        <code>&#123;rand(1, 6)&#125;</code> → <code>4</code> <em>(random)</em>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>uuid()</code>
+      </td>
+      <td>
+        Returns a random version 4 UUID string. <br />
+        <a href="#uuid">More Details</a>
+      </td>
+      <td>
+        <code>&#123;uuid()&#125;</code> →{" "}
+        <code>f47ac10b-58cc-4372-a567-0e02b2c3d479</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>lorem()</code>
+      </td>
+      <td>
+        Returns placeholder "Lorem ipsum" text. <br />
+        <a href="#lorem">More Details</a>
+      </td>
+      <td>
+        <code>&#123;lorem(3)&#125;</code> → <code>Lorem ipsum dolor.</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<style>{`
+  .modifiers-table td,
+  .modifiers-table th {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .modifiers-table code {
+    white-space: normal;
+    word-break: break-word;
+  }
+`}</style>
+
+## Detailed Function Reference
+
+### `range()`
+
+**Returns:** array of integers
+
+Returns an array of consecutive integers. The end value is **exclusive**, so it is not included in the result.
+
+| Signature           | Result                                           |
+| ------------------- | ------------------------------------------------ |
+| `range(end)`        | Counts from `0` up to (not including) `end`.     |
+| `range(start, end)` | Counts from `start` up to (not including) `end`. |
+
+Arguments are truncated to integers, and numeric strings are accepted. If no valid range can be created, such as when no arguments are provided, an argument is not numeric, or `end` is less than `start`, the result is an empty array.
+
+#### Examples
+
+- `{range(3)}` → `0, 1, 2`
+- `{range(1, 6)}` → `1, 2, 3, 4, 5`
+- `{range(1, 4).join('-')}` → `1-2-3`
+- `{range(5, 1)}` → _(empty)_
+
+#### Example use case: Loop a fixed number of times
+
+Since `range()` returns an array, it's useful when you need to repeat markup a fixed number of times.
+
+```html
+<select>
+  {#loop range(1, 13) as month}
+  <option value="{month}">{month}</option>
+  {/loop}
+</select>
+```
+
+This produces options `1` through `12`.
+
+---
+
+### `rand()`
+
+**Returns:** number
+
+Returns a random number. The function is evaluated each time the expression runs, so repeated evaluations produce different values.
+
+| Signature        | Result                                           |
+| ---------------- | ------------------------------------------------ |
+| `rand()`         | A random float, `>= 0` and `< 1`.                |
+| `rand(max)`      | A random integer from `0` to `max`, inclusive.   |
+| `rand(min, max)` | A random integer from `min` to `max`, inclusive. |
+
+Numeric strings are accepted. For the integer forms, both bounds are inclusive. If `min` is greater than `max`, the values are swapped automatically. Non-numeric arguments return `0`.
+
+#### Examples
+
+- `{rand()}` → `0.4821...`
+- `{rand(6)}` → `4`
+- `{rand(1, 100)}` → `73`
+
+#### Example use case: A dice roll
+
+```html
+<p>You rolled a {rand(1, 6)}.</p>
+```
+
+---
+
+### `uuid()`
+
+**Returns:** string
+
+Returns a random [version 4 UUID](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID), a 36-character unique identifier. It does not take any arguments.
+
+Each call generates a new UUID.
+
+#### Examples
+
+- `{uuid()}` → `"f47ac10b-58cc-4372-a567-0e02b2c3d479"`
+
+#### Example use case: Generate a unique `id` attribute
+
+Useful when repeated markup needs a unique identifier.
+
+```html
+{#loop this.items as item}
+<section id="item-{uuid()}">
+  <p>{item.title}</p>
+</section>
+{/loop}
+```
+
+---
+
+### `lorem()`
+
+**Returns:** string
+
+Returns placeholder "Lorem ipsum" text for layouts and prototypes.
+
+| Signature      | Result                                     |
+| -------------- | ------------------------------------------ |
+| `lorem()`      | The first 8 words of the standard passage. |
+| `lorem(count)` | The first `count` words of the passage.    |
+
+The returned text always ends with a period. If `count` exceeds the length of the source passage, the text wraps and continues from the beginning. `count` is truncated to an integer, numeric strings are accepted, values less than or equal to `0` return an empty string, and non-numeric values fall back to the default of 8 words.
+
+#### Examples
+
+- `{lorem()}` → `"Lorem ipsum dolor sit amet, consectetur adipiscing elit."`
+- `{lorem(3)}` → `"Lorem ipsum dolor."`
+
+#### Example use case: Fill a card while prototyping
+
+```html
+<article class="card">
+  <h3>{lorem(4)}</h3>
+  <p>{lorem(30)}</p>
+</article>
+```
+
+---
+
+## Additional Notes
+
+- **Chaining modifiers:** Expression functions return normal values, so you can chain any compatible [modifier](/dynamic-data/dynamic-data-modifiers/basic-modifiers) onto the result. For example: `{range(1, 4).join(' · ')}` or `{lorem(5).toUpperCase()}`.
+- **Dynamic arguments:** Arguments are evaluated before the function is called, so you can use nested expressions or dynamic data. For example: `{range(1, this.count)}` or `{lorem(props.wordCount)}`.
+- **Unknown function names:** If a function name is not registered, Etch treats the expression as a data path and attempts to resolve it from the available dynamic data sources instead.

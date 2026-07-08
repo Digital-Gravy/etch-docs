@@ -62,7 +62,8 @@
   ],
   "docs/dynamic-data": [
     "dynamic-data-intro.md",
-    "dynamic-data-keys.mdx"
+    "dynamic-data-keys.mdx",
+    "expression-functions.mdx"
   ],
   "docs/dynamic-data/dynamic-data-integration": [
     "option-dynamic-data-integration.md",
