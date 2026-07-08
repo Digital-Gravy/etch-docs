@@ -7,7 +7,7 @@ last_update:
 
 # AI Agent Guide
 
-This page is written for the AI assistant driving Etch — you can point it at this page, or it can read it on its own. It covers what's specific to working _through the connector_. It does **not** document the API itself — for the actual commands a script calls (`etch.blocks`, `etch.styles`, `etch.components`, and so on), see the [Public API](../public-api/index.md) docs.
+This page is written for the AI agent driving Etch — you can point it at this page, or it can read it on its own. It covers what's specific to working _through the connector_. It does **not** document the API itself — for the actual commands a script calls (`etch.blocks`, `etch.styles`, `etch.components`, and so on), see the [Public API](../public-api/index.md) docs.
 
 :::tip Read the manual first
 The connector's own agent instructions live in `etch-connector --help`. It documents the backends, commands, flags, the stdout/stderr/exit-code contract, and how to pull the current Etch docs. Read the entire output before driving a tab.

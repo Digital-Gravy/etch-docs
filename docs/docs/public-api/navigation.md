@@ -38,7 +38,8 @@ type NavigationPlace =
   | "templates"
   | "content-hub"
   | "style-manager"
-  | "loop-manager";
+  | "loop-manager"
+  | "asset-manager";
 
 interface PostSummary {
   id: number;

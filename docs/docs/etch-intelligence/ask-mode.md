@@ -1,11 +1,11 @@
 ---
 title: Ask Mode
-sidebar_position: 20
+sidebar_position: 30
 ---
 
 # Ask Mode
 
-Ask Mode is the default AI mode in Etch. It's a conversational assistant you can use to ask questions about Etch, web development, and how to accomplish things.
+Ask Mode is the question-and-answer side of Etch Intelligence. It's a conversational assistant you can use to ask questions about Etch, web development, and how to accomplish things. To use it, switch the mode toggle at the top of the chat input from **Build** to **Ask**.
 
 ## What You Can Ask
 
@@ -18,8 +18,8 @@ Ask Mode provides answers and working code that you can copy and paste directly 
 
 ## Using Ask Mode
 
-1. Open the AI panel in the builder
+1. Open the Etch Intelligence panel in the builder
 2. Type your question in the chat input
-3. The AI will respond with an explanation, code snippets, or step-by-step guidance
+3. Etch Intelligence will respond with an explanation, code snippets, or step-by-step guidance
 
 You can ask follow-up questions to refine the answer or dig deeper into a topic.
