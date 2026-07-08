@@ -139,7 +139,7 @@ Since `range()` returns an array, it's useful when you need to repeat markup a f
 ```html
 <select>
   {#loop range(1, 13) as month}
-  <option value="{month}">{month}</option>
+    <option value="{month}">{month}</option>
   {/loop}
 </select>
 ```
@@ -194,9 +194,9 @@ Useful when repeated markup needs a unique identifier.
 
 ```html
 {#loop this.items as item}
-<section id="item-{uuid()}">
-  <p>{item.title}</p>
-</section>
+  <section id="item-{uuid()}">
+    <p>{item.title}</p>
+  </section>
 {/loop}
 ```
 
