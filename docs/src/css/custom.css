@@ -336,3 +336,23 @@ td p:last-child {
 code {
   text-wrap: nowrap;
 }
+
+/* Product tag next to the navbar brand (Etch Studio docs) */
+.navbar__product-tag {
+  align-self: center;
+  margin-left: -0.35rem;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--ifm-color-emphasis-500);
+  border-radius: 4px;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+[data-theme='dark'] .navbar__product-tag {
+  border-color: var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-800);
+}

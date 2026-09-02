@@ -1,0 +1,718 @@
+---
+title: Basic Modifiers
+sidebar_position: 60
+last_update:
+  date: 2025-10-28
+---
+
+import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
+
+# Basic Dynamic Data Modifiers
+
+Dynamic data can be customized by applying modifiers directly to the data path.
+For example: `item.modifier()`
+
+This allows you to format or transform values before they are displayed.
+
+## Available Modifiers
+
+<table className="modifiers-table" style={{ width: "100%", tableLayout: "fixed" }}>
+  <colgroup>
+    <col style={{ width: "20%" }} />
+    <col style={{ width: "30%" }} />
+    <col style={{ width: "50%" }} />
+  </colgroup>
+  <tr>
+    <th>Modifier</th>
+    <th>Description</th>
+    <th>Example</th>
+  </tr>
+  <tbody>
+    <tr>
+      <td><code>.dateFormat()</code></td>
+      <td>Formats a date into a user-friendly string. Refer to the <a href="https://www.php.net/manual/en/datetime.format.php" target="_blank" rel="noopener noreferrer">PHP DateTime::format documentation</a> for available formatting options. <br /><a href="#dateformat">More Details</a></td>
+      <td><code>&#123;this.date.dateFormat("F j, Y")&#125;</code> → <code>July 25, 2025</code></td>
+    </tr>
+    <tr>
+      <td><code>.numberFormat()</code></td>
+      <td>
+        Formats a number with grouped thousands and optional decimals.
+        <details><summary>Arguments</summary> <code>decimals</code>: default <code>0</code><br /><code>decimalPoint</code>: default <code>"."</code><br /><code>thousandsSeparator</code>: default <code>","</code></details>
+        <a href="#numberformat">More Details</a>
+      </td>
+      <td><code>value = 123456.78</code><br /><br /><code>&#123;item.value.numberFormat(2, '.', ',')&#125;</code> → <code>123,456.78</code></td>
+    </tr>
+    <tr>
+      <td><code>.toUpperCase()</code></td>
+      <td>Converts all characters to uppercase (strings only).</td>
+      <td><code>value = "John"</code><br /><br /><code>&#123;item.value.toUpperCase()&#125;</code> → <code>JOHN</code></td>
+    </tr>
+    <tr>
+      <td><code>.toLowerCase()</code></td>
+      <td>Converts all characters to lowercase (strings only).</td>
+      <td><code>value = "John"</code><br /><br /><code>&#123;item.value.toLowerCase()&#125;</code> → <code>john</code></td>
+    </tr>
+    <tr>
+      <td><code>.toString()</code></td>
+      <td>Converts to a string. Arrays/objects become JSON when encodable. <br /><a href="#tostring">More Details</a></td>
+      <td><code>value = true</code><br /><br /><code>&#123;item.value.toString()&#125;</code> → <code>"true"</code></td>
+    </tr>
+    <tr>
+      <td><code>.toInt()</code></td>
+      <td>Converts numeric values (incl. numeric strings) to an integer. Leaves others unchanged. <br /><a href="#toint">More Details</a></td>
+      <td><code>value = "123.9"</code><br /><br /><code>&#123;item.value.toInt()&#125;</code> → <code>123</code></td>
+    </tr>
+    <tr>
+      <td><code>.toSlug()</code></td>
+      <td>Generates a URL-friendly slug from a string. <br /><a href="#toslug">More Details</a></td>
+      <td><code>value = "Über Theme"</code><br /><br /><code>&#123;item.value.toSlug()&#125;</code> → <code>"uber-theme"</code></td>
+    </tr>
+    <tr>
+      <td><code>.toBool()</code></td>
+      <td>Converts common truthy/falsey inputs to a boolean (<code>true</code>/<code>false</code>). <br /><a href="#tobool">More Details</a></td>
+      <td><code>value = "yes"</code><br /><br /><code>&#123;item.value.toBool()&#125;</code> → <code>true</code></td>
+    </tr>
+    <tr>
+      <td><code>.trim()</code></td>
+      <td>Removes whitespace (including line breaks) at the beginning or end of a string.</td>
+      <td><code>value = " hello "</code><br /><br /><code>&#123;item.value.trim()&#125;</code> → <code>"hello"</code></td>
+    </tr>
+    <tr>
+      <td><code>.ltrim()</code></td>
+      <td>Removes whitespace from the start of a string.</td>
+      <td><code>value = "  hello"</code><br /><br /><code>&#123;item.value.ltrim()&#125;</code> → <code>"hello"</code></td>
+    </tr>
+    <tr>
+      <td><code>.rtrim()</code></td>
+      <td>Removes whitespace from the end of a string.</td>
+      <td><code>value = "hello  "</code><br /><br /><code>&#123;item.value.rtrim()&#125;</code> → <code>"hello"</code></td>
+    </tr>
+    <tr>
+      <td><code>.stripTags()</code></td>
+      <td>
+          Removes HTML tags from a string.
+      </td>
+      <td><code>value = "&lt;a href="#"&gt;Link&lt;/a&gt;"</code><br /><br /><code>&#123;item.value.stripTags()&#125;</code> → <code>"Link"</code></td>
+    </tr>
+    <tr>
+      <td><code>.urlEncode()</code></td>
+      <td>Encodes a string for usage inside a URL.</td>
+      <td><code>value = "Hello World!"</code><br /><br /><code>&#123;item.value.urlEncode()&#125;</code> → <code>"Hello%20World!"</code></td>
+    </tr>
+    <tr>
+      <td><code>.urlDecode()</code></td>
+      <td>Decodes a URL-encoded string.</td>
+      <td><code>value = "Hello%20World!"</code><br /><br /><code>&#123;item.value.urlDecode()&#125;</code> → <code>"Hello&nbsp;World!"</code></td>
+    </tr>
+    <tr>
+      <td><code>.htmlEncode()</code></td>
+      <td>
+        Converts HTML-significant characters (<code>&amp;</code> <code>&lt;</code> <code>&gt;</code> <code>"</code> <code>'</code>) into HTML entities so the value displays as text instead of markup. <br /><a href="#htmlencode">More Details</a>
+      </td>
+      <td><code>value = "&lt;b&gt;Bold&lt;/b&gt;"</code><br /><br /><code>&#123;item.value.htmlEncode()&#125;</code> → <code>"&amp;lt;b&amp;gt;Bold&amp;lt;/b&amp;gt;"</code></td>
+    </tr>
+    <tr>
+      <td><code>.htmlDecode()</code></td>
+      <td>
+        Converts HTML entities (named, decimal, and hexadecimal) back into their characters. <br /><a href="#htmldecode">More Details</a>
+      </td>
+      <td><code>value = "&amp;lt;b&amp;gt;Bold&amp;lt;/b&amp;gt;"</code><br /><br /><code>&#123;item.value.htmlDecode()&#125;</code> → <code>"&lt;b&gt;Bold&lt;/b&gt;"</code></td>
+    </tr>
+    <tr>
+      <td><code>.truncateChars()</code></td>
+      <td>
+        Truncates and returns the string after <code>count</code> characters.
+        <details><summary>Arguments</summary><code>count</code>: maximum number of characters to keep<br/><code>ellipsis</code>: string to append if truncation occurs. default: <code>"..."</code></details>
+      </td>
+      <td>
+        <code>title = "The quick brown fox jumps over the lazy dog"</code><br /><br /><code>&#123;title.truncateChars(15)&#125;</code> → <br/> <code>The quick brown...</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.truncateWords()</code></td>
+      <td>
+        Truncates and returns the string after <code>count</code> words.
+        <details><summary>Arguments</summary><code>count</code>: maximum number of words to keep<br/><code>ellipsis</code>: string to append if truncation occurs. default: <code>"..."</code></details>
+      </td>
+      <td>
+        <code>title = "The quick brown fox jumps over the lazy dog"</code><br /><br /><code>&#123;title.truncateWords(2)&#125;</code> → <br/> <code>The quick...</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.round()</code></td>
+      <td>
+        Rounds a number to the nearest integer or to a given precision.
+        <details><summary>Arguments</summary> <code>precision</code>: <code>int</code>, default <code>0</code></details>
+      </td>
+      <td><code>value = "3.14159"</code><br /><br /><code>&#123;item.value.round(2)&#125;</code> → <code>3.14</code></td>
+    </tr>
+    <tr>
+      <td><code>.ceil()</code></td>
+      <td>Rounds a number up to the nearest integer.</td>
+      <td><code>value = "1.2"</code><br /><br /><code>&#123;item.value.ceil()&#125;</code> → <code>2</code></td>
+    </tr>
+    <tr>
+      <td><code>.floor()</code></td>
+      <td>Rounds a number down to the nearest integer.</td>
+      <td><code>value = "1.9"</code><br /><br /><code>&#123;item.value.floor()&#125;</code> → <code>1</code></td>
+    </tr>
+    <tr>
+      <td><code>.concat()</code></td>
+      <td>
+        Concatenates values to a *string* OR an *array*. When used on a string, any number of strings can be passed as arguments. When used on an array, arrays are merged and non-array values are appended as individual elements.
+      </td>
+      <td>
+        <code>value = "Hello"</code><br /><br /><code>&#123;item.value.concat(" ", "World", "!")&#125;</code> → <code>"Hello World!"</code>
+        <br /><br />
+        <code>value = [1, 2, 3]</code><br /><br /><code>&#123;item.value.concat([4, 5])&#125;</code> → <code>[1, 2, 3, 4, 5]</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.length()</code></td>
+      <td>
+        Returns the length of a *string* OR an *array*. 
+      </td>
+      <td>
+        <code>value = ["Foo", "bar"]</code><br /><br /><code>&#123;item.value.length()&#125;</code> → <code>2</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.reverse()</code></td>
+      <td>
+        Reverses the order of a *string* OR an *array*. 
+      </td>
+      <td>
+        <code>value = [1, 2, 3]</code><br /><br /><code>&#123;item.value.reverse()&#125;</code> → <code>[3, 2, 1]</code>
+      </td>
+    </tr>
+    <tr>
+      <td><code>.at()</code></td>
+      <td>
+        Returns the element at the given array index.
+        <details><summary>Arguments</summary> <code>index</code>: index of the value you want to get</details>
+        <a href="#at">More Details</a>
+      </td>
+      <td><code>user.names = ["John", "David", "Sarah"]</code><br /><br /><code>&#123;user.names.at(1)&#125;</code> → <code>"David"</code></td>
+    </tr>
+    <tr>
+      <td><code>.slice()</code></td>
+      <td>
+        Returns a portion of the array from <code>start</code> to <code>end</code> index.
+        <details><summary>Arguments</summary><code>start</code>: index of the start value<br/><code>end</code>: index of the end value (not included)</details>
+        <a href="#slice">More Details</a>
+      </td>
+      <td><code>animals = ["ant", "bison", "camel", "duck", "elephant"]</code><br /><br /><code>&#123;item.animals.slice(2)&#125;</code> → <code>["camel", "duck", "elephant"]</code></td>
+    </tr>
+    <tr>
+      <td><code>.indexOf()</code></td>
+      <td>
+    Returns the index of a <em>substring</em> within a <em>string</em>, or the index of a <em>value</em> within an <em>array</em>.<br /> Returns the <code>index</code> if found, or <code>-1</code> if not found.
+      </td>
+      <td><code>user.userRoles = ["author", "editor"]</code><br /><br /><code>&#123;user.userRoles.indexOf('editor')&#125;</code> → <code>1</code></td>
+    </tr>
+    <tr>
+      <td><code>.pluck()</code></td>
+      <td>
+        Extracts a property from each object in an array and returns the values as a new array. <br />
+        <a href="#pluck">More Details</a>
+      </td>
+      <td><code>this.categories = [&#123; name: "ABCs", slug: "abcs" &#125;, &#123; name: "XYZs", slug: "xyzs" &#125;]</code><br /><br /><code>&#123;this.categories.pluck("name")&#125;</code> → <code>["ABCs", "XYZs"]</code></td>
+    </tr>
+    <tr>
+      <td><code>.keys()</code></td>
+      <td>
+        Returns the keys of an object as an array. Non-object values pass through unchanged. <br />
+        <a href="#keys">More Details</a>
+      </td>
+      <td><code>item.config = &#123; color: "red", size: "lg" &#125;</code><br /><br /><code>&#123;item.config.keys()&#125;</code> → <code>["color", "size"]</code></td>
+    </tr>
+    <tr>
+      <td><code>.values()</code></td>
+      <td>
+        Returns the values of an object as an array. Non-object values pass through unchanged. <br />
+        <a href="#values">More Details</a>
+      </td>
+      <td><code>item.config = &#123; color: "red", size: "lg" &#125;</code><br /><br /><code>&#123;item.config.values()&#125;</code> → <code>["red", "lg"]</code></td>
+    </tr>
+    <tr>
+      <td><code>.split()</code></td>
+      <td>
+        Splits a string by the given separator and returns the result as an array.
+        <details><summary>Arguments</summary> <code>separator</code>: default <code>","</code></details>
+        <a href="#split">More Details</a>
+      </td>
+      <td><code>value = "Jan,Feb,Mar,Apr"</code><br /><br /><code>&#123;item.value.split(",")&#125;</code> → <code><br/>["Jan", "Feb", "Mar", "Apr"]</code></td>
+    </tr>
+    <tr>
+      <td><code>.join()</code></td>
+      <td>Combines array elements into a string with a separator.</td>
+      <td><code>user.userRoles = ["author", "editor"]</code><br /><br /><code>&#123;user.userRoles.join(", ")&#125;</code> → <code>"author, editor"</code></td>
+    </tr>
+    <tr>
+      <td><code>.replace()</code></td>
+      <td>
+        Replaces the **first** occurrence of a search string with a replacement string (strings only).
+        <details><summary>Arguments</summary><code>search</code>: the substring to find<br/><code>replace</code>: the string to replace it with</details>
+        <a href="#replace">More Details</a>
+      </td>
+      <td><code>value = "hello world"</code><br /><br /><code>&#123;item.value.replace("world", "there")&#125;</code> → <code>"hello there"</code></td>
+    </tr>
+    <tr>
+      <td><code>.replaceAll()</code></td>
+      <td>
+        Replaces **all** occurrences of a search string with a replacement string (strings only).
+        <details><summary>Arguments</summary><code>search</code>: the substring to find<br/><code>replace</code>: the string to replace it with</details>
+        <a href="#replaceall">More Details</a>
+      </td>
+      <td><code>value = "one fish two fish"</code><br /><br /><code>&#123;item.value.replaceAll("fish", "cat")&#125;</code> → <code>"one cat two cat"</code></td>
+    </tr>
+    <tr>
+      <td><code>.applyData()</code></td>
+      <td>Reapplies available dynamic data to the given value.<br /><a href="#applydata">More Details</a></td>
+      <td><code>item.text = "Hello &#123;user.name&#125;"</code><br /><br /><code>&#123;item.text.applyData()&#125;</code> → <code>"Hello John"</code></td>
+    </tr>
+    <tr>
+      <td><code>.unserializePhp()</code></td>
+      <td>
+        Takes a serialized PHP string and converts it back to a usable value <br />
+        <a href="#unserializephp">More Details</a> 
+       </td>
+      <td><code>item.text = "a:3:\{i:0;s:5:"apple";i:1;s:6:"banana";i:2;s:6:"cherry";\}"</code><br /><br /><code>&#123;item.text.unserializePhp()&#125;</code> → <code>["apple", "banana", "cherry"]</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<style>{`
+  .modifiers-table td,
+  .modifiers-table th {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .modifiers-table code {
+    white-space: normal;
+    word-break: break-word;
+  }
+`}</style>
+
+
+## Detailed Modifier Reference
+
+Below are some of the more complex modifiers and more detailed information about their usage.
+
+### `.dateFormat()`
+**Returns:** string (formatted date)
+
+The `.dateFormat()` method formats Unix timestamps (seconds) or valid PHP date strings (e.g., `Y-m-d H:i:s`, `m/d/Y`, `F j, Y g:i a`). The arguments are passed as quoted strings (e.g., `.dateFormat("Y-m-d")`). Please refer to the [PHP datetime format documentation](https://www.php.net/manual/en/datetime.format.php) for more information. Invalid inputs are returned unchanged.
+
+#### Examples:
+- `{this.date.dateFormat("Y-m-d")}` → `"2024-02-01"`
+- `{item.startDate.dateFormat("m/d/Y")}` → `"02/01/2024"`
+
+⚠️ **Deprecated:** _`.format()` exists as a deprecated alias of `.dateFormat()`. Prefer `.dateFormat()` going forward._
+
+---
+
+### `.numberFormat()`
+**Returns:** string (formatted number) or original value
+
+The `.numberFormat()` method formats a numeric value with grouped thousands and configurable decimal precision/separators. It only applies to numeric inputs; non‑numeric values are returned unchanged. Arguments are passed as quoted strings (e.g., `numberFormat(2, ".", ",")`).
+
+| Argument             | Type   | Default | Description                   |
+| -------------------- | ------ | ------- | ----------------------------- |
+| `decimals`           | int    | `0`     | Number of decimal digits      |
+| `decimalPoint`       | string | `"."`   | Decimal separator character   |
+| `thousandsSeparator` | string | `","`   | Thousands separator character |
+
+#### Examples:
+- value1 = `123456`<br />
+  - `{item.value1.numberFormat(2, ".", ",")}` → `"123,456.00"`
+- value2 = `1234567.123`<br />
+  - `{item.value2.numberFormat(1, ",", ".")}` → `"1.234.567,1"`
+
+---
+
+### `.toString()`
+**Returns:** string or original value
+
+The `.toString()` method converts any value into its string representation. Booleans become the strings "true" or "false", scalar values are cast directly to strings, and arrays or objects are JSON-encoded when possible to provide a readable format.
+#### Examples:
+- value1 = `3.14`<br />
+  - `{item.value1.toString()}` → "3.14"
+- value2 = `true`<br />
+  - `{item.value2.toString()}` → "true"
+- value3 = `false`<br />
+  - `{item.value3.toString()}` → "false"
+- value4 = `null`<br />
+  - `{item.value4.toString()}` → "" (empty string)
+
+---
+
+### `.toInt()`
+**Returns:** int or original value
+
+The `.toInt()` method converts numeric values to an integer by truncating any fractional part. If the value is already an integer it is returned as-is; if it’s numeric (including numeric strings like "123" or "123.45") it is cast to `(int)`. Non-numeric values are returned unchanged.
+
+#### Examples:
+- value1 = "123"<br />
+  - `{item.value1.toInt()}` → `123`
+- value2 = "123.9"<br />
+  - `{item.value2.toInt()}` → `123`
+- value3 = "abc"<br />
+  - `{item.value3.toInt()}` → "abc" (unchanged)
+
+---
+
+### `.toSlug()`
+**Returns:** string (slug) or original value
+
+The `.toSlug()` method generates a URL‑friendly slug from a string: it lowercases the text, transliterates to ASCII, replaces non `[a–z][0–9]` characters with `-`, and trims leading/trailing hyphens. Only string inputs are transformed; other types are returned unchanged.
+
+#### Examples:
+- value = "Über Theme"<br />
+  - `{item.value.toSlug()}` → "uber-theme"
+
+#### Example use case: Generate CSS class names from values
+- `<article class="post-{post.title.toSlug()}">...</article>`
+- `<span class="role-{user.userRoles.toSlug()}">...</span>`
+
+---
+
+### `.toBool()`
+**Returns:** boolean (`true`/`false`)
+
+The `.toBool()` method normalizes common truthy/falsey inputs into a strict boolean. It is case-insensitive and supports strings ("true"/"false", "yes"/"no", "on"/"off"), numeric strings ("1"/"0"), and numeric values (1/0). `null` becomes `false`.
+#### Example inputs that will convert to booleans:
+- `1`, "1", "true", "yes", "on" → `true`
+- `0`, "0", "false", "no", "off" → `false`
+- `null` → `false`
+
+---
+
+### `.pluck()`
+**Returns:** array
+
+The `.pluck()` method extracts the value at a given property path from each element in an array of objects and returns those values as a new array. Similar to `array_column()` in PHP or `pluck()` in Laravel.
+- Pluck paths can be nested using dot notation (e.g., `"author.displayName"`) to get a nested property's values, so `.pluck("author.displayName")` on an array like 
+  ```json
+  [ { "author": { "displayName": "John" } } ]
+  ``` 
+  will return `["John"]`. 
+- If the property does not exist for an element, `null` is used for that element.
+- If called on a non-array value, an empty array (`[]`) is returned.
+
+#### Example arrays
+
+##### Plucking the term name from a Category array of term objects
+```json
+"categories": [
+  { name: "ABCs", slug: "abcs" },
+  { name: "XYZs", slug: "xyzs" }
+]
+```
+**Results:** `{this.categories.pluck("name")}` → `["ABCs", "XYZs"]`
+
+##### Attempting to pluck a missing value
+```json
+"missingExample": [
+  { title: "A" },
+  { title: "B" }
+]
+```
+**Result:** `{this.missingExample.pluck("slug")}` → `[null, null]`
+
+##### Attempting to pluck a value from a non-array
+```json
+"value": "foo"
+```
+**Result:** `{this.value.pluck("anything")}` → `[]`
+
+#### Example use case: Conditional logic to check if a post has a specific category
+You can of course combine pluck with other modifiers to create more complex conditions. For example, you can use it with the `.includes()` method to check if a specific value exists in the array.
+
+**Before `.pluck()`, you would have to do a loop with a condition inside it:**
+```
+{#loop this.categories as category}
+  {#if category.name === "ABCs"}
+    true
+  {/if}
+{/loop}`
+```
+
+**Now with `.pluck()`, you can now do it in a single condition:**
+```
+{#if this.categories.pluck("name").includes("ABCs")}
+  true
+{/if}
+```
+
+---
+
+### `.keys()`
+**Returns:** array or original value
+
+The `.keys()` method returns the keys of an object as an array. If the value is not an object (e.g., a string, number, boolean, null, or a plain array), it is returned unchanged.
+
+#### Examples:
+```json
+"config": { "color": "red", "size": "lg", "weight": "bold" }
+```
+- `{item.config.keys()}` → `["color", "size", "weight"]`
+- `{item.config.keys().length()}` → `3`
+- `{item.config.keys().join(", ")}` → `"color, size, weight"`
+
+#### Example use case: Check if an object contains a specific key
+```
+{#if item.config.keys().includes("color")}
+  This object has a "color" key
+{/if}
+```
+
+#### Example use case: Quickly inspect what keys are available
+When you want to quickly see what keys are available, use `.keys()` directly in your loop or template.
+
+You might currently check the Loop Manager’s JSON output to see what data is available. `.keys()` gives you a faster way to inspect the same data in context, especially when you want to check a specific nested object without scanning the full JSON tree.
+
+Use it with any object, at the root level or on a nested object:
+```
+{this.keys()}
+{item.meta.keys()}
+```
+
+This returns the keys as an array, giving you a quick list of what’s available.
+
+#### Example use case: Check if a custom field is present
+You can combine `.keys()` with `.includes()` to output different content depending on whether a key exists. Since `.includes()` accepts optional true/false return values, you can do this inline without an `{#if}` block:
+```
+{item.meta.keys().includes("name", "name custom field is set", "name custom field is not set")}
+```
+
+#### Non-object inputs pass through:
+- `42` → `42`
+- `["a", "b"]` → `["a", "b"]`
+
+---
+
+### `.values()`
+**Returns:** array or original value
+
+The `.values()` method returns the values of an object as an array. If the value is not an object (e.g., a string, number, boolean, null, or a plain array), it is returned unchanged.
+
+#### Examples:
+```json
+"config": { "color": "red", "size": "lg", "weight": "bold" }
+```
+- `{item.config.values()}` → `["red", "lg", "bold"]`
+- `{item.config.values().length()}` → `3`
+- `{item.config.values().join(", ")}` → `"red, lg, bold"`
+
+#### Example use case: Check if an object contains a specific value
+```
+{#if item.config.values().includes("red")}
+  This object contains the value "red"
+{/if}
+```
+
+#### Example use case: Loop over object values
+```
+{#loop item.config.values() as value}
+  <span>{value}</span>
+{/loop}
+```
+
+---
+
+### `.split()`
+**Returns:** array
+
+The `.split()` method splits a string by a separator and returns an array of parts. If no separator is provided, it defaults to `","`.
+
+| Argument             | Type     | Default | Description                          |
+| -------------------- | -------- | ------- | ------------------------------------ |
+| `separator`          | string   | `","`   | Value used to split the string       |
+
+#### Examples:
+- value = `"Jan,Feb,Mar,Apr"`<br />
+  - `{item.value.split(",")}` → `["Jan", "Feb", "Mar", "Apr"]`
+
+#### Unique use case: Dynamically wrap each word in a `<span>`
+```
+<h1>
+  {#loop this.title.split(" ") as word}
+    <span>{word} </span>
+  {/loop}
+</h1>
+```
+
+---
+
+### `.at()`
+**Returns:** any (element at the given index)
+
+The `.at()` method takes an integer value and returns the item at that index in the array, allowing for positive and negative integers.
+Negative integers count back from the last item in the array.
+
+| Argument             | Type   | Default | Description                                           |
+| -------------------- | ------ | ------- | ------------------------------------------------------|
+| `index`              | int    | —       | Zero-based index of the array element to be returned  |
+
+#### Examples:
+```json
+"value": [5, 12, 8, 130, 44]
+```
+- `{item.value.at(2)}` → `8`
+- `{item.value.at(-2)}` → `130`
+
+---
+
+### `.slice()`
+**Returns:** array
+
+Similar behaviour to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener noreferrer">JS Array.prototype.slice()</a><br />
+The `.slice()` returns a portion of the array, selected from start to end (end not included) where start and end represent the index of items in that array. 
+Extraction happens up to but not including end.
+
+| Argument             | Type   | Default | Description                                           |
+| -------------------- | ------ | ------- | ------------------------------------------------------|
+| `start`              | int    | —       | Zero-based index at which to start extraction         |
+| `end`                | int    | array length       | Zero-based index at which to end extraction           |
+
+#### Examples:
+```json
+"value": ["ant", "bison", "camel", "duck", "elephant"]
+```
+- `{item.value.slice(2)}` → `["camel", "duck", "elephant"]`
+- `{item.value.slice(2, 4)}` → `["camel", "duck"]`
+- `{item.value.slice(-2)}` → `["duck", "elephant"]`
+
+---
+
+### `.replace()`
+<VersionBadge version="1.4.9" />
+
+**Returns:** string or original value
+
+The `.replace()` method replaces the **first** occurrence of a search string with a replacement string. Both arguments are required. If the value, search, or replacement are not strings, the original value is returned unchanged. Mirrors the behaviour of JavaScript's [`String.prototype.replace()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace) when called with string arguments.
+
+| Argument  | Type   | Default | Description                      |
+| --------- | ------ | ------- | -------------------------------- |
+| `search`  | string | —       | The substring to search for      |
+| `replace` | string | —       | The string to replace it with    |
+
+#### Examples:
+- value = `"hello world world"`<br />
+  - `{item.value.replace("world", "there")}` → `"hello there world"`
+- value = `"foo-bar-baz"`<br />
+  - `{item.value.replace("-", " ")}` → `"foo bar-baz"`
+
+---
+
+### `.replaceAll()`
+<VersionBadge version="1.4.9" />
+
+**Returns:** string or original value
+
+The `.replaceAll()` method replaces **all** occurrences of a search string with a replacement string. Both arguments are required. If the value, search, or replacement are not strings, the original value is returned unchanged. Mirrors the behaviour of JavaScript's [`String.prototype.replaceAll()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll).
+
+| Argument  | Type   | Default | Description                      |
+| --------- | ------ | ------- | -------------------------------- |
+| `search`  | string | —       | The substring to search for      |
+| `replace` | string | —       | The string to replace it with    |
+
+#### Examples:
+- value = `"hello world world"`<br />
+  - `{item.value.replaceAll("world", "there")}` → `"hello there there"`
+- value = `"foo-bar-baz"`<br />
+  - `{item.value.replaceAll("-", " ")}` → `"foo bar baz"`
+
+#### Example use case: Clean up display values
+```
+{item.slug.replaceAll("-", " ").toUpperCase()}
+```
+Transforms `"my-blog-post"` → `"MY BLOG POST"`.
+
+---
+
+### `.htmlEncode()`
+<VersionBadge version="1.5.2" />
+
+**Returns:** string or original value
+
+The `.htmlEncode()` method converts the HTML-significant characters into their HTML entities, so the value is rendered as text instead of being interpreted as markup. Only string inputs are transformed; other types are returned unchanged.
+
+| Character | Entity   |
+| --------- | -------- |
+| `&`       | `&amp;`  |
+| `<`       | `&lt;`   |
+| `>`       | `&gt;`   |
+| `"`       | `&quot;` |
+| `'`       | `&apos;` |
+
+#### Examples:
+- value = `"<b>Bold</b>"`<br />
+  - `{item.value.htmlEncode()}` → `"&lt;b&gt;Bold&lt;/b&gt;"`
+- value = `"Tom & Jerry"`<br />
+  - `{item.value.htmlEncode()}` → `"Tom &amp; Jerry"`
+
+#### Example use case: Display a code snippet as text
+```
+<code>{post.snippet.htmlEncode()}</code>
+```
+Renders the raw markup stored in `post.snippet` as visible text instead of letting the browser interpret it.
+
+---
+
+### `.htmlDecode()`
+<VersionBadge version="1.5.2" />
+
+**Returns:** string or original value
+
+The `.htmlDecode()` method is the inverse of `.htmlEncode()`. It converts HTML entities back into their characters, resolving named entities (e.g. `&amp;`, `&copy;`, `&nbsp;`) as well as decimal (`&#169;`) and hexadecimal (`&#xA9;`) numeric character references. Only string inputs are transformed; other types are returned unchanged.
+
+#### Examples:
+- value = `"&lt;b&gt;Bold&lt;/b&gt;"`<br />
+  - `{item.value.htmlDecode()}` → `"<b>Bold</b>"`
+- value = `"Tom &amp; Jerry"`<br />
+  - `{item.value.htmlDecode()}` → `"Tom & Jerry"`
+- value = `"&copy; 2024"`<br />
+  - `{item.value.htmlDecode()}` → `"© 2024"`
+
+---
+
+### `.applyData()`
+**Returns:** Returns the original value with dynamic data reapplied.
+
+The `applyData()` method is an advanced feature that can be used to reapply dynamic data to an already resolved value.
+
+#### Examples:
+
+You might have a custom field that includes dynamic data, for example: `this.etch.header = "Welcome to {this.title}!"` <br/>
+If you output `{this.etch.header}` directly, it will render as: <br /> `"Welcome to {this.title}!"` — without replacing `{this.title}`.
+
+To resolve the dynamic data, call `.applyData()` on the value: `{this.etch.header.applyData()}` <br />
+This first retrieves the original string, then reapplies the dynamic data, resulting in: <br />`"Welcome to Etch!` (or whatever value `{this.title}` resolves to).
+
+---
+
+### `.unserializePhp()`
+**Returns:** Returns the unserialized value, or the original value if the input is not a valid serialized string or null if you attempt to unserialize an actual PHP object.
+
+The `unserializePhp()` method is an advanced feature that can be used to convert serialized PHP strings back into usable values.
+
+#### Examples:
+
+You might have a plugin that saves serialized PHP strings in a CPT field, for example it could save an array as a string like this on a post: `a:3:{i:0;s:5:"apple";i:1;s:6:"banana";i:2;s:6:"cherry";}` <br/>
+If you output `{post.specialField}` directly, it will render as: <br /> `a:3:{i:0;s:5:"apple";i:1;s:6:"banana";i:2;s:6:"cherry";}` — without converting it back to an array.
+
+To use this value correctly, call `.unserializePhp()` on the value: `{post.specialField.unserializePhp()}` <br />
+This first retrieves the original string, then converts it back to a usable value, resulting in an actual array: <br />`["apple", "banana", "cherry"]`. Which you could then loop over or use other modifiers on.
+
+Or `a:2:{s:3:"foo";s:3:"bar";s:3:"baz";i:42;}` would become `{"foo": "bar", "baz": 42}` which then could be accessed like normal dynamic data: `{post.specialField.unserializePhp().foo}` → `bar`.
+
+It also works with other serialized PHP data types, like integers or booleans. If you attempt to unserialize an actual PHP object however, it will return null for safety reasons.
+
+---
+
+## Additional Notes
+- **Combining:** You can combine/stack modifiers. They are applied in the order they are written. For example, you could use `{user.fullName.toSlug().toUpperCase()}` to transform a user named "Thomas Müller" to "THOMAS-MULLER".
+- **Unknown modifiers:** If a modifier name isn’t recognized, the internal call returns `null`, which results in an empty string.

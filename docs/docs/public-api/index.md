@@ -4,8 +4,10 @@ sidebar_position: 0
 sidebar_custom_props:
   badge: "New"
 last_update:
-  date: 2026-06-11
+  date: 2026-08-31
 ---
+
+import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
 
 # Public API
 
@@ -100,6 +102,7 @@ interface Etch {
   connect?(options?: ConnectOptions): Etch; // reserved for the future stable runtime
   readonly apiVersion: string; // scripting contract version, e.g. "0.x"
   readonly version: string; // Etch product version
+  readonly environment?: EtchEnvironment; // what this runtime is and backs
 }
 ```
 
@@ -170,10 +173,54 @@ type EtchApiErrorCode =
 
 ## Feature detection
 
-Because the surface is experimental, guard against methods that may not exist on the runtime you're running against, rather than comparing version strings:
+<VersionBadge version="1.6.7" />
+
+Because the surface is experimental — and because a namespace can be declared but not backed on the runtime you happen to be on, in which case its methods throw `EtchApiError` with code `NOT_AVAILABLE` — detect features rather than comparing version strings.
+
+`etch.environment` (contract `@digital-gravy/etch-public-api` 0.10.0) describes the runtime your script is actually running against:
+
+```ts
+interface EtchEnvironment {
+  readonly product: EtchProduct; // which build this is — identity only
+  readonly capabilities: EtchCapabilities; // which optional surfaces it backs
+  readonly blockTypes: readonly string[]; // every block type it can construct
+}
+
+type EtchCapabilities = Readonly<Partial<Record<EtchCapability, boolean>>>;
+```
+
+**Branch on a capability, never on `product`.** `product` is identity, for display and diagnostics; capabilities move over time, and a product check silently rots the day they do.
+
+| Capability  | Backed when                                                            |
+| ----------- | ---------------------------------------------------------------------- |
+| `loops`     | [`etch.loops`](./loops.md) is a real registry of loop definitions      |
+| `fields`    | [`etch.fields`](./fields.md) is backed by a real field store           |
+| `templates` | Template posts exist and `navigation.goTo("templates")` works          |
+| `wpMedia`   | Media ids resolve against the WordPress media library (`/wp/v2/media`) |
+
+Every key is optional on purpose: a runtime older than a capability's introduction simply omits it, so **absent means unavailable** — test with `=== true` rather than truthiness.
 
 ```ts
 const etch = getEtch();
+
+if (etch.environment?.capabilities.fields === true) {
+  const groups = await etch.fields.listGroupsAsync();
+}
+```
+
+`blockTypes` is read live off the runtime's block registry, so it cannot drift from what the runtime can actually construct. Check it instead of assuming a block type exists:
+
+```ts
+if (etch.environment?.blockTypes.includes("etch/passthrough")) {
+  // safe to author one here
+}
+```
+
+`environment` itself is optional: a runtime that predates the descriptor omits it. Treat a missing `environment` as everything being available, which is what every runtime that predates it was.
+
+For an individual method that may not exist on an older runtime, `typeof` still applies:
+
+```ts
 if (typeof etch.blocks.someNewMethod === "function") {
   // safe to use
 }

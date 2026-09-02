@@ -17,25 +17,19 @@ export default function CategoryOverview({
 }: CategoryOverviewProps) {
   const { siteConfig } = useDocusaurusContext();
   const location = useLocation();
-  
+
+  // The same overview pages exist in both docs instances (Etch WP at `/`, Etch
+  // Studio at `/studio`), so resolve files and links against the current one.
+  const isStudio = location.pathname.startsWith('/studio');
+  const dataPrefix = isStudio ? 'studio-docs' : 'docs';
+  const routePrefix = isStudio ? '/studio' : '';
+
   // Use the generated category data
   const getFilesForCategory = (path: string) => {
     // Try different path formats to handle various ways the path might be passed
     const possiblePaths = [
       path,
-      `docs/${path}`,
-      path.replace(/^elements\//, 'docs/elements/'),
-      path.replace(/^components\//, 'docs/components/'),
-      path.replace(/^templates\//, 'docs/templates/'),
-      path.replace(/^interface\//, 'docs/interface/'),
-      path.replace(/^getting-started\//, 'docs/getting-started/'),
-      path.replace(/^how-to\//, 'docs/how-to/'),
-      path.replace(/^loops\//, 'docs/loops/'),
-      path.replace(/^conditional-logic\//, 'docs/conditional-logic/'),
-      path.replace(/^dynamic-data\//, 'docs/dynamic-data/'),
-      path.replace(/^gutenberg\//, 'docs/gutenberg/'),
-      path.replace(/^known-issues\//, 'docs/known-issues/'),
-      path.replace(/^top-priorities\//, 'docs/top-priorities/')
+      `${dataPrefix}/${path}`
     ];
     
     for (const possiblePath of possiblePaths) {
@@ -63,9 +57,10 @@ export default function CategoryOverview({
 
   // Generate the correct URL path based on categoryPath
   const getUrlPath = (categoryPath: string) => {
-    // Convert categoryPath to URL path
+    // Convert categoryPath to URL path, scoped to the current docs instance
     // e.g., "elements/basic-elements" -> "/elements/basic-elements"
-    return `/${categoryPath}`;
+    //       (or "/studio/elements/basic-elements" inside the Studio docs)
+    return `${routePrefix}/${categoryPath}`;
   };
 
   return (

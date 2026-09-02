@@ -1,0 +1,169 @@
+---
+title: Dynamic Data Keys
+sidebar_position: 50
+last_update:
+  date: 2026-01-19
+---
+
+# Dynamic Data Keys
+
+This page will serve as the master doc page for all dynamic data keys. Feel free to bookmark it.
+
+## Available Keys
+
+- **Pages** use `this.key`.
+- **Loops** use `item.key` by default (but you control the key).
+
+| Key                  | Description                                                                            |
+| -------------------- | -------------------------------------------------------------------------------------- |
+| `id`                 | The unique identifier for the item (post, page, etc).                                  |
+| `title`              | The title of the item.                                                                 |
+| `slug`               | The URL-friendly slug for the item.                                                    |
+| `content`            | The main content/body of the item.                                                     |
+| `createdAt`               | The publish date of the item.                                                          |
+| `updatedAt`           | The last modified date of the item.                                                    |
+
+## Site Keys
+
+| Key                | Description                                                   |
+| ------------------ | ------------------------------------------------------------- |
+| `site.name`        | The site name/title.                                          |
+| `site.url`         | The site URL.                                                 |
+| `site.locale`      | The site language.                                       |
+
+## URL Keys
+
+| Key             | Description                                          |
+| --------------- | ---------------------------------------------------- |
+| `url.full`      | The current full URL of the page.                    |
+| `url.relative`  | The relative path portion of the current URL.        |
+| `url.parameter` | The URL parameters/query string of the current page. |
+
+`url.parameter` allows you to reference the value of any parameter key in the url string, which can be very helpful for personalizing page content by injecting content or creating conditions.
+
+For example, if you have a URL of `/thank-you/?firstName=John`, you can use `{url.parameter.firstName}` to output `John`.
+
+:::tip
+This key is case sensitive. If you have a parameter of `Name` in your URL, you need to use `{url.parameter.Name}`, not `{url.parameter.name}`
+:::
+
+## Component Keys
+
+The `component` namespace provides access to component metadata and prop defaults from within a component's HTML. It includes the component's `id`, `name`, `key`, and the resolved default value of every prop via `component.defaults.<propKey>`.
+
+For full documentation, available keys, and usage examples, see [Component Namespace](/components/component-namespace).
+
+## Environment Keys
+
+| Key                   | Description                                              |
+| --------------------- | -------------------------------------------------------- |
+| `environment.current` | The active rendering environment.                        |
+| `environment.context` | Provides additional context for the current environment. |
+
+`environment.current` exposes the name of the environment in which the content is currently being rendered.
+
+**Possible values:**
+
+- `"etch"`
+- `"frontend"`
+
+This key is primarily intended for conditional rendering, allowing you to tailor output depending on where the content is displayed.
+
+---
+
+In most scenarios `environment.context` will be unset.
+
+It is set to `"componentEditor"` when rendering inside the component editor. This allows you to conditionally display content only while editing a component.
+
+
+
+### Example: Environment-specific content
+
+You can use `environment.current` to include content that should only appear in editor contexts and be excluded from the frontend.
+```
+{#if environment.current === "etch"}
+  <div class="developer-note">
+    This is a developer note that only appears in Etch.
+  </div>
+{/if}
+```
+In this example, the developer note is visible in Etch but omitted from the frontend render.
+
+## Etch Custom Fields Support
+
+Custom fields created within Etch can be accessed with the `fields` extension.
+
+For example, `item.fields.field_id` in a loop or `this.fields.field_id` in a page.
+
+## Valid Property Names and Bracket Notation
+
+When working with dynamic data keys, it's important to understand the rules for property names and when to use bracket notation.
+- **Valid property names** in dot notation can only contain: letters (a-z, A-Z), digits (0-9), and underscores (\_).
+  - Valid examples: `{this.title}`, `{item.acf_field}`, `{this.category_name}` ✅
+  - Invalid examples: `{this.post-title}`, `{item.full name}` ❌
+
+  Any property name containing characters outside of letters, digits, and underscores (such as spaces, dashes, etc.) must use bracket notation with quotes:
+  - Keys with spaces: `{item["full name"]}`
+  - Keys with dashes: `{item["post-meta"]}`
+  - Keys with numbers: `{item[0]}` (for arrays)
+
+  Examples:
+  - `{this["page title"]}` - Access a key with spaces
+  - `{item["author-info"]["email"]}` - Nested keys with dashes
+  - `{this.categories[0].name}` - Mix dot and bracket notation
+  - `{item["users"][0]["display-name"]}` - Multiple bracket notations
+
+  You can use either single or double quotes in bracket notation: `{item['full name']}` and `{item["full name"]}` are equivalent.
+
+## Tips for Working with Dynamic Data
+
+- Not all keys are available for every item type. Availability depends on the context.
+  - Output `{this}` on the page/template to view the data available for the item you are working with. This will show the full JSON object for the item in question, which can be helpful for understanding what data is available.
+- Some keys output the data directly (e.g., `{item.title}`, `{this.content}`, etc). If your key outputs a string, you can use it directly in your page or template.
+- Some keys are objects (e.g., `author`, `template`). These are inside of curly braces `{}`. If your key outputs an object, you need to drill down to a sub-key (e.g., `{item.author.displayName}`, `{this.template.slug`) to get to the data you're looking for.
+- Some keys are arrays (e.g., `categories`, `tags`). These are inside of square brackets `[]`. If your key outputs an array, you can `{#loop}` through it or access a specific item by index (e.g., `{this.categories.at(0).name}`). See the [Accessing Data in Arrays](#accessing-data-in-arrays) section below for more information.
+- If you want to output curly braces (`{` and `}`) **without the dynamic data engine interpreting them**, you can do so by adding them as a separate string inside the dynamic expression. For example: `{"{This will be output as is}"}`
+
+## Accessing Data in Arrays
+
+Some dynamic data keys return arrays (for example, `categories`, `tags`, etc). You can work with these arrays in two common ways:
+
+**1) Loop through the items**
+
+- Create a loop that returns the array items you want to render, then output each item’s fields.
+
+_Example: Loop categories for the current post:_
+
+```html
+{#loop categories as category}
+<span>{category.name}</span>
+{/loop}
+```
+
+**2) Access a specific item by index (zero-based)**
+
+You can use either **dot notation with the `.at()` modifier** or **bracket notation** to access a specific item:
+
+**Dot notation (using .at() modifier):**
+
+```
+{this.categories.at(0).name}
+```
+
+**Bracket notation (direct array access):**
+
+```
+{this.categories[0].name}
+```
+
+Both approaches are equivalent. Continue using dot notation for simple property names (e.g., `{this.title}`, `{item.name}`). Use bracket notation only when needed for properties with special characters or spaces (e.g., `{this["author-name"]}`, `{item["full name"]}`).
+
+:::info
+We've updated the syntax to align with standard JavaScript and PHP conventions. Bracket notation is now available as an option for properties with special characters or spaces. Aligning with industry standards allows us to extend the functionality of dynamic data even further and will make it possible to add support for advanced features like mathematical operations in the future. The "old" syntax (dashes/spaces in dot notation) will no longer be supported, but standard dot notation like `{this.title}` remains unchanged and is the recommended approach for regular property names.
+:::
+
+**Notes:**
+
+- Indexing is zero-based (`0` is the first item, `1` is the second, etc.).
+- It is possible to get the last item with `-1`, or the second to last item with `-2` and so on.
+- Ensure the array and the requested index exist before using them (e.g., a post may have no categories).

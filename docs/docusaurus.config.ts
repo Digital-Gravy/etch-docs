@@ -133,6 +133,19 @@ const config: Config = {
 	],
 	plugins: [
 		[
+			// Etch Studio is a separate product from Etch WP, not a newer version of it.
+			// It gets its own docs instance rather than a versioned snapshot.
+			'@docusaurus/plugin-content-docs',
+			{
+				id: 'studio',
+				path: 'studio-docs',
+				routeBasePath: '/studio',
+				sidebarPath: './sidebarsStudio.ts',
+				showLastUpdateTime: true,
+				showLastUpdateAuthor: false
+			}
+		],
+		[
 			'@docusaurus/plugin-client-redirects',
 			{
 				redirects: [

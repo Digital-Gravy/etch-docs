@@ -9,18 +9,6 @@ Great software is never "done," and that's certainly true for software as young 
 
 This page documents the most significant known issues and areas we're actively planning to improve. If you encounter a problem not listed here, please let us know so we can investigate and address it in future updates.
 
-## Issue: Hostinger Issues
-
-Users who are using Hostinger for their hosting are having unique issues that are not experienced on any other hosting platform:
-
-- WAF blocks saving
-- WAF blocks plugin upload
-- WAF breaks copy/paste of components and JSON
-
-If the errors you are seeing return a "403" then it's most likely a WAF issue. Some of these issues be temporarily solved by setting the WAF to "essentially off."
-
-We are currently trying to reach out to Hostinger and get in touch with a higher-level technical person on their team to investigate these issues. We hope they'll be responsive to our requests and help us find a solution.
-
 ## WIP: Content Hub / CPTs / Custom Fields
 
 This area of Etch is a functional Proof of Concept so that users can start to experience the tremendous advantages of a "unified workflow." It's a high priority area and will get progressively better very quickly, but the CPT/Custom Fields functionality should be treated as more of a playground right now than a real part of your workflow (unless your needs are very basic).

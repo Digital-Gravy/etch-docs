@@ -1,0 +1,205 @@
+---
+title: Arithmetic Modifiers
+sidebar_position: 70
+---
+
+import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
+
+# Arithmetic Modifiers
+
+<VersionBadge version="1.4.20" />
+
+Arithmetic modifiers let you perform basic math operations on numeric values directly within your dynamic data expressions.
+
+Both operands (the value and the argument) must be numeric — either numbers or numeric strings. If either operand is not numeric, or if the argument is missing, the original value is returned unchanged. Numeric strings are trimmed and converted automatically (e.g., `" 5 "` is treated as `5`).
+
+## Available Modifiers
+
+<table className="modifiers-table" style={{ width: "100%", tableLayout: "fixed" }}>
+  <colgroup>
+    <col style={{ width: "20%" }} />
+    <col style={{ width: "30%" }} />
+    <col style={{ width: "50%" }} />
+  </colgroup>
+  <tr>
+    <th>Modifier</th>
+    <th>Description</th>
+    <th>Example</th>
+  </tr>
+  <tbody>
+    <tr>
+      <td><code>.add()</code></td>
+      <td>
+        Adds the given value to the current value.<br />
+        <a href="#add">More Details</a>
+      </td>
+      <td><code>price = 10</code><br /><br /><code>&#123;price.add(5)&#125;</code> → <code>15</code></td>
+    </tr>
+    <tr>
+      <td><code>.subtract()</code></td>
+      <td>
+        Subtracts the given value from the current value.<br />
+        <a href="#subtract">More Details</a>
+      </td>
+      <td><code>price = 10</code><br /><br /><code>&#123;price.subtract(3)&#125;</code> → <code>7</code></td>
+    </tr>
+    <tr>
+      <td><code>.multiply()</code></td>
+      <td>
+        Multiplies the current value by the given value.<br />
+        <a href="#multiply">More Details</a>
+      </td>
+      <td><code>quantity = 4</code><br /><br /><code>&#123;quantity.multiply(2.5)&#125;</code> → <code>10</code></td>
+    </tr>
+    <tr>
+      <td><code>.divide()</code></td>
+      <td>
+        Divides the current value by the given value. Division by zero returns the original value.<br />
+        <a href="#divide">More Details</a>
+      </td>
+      <td><code>total = 100</code><br /><br /><code>&#123;total.divide(4)&#125;</code> → <code>25</code></td>
+    </tr>
+    <tr>
+      <td><code>.mod()</code></td>
+      <td>
+        Returns the remainder after dividing the current value by the given value. Division by zero returns the original value.<br />
+        <a href="#mod">More Details</a>
+      </td>
+      <td><code>index = 7</code><br /><br /><code>&#123;index.mod(3)&#125;</code> → <code>1</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<style>{`
+  .modifiers-table td,
+  .modifiers-table th {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .modifiers-table code {
+    white-space: normal;
+    word-break: break-word;
+  }
+`}</style>
+
+
+## Detailed Modifier Reference
+
+### `.add()`
+**Returns:** number or original value
+
+The `.add()` method adds the argument to the current value.
+
+| Argument | Type   | Default | Description          |
+| -------- | ------ | ------- | -------------------- |
+| `value`  | number | —       | The value to add     |
+
+#### Examples:
+- value = `5`
+  - `{item.value.add(3)}` → `8`
+- value = `5.5`
+  - `{item.value.add(3.25)}` → `8.75`
+- value = `"hello"`
+  - `{item.value.add(3)}` → `"hello"` (non-numeric, unchanged)
+
+---
+
+### `.subtract()`
+**Returns:** number or original value
+
+The `.subtract()` method subtracts the argument from the current value.
+
+| Argument | Type   | Default | Description               |
+| -------- | ------ | ------- | ------------------------- |
+| `value`  | number | —       | The value to subtract     |
+
+#### Examples:
+- value = `10`
+  - `{item.value.subtract(3)}` → `7`
+- value = `5.5`
+  - `{item.value.subtract(3.25)}` → `2.25`
+- value = `"hello"`
+  - `{item.value.subtract(3)}` → `"hello"` (non-numeric, unchanged)
+
+---
+
+### `.multiply()`
+**Returns:** number or original value
+
+The `.multiply()` method multiplies the current value by the argument.
+
+| Argument | Type   | Default | Description               |
+| -------- | ------ | ------- | ------------------------- |
+| `value`  | number | —       | The value to multiply by  |
+
+#### Examples:
+- value = `5`
+  - `{item.value.multiply(3)}` → `15`
+- value = `3.3`
+  - `{item.value.multiply(2.5)}` → `8.25`
+- value = `"hello"`
+  - `{item.value.multiply(3)}` → `"hello"` (non-numeric, unchanged)
+
+---
+
+### `.divide()`
+**Returns:** number or original value
+
+The `.divide()` method divides the current value by the argument. If the divisor is zero, the original value is returned unchanged.
+
+| Argument | Type   | Default | Description              |
+| -------- | ------ | ------- | ------------------------ |
+| `value`  | number | —       | The value to divide by   |
+
+#### Examples:
+- value = `12`
+  - `{item.value.divide(3)}` → `4`
+- value = `5.5`
+  - `{item.value.divide(2.5)}` → `2.2`
+- value = `10`
+  - `{item.value.divide(0)}` → `10` (division by zero, unchanged)
+- value = `"hello"`
+  - `{item.value.divide(3)}` → `"hello"` (non-numeric, unchanged)
+
+---
+
+### `.mod()`
+**Returns:** number or original value
+
+The `.mod()` method returns the remainder after dividing the current value by the argument. If the divisor is zero, the original value is returned unchanged.
+
+| Argument | Type   | Default | Description                        |
+| -------- | ------ | ------- | ---------------------------------- |
+| `value`  | number | —       | The value to divide by (divisor)   |
+
+#### Examples:
+- value = `7`
+  - `{item.value.mod(3)}` → `1`
+- value = `5.5`
+  - `{item.value.mod(2)}` → `1.5`
+- value = `10`
+  - `{item.value.mod(0)}` → `10` (division by zero, unchanged)
+- value = `"hello"`
+  - `{item.value.mod(3)}` → `"hello"` (non-numeric, unchanged)
+
+#### Example use case: Alternating row styles
+Use `.mod()` to apply alternating CSS classes in a loop:
+```html
+{#loop items as item, index}
+  <div class="{index.mod(2).equal(0, 'row--even', 'row--odd')}">
+    {item.name}
+  </div>
+{/loop}
+```
+
+---
+
+## Combining Arithmetic Modifiers
+
+Like all modifiers, arithmetic modifiers can be chained together or combined with other modifier types:
+
+```
+{item.price.multiply(1.2).round(2).numberFormat(2, ".", ",")}
+```
+This multiplies a price by 1.2 (e.g., adding 20% tax), rounds to 2 decimal places, and formats with thousands separators.

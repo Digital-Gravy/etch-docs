@@ -1,0 +1,156 @@
+---
+title: Loop Prop
+sidebar_position: 50
+---
+
+# Loop Prop 
+
+The Loop Prop creates an internal loop reference. It's useful for when you're including a loop inside your component and need to be able to choose the Loop Source when adding your component to a page.
+
+Since components might be used on multiple sites, or with different loops at different times, you might want to build a loopable structure inside your component without creating a fixed reference to any specific loop. The Loop Prop allows you to select the loop that should run inside the component when you're using the component.
+
+Here's the difference between a typical loop and a prop-based loop:
+
+### Typical Loop
+
+```html
+{#loop someLoop as item}{/loop}
+```
+
+### Prop-Based Loop
+
+```html
+{#loop props.yourLoopProp as item}{/loop}
+```
+
+
+
+:::info
+Props are typically referenced with `{}` brackets. However, when you're already working within bracketed data, you should not use another set of brackets.
+
+Loop prop keys must be camelCased or use bracket notation (they cannot be dash-cased).
+
+**Incorrect:** `{#loop {props.yourLoopProp} as item}{/loop}` (extra brackets)
+
+**Incorrect:** `{#loop props.your-loop-prop as item}{/loop}` (dash-cased key)
+
+**Correct:** `{#loop props.yourLoopProp as item}{/loop}` (camelCase)
+
+**Correct:** `{#loop props['your-loop-prop'] as item}{/loop}` (bracket notation)
+:::
+
+## Loop Props with Loop Arguments
+
+You can combine loop props with [loop arguments](/loops/loop-arguments) to create even more flexible, reusable components. This allows you to pass both the loop source AND argument values through component props.
+
+### Basic Structure
+
+When using a loop prop that accepts arguments, you can pass prop values as the argument values:
+
+```html
+{#loop props.myLoop($count: props.myCount) as item}
+  <!-- loop content -->
+{/loop}
+```
+
+In this example:
+- `props.myLoop` is a Loop Prop that defines which loop to use
+- `props.myCount` is a regular prop (text or number type) that provides the value for the `$count` argument
+
+### Complete Example
+
+Here's a complete component that uses both a loop prop and a count prop:
+
+```html
+<component>
+  <div>
+    {#loop props.myLoop($count: props.myCount) as item}
+      <article>
+        <h2>{item.title}</h2>
+        <p>{item.excerpt}</p>
+      </article>
+    {/loop}
+  </div>
+</component>
+```
+
+**Component Props Setup:**
+- Create a **Loop Prop** named `myLoop` to select the loop source
+- Create a **Text Prop** named `myCount` with a default value (e.g., `3`)
+
+When using this component, you can:
+1. Select any compatible loop for the `myLoop` prop
+2. Set the number of items to display via the `myCount` prop
+
+This pattern works with any loop argument - not just `$count`. You can pass multiple prop values to multiple loop arguments as needed.
+
+## Using Modifiers with Loop Props
+
+Loop props and argument props can be combined with [dynamic data modifiers](/dynamic-data/dynamic-data-modifiers/basic-modifiers) for even more flexibility and control.
+
+### Modifiers on Loop Props
+
+You can apply modifiers directly to the loop prop itself. For example, using `.slice()` to limit the number of items:
+
+```html
+{#loop props.myLoop.slice(0, 3) as item}
+  <article>
+    <h2>{item.title}</h2>
+  </article>
+{/loop}
+```
+
+This would display only the first 3 items from the selected loop, regardless of how many items the loop source contains.
+
+### Modifiers on Argument Props
+
+You can also apply modifiers to props used as loop arguments. This is especially useful for ensuring data types are correct:
+
+```html
+{#loop props.myLoop($count: props.myCount.toInt()) as item}
+  <!-- loop content -->
+{/loop}
+```
+
+In this example, `.toInt()` ensures that the `myCount` prop value is converted to an integer before being passed to the loop argument.
+
+### Combining Bracket Notation with Modifiers
+
+When using bracket notation for dash-cased prop names, you can still apply modifiers:
+
+```html
+{#loop props['my-loop'].slice(0, 5) as item}
+  <!-- loop content -->
+{/loop}
+```
+
+Or on argument props:
+
+```html
+{#loop props.myLoop($count: props['my-count'].toInt()) as item}
+  <!-- loop content -->
+{/loop}
+```
+
+### Complete Example with Modifiers
+
+Here's a comprehensive example combining multiple techniques:
+
+```html
+<component>
+  <div>
+    {#loop props['featured-loop'].slice(0, props.maxItems.toInt())($offset: props.startFrom.toInt()) as item}
+      <article>
+        <h2>{item.title}</h2>
+        <p>{item.excerpt.truncateWords(20)}</p>
+      </article>
+    {/loop}
+  </div>
+</component>
+```
+
+This example demonstrates:
+- Bracket notation for a dash-cased loop prop (`props['featured-loop']`)
+- `.slice()` modifier on the loop prop using a prop value with `.toInt()`
+- An `$offset` argument with a prop value using `.toInt()`
+- A modifier (`.truncateWords()`) on dynamic data inside the loop

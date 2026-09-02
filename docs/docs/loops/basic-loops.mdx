@@ -56,25 +56,6 @@ Once your Loop element is connected to this custom query in Etch, your loop mark
 {/loop}
 ```
 
-## WordPress Main Query
-
-Sometimes you don't need to configure a separate WP Query in Etch. You just want to use whatever WordPress is already querying on the current template context (for example, archive templates, search results template, or the main blog template).
-
-In these cases, you don't need to define any query arguments. You can loop over WordPress's main query directly with:
-
-```html
-{#loop mainQuery as item}
-  <!-- Render the current posts from the main query -->
-{/loop}
-```
-
-- `mainQuery` refers to the WordPress main query for the current request.
-- `item` is the loop variable (which can be renamed to anything you like), and you can access its fields the same way you would in any other loop (e.g., `{item.title}`, `{item.permalink.relative}`, `{item.featuredImage.url}`).
-
-This is the simplest way to render lists of posts (or other objects) when the page is already powered by a WordPress query.
-
-For more details on how `mainQuery` works (including default arguments and loop arguments), see [Main Query Loops](/loops/main-query).
-
 ## Example Build Out (Blog Cards in a Grid)
 
 Here's the code for a blog post grid. The first question is, "What do I need to loop?"
