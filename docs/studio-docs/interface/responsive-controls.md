@@ -74,4 +74,4 @@ Whenever you're going to use a container query, it's advisable to add the Has Me
 
 Not only are Etch sites more accurately responsive, it's far easier and faster to develop them with a high degree of accuracy than it is in other tools.
 
-To dive deeper, check out our [Responsive Development Philosophy](/responsive-development/philosophy).
+To dive deeper, check out our [Responsive Development Philosophy](../responsive-development/philosophy).

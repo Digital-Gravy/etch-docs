@@ -66,7 +66,7 @@ Rather than statically referencing a source, you can insert a dynamic data key a
 
 All attributes support dynamic data.
 
-Read more about [Dynamic Data Keys](../../dynamic-data/dynamic-data-keys).
+Read more about [Dynamic Data Keys](../dynamic-data/dynamic-data-keys).
 
 ## Wrapping Images with a Figure Element
 

@@ -20,7 +20,7 @@ One of the simplest conditions is based on showing a `logout` link if the user i
 
 Let's ask ourselves the two questions:
 
-- **What data do I want to check?**: In this case, we want to check the [Dynamic Data Key](/dynamic-data/dynamic-data-keys), `user.loggedIn`.
+- **What data do I want to check?**: In this case, we want to check the [Dynamic Data Key](../dynamic-data/dynamic-data-keys), `user.loggedIn`.
 - **Should I write the statement as positive or negative to show the element?**: In this case, we want to write it as a positive to show the logout link and as a negative to show the login link.
 
 ## Conditional Logic With the UI
@@ -64,7 +64,7 @@ Prefix the key with `!` to invert the boolean.
 ```
 
 #### Check if a post has a specific category
-You can also use data modifiers in conditions. For example, you can check a post's assigned category terms without the need for looping by combining [.pluck()](/dynamic-data/dynamic-data-modifiers/basic-modifiers#pluck) and [.includes()](/dynamic-data/dynamic-data-modifiers/comparison-modifiers#includes).
+You can also use data modifiers in conditions. For example, you can check a post's assigned category terms without the need for looping by combining [.pluck()](../dynamic-data/dynamic-data-modifiers/basic-modifiers#pluck) and [.includes()](../dynamic-data/dynamic-data-modifiers/comparison-modifiers#includes).
 
 ```html
 {#if this.categories.pluck("name").includes("ABCs")}
@@ -82,7 +82,7 @@ If you need to check a specific value, like the value of a custom field, then yo
 {/if}
 ```
 
-For more information about the difference between loose and strict comparisons, see the [Advanced Conditions](/conditional-logic/advanced-conditions#loose-vs-strict-comparisons) guide.
+For more information about the difference between loose and strict comparisons, see the [Advanced Conditions](./advanced-conditions#loose-vs-strict-comparisons) guide.
 
 ### Practical Examples
 
@@ -152,10 +152,10 @@ That's a critical distinction that many beginners get wrong.
 1. **Use strict comparisons (`===`, `!==`) by default** to avoid unexpected behavior
 2. **Always use quotes around text values** and never around numbers or booleans
 3. **Use mathematical operators (`>=`, `<=`, `>`, `<`) for numerical ranges**
-4. **For more complex conditions**, refer to the [Advanced Conditions](/conditional-logic/advanced-conditions) guide
+4. **For more complex conditions**, refer to the [Advanced Conditions](./advanced-conditions) guide
 
 :::tip
-When using `{#if}` statements, remember they are block-level conditions that wrap elements. If you need an inline conditional (for example, inside an attribute value like a `class`), use [Comparison Modifiers](/dynamic-data/dynamic-data-modifiers/comparison-modifiers) instead.
+When using `{#if}` statements, remember they are block-level conditions that wrap elements. If you need an inline conditional (for example, inside an attribute value like a `class`), use [Comparison Modifiers](../dynamic-data/dynamic-data-modifiers/comparison-modifiers) instead.
 :::
 
 ## Practice Makes Perfect

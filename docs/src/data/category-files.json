@@ -310,14 +310,14 @@
     "intro-to-conditional-logic.md"
   ],
   "studio-docs/content-types": [
-    "README.md",
-    "querying-content.md"
+    "querying-content.md",
+    "README.md"
   ],
   "studio-docs/data-sources": [
-    "README.md",
     "api.md",
     "javascript.md",
-    "json.md"
+    "json.md",
+    "README.md"
   ],
   "studio-docs/deploying": [
     "README.md"
@@ -357,14 +357,14 @@
     "usage.md"
   ],
   "studio-docs/forms": [
-    "README.md",
     "custom-forms.md",
-    "embedding.md"
+    "embedding.md",
+    "README.md"
   ],
   "studio-docs/getting-started": [
-    "README.md",
     "core-principles.md",
     "development-strategy.md",
+    "README.md",
     "things-to-know.md"
   ],
   "studio-docs/how-to/basics": [

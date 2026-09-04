@@ -169,8 +169,8 @@ Top level Section elements typically need a consistent block padding default and
 
 
 **See also:**  
-- [How to Set Content Width](/how-to/basics/how-to-set-content-width.md)  
-- [How to Set Global Section Styles](/how-to/basics/how-to-set-global-section-styles.md)
+- [How to Set Content Width](../how-to/basics/how-to-set-content-width.md)  
+- [How to Set Global Section Styles](../how-to/basics/how-to-set-global-section-styles.md)
 
 
 ## When Not to Use Sections

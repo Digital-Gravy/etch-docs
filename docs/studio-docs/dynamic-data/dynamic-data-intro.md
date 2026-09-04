@@ -10,7 +10,7 @@ Dynamic data is the foundation of proper content management in modern web design
 
 For example, let's say you're building a website for a plumbing company that wants to list their services and create individual pages for each service. 
 
-Instead of manually creating each service listing and page, you can create a template that controls what all service pages look like, create a component for what all service cards are supposed to look like (which you would place in a [loop](/loops/basic-loops)), and then use dynamic data to automatically pull all the service content into the templates and cards.
+Instead of manually creating each service listing and page, you can create a template that controls what all service pages look like, create a component for what all service cards are supposed to look like (which you would place in a [loop](../data-sources/)), and then use dynamic data to automatically pull all the service content into the templates and cards.
 
 This is proper, scalable, maintainable modern web design and content management.
 
