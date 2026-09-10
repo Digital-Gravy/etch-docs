@@ -310,14 +310,14 @@
     "intro-to-conditional-logic.md"
   ],
   "studio-docs/content-types": [
-    "querying-content.md",
-    "README.md"
+    "README.md",
+    "querying-content.md"
   ],
   "studio-docs/data-sources": [
+    "README.md",
     "api.md",
     "javascript.md",
-    "json.md",
-    "README.md"
+    "json.md"
   ],
   "studio-docs/deploying": [
     "README.md"
@@ -339,11 +339,13 @@
     "dynamic-image.mdx",
     "element.mdx",
     "empty-elements.md",
+    "head.md",
     "heading.md",
     "html.mdx",
     "iframe.md",
     "image.md",
     "loop.md",
+    "render.md",
     "section.md",
     "svg.md",
     "text.md"
@@ -357,14 +359,14 @@
     "usage.md"
   ],
   "studio-docs/forms": [
+    "README.md",
     "custom-forms.md",
-    "embedding.md",
-    "README.md"
+    "embedding.md"
   ],
   "studio-docs/getting-started": [
+    "README.md",
     "core-principles.md",
     "development-strategy.md",
-    "README.md",
     "things-to-know.md"
   ],
   "studio-docs/how-to/basics": [
