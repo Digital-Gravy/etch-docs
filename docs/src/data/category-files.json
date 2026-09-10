@@ -62,8 +62,7 @@
   ],
   "docs/dynamic-data": [
     "dynamic-data-intro.md",
-    "dynamic-data-keys.mdx",
-    "expression-functions.mdx"
+    "dynamic-data-keys.mdx"
   ],
   "docs/dynamic-data/dynamic-data-integration": [
     "option-dynamic-data-integration.md",
@@ -311,14 +310,14 @@
     "intro-to-conditional-logic.md"
   ],
   "studio-docs/content-types": [
-    "querying-content.md",
-    "README.md"
+    "README.md",
+    "querying-content.md"
   ],
   "studio-docs/data-sources": [
+    "README.md",
     "api.md",
     "javascript.md",
-    "json.md",
-    "README.md"
+    "json.md"
   ],
   "studio-docs/deploying": [
     "README.md"
@@ -359,14 +358,14 @@
     "usage.md"
   ],
   "studio-docs/forms": [
+    "README.md",
     "custom-forms.md",
-    "embedding.md",
-    "README.md"
+    "embedding.md"
   ],
   "studio-docs/getting-started": [
+    "README.md",
     "core-principles.md",
     "development-strategy.md",
-    "README.md",
     "things-to-know.md"
   ],
   "studio-docs/how-to/basics": [
