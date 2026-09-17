@@ -118,6 +118,12 @@ Suppose you have a list of authors, each with a list of books:
 - Inside the author loop, add another Loop element and set its data source to `{item.books}`.
 - Add a child element (e.g., Heading) inside the nested loop and use `{item.title}` to display each book's title.
 
+:::note
+When a nested loop uses the same name as its parent loop (here both are `item`), the inner loop hides the outer one completely: inside the book loop, `{item.name}` reads the book, not the author, and stays empty because books have no `name`. Before Etch 1.6.8, a field missing on the inner item fell back to the outer item.
+
+To use data from both loops, give them different names, e.g. `{#loop authors as author}` and `{#loop author.books as book}`.
+:::
+
 ---
 
 ## See Also

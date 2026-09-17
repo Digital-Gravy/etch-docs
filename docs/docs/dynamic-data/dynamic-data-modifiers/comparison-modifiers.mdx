@@ -150,6 +150,28 @@ Making your templates **more concise and easier to maintain**:
             <code>&#123;status.equal("active")&#125;</code> → <code>true</code><br />
             <code>&#123;status.equal("inactive")&#125;</code> → <code>false</code></td>
     </tr>
+    <tr>
+        <td><code>.isTruthy()</code></td>
+        <td>
+          Checks if the current value is truthy.<br />
+          <a href="#istruthy">More Details</a>
+          <VersionBadge version="1.6.8" style={{marginBottom: 0}}/>
+        </td>
+        <td><code>featured = "yes"</code><br /><br />
+            <code>&#123;featured.isTruthy()&#125;</code> → <code>true</code><br />
+            <code>&#123;featured.isTruthy("Featured", "")&#125;</code> → <code>"Featured"</code></td>
+    </tr>
+    <tr>
+        <td><code>.isFalsy()</code></td>
+        <td>
+          Checks if the current value is falsy (empty, missing, <code>0</code> or <code>false</code>).<br />
+          <a href="#isfalsy">More Details</a>
+          <VersionBadge version="1.6.8" style={{marginBottom: 0}}/>
+        </td>
+        <td><code>gap = ""</code><br /><br />
+            <code>&#123;gap.isFalsy()&#125;</code> → <code>true</code><br />
+            <code>&#123;gap.isFalsy("Not set", "Set")&#125;</code> → <code>"Not set"</code></td>
+    </tr>
   </tbody>
 </table>
 
@@ -390,3 +412,74 @@ The `.equal()` method checks if the current value is equal to the given value.
   - `{item.value.equal("inactive")}` → `false`
   - `{item.value.equal("active", "Is Equal", "Is Not Equal")}` → `"Is Equal"`
   - `{item.value.equal("inactive", "Is Equal", "Is Not Equal")}` → `"Is Not Equal"`
+
+---
+
+### `.isTruthy()`
+
+<VersionBadge version="1.6.8" />
+
+**Returns:** boolean (`true`/`false`) or custom true/false values
+
+The `.isTruthy()` method checks if the current value is truthy. It follows JavaScript's rules: every value is truthy except `false`, `0`, `""` (empty string), `null` and values that don't exist.
+
+:::note
+The string `"0"`, the string `"false"` and empty arrays are **truthy**.
+:::
+
+| Argument     | Type    | Default | Description                          |
+| ------------ | ------- | ------- | ------------------------------------ |
+| `trueValue`  | any     | `true`  | Value to return if the value is truthy |
+| `falseValue` | any     | `false` | Value to return if the value is falsy  |
+
+#### Examples:
+- value = `"Hello"`
+  - `{item.value.isTruthy()}` → `true`
+  - `{item.value.isTruthy("Has Value", "Empty")}` → `"Has Value"`
+- value = `""`
+  - `{item.value.isTruthy()}` → `false`
+  - `{item.value.isTruthy("Has Value", "Empty")}` → `"Empty"`
+- value = `0` → `{item.value.isTruthy()}` → `false`
+- value = `"0"` → `{item.value.isTruthy()}` → `true`
+- value doesn't exist → `{item.missing.isTruthy()}` → `false`
+
+#### Use Case Example:
+Add a class only to featured posts:
+```html
+{#loop posts as post}
+  <article class="card {post.featured.isTruthy('card--featured', '')}">
+    {post.title}
+  </article>
+{/loop}
+```
+
+---
+
+### `.isFalsy()`
+
+<VersionBadge version="1.6.8" />
+
+**Returns:** boolean (`true`/`false`) or custom true/false values
+
+The `.isFalsy()` method is the opposite of `.isTruthy()`. It checks if the current value is `false`, `0`, `""` (empty string), `null` or doesn't exist.
+
+| Argument     | Type    | Default | Description                          |
+| ------------ | ------- | ------- | ------------------------------------ |
+| `trueValue`  | any     | `true`  | Value to return if the value is falsy  |
+| `falseValue` | any     | `false` | Value to return if the value is truthy |
+
+#### Examples:
+- value = `""`
+  - `{item.value.isFalsy()}` → `true`
+  - `{item.value.isFalsy("Empty", "Has Value")}` → `"Empty"`
+- value = `"Hello"`
+  - `{item.value.isFalsy()}` → `false`
+  - `{item.value.isFalsy("Empty", "Has Value")}` → `"Has Value"`
+- value doesn't exist → `{item.missing.isFalsy()}` → `true`
+- value = `"0"` → `{item.value.isFalsy()}` → `false`
+
+#### Use Case Example:
+Pick a CSS variable depending on whether a gap was set:
+```html
+<div style="gap: var({props.gap.isFalsy('--gap-default', '--gap-custom')});">
+```
