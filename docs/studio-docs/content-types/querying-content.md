@@ -63,7 +63,6 @@ Everything else is an operator object:
 
 | Operator       | Example                                  | Matches                 |
 | -------------- | ---------------------------------------- | ----------------------- |
-| _(bare value)_ | `{ isHomepage: true }`                   | Equal to                |
 | `not`          | `{ slug: { not: 'about' } }`             | Not equal to            |
 | `in`           | `{ slug: { in: ['about', 'contact'] } }` | Any of                  |
 | `contains`     | `{ title: { contains: 'guide' } }`       | Substring               |
@@ -75,7 +74,7 @@ Multiple keys are combined, and all of them must match:
 ```js
 return await queryContent({
 	where: {
-		isHomepage: false,
+		id: { equals: 12 },
 		title: { contains: 'guide' }
 	},
 	orderBy: 'createdAt',
@@ -90,7 +89,7 @@ takes a string.
 
 The page's own columns, named as they are:
 
-`id` · `slug` · `title` · `isHomepage` · `contentTypeId` · `createdAt` ·
+`id` · `slug` · `title` · `contentTypeId` · `createdAt` ·
 `updatedAt`
 
 And every field the type declares, named `fields.<key>` — the same prefix you
@@ -127,7 +126,6 @@ declared fields under `fields`:
   "id": 12,
   "slug": "morning-vinyasa",
   "title": "Morning Vinyasa",
-  "isHomepage": false,
   "contentTypeId": 4,
   "content": [ … ],
   "fields": {
@@ -161,7 +159,7 @@ Data Manager:
 | Message                                                                                                                     | Cause                                                                                                           |
 | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | `content type "course" does not exist`                                                                                      | No type with that key in this project                                                                           |
-| `invalid query: Unknown field "level" — available fields: id, slug, title, isHomepage, contentTypeId, createdAt, updatedAt` | A `where` or `orderBy` naming no page column — most often a declared field written without its `fields.` prefix |
+| `invalid query: Unknown field "level" — available fields: id, slug, title, contentTypeId, createdAt, updatedAt` | A `where` or `orderBy` naming no page column — most often a declared field written without its `fields.` prefix |
 | `invalid query: limit: must be a positive number, or -1 for no limit`                                                       | A malformed clause; the message names the problem                                                               |
 | `queryContent failed: …`                                                                                                    | Anything else                                                                                                   |
 
@@ -185,26 +183,6 @@ return await queryContent({
 	order: 'desc',
 	limit: 3
 });
-```
-
-### Everything except the homepage, for a sitemap
-
-```js
-return await queryContent({
-	where: { isHomepage: false },
-	orderBy: 'title',
-	order: 'asc',
-	limit: -1
-});
-```
-
-<!-- prettier-ignore -->
-```html
-<ul>
-  {#loop data('sitemap') as page}
-    <li><a href="/{page.slug}">{page.title}</a></li>
-  {/loop}
-</ul>
 ```
 
 ### One page by slug
