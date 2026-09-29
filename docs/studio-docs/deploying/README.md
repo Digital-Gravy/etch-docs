@@ -21,6 +21,11 @@ which is also why your site's uptime never depends on ours.
 
 ## What gets deployed
 
+**Only content a route serves is published.** The [routes](../routing/README.md)
+decide which pages and records go out, and at which URLs. A page no route serves
+isn't in the build or in `sitemap.xml`. Routes are resolved at build time too,
+so a new record picked up by a dynamic route gets its page on the next deploy.
+
 Every page is rendered on the server, so **anything dynamic is resolved at build
 time and baked into the output**. A [data source](../data-sources/README.md) that
 calls an external API is fetched during the build, and the deployed site serves

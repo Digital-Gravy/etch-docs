@@ -410,6 +410,14 @@
     "using-media-queries.md",
     "workflow.md"
   ],
+  "studio-docs/routing": [
+    "README.md",
+    "cars-and-brands.md",
+    "team-pages.md"
+  ],
+  "studio-docs/top-priorities": [
+    "index.md"
+  ],
   "studio-docs/utilities": [
     "functions.md",
     "quick-notes.md"
