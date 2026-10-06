@@ -36,14 +36,15 @@ Whatever it returns becomes the value of `data('key')`, ready to loop:
 
 Every clause is optional. `queryContent()` with no arguments reads every page.
 
-| Clause    | Type                | Meaning                                       |
-| --------- | ------------------- | --------------------------------------------- |
-| `type`    | string              | A content type's **key**. Defaults to `page`. |
-| `where`   | object              | Filters, keyed by field name.                 |
-| `orderBy` | string              | The field to sort by.                         |
-| `order`   | `'asc'` \| `'desc'` | Sort direction.                               |
-| `limit`   | number              | How many to take. `-1` means all of them.     |
-| `offset`  | number              | How many to skip.                             |
+| Clause          | Type                | Meaning                                                                       |
+| --------------- | ------------------- | ----------------------------------------------------------------------------- |
+| `type`          | string              | A content type's **key**. Defaults to `page`.                                 |
+| `where`         | object              | Filters, keyed by field name.                                                 |
+| `orderBy`       | string              | The field to sort by.                                                         |
+| `order`         | `'asc'` \| `'desc'` | Sort direction.                                                               |
+| `limit`         | number              | How many to take. `-1` means all of them.                                     |
+| `offset`        | number              | How many to skip.                                                             |
+| `relationDepth` | number `0`–`5`      | Levels of [relationship links](#relationship-fields) to resolve. Default `3`. |
 
 The query runs **in the database**. A `limit` of 10 fetches ten rows, not a
 thousand rows filtered down to ten afterwards, so paging and filtering stay
@@ -150,6 +151,43 @@ Two things to note:
 
 The Data Manager's preview pane shows the real records for your query, which is
 the quickest way to confirm a shape before writing the loop.
+
+## Relationship fields
+
+A relationship field comes back resolved into the full record it links to,
+block tree included — and that record's own links are resolved too, three
+levels deep by default. A link past the last resolved level is the `id` it
+points at.
+
+On a densely linked content model the payload multiplies with every level and
+can exhaust the sandbox's memory. Pass `relationDepth` to resolve less:
+
+```js
+return await queryContent({
+	type: 'course',
+	relationDepth: 1
+});
+```
+
+| `relationDepth` | Result                                             |
+| --------------- | -------------------------------------------------- |
+| `0`             | Every link stays the `id` it points at             |
+| `1`             | Only directly linked records are resolved          |
+| `3`             | The default                                        |
+| `5`             | The maximum; anything higher is an `invalid query` |
+
+There is no field selection, so if a loop needs only a few values, return a
+compact projection instead of the raw records:
+
+```js
+const courses = await queryContent({ type: 'course', relationDepth: 1 });
+
+return courses.map((course) => ({
+	title: course.title,
+	slug: course.slug,
+	instructor: course.fields.instructor?.title
+}));
+```
 
 ## Errors
 
