@@ -24,9 +24,9 @@ remain ongoing priorities.
 
 | Feature                  | Description                                                                   |
 | ------------------------ | ----------------------------------------------------------------------------- |
-| **Templating & Routing** | Create reusable templates and control how content maps to site routes.        |
-| **URL Control**          | Provide direct control over the URLs generated for pages and other content.   |
-| **Image Custom Field**   | Add images to content types and select assets for individual content records. |
+| **Basic SEO** | Baseline SEO controls.        |
+| **SRCSET Support**          | Full SRCSET support for images.   |
+| **404 Routing**   | Custom 404 error pages. |
 
 ## Community Feedback
 
