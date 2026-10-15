@@ -361,8 +361,10 @@
   ],
   "studio-docs/forms": [
     "README.md",
-    "custom-forms.md",
-    "embedding.md"
+    "custom-forms.md"
+  ],
+  "studio-docs/forms/embedding": [
+    "README.md"
   ],
   "studio-docs/getting-started": [
     "README.md",

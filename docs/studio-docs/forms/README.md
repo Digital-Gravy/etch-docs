@@ -13,10 +13,10 @@ Two ways to set one up.
 
 ## Two routes
 
-| Route                                        | What you get                                                                | What you give up                                                  |
-| -------------------------------------------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| **[Embed a third-party form](embedding.md)** | Fields, validation, storage, spam protection and notifications, all managed | Control over the markup, and often over the styling               |
-| **[Build your own](custom-forms.md)**        | Your exact markup, classes, validation and states                           | You wire up delivery yourself, by posting to a webhook you create |
+| Route                                               | What you get                                                                | What you give up                                                  |
+| --------------------------------------------------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| **[Embed a third-party form](embedding/README.md)** | Fields, validation, storage, spam protection and notifications, all managed | Control over the markup, and often over the styling               |
+| **[Build your own](custom-forms.md)**               | Your exact markup, classes, validation and states                           | You wire up delivery yourself, by posting to a webhook you create |
 
 Both end up as static output. Neither needs a backend from you.
 
@@ -46,5 +46,5 @@ a form runs when a visitor arrives.
 
 ## Next
 
-- [Embedding a third-party form](embedding.md)
+- [Embedding a third-party form](embedding/README.md)
 - [Building your own form](custom-forms.md)
