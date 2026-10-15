@@ -55,7 +55,7 @@ The children of a Head Element are ordinary elements, so dynamic data works insi
 
 ## Loader scripts
 
-Third-party embeds often ask for a loader script "in the `<head>`". The Head Element is where it goes. See [Embedding a form](../forms/embedding.md) for a worked example.
+Third-party embeds often ask for a loader script "in the `<head>`". The Head Element is where it goes. See [Embedding a form](../forms/embedding/README.md) for a worked example.
 
 :::note
 If a provider doesn't specifically ask for the head, leaving its script inline next to the thing it powers is fine.
