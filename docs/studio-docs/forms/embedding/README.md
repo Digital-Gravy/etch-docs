@@ -20,7 +20,7 @@ A few common ones, and what to expect from each:
 | ----------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------ |
 | **[Google Forms](google-forms.md)**       | Free, quick, answers land in a spreadsheet     | Iframe — theming is limited to Google's own options          |
 | **Typeform**                              | Conversational, one-question-at-a-time forms   | Iframe, themed in Typeform's editor                          |
-| **Tally**                                 | A generous free tier and a lot of field types  | Iframe, with theme controls in Tally                         |
+| **[Tally](tally.md)**                     | A generous free tier and a lot of field types  | Iframe, with theme controls in Tally                         |
 | **Jotform**                               | Long forms, conditional logic, payments        | Iframe by default; also offers a full-source embed you style |
 | **HubSpot Forms**                         | Leads that need to land in a CRM straight away | Rendered into your page, so your CSS reaches it              |
 | **[Microsoft Forms](microsoft-forms.md)** | Teams already on Microsoft 365                 | Iframe, themed in Microsoft Forms' own options               |
