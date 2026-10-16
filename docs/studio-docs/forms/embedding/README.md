@@ -16,15 +16,15 @@ doesn't need one.
 
 A few common ones, and what to expect from each:
 
-| Service                             | Good for                                       | Styling                                                      |
-| ----------------------------------- | ---------------------------------------------- | ------------------------------------------------------------ |
-| **[Google Forms](google-forms.md)** | Free, quick, answers land in a spreadsheet     | Iframe — theming is limited to Google's own options          |
-| **Typeform**                        | Conversational, one-question-at-a-time forms   | Iframe, themed in Typeform's editor                          |
-| **Tally**                           | A generous free tier and a lot of field types  | Iframe, with theme controls in Tally                         |
-| **Jotform**                         | Long forms, conditional logic, payments        | Iframe by default; also offers a full-source embed you style |
-| **HubSpot Forms**                   | Leads that need to land in a CRM straight away | Rendered into your page, so your CSS reaches it              |
-| **Microsoft Forms**                 | Teams already on Microsoft 365                 | Iframe, themed in Microsoft Forms' own options               |
-| **Fillout**                         | Multi-step forms with a modern editor          | Script embed, themed in Fillout's editor                     |
+| Service                                   | Good for                                       | Styling                                                      |
+| ----------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------ |
+| **[Google Forms](google-forms.md)**       | Free, quick, answers land in a spreadsheet     | Iframe — theming is limited to Google's own options          |
+| **Typeform**                              | Conversational, one-question-at-a-time forms   | Iframe, themed in Typeform's editor                          |
+| **Tally**                                 | A generous free tier and a lot of field types  | Iframe, with theme controls in Tally                         |
+| **Jotform**                               | Long forms, conditional logic, payments        | Iframe by default; also offers a full-source embed you style |
+| **HubSpot Forms**                         | Leads that need to land in a CRM straight away | Rendered into your page, so your CSS reaches it              |
+| **[Microsoft Forms](microsoft-forms.md)** | Teams already on Microsoft 365                 | Iframe, themed in Microsoft Forms' own options               |
+| **Fillout**                               | Multi-step forms with a modern editor          | Script embed, themed in Fillout's editor                     |
 
 ## How embedding works
 
