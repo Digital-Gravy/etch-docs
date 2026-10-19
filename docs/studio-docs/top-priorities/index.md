@@ -24,9 +24,8 @@ remain ongoing priorities.
 
 | Feature                  | Description                                                                   |
 | ------------------------ | ----------------------------------------------------------------------------- |
+| **Client Editing** | Simplified client editing experience  |
 | **Basic SEO** | Baseline SEO controls.        |
-| **SRCSET Support**          | Full SRCSET support for images.   |
-| **404 Routing**   | Custom 404 error pages. |
 
 ## Community Feedback
 
