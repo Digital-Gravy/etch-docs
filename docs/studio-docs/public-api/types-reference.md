@@ -4,7 +4,7 @@ sidebar_position: 90
 sidebar_custom_props:
   badge: "New"
 last_update:
-  date: 2026-06-24
+  date: 2026-10-22
 ---
 
 # Types Reference
@@ -161,10 +161,17 @@ type EtchApiErrorCode =
   | "READONLY"
   | "INVALID_ARGUMENT"
   | "LOOP_NOT_FOUND"
+  | "DATA_SOURCE_NOT_FOUND"
   | "STYLE_NOT_FOUND"
   | "STYLESHEET_NOT_FOUND"
   | "COMPONENT_NOT_FOUND"
   | "POST_NOT_FOUND"
+  | "ROUTE_NOT_FOUND"
+  | "CONTENT_TYPE_NOT_FOUND"
+  | "FIELD_NOT_FOUND"
+  | "ASSET_NOT_FOUND"
+  | "COLLECTION_NOT_FOUND"
+  | "ASSET_IN_USE"
   | "OPERATION_FAILED"
   | "NOT_AVAILABLE"
   | (string & {});

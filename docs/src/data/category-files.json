@@ -397,6 +397,7 @@
   ],
   "studio-docs/public-api": [
     "ai.md",
+    "assets.md",
     "blocks.md",
     "components.md",
     "index.md",

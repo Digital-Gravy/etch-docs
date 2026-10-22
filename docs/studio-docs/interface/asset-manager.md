@@ -52,6 +52,10 @@ You can upload files in two ways:
 
 Supported file types include: JPG, PNG, WebP, AVIF, SVG, MP4, MOV, PDF, CSV, XLS, and more.
 
+Images, video, audio and PDFs open in the browser when you visit their URL. Every other file (CSV, XLS, HTML, text, …) downloads instead, so an uploaded page can never run on Etch's own address with your session. Using such files from a page, as a stylesheet, script or font, works as usual.
+
+Scripts and AI agents can manage the library too, through the [`etch.assets` API](../public-api/assets.md).
+
 ## Managing Assets
 
 ### Selecting Assets

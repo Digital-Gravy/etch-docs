@@ -2,7 +2,7 @@
 title: Security
 sidebar_position: 50
 last_update:
-  date: 2026-06-22
+  date: 2026-10-22
 ---
 
 # Security
@@ -12,6 +12,12 @@ The connector is designed to stay on your own computer, and to keep the scripts 
 ## Everything stays local
 
 The connector only listens on `127.0.0.1` — your own machine. Other computers on your network (and the internet) can't reach it. Run it on a machine you trust, and don't deliberately open its ports up to other devices.
+
+Websites you visit can't use it either. The connector refuses any request that comes from a web page (browsers mark those, local tools don't), and only accepts commands sent as JSON. A page open in your browser can't run commands in your Etch tab through it.
+
+## Downloads don't overwrite your files
+
+When the agent uses `download`, the file name comes from the Etch tab. So the connector never overwrites a file that already exists, and never writes a name starting with `.` (like `.bashrc`), unless the agent passes `--force`.
 
 ## Scripts run in a safe mode
 

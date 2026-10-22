@@ -2,7 +2,7 @@
 title: CLI Reference
 sidebar_position: 30
 last_update:
-  date: 2026-06-22
+  date: 2026-10-22
 ---
 
 # CLI Reference
@@ -20,6 +20,8 @@ Usage:
   etch-connector serve [--ws-port 7331] [--control-port 7332] [--ws-host 127.0.0.1]
   etch-connector tabs  [--json] [--control-port 7332] [--cdp]
   etch-connector eval  [code] [-t|--tab name] [-f|--file path] [--timeout ms] [--cdp]
+  etch-connector upload   <file…> [-t name] [--alt text] [--collection id] [--compress webp:80[:maxWidth]] [--cdp]
+  etch-connector download <id…>   [-t name] [-o|--out dir|file] [--force] [--cdp]
   etch-connector shot      [-t name] [-s|--selector css] [--full] [--jpeg] [-o|--out file] [--freeze=false]   (CDP)
   etch-connector html      <selector> [-t name]                                              (CDP)
   etch-connector computed  <selector> [-t name] [--props a,b,c]                               (CDP)
@@ -63,13 +65,61 @@ etch-connector eval [code] [-t|--tab name] [-f|--file path] [--timeout ms]
 | `-f`, `--file` | Run a script saved in a file instead of typing it inline. |
 | `--timeout` | How long to wait (in milliseconds) before giving up. |
 
+### `upload`
+
+Stores files from your computer in the project's asset library, the same one the Asset Manager shows, and prints each stored asset. Its `id` is what an image block's `mediaId` takes.
+
+```bash
+etch-connector upload <file…> [-t name] [--alt text] [--collection id] [--compress webp:80[:maxWidth]]
+```
+
+| Option | What it does |
+| --- | --- |
+| `--alt` | Alt text for the image. Describes one image, so it takes **one file per command**. |
+| `--collection` | Put the files into this collection (by id). |
+| `--compress` | Re-encode before storing: a format (`webp`, `avif`, `jpeg`, `png`), then optionally a quality (0–100) and a maximum width, e.g. `webp:80:2400`. Never enlarges. |
+| `--timeout` | How long to wait, in milliseconds. Defaults to 4 minutes, since compressing a large photo takes a while. |
+
+A file over **24.9 MiB** is refused before anything is sent. With `--compress` the limit applies to the compressed result, so an original up to 60 MiB may go.
+
+```bash
+etch-connector upload ./hero.jpg --alt "Team on the roof" --compress webp:80:2400
+```
+
+:::note Etch Studio
+`upload` and `download` work where the runtime backs the `assets` capability, which today is Etch Studio. Elsewhere they stop with "this runtime has no etch.assets".
+:::
+
+### `download`
+
+Writes assets' files to your computer and prints where each one went.
+
+```bash
+etch-connector download <id…> [-t name] [-o|--out dir|file] [--force]
+```
+
+| Option | What it does |
+| --- | --- |
+| `-o`, `--out` | A folder (the asset's own name goes inside it) or, for a single id, the file path. A trailing slash (`out/`, or `out\` on Windows) creates the folder if needed. Defaults to the current folder. |
+| `--force` | Overwrite a file that already exists. Without it, `download` refuses. |
+
+`download` also refuses a file name starting with `.`, since the name comes from the tab.
+
+```bash
+etch-connector download 12 --out /tmp/hero.webp
+```
+
+:::caution A timeout doesn't mean nothing was stored
+If an `upload` times out, the tab may still finish storing the file. Check the asset list before uploading again.
+:::
+
 ### Results: where they go
 
 When `eval` runs, results come back in a predictable way so a tool can read them:
 
 - The command's **result** is printed as the main output.
 - Any **log messages** the script produced are printed separately.
-- A **success/failure code** tells the agent whether it worked: `0` means success, `2` means the script hit an error, and `1` means something operational went wrong (the tab wasn't found, the request timed out, or the connector wasn't reachable).
+- A **success/failure code** tells the agent whether it worked: `0` means success, `2` means the script hit an error, and `1` means something operational went wrong (the tab wasn't found, the request timed out, the connector wasn't reachable, or `upload`/`download` refused a file).
 
 ## Screenshots & inspection (advanced)
 

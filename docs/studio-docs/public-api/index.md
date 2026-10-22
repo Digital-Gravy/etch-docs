@@ -4,7 +4,7 @@ sidebar_position: 0
 sidebar_custom_props:
   badge: "New"
 last_update:
-  date: 2026-08-31
+  date: 2026-10-22
 ---
 
 import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
@@ -82,7 +82,7 @@ const etch = getEtch({ apiVersion: "^1.0", id: "my-plugin" });
 
 ## The `Etch` object
 
-`getEtch()` returns the root `Etch` interface — eleven namespaces plus a few top-level members:
+`getEtch()` returns the root `Etch` interface — its namespaces plus a few top-level members:
 
 ```ts
 interface Etch {
@@ -97,6 +97,7 @@ interface Etch {
   history: EtchHistoryApi;
   skills: EtchSkillsApi;
   ai: EtchAiApi;
+  assets?: EtchAssetsApi; // optional: only where the `assets` capability is backed
 
   saveAsync(): Promise<void>;
   connect?(options?: ConnectOptions): Etch; // reserved for the future stable runtime
@@ -112,6 +113,7 @@ interface Etch {
 | `etch.styles`              | [Styles](./styles.md)                   | CSS rules and `:root` custom properties (variables)                  |
 | `etch.stylesheets`         | [Stylesheets](./stylesheets.md)         | Global stylesheets and `@custom-media` definitions                   |
 | `etch.components`          | [Components](./components.md)           | Reusable component definitions and their properties                  |
+| `etch.assets`              | [Assets](./assets.md)                   | Upload, download, compress and organize the project's files          |
 | `etch.navigation`          | [Navigation](./navigation.md)           | Move around the builder UI; switch posts/templates                   |
 | `etch.ui` / `etch.history` | [UI & History](./ui-and-history.md)     | Color scheme, chrome visibility, undo/redo                           |
 | `etch.skills`              | [Skills](./skills.md)                   | Bundled, read-only authoring guides (e.g. ACSS conventions)          |
@@ -123,7 +125,7 @@ interface Etch {
 How a change reaches the database depends on which namespace it lives in:
 
 - **`blocks`, `styles`, `loops`** — buffered in the editor. They are persisted when you call `etch.saveAsync()` (the same save the UI performs).
-- **`stylesheets`, `components`, `fields`** — every mutating method is `*Async` and **persists immediately**; you do not need `saveAsync()` for them.
+- **`stylesheets`, `components`, `fields`, `assets`** — every mutating method is `*Async` and **persists immediately**; you do not need `saveAsync()` for them.
 
 ```ts
 etch.blocks.setText(id, "Hello world");
@@ -160,10 +162,17 @@ type EtchApiErrorCode =
   | "READONLY"
   | "INVALID_ARGUMENT"
   | "LOOP_NOT_FOUND"
+  | "DATA_SOURCE_NOT_FOUND"
   | "STYLE_NOT_FOUND"
   | "STYLESHEET_NOT_FOUND"
   | "COMPONENT_NOT_FOUND"
   | "POST_NOT_FOUND"
+  | "ROUTE_NOT_FOUND"
+  | "CONTENT_TYPE_NOT_FOUND"
+  | "FIELD_NOT_FOUND"
+  | "ASSET_NOT_FOUND"
+  | "COLLECTION_NOT_FOUND"
+  | "ASSET_IN_USE"
   | "OPERATION_FAILED"
   | "NOT_AVAILABLE"
   | (string & {}); // open-ended for forward compatibility
