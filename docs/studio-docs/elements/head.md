@@ -28,13 +28,15 @@ Where you place it in the page doesn't matter. Its children always end up in the
 
 ## What Etch already puts in the head
 
-Every exported page gets a baseline head without you doing anything: the charset and viewport metas, the page's `<title>` and a matching `og:title`, and `og:type`. Your project's description, favicon and social image are added too, when they're set.
+Every exported page gets a baseline head without you doing anything: the charset and viewport metas, the page's `<title>` and a matching `og:title`, and `og:type`. The description, language, canonical URL and social image come from the [SEO tab](../routing/seo.md) of the route that publishes the page — inherited from the routes above it where that route sets none — and the favicon comes from Root settings.
 
-So the Head Element is for what's specific to a page, template or component — not for the basics.
+So the Head Element is for what's specific to a page, template or component — not for the basics, and not for anything you'd rather set once for a whole section.
 
 ## Overriding the page title
 
-A document can only have one title, so a `<title>` inside a Head Element takes the place of the one Etch would have written from the page's name. `og:title` follows whichever of the two won, which keeps the browser tab and the social card in agreement.
+A document can only have one title, so a `<title>` inside a Head Element takes the place of the one Etch would have written — from the route's SEO tab, or from the page's name where no route sets one. `og:title` follows whichever of the two won, which keeps the browser tab and the social card in agreement.
+
+The same goes for the rest: a tag you write by hand stays, and the route's value for it is not added.
 
 ```html
 <etch:head>

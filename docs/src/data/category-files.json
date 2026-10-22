@@ -310,14 +310,14 @@
     "intro-to-conditional-logic.md"
   ],
   "studio-docs/content-types": [
-    "querying-content.md",
-    "README.md"
+    "README.md",
+    "querying-content.md"
   ],
   "studio-docs/data-sources": [
+    "README.md",
     "api.md",
     "javascript.md",
-    "json.md",
-    "README.md"
+    "json.md"
   ],
   "studio-docs/deploying": [
     "README.md"
@@ -360,18 +360,19 @@
     "usage.md"
   ],
   "studio-docs/forms": [
-    "custom-forms.md",
-    "README.md"
+    "README.md",
+    "custom-forms.md"
   ],
   "studio-docs/forms/embedding": [
+    "README.md",
     "google-forms.md",
     "microsoft-forms.md",
-    "README.md"
+    "tally.md"
   ],
   "studio-docs/getting-started": [
+    "README.md",
     "core-principles.md",
     "development-strategy.md",
-    "README.md",
     "things-to-know.md"
   ],
   "studio-docs/how-to/basics": [
@@ -415,8 +416,10 @@
     "workflow.md"
   ],
   "studio-docs/routing": [
-    "cars-and-brands.md",
     "README.md",
+    "cars-and-brands.md",
+    "redirects-and-errors.md",
+    "seo.md",
     "team-pages.md"
   ],
   "studio-docs/top-priorities": [
