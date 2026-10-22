@@ -97,6 +97,7 @@ interface Etch {
   history: EtchHistoryApi;
   skills: EtchSkillsApi;
   ai: EtchAiApi;
+  dataSources?: EtchDataSourcesApi; // optional: only where the `dataSources` capability is backed
   content?: EtchContentApi; // optional: only where the `content` capability is backed
   routes?: EtchRoutesApi; // optional: only where the `routes` capability is backed
   assets?: EtchAssetsApi; // optional: only where the `assets` capability is backed
@@ -117,6 +118,7 @@ interface Etch {
 | `etch.components`          | [Components](./components.md)           | Reusable component definitions and their properties                  |
 | `etch.assets`              | [Assets](./assets.md)                   | Upload, download, compress and organize the project's files          |
 | `etch.content`             | [Content](./content.md)                 | Content types, their fields, and their items                         |
+| `etch.dataSources`         | [Data Sources](./data-sources.md)       | Named json, api and js sources, read through `data('key')`           |
 | `etch.navigation`          | [Navigation](./navigation.md)           | Move around the builder UI; switch posts/templates                   |
 | `etch.routes`              | [Routes](./routes.md)                   | The route tree: which content is published, and at which URL         |
 | `etch.ui` / `etch.history` | [UI & History](./ui-and-history.md)     | Color scheme, chrome visibility, undo/redo                           |
@@ -129,7 +131,7 @@ interface Etch {
 How a change reaches the database depends on which namespace it lives in:
 
 - **`blocks`, `styles`, `loops`** — buffered in the editor. They are persisted when you call `etch.saveAsync()` (the same save the UI performs).
-- **`stylesheets`, `components`, `fields`, `content`, `routes`, `assets`** — every mutating method is `*Async` and **persists immediately**; you do not need `saveAsync()` for them.
+- **`stylesheets`, `components`, `fields`, `dataSources`, `content`, `routes`, `assets`** — every mutating method is `*Async` and **persists immediately**; you do not need `saveAsync()` for them.
 
 ```ts
 etch.blocks.setText(id, "Hello world");
@@ -204,7 +206,7 @@ A capability that's missing from the map counts as unavailable, so test with `==
 
 | Capability | When `true` | On Etch Studio |
 | --- | --- | --- |
-| `dataSources` | `etch.dataSources` is backed: named `json`, `api` and `js` sources, reached from a loop's `target` through `data('key')`. | yes |
+| `dataSources` | [`etch.dataSources`](./data-sources.md) is backed: named `json`, `api` and `js` sources, reached from a loop's `target` through `data('key')`. | yes |
 | `loops` | The older loop registry: a loop block binds to a named definition by `loopId`. Superseded by `dataSources`. | no |
 | `fields` | `etch.fields` is backed by a custom-field store. | no |
 | `templates` | Templates exist and `navigation.goTo("templates")` works. On Studio they are records of a template content type. | yes |
