@@ -1,5 +1,5 @@
 ---
-name: sync-studio-changelog
+name: sync-changelog
 description: Mirror the Etch Studio changelog API into the static docs page studio-docs/changelog.md.
 disable-model-invocation: true
 ---
