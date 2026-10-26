@@ -7,6 +7,62 @@ sidebar_position: 402
 
 Every change shipped to Etch Studio, newest first.
 
+## October 25, 2026 {#2026-10-25}
+
+- <span className="badge changelog-badge changelog-badge--improved">Improved</span> **Refreshed icons**
+
+  Image, duplicate and edit icons were redrawn, and Content Hub item actions use them in a clearer order.
+
+## October 24, 2026 {#2026-10-24}
+
+- <span className="badge changelog-badge changelog-badge--improved">Improved</span> **Clearer builder sidebar**
+
+  The sidebar has its own Builder button and shows more clearly which area is open and which ones you can't use.
+
+## October 23, 2026 {#2026-10-23}
+
+- <span className="badge changelog-badge changelog-badge--new">New</span> **Clients can edit images**
+
+  Clients can replace an image and its alt text right on the page.
+
+- <span className="badge changelog-badge changelog-badge--new">New</span> **Clients can manage content**
+
+  Clients can create and edit Content Hub items, while content types stay with the rest of the team.
+
+- <span className="badge changelog-badge changelog-badge--improved">Improved</span> **Jump to content from the command palette**
+
+  Search content types and items from the command palette and open them directly.
+
+## October 22, 2026 {#2026-10-22}
+
+- <span className="badge changelog-badge changelog-badge--new">New</span> **Invite members**
+
+  Invite people to your workspace from the Members page.
+
+- <span className="badge changelog-badge changelog-badge--new">New</span> **Client role**
+
+  Give someone the Client role so they can edit and publish content without code, design, structure or settings controls getting in the way.
+
+- <span className="badge changelog-badge changelog-badge--new">New</span> **Unread updates indicator**
+
+  A dot on the What's new button shows when there are changes you haven't seen yet.
+
+- <span className="badge changelog-badge changelog-badge--improved">Improved</span> **Clearer error messages**
+
+  When settings fail to save, or your role doesn't allow an action, the message now tells you why.
+
+- <span className="badge changelog-badge changelog-badge--improved">Improved</span> **Safer file uploads**
+
+  Uploaded files that aren't images, video, audio or PDF are downloaded instead of opened in the browser.
+
+- <span className="badge changelog-badge changelog-badge--fixed">Fixed</span> **Redirects on published sites**
+
+  Redirects now take effect on the published site.
+
+- <span className="badge changelog-badge changelog-badge--fixed">Fixed</span> **Asset name conflicts**
+
+  Renaming or replacing an asset with a name that's already taken now shows an error instead of breaking the asset.
+
 ## October 21, 2026 {#2026-10-21}
 
 - <span className="badge changelog-badge changelog-badge--new">New</span> **Redirects per route**
@@ -32,7 +88,6 @@ Every change shipped to Etch Studio, newest first.
 - <span className="badge changelog-badge changelog-badge--fixed">Fixed</span> **Steady search preview**
 
   The search preview no longer jumps around while it loads.
-
 
 ## October 20, 2026 {#2026-10-20}
 
@@ -71,4 +126,3 @@ Every change shipped to Etch Studio, newest first.
 - <span className="badge changelog-badge changelog-badge--fixed">Fixed</span> **Canonical URLs with special characters**
 
   Canonical URLs that contain special characters are now escaped correctly.
-
