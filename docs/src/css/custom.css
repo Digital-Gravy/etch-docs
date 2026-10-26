@@ -356,3 +356,62 @@ code {
   border-color: var(--ifm-color-emphasis-300);
   color: var(--ifm-color-emphasis-800);
 }
+
+/* Etch Studio changelog (studio-docs/changelog.md): a timeline per date with coloured type badges. */
+.docs-doc-id-changelog .markdown h2 + ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0.3rem;
+  border-left: 2px solid var(--ifm-color-emphasis-200);
+}
+
+.docs-doc-id-changelog .markdown h2 + ul > li {
+  position: relative;
+  margin: 0;
+  padding: 0 0 1.25rem 1.25rem;
+}
+
+.docs-doc-id-changelog .markdown h2 + ul > li::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 0.45rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ifm-background-color);
+  border: 2px solid var(--ifm-color-emphasis-400);
+}
+
+.docs-doc-id-changelog .markdown h2 + ul > li > p {
+  margin: 0.35rem 0 0;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.docs-doc-id-changelog .markdown h2 + ul > li > p:first-child {
+  margin-top: 0;
+  color: inherit;
+}
+
+.changelog-badge {
+  margin-right: 0.5rem;
+  border: 0;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  vertical-align: 0.1em;
+}
+
+.changelog-badge--new {
+  background: #067a6c;
+}
+
+.changelog-badge--improved {
+  background: #3b5bdb;
+}
+
+.changelog-badge--fixed {
+  background: #c2410c;
+}
