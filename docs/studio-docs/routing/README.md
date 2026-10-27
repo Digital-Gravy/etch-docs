@@ -19,7 +19,7 @@ Each route has three things:
 | Column       | What it does                                                                             |
 | ------------ | ---------------------------------------------------------------------------------------- |
 | **Name**     | The URL segment. Static text like `team`, or an expression like `{this.title.toSlug()}`. |
-| **Content**  | What the route serves: a single page, individual records, or whole content types.        |
+| **Content**  | What the route serves: a single page, records, whole content types, or data sources.     |
 | **Template** | The template the served content is rendered through. Optional.                           |
 
 ## Kinds of route
@@ -62,8 +62,8 @@ with plain text:
 {this.fields.brand.title.toSlug()}        →  northwind
 ```
 
-A dynamic route can serve any mix of content: whole content types, or records
-picked one by one.
+A dynamic route can serve any mix of content: whole content types, records
+picked one by one, or [data sources](#pages-from-a-data-source).
 
 :::tip Always slugify
 `this.title` on its own gives you `John` or `Red Fox Motors`, with capitals and
@@ -103,6 +103,43 @@ too, give a route at that level its own content. See
 
 A record whose expression resolves to nothing, for example an empty field, is
 skipped: it has no address, so it isn't published.
+
+## Pages from a data source
+
+A dynamic route can also publish pages from a
+[data source](../data-sources/README.md), so a product feed or a JSON list gets
+pages without a Content Hub record per item. Pick it under **Data Sources** in
+the Content Picker; only dynamic routes offer that section.
+
+What the source returns decides how many pages it gets:
+
+- **An array** is a page per element: a list of 20 products is 20 pages.
+- **Anything else** is one page.
+- **Nothing**, such as an API source with no URL, is no page.
+
+The element is `this`, in the route's name and in its template, exactly as the
+source returned it. With a `products` source returning
+`[{ "sku": "abc-123", "name": "Desk" }, …]`, a route `{this.sku}` under `shop`
+publishes `/shop/abc-123/`, and the template reads `{this.name}`.
+
+A few rules:
+
+- **It needs a template.** A value has no blocks of its own, so a route that
+  serves a data source without a template, its own or inherited, shows an
+  error in the Routes Manager and stops the deploy.
+- **A failing source fails the deploy.** If the API is down, the deploy stops
+  rather than unpublishing every page the source served.
+- **Pages are a snapshot.** The source runs at deploy time; a change upstream
+  shows up on the next deploy.
+- **The Routes Manager runs the source** each time you edit a route, to list
+  the resulting URLs. An API source makes a request per edit.
+- **A value has no title.** Give the template a `<title>`, or the route an SEO
+  title. The Routes Manager and deploy errors call a page by its source and
+  position, like _Products #3_. The sitemap lists the page without a last
+  modified date.
+
+While editing the template, you can preview it with any value a route serves
+through it.
 
 ## Templates
 

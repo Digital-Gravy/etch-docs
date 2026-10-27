@@ -4,7 +4,7 @@ sidebar_position: 54
 sidebar_custom_props:
   badge: "New"
 last_update:
-  date: 2026-10-22
+  date: 2026-10-27
 ---
 
 # Routes
@@ -45,7 +45,7 @@ A route's URL is its ancestors' segments joined by `/`. What a segment is depend
 | `''` | `root` | The site root. There is exactly one; it can't be created or deleted. |
 | `about` | `static` | Lowercase letters and digits joined by `-` or `_`. Serves at most one record. |
 | `(marketing)` | `group` | Nests routes without adding to the URL. Serves nothing itself. |
-| `{this.title.toSlug()}` | `dynamic` | Resolved once per record it serves, from that record's fields. Serves any mix of records and whole content types. |
+| `{this.title.toSlug()}` | `dynamic` | Resolved once per record it serves, from that record's fields. Serves any mix of records, whole content types and data sources. |
 
 A dynamic segment can use the full [dynamic data](../dynamic-data/dynamic-data-intro.md) syntax, except `this.slug` and `this.isHomepage`: the routes decide those.
 
@@ -66,6 +66,7 @@ interface EtchRoute {
 interface EtchRouteSource {
   postIds: number[];         // records, as navigation.listPostsAsync() returns them
   postTypes: string[];       // content type keys (PostSummary.postType); dynamic routes only
+  dataSources: string[];     // data source keys, as etch.dataSources lists them; dynamic routes only
 }
 
 interface EtchRouteInput {
@@ -78,14 +79,14 @@ interface EtchRouteInput {
 interface EtchRoutePatch {
   segment?: string;                   // renames the route; its subtree moves with it
   parentId?: string;                  // moves the route and its subtree
-  source?: Partial<EtchRouteSource>;  // replaces what it serves, whole
+  source?: Partial<EtchRouteSource>;  // replaces what it serves, whole; a missing dataSources keeps the route's
   templateId?: number | null;         // null clears it, so the route inherits again
 }
 
 interface EtchRoutedPath {
   routeId: string;
-  postId?: number;           // absent for a static route that only holds its path
-  title?: string;
+  postId?: number;           // absent for a static route that only holds its path, and for a data source's page
+  title?: string;            // for a data source's page: its name and position, like "Products #3"
   path: string;              // the URL path, or the route as written when invalid
   status: "published" | "shadowed" | "conflict" | "invalid";
   reason?: string;           // why it is not published
@@ -113,6 +114,23 @@ A route renders the records it serves through its template, or through the neare
 
 Replacing a dynamic route's `source` keeps any records the author excluded from it in the Routes Manager.
 
+## Serving a data source
+
+A dynamic route can serve [data sources](../data-sources/README.md) by key. A source that returns an array gets a page per element; anything else gets one page. The template reads that value as `this`, so the segment does too:
+
+```ts
+await etch.routes.createAsync({
+  segment: "{this.sku}",
+  parentId: shop.id,
+  source: { dataSources: ["products"] },
+  templateId: productTemplateId,
+});
+```
+
+- A route serving a data source **needs a template**, its own or an inherited one. A value has no blocks of its own to render.
+- A data source that fails to resolve **fails the build**, so an API outage doesn't unpublish its pages.
+- In `updateAsync`, a `source` without `dataSources` **keeps the route's data sources**, so a script that only sets `postTypes` can't drop them. Pass `dataSources: []` to clear them.
+
 ## Checking where content lands
 
 After a change, read `getPathsAsync()` to see what the build would publish. Each resolved URL has a status:
@@ -131,7 +149,7 @@ See [When two routes want the same URL](../routing/README.md#when-two-routes-wan
 | Code | When |
 | --- | --- |
 | `ROUTE_NOT_FOUND` | No route has that id, or `parentId` names no route. |
-| `INVALID_ARGUMENT` | A malformed segment, a source its kind forbids, a name a sibling already has, an unknown content type, a template that isn't a template record, a move into the route's own subtree, or deleting the site root. |
+| `INVALID_ARGUMENT` | A malformed segment, a source its kind forbids, a name a sibling already has, an unknown content type, an unknown data source key, a template that isn't a template record, a move into the route's own subtree, or deleting the site root. |
 | `OPERATION_FAILED` | The route could not be written. |
 
 See [Error handling](./index.md#error-handling).
