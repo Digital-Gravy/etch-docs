@@ -38,9 +38,9 @@ and it handles fields, validation, storage, spam and notifications.
 ### 2. Your own form + a form backend
 
 You write the form in the **HTML** and **CSS** panels, and it posts to a form
-backend such as Formspree, which stores the submissions and emails them to you.
+backend such as Web3Forms, which emails each submission to you.
 
-- **Effort:** one attribute on the form, or a short script.
+- **Effort:** a few attributes and hidden fields, or a short script.
 - **Design:** entirely yours.
 - **Guide:** [Form backends](custom-forms/form-backends.md).
 

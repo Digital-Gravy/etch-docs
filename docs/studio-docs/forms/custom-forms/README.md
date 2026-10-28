@@ -58,30 +58,30 @@ spreadsheet, or run your own validation rules.
 
 ## Form backends
 
-A form backend gives you an endpoint like `https://formspree.io/f/xyzabcde`. Your
-form posts to it, and the backend takes care of the rest: storing submissions,
-emailing you, filtering spam.
+A form backend gives you an address to post your form to, such as
+`https://api.web3forms.com/submit`. The backend takes care of the rest:
+emailing you each submission and filtering spam.
 
 **How you connect it:**
 
-1. Create a form on the backend's site.
-2. Copy its endpoint.
-3. Put the endpoint in your form's `action`, with `method="POST"`.
+1. Get an access key or create a form on the backend's site.
+2. Put the backend's address in your form's `action`, with `method="POST"`.
+3. Add the key or form ID the backend asks for, usually as a hidden field.
 
 That's enough for a working form. Add a short script if you want the visitor to
 stay on the page and see the result in place.
 
 **Well-known form backends:**
 
-| Backend                                | Documentation                                    | Good to know                                  |
-| -------------------------------------- | ------------------------------------------------ | --------------------------------------------- |
-| **[Formspree](https://formspree.io)**  | [help.formspree.io](https://help.formspree.io)   | The one used in our step-by-step guide        |
-| **[Web3Forms](https://web3forms.com)** | [docs.web3forms.com](https://docs.web3forms.com) | One endpoint for everyone, with an access key |
-| **[Basin](https://usebasin.com)**      | [docs.usebasin.com](https://docs.usebasin.com)   | Same pattern as Formspree                     |
-| **[Getform](https://getform.io)**      | [getform.io/docs](https://getform.io/docs)       | Same pattern as Formspree                     |
+| Backend                                | Documentation                                    | Good to know                                            |
+| -------------------------------------- | ------------------------------------------------ | ------------------------------------------------------- |
+| **[Web3Forms](https://web3forms.com)** | [docs.web3forms.com](https://docs.web3forms.com) | 250 free submissions a month; the one used in our guide |
+| **[Formspree](https://formspree.io)**  | [help.formspree.io](https://help.formspree.io)   | A dashboard to browse submissions                       |
+| **[Basin](https://usebasin.com)**      | [docs.usebasin.com](https://docs.usebasin.com)   | One address per form                                    |
+| **[Getform](https://getform.io)**      | [getform.io/docs](https://getform.io/docs)       | One address per form                                    |
 
 **Step-by-step guide:** [Sending your form to a form backend](form-backends.md),
-with Formspree.
+with Web3Forms.
 
 ## Automation platforms
 
