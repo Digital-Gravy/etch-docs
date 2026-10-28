@@ -98,11 +98,9 @@ separate container.
 
 ### Adding a script + container
 
-1. In the builder, select the block the form should sit inside or next to.
-2. Open the **HTML** panel.
-3. Paste the **container** where you want the form to appear.
-4. Paste the **script** right after it.
-5. Leave the container's `id`, `class` and `data-` attributes exactly as they
+1. Paste the whole code, the container and the `<script>`, exactly as the
+   provider gave it to you. Paste the code where you want the form to appear.
+2. Leave the container's `id`, `class` and `data-` attributes exactly as they
    are. They're how the script finds it.
 
 ```html
