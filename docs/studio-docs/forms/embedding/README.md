@@ -19,7 +19,7 @@ A few common ones, and what to expect from each:
 | Service                                   | Good for                                       | Styling                                             |
 | ----------------------------------------- | ---------------------------------------------- | --------------------------------------------------- |
 | **[Google Forms](google-forms.md)**       | Free, quick, answers land in a spreadsheet     | Iframe — theming is limited to Google's own options |
-| **Typeform**                              | Conversational, one-question-at-a-time forms   | Iframe, themed in Typeform's editor                 |
+| **[Typeform](typeform.md)**               | Conversational, one-question-at-a-time forms   | Script embed, themed in Typeform's Design panel     |
 | **[Tally](tally.md)**                     | A generous free tier and a lot of field types  | Iframe, with theme controls in Tally                |
 | **[Jotform](jotform.md)**                 | Long forms, conditional logic, payments        | Script embed, styled in Jotform's Form Builder      |
 | **[HubSpot Forms](hubspot.md)**           | Leads that need to land in a CRM straight away | Styled in HubSpot's form editor                     |
