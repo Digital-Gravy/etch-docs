@@ -5,46 +5,69 @@ sidebar_position: 137
 
 # Forms
 
-Etch Studio builds a **static site**: every page is rendered ahead of time and
-served as plain HTML. Submissions are handled by a service built for exactly
-that, which means no backend to write, host or maintain.
+Etch Studio builds a **static site**, and forms fit right in: a service built
+for forms receives the submissions, so there's no backend for you to write, host
+or maintain.
 
-Two ways to set one up.
+Start from what you need the form to do.
 
-## Two routes
+## What do you need?
 
-| Route                                               | What you get                                                                | What you give up                                                  |
-| --------------------------------------------------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| **[Embed a third-party form](embedding/README.md)** | Fields, validation, storage, spam protection and notifications, all managed | Control over the markup, and often over the styling               |
-| **[Build your own](custom-forms.md)**               | Your exact markup, classes, validation and states                           | You wire up delivery yourself, by posting to a webhook you create |
+| I want…                                                       | Use                                                 | Guide                                          |
+| ------------------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------- |
+| **A working form in minutes**, with answers by email          | A free embedded form, such as Tally or Google Forms | [Embedding a form](embedding/README.md)        |
+| **Leads in my CRM**, and an alert to the sales team           | My CRM's own form, such as HubSpot Forms            | [HubSpot Forms](embedding/hubspot.md)          |
+| **A form that matches my design**, with answers by email      | My own form + a form backend                        | [Form backends](custom-forms/form-backends.md) |
+| **A form that matches my design**, sending data to other apps | My own form + Make                                  | [Make](custom-forms/make.md)                   |
 
-Both end up as static output. Neither needs a backend from you.
+Not sure? Start with an embedded form. You can always move to your own form
+later.
 
-## How to choose
+## The three ways to add a form
 
-- **You want a working contact form with the least setup.** Embed one — it's as
-  simple as copy and paste.
-- **The form has to match your design system.** Build your own. Embeds limit how
-  far you can take the styling, and some can't be styled at all.
-- **The submission has to land somewhere specific** — a CRM, a Slack channel, a
-  spreadsheet. Either route can do it, but building your own puts you on an
-  automation platform anyway, and that's where those integrations already live.
+### 1. Embed a provider's form
 
-## What both routes share
+A form service hosts the form. You copy its embed code into the **HTML** panel,
+and it handles fields, validation, storage, spam and notifications.
 
-The submission is sent **from the visitor's browser**, not from Studio and not
-at build time. Two consequences worth knowing before you start:
+- **Effort:** copy and paste.
+- **Design:** styled in the provider's own editor.
+- **Guides:** Google Forms, Microsoft Forms, Tally, Fillout, HubSpot Forms,
+  Jotform and Typeform, all in [Embedding a form](embedding/README.md).
 
-- **The receiving endpoint must allow your site's origin** (CORS). Form services
-  and automation webhooks normally do; your own API might not.
-- **Anything in the page is public.** A form endpoint, a webhook URL or a public
-  key is readable by anyone who views the source. Never put a secret in a form.
+### 2. Your own form + a form backend
 
-This is the same build-time-versus-runtime split described in
-[Deploying](../deploying/README.md): data sources resolve when the site is built, while
-a form runs when a visitor arrives.
+You write the form in the **HTML** and **CSS** panels, and it posts to a form
+backend such as Formspree, which stores the submissions and emails them to you.
 
-## Next
+- **Effort:** one attribute on the form, or a short script.
+- **Design:** entirely yours.
+- **Guide:** [Form backends](custom-forms/form-backends.md).
 
-- [Embedding a third-party form](embedding/README.md)
-- [Building your own form](custom-forms.md)
+### 3. Your own form + an automation platform
+
+You write the form, and it posts to a webhook on an automation platform. A
+workflow you build sends each submission on: to your CRM, Slack, Google Sheets,
+email, or all of them.
+
+- **Effort:** a workflow on the platform, and a script in the **Javascript**
+  panel.
+- **Design:** entirely yours, including your own error messages.
+- **Guides:** [Make](custom-forms/make.md), the recommended starting point, and
+  [Other automation platforms](custom-forms/other-platforms.md) for Zapier,
+  Pipedream and n8n.
+
+Routes 2 and 3 are compared side by side in
+[Building your own form](custom-forms/README.md).
+
+## Good to know
+
+Submissions are sent **from the visitor's browser** when they submit, not when
+the site is built. This is the same build-time-versus-runtime split described in
+[Deploying](../deploying/README.md). Two things follow:
+
+- **The receiving service must accept requests from your site** (CORS). Form
+  services and automation webhooks do this already.
+- **Anything in the page is public.** A form endpoint or webhook address is
+  readable by anyone who views the source, which is how these services are
+  designed to work. Never put a secret, such as a private API key, in a form.

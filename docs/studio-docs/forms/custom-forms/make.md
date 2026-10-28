@@ -1,19 +1,19 @@
 ---
-title: Building Your Own Form
+title: Make
 sidebar_position: 20
 ---
 
-# Building your own form
+# Sending your form to Make
 
-When you want the markup, the classes, the validation and every state to be
-yours, build the form yourself and post it to a webhook.
+Build the form yourself and post it to a webhook on [Make](https://www.make.com).
+Make receives each submission, checks it, answers the form, and passes the data
+on to your CRM, inbox, spreadsheet or any other app it connects to.
 
 Four steps:
 
 1. **Write the form** in the HTML panel.
 2. **Style it** in the CSS panel.
-3. **Create a webhook** on an automation platform, and decide what happens to
-   the submissions.
+3. **Create a webhook** in Make, and decide what happens to the submissions.
 4. **Wire it up** in the Javascript panel: validate, `POST`, show the result.
 
 The result is still a static page. Nothing runs on a server of yours.
@@ -98,9 +98,10 @@ The form needs somewhere to post to. An automation platform gives you a URL that
 receives the submission and then does whatever you tell it — save it, email it,
 push it into a CRM.
 
-[Make](https://www.make.com) is the worked example below. **Zapier**, **n8n**,
-**Pipedream** and others work the same way: create a webhook trigger, copy the
-URL, add steps after it.
+Make's free plan includes webhooks, and its AI assistant can build most of the
+scenario for you. Using Zapier, Pipedream or n8n instead? The form and most of
+this guide stay the same; see
+[Other automation platforms](other-platforms.md) for what changes.
 
 ### Set up a scenario in Make
 
@@ -241,7 +242,7 @@ the scenario validates too.
 
 There's no preview in the builder, so test on the real output:
 
-1. **Download Site** or **Deploy** (see [Deploying](../deploying/README.md)).
+1. **Download Site** or **Deploy** (see [Deploying](../../deploying/README.md)).
 2. Open the page and submit the form.
 3. Watch the run appear in Make's scenario history, and confirm the fields
    arrived under the right names.

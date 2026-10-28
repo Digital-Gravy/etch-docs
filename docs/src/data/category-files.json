@@ -360,7 +360,12 @@
     "usage.md"
   ],
   "studio-docs/forms": [
-    "custom-forms.md",
+    "README.md"
+  ],
+  "studio-docs/forms/custom-forms": [
+    "form-backends.md",
+    "make.md",
+    "other-platforms.md",
     "README.md"
   ],
   "studio-docs/forms/embedding": [
