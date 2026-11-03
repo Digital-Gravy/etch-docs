@@ -45,6 +45,7 @@ Every clause is optional. `queryContent()` with no arguments reads every page.
 | `limit`         | number              | How many to take. `-1` means all of them.                                     |
 | `offset`        | number              | How many to skip.                                                             |
 | `relationDepth` | number `0`–`5`      | Levels of [relationship links](#relationship-fields) to resolve. Default `3`. |
+| `omit`          | string[]            | A record's own keys to [leave out](#leaving-keys-out) of every item.          |
 
 The query runs **in the database**. A `limit` of 10 fetches ten rows, not a
 thousand rows filtered down to ten afterwards, so paging and filtering stay
@@ -75,7 +76,7 @@ Multiple keys are combined, and all of them must match:
 ```js
 return await queryContent({
 	where: {
-		id: { equals: 12 },
+		id: { gte: 12 },
 		title: { contains: 'guide' }
 	},
 	orderBy: 'createdAt',
@@ -143,6 +144,7 @@ Two things to note:
 
 - **`content` is the page's block tree**, decoded. It's returned but there is
   nothing useful to do with it in markup, since it's a document, not a value.
+  Pass `omit: ['content']` to [leave it out](#leaving-keys-out).
 - **Your fields have a namespace of their own.** Read them as
   `{course.fields.level}`, never `{course.level}`. Nothing you name can collide
   with a page column, so a field keyed `title` is yours — and a column added to
@@ -176,11 +178,31 @@ return await queryContent({
 | `3`             | The default                                        |
 | `5`             | The maximum; anything higher is an `invalid query` |
 
-There is no field selection, so if a loop needs only a few values, return a
-compact projection instead of the raw records:
+## Leaving keys out
+
+`omit` lists a record's own keys to leave out of every item, linked records
+included. `content` is the one that matters: a block tree is most of a record,
+so a menu or listing that reads only titles and slugs should always pass it:
 
 ```js
-const courses = await queryContent({ type: 'course', relationDepth: 1 });
+return await queryContent({ type: 'course', omit: ['content'] });
+```
+
+Any key but `id` can be left out: `slug`, `title`, `isHomepage`,
+`contentTypeId`, `contentType`, `content`, `fields`, `createdAt` and
+`updatedAt`. `id` always stays. Leaving out `fields` also skips resolving
+relationship links, since links only ever live under `fields`. A key you leave
+out can still be used in `where` and `orderBy`.
+
+If a loop needs only a few values, return a compact projection instead of the
+raw records:
+
+```js
+const courses = await queryContent({
+	type: 'course',
+	relationDepth: 1,
+	omit: ['content']
+});
 
 return courses.map((course) => ({
 	title: course.title,
