@@ -33,41 +33,59 @@ client's Worker and submissions later.
 
 ## 3. Complete the setup prompts
 
-Enter these values when their prompts appear:
+Use the following exact settings in **Set up your application**:
 
-1. Name the copied repository, such as `forms-acme`.
-2. Keep the production branch Cloudflare proposes.
-3. Name the Worker `forms-<slug>`, such as `forms-acme`.
-4. Set `SITE_NAME` to the friendly client name, such as `Acme Dental`.
-5. Set `SITE_DOMAIN` to the live site origin, such as
+1. Set **Git account** to the agency's GitHub or GitLab account.
+2. Turn on **Create private Git repository**.
+3. Set **Project name** to `forms-<slug>`, such as `forms-acme`.
+4. Set **SITE_NAME** to the friendly client name, such as `Acme Dental`.
+5. Set **SITE_DOMAIN** to the live site origin, such as
    `https://acmedental.com`.
-6. Set `RECIPIENT_EMAIL` to the address that should receive notifications.
-7. Rename the proposed D1 database from `client-site` to `client-<slug>`.
-8. Keep the D1 binding name as `DB`.
-9. Keep the service binding name as `MAILER`.
-10. Confirm that `MAILER` connects to `etch-mailer`.
-11. Keep the rate limiter binding name as `BURST_LIMITER`.
-12. Keep the detected deploy command as `npm run deploy`.
-13. Leave the build command empty if Cloudflare leaves it empty.
-14. Start the deployment.
+6. Set **RECIPIENT_EMAIL** to the address that should receive notifications.
+7. Set the **D1 database name** to `client-<slug>`, such as `client-acme`.
+8. Leave **Build command** completely empty.
+9. Keep **Deploy command** as `npm run deploy`.
+10. Keep **Preview command** as `npx wrangler preview`.
+11. Turn off **Enable Preview builds**.
+12. Leave **Protect with Cloudflare Access** off.
+13. Select **Deploy**.
 
 [Screenshot: Client forms Worker prompts completed before deployment]
 
-The technical values mean:
+### Why to use these settings
 
-- **`SITE_NAME`:** The name shown on the Worker's home page and in email
+- **Git account** controls who owns the copied source repository. Use the same
+  agency account that owns the mailer repository.
+- **Create private Git repository** keeps the client's deployment copy and
+  configuration out of public search.
+- **Project name** becomes the repository and Worker project name. Give every
+  client a unique `forms-<slug>` name.
+- **`SITE_NAME`** is the name shown on the Worker's home page and in email
   subjects.
-- **`SITE_DOMAIN`:** The only website origin allowed to submit the form. Add
+- **`SITE_DOMAIN`** is the only website origin allowed to submit the form. Add
   multiple origins later if the site uses both `www` and non-`www`.
-- **`RECIPIENT_EMAIL`:** The inbox that receives the notification.
-- **D1 database:** The client's private submission storage.
-- **`DB`:** The name the Worker code uses to reach that D1 database.
-- **`MAILER`:** The private connection to the shared `etch-mailer` Worker.
-- **`BURST_LIMITER`:** Cloudflare's fast check that allows three attempts per
-  minute from one visitor.
+- **`RECIPIENT_EMAIL`** is the inbox that receives the notification.
+- **D1 database name** identifies the client's private submission storage. A
+  unique `client-<slug>` name keeps each client's data separate.
+- **Build command** is blank because this Worker has no separate compilation
+  step.
+- **Deploy command** first applies the included D1 database tables and then
+  publishes the Worker. Do not replace it with the Cloudflare default.
+- **Preview command** is Cloudflare's standard command for temporary branch
+  previews. Leave the text unchanged even though preview builds are off.
+- **Enable Preview builds** is off because previews need their own database and
+  settings. This installation only needs the production Worker.
+- **Protect with Cloudflare Access** must stay off. The client's public website
+  needs to reach `/api/contact` without asking every visitor to sign in.
 
-The deploy command applies the included database tables before publishing the
-Worker.
+The template automatically creates these bindings:
+
+- **`DB`** connects the Worker to the client's D1 database.
+- **`MAILER`** connects privately to the shared `etch-mailer` Worker.
+- **`BURST_LIMITER`** allows three attempts per minute from one visitor.
+
+These binding names are not editable fields on the setup panel. Do not rename
+them later.
 
 ## 4. Copy the form action
 

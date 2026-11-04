@@ -59,41 +59,50 @@ belongs to your agency.
 
 ## 3. Complete the setup prompts
 
-Cloudflare can change the order and wording of its setup page. Keep these values
-when their prompts appear:
+Use the following exact settings in **Set up your application**:
 
-1. Choose the GitHub or GitLab account that should own the copied repository.
-2. Choose a repository name you will recognize, such as `etch-mailer`.
-3. Keep the production branch Cloudflare proposes.
-4. Set the Worker name to `etch-mailer`.
-5. Set `SENDING_DOMAIN` to the verified domain, such as `agency.com`.
-6. Keep the Email Sending binding name as `EMAIL`.
-7. Keep the detected deploy command as `npm run deploy`.
-8. Leave the build command empty if Cloudflare leaves it empty.
-9. Review the summary.
-10. Start the deployment.
+1. Set **Git account** to the agency's GitHub or GitLab account.
+2. Turn on **Create private Git repository**.
+3. Set **Project name** to `etch-mailer`.
+4. Replace `example.com` under **SENDING_DOMAIN** with the verified sending
+   domain.
+5. Leave **Build command** completely empty.
+6. Keep **Deploy command** as `npm run deploy`.
+7. Keep **Preview command** as `npx wrangler preview`.
+8. Turn off **Enable Preview builds**.
+9. Leave **Protect with Cloudflare Access** off.
+10. Select **Deploy**.
 
 [Screenshot: Etch Mailer prompts completed before deployment]
 
-Here is what each technical value means:
+### Why to use these settings
 
-- **Worker name:** The permanent Cloudflare name for this program. It must be
-  exactly `etch-mailer` because every client Worker connects to that name.
-- **`SENDING_DOMAIN`:** The verified domain used in
-  `forms@your-sending-domain`. Enter only the domain. Do not enter `https://`,
-  `forms@` or another email address.
-- **Email binding `EMAIL`:** The private connection from the mailer code to
-  Cloudflare Email Sending. Do not rename it.
-- **Deploy command:** The instruction Cloudflare runs to publish the Worker.
-- **Build command:** An optional instruction for preparing an app. This Worker
-  does not need a separate build step.
+- **Git account** controls who owns the copied source repository. Use an agency
+  account rather than a client's personal account.
+- **Create private Git repository** keeps the agency's deployment copy out of
+  public search and prevents other people from browsing its configuration. The
+  original Etch Forms template remains public.
+- **Project name** becomes the repository and Worker project name. It must be
+  exactly `etch-mailer` because every client forms Worker connects to that
+  fixed name.
+- **`SENDING_DOMAIN`** becomes the domain in
+  `forms@your-sending-domain`. Enter only the domain, such as `agency.com`. Do
+  not enter `https://`, `forms@` or a complete email address.
+- **Build command** is blank because the mailer has no separate compilation
+  step.
+- **Deploy command** publishes the Worker by running the template's deployment
+  script. Do not replace it with the Cloudflare default.
+- **Preview command** is Cloudflare's standard command for temporary branch
+  previews. Leave the text unchanged even though preview builds are off.
+- **Enable Preview builds** is off because this shared mailer does not need a
+  temporary public version for every Git branch.
+- **Protect with Cloudflare Access** is off because the mailer already has no
+  public endpoint. Cloudflare Access is a login barrier for public Worker URLs,
+  so it adds nothing to this private service.
 
-:::note
-Cloudflare's Deploy to Cloudflare documentation confirms that the setup page
-can ask for the repository name, Worker name, resource names and detected
-commands. The exact order of these prompts still needs a manual check against a
-real deployment.
-:::
+The Email Sending binding named `EMAIL` comes from the template and is created
+automatically. It is not an editable field on this panel. Do not look for a
+separate Worker-name or binding prompt.
 
 ## 4. Check the deployment
 
