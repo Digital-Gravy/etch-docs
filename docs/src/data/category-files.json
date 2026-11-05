@@ -369,6 +369,16 @@
     "make.md",
     "other-platforms.md"
   ],
+  "studio-docs/forms/custom-forms/etch-forms": [
+    "README.md",
+    "add-client-site.md",
+    "before-you-start.md",
+    "faq.md",
+    "install-mailer.md",
+    "manage-submissions.md",
+    "troubleshooting.md",
+    "turnstile.md"
+  ],
   "studio-docs/forms/embedding": [
     "README.md",
     "fillout.md",
