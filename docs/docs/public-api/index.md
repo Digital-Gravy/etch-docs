@@ -4,7 +4,7 @@ sidebar_position: 0
 sidebar_custom_props:
   badge: "New"
 last_update:
-  date: 2026-08-31
+  date: 2026-11-05
 ---
 
 import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
@@ -82,7 +82,7 @@ const etch = getEtch({ apiVersion: "^1.0", id: "my-plugin" });
 
 ## The `Etch` object
 
-`getEtch()` returns the root `Etch` interface — eleven namespaces plus a few top-level members:
+`getEtch()` returns the root `Etch` interface — namespaces plus a few top-level members:
 
 ```ts
 interface Etch {
@@ -97,6 +97,7 @@ interface Etch {
   history: EtchHistoryApi;
   skills: EtchSkillsApi;
   ai: EtchAiApi;
+  assets?: EtchAssetsApi; // optional: check asset capabilities for supported operations
 
   saveAsync(): Promise<void>;
   connect?(options?: ConnectOptions): Etch; // reserved for the future stable runtime
@@ -112,6 +113,7 @@ interface Etch {
 | `etch.styles`              | [Styles](./styles.md)                   | CSS rules and `:root` custom properties (variables)                  |
 | `etch.stylesheets`         | [Stylesheets](./stylesheets.md)         | Global stylesheets and `@custom-media` definitions                   |
 | `etch.components`          | [Components](./components.md)           | Reusable component definitions and their properties                  |
+| `etch.assets`              | [Assets](./assets.md)                   | WordPress media and asset collections                                |
 | `etch.loops`               | [Loops](./loops.md)                     | Loop definitions (WP queries, JSON) and block binding                |
 | `etch.navigation`          | [Navigation](./navigation.md)           | Move around the builder UI; switch posts/templates                   |
 | `etch.fields`              | [Custom Fields](./fields.md)            | Custom field groups and per-post values                              |
@@ -125,7 +127,7 @@ interface Etch {
 How a change reaches the database depends on which namespace it lives in:
 
 - **`blocks`, `styles`, `loops`** — buffered in the editor. They are persisted when you call `etch.saveAsync()` (the same save the UI performs).
-- **`stylesheets`, `components`, `fields`** — every mutating method is `*Async` and **persists immediately**; you do not need `saveAsync()` for them.
+- **`stylesheets`, `components`, `fields`, `assets`** — mutating methods persist immediately; you do not need `saveAsync()` for them.
 
 ```ts
 etch.blocks.setText(id, "Hello world");
@@ -197,6 +199,8 @@ type EtchCapabilities = Readonly<Partial<Record<EtchCapability, boolean>>>;
 | `fields`    | [`etch.fields`](./fields.md) is backed by a real field store           |
 | `templates` | Template posts exist and `navigation.goTo("templates")` works          |
 | `wpMedia`   | Media ids resolve against the WordPress media library (`/wp/v2/media`) |
+| `assets` | The full asset contract is backed; granular flags may advertise a subset instead |
+| `assetsRead`, `assetsUpload`, `assetsDownload`, `assetsUpdate`, `assetsDelete`, `assetsCollections`, `assetsCompressInPlace` | The respective [asset operations](./assets.md#feature-detection) are backed |
 
 Every key is optional on purpose: a runtime older than a capability's introduction simply omits it, so **absent means unavailable** — test with `=== true` rather than truthiness.
 
@@ -216,7 +220,7 @@ if (etch.environment?.blockTypes.includes("etch/passthrough")) {
 }
 ```
 
-`environment` itself is optional: a runtime that predates the descriptor omits it. Treat a missing `environment` as everything being available, which is what every runtime that predates it was.
+`environment` itself is optional: a runtime that predates the descriptor omits it. Do not assume optional asset operations are available when the descriptor is missing.
 
 For an individual method that may not exist on an older runtime, `typeof` still applies:
 

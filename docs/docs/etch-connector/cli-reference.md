@@ -2,7 +2,7 @@
 title: CLI Reference
 sidebar_position: 30
 last_update:
-  date: 2026-10-22
+  date: 2026-11-05
 ---
 
 # CLI Reference
@@ -86,8 +86,8 @@ A file over **24.9 MiB** is refused before anything is sent. With `--compress` t
 etch-connector upload ./hero.jpg --alt "Team on the roof" --compress webp:80:2400
 ```
 
-:::note Etch Studio
-`upload` and `download` work where the runtime backs the `assets` capability, which today is Etch Studio. Elsewhere they stop with "this runtime has no etch.assets".
+:::note Runtime support
+`upload` needs an asset upload operation; `download` needs an asset download operation. The full `assets` capability covers both. Current EtchWP development builds advertise the partial `assetsUpload` and `assetsDownload` capabilities instead. Upload-time `--compress` requires support beyond `assetsUpload` and is not available in EtchWP's partial implementation. See [Assets](../public-api/assets.md).
 :::
 
 ### `download`
