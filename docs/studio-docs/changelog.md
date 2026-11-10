@@ -7,6 +7,102 @@ sidebar_position: 402
 
 Every change shipped to Etch Studio, newest first.
 
+## November 5, 2026 {#2026-11-05}
+
+- <span className="badge changelog-badge changelog-badge--fixed">Fixed</span> **Clearer component highlights for clients**
+
+  Hovering inside a component highlights the component instead of its individual elements.
+
+- <span className="badge changelog-badge changelog-badge--new">New</span> **See who else is editing**
+
+  The action bar warns you when someone else, or another of your tabs, has the website open.
+
+## November 4, 2026 {#2026-11-04}
+
+- <span className="badge changelog-badge changelog-badge--fixed">Fixed</span> **Reordering inside components**
+
+  While you edit a component, its elements are no longer locked in place in the Structure panel, so you can drag them into a new order again.
+
+## November 3, 2026 {#2026-11-03}
+
+- <span className="badge changelog-badge changelog-badge--new">New</span> **Field presets and copy & paste**
+
+  Add a ready-made set of fields, copy fields from one content type to another, or delete all fields at once, from the ··· menu next to the content type name in the Content Hub's Fields view.
+
+- <span className="badge changelog-badge changelog-badge--improved">Improved</span> **Lighter content queries**
+
+  Pass omit to queryContent() in a JavaScript data source to leave parts of each item out, linked items included. For example, omit: ['content'] skips page content, so a menu or listing that only needs titles and slugs loads far less.
+
+## November 2, 2026 {#2026-11-02}
+
+- <span className="badge changelog-badge changelog-badge--new">New</span> **Deploy through the AI Connector**
+
+  Agents connected through the AI Connector can now deploy your site to Cloudflare.
+
+## October 29, 2026 {#2026-10-29}
+
+- <span className="badge changelog-badge changelog-badge--new">New</span> **Fallbacks in expressions**
+
+  Use ?? or || in a dynamic expression to fall back to another value when the first is empty, for example \{this.fields.metaTitle || this.title\}.
+
+- <span className="badge changelog-badge changelog-badge--improved">Improved</span> **Social image from a URL or expression**
+
+  A route's social image can now be a URL or a dynamic expression, as well as an image from the media library.
+
+- <span className="badge changelog-badge changelog-badge--improved">Improved</span> **camelCase field keys**
+
+  New Content Hub fields get camelCase keys, like heroImage, so they read cleanly in dynamic expressions. Field keys can no longer contain hyphens.
+
+## October 28, 2026 {#2026-10-28}
+
+- <span className="badge changelog-badge changelog-badge--new">New</span> **Client editing**
+
+  Invite clients to edit page text and links, replace images and SVG icons, update component properties, and manage Content Hub items. Clients can publish changes while design and code controls stay out of their way.
+
+  [Share feedback on Quackback](https://digitalgravy.quackback.io/)
+
+- <span className="badge changelog-badge changelog-badge--new">New</span> **SEO through the AI Connector**
+
+  Agents connected through the AI Connector can now read and set each route's SEO, from title and description to social image, search visibility and redirects, and check the result for every page at once.
+
+- <span className="badge changelog-badge changelog-badge--improved">Improved</span> **Page titles for new routes**
+
+  A new route under the site root starts with a title that puts each page's own title in front of the site's, instead of naming every page after the site.
+
+- <span className="badge changelog-badge changelog-badge--fixed">Fixed</span> **Steadier canvas scrolling**
+
+  Clicking a block on the canvas no longer scrolls the page, and selecting a block in a loop scrolls to its nearest copy.
+
+## October 27, 2026 {#2026-10-27}
+
+- <span className="badge changelog-badge changelog-badge--improved">Improved</span> **The Content Hub now has multiple views**
+
+  The Content Hub now offers three views for editing content: popover, drawer, and fullscreen. Switch between them as you work, and the Content Hub remembers your preferred preview view.
+
+- <span className="badge changelog-badge changelog-badge--new">New</span> **Routes from data sources**
+
+  Add a data source to a dynamic route to publish a page for each item it returns. Template previews and the search preview use those items too.
+
+  [Documentation](https://docs.etchwp.com/studio/routing#pages-from-a-data-source)
+
+- <span className="badge changelog-badge changelog-badge--fixed">Fixed</span> **Editing link text**
+
+  Clicking into a link's text now keeps it editable instead of dropping out on the first click.
+
+- <span className="badge changelog-badge changelog-badge--fixed">Fixed</span> **One outline at a time**
+
+  The canvas now outlines only the block under your pointer, and the parts of a component no longer look separately selectable.
+
+## October 26, 2026 {#2026-10-26}
+
+- <span className="badge changelog-badge changelog-badge--improved">Improved</span> **SEO length guidance**
+
+  Title and description fields show a length bar and warn when the text is longer than search results display, counted on the text your page will actually show.
+
+- <span className="badge changelog-badge changelog-badge--fixed">Fixed</span> **Smoother client editing**
+
+  The client editing popover now stays inside the window, closes when you click elsewhere on the page, and shows a component's settings when you edit something inside it.
+
 ## October 25, 2026 {#2026-10-25}
 
 - <span className="badge changelog-badge changelog-badge--improved">Improved</span> **Refreshed icons**
