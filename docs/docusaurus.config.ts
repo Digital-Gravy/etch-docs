@@ -169,12 +169,6 @@ const config: Config = {
 				srcDark: 'img/etch-logo-white.svg'
 			},
 			items: [
-				{
-					type: 'docSidebar',
-					sidebarId: 'tutorialSidebar',
-					position: 'left',
-					label: 'Documentation'
-				},
 				{ to: 'https://etchwp.com/pricing', label: 'Purchase', position: 'left' },
 				{
 					type: 'search',

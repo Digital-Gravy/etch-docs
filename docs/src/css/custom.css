@@ -337,24 +337,54 @@ code {
   text-wrap: nowrap;
 }
 
-/* Product tag next to the navbar brand (Etch Studio docs) */
-.navbar__product-tag {
+/* Etch WP / Etch Studio switcher next to the navbar brand */
+.product-switcher {
   align-self: center;
   margin-left: -0.35rem;
+  margin-right: 0.75rem;
+
+  & .dropdown__menu {
+    top: calc(100% + 0.4rem);
+    min-width: 9rem;
+  }
+}
+
+.product-switcher-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
   padding: 0.1rem 0.4rem;
   border: 1px solid var(--ifm-color-emphasis-500);
   border-radius: 4px;
+  background: none;
   color: var(--ifm-color-emphasis-700);
+  font: inherit;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   line-height: 1.4;
   white-space: nowrap;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    border: 0.3em solid transparent;
+    border-top-color: currentColor;
+    border-bottom: 0;
+  }
+
+  &:hover {
+    color: var(--ifm-color-emphasis-900);
+  }
 }
 
-[data-theme='dark'] .navbar__product-tag {
+[data-theme='dark'] .product-switcher-toggle {
   border-color: var(--ifm-color-emphasis-300);
   color: var(--ifm-color-emphasis-800);
+
+  &:hover {
+    color: var(--ifm-color-emphasis-900);
+  }
 }
 
 /* Etch Studio changelog (studio-docs/changelog.md): a timeline per date with coloured type badges. */
