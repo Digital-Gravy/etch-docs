@@ -7,6 +7,26 @@ sidebar_position: 402
 
 Every change shipped to Etch Studio, newest first.
 
+## November 11, 2026 {#2026-11-11}
+
+- <span className="badge changelog-badge changelog-badge--improved">Improved</span> **Visible quick notes**
+
+  Quick Notes stay in view when you hover over an element that extends beyond the canvas.
+
+- <span className="badge changelog-badge changelog-badge--new">New</span> **View as client**
+
+  Preview the builder as a client to see their editing experience, then switch back to your admin view.
+
+## November 10, 2026 {#2026-11-10}
+
+- <span className="badge changelog-badge changelog-badge--improved">Improved</span> **Better guidance for AI agents**
+
+  Agents connected through the AI Connector now learn how to build pages the Etch way before they start: sections and containers, dynamic images, styles, components and SEO. They also get a clear error instead of silently changing nothing when they misspell a setting.
+
+- <span className="badge changelog-badge changelog-badge--new">New</span> **BEM class names for agents**
+
+  Choose in Settings → AI whether agents name classes the BEM way. It is on by default, and always on while Automatic.css is enabled.
+
 ## November 5, 2026 {#2026-11-05}
 
 - <span className="badge changelog-badge changelog-badge--fixed">Fixed</span> **Clearer component highlights for clients**

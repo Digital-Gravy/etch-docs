@@ -4,7 +4,7 @@ sidebar_position: 335
 sidebar_custom_props:
   badge: New
 last_update:
-  date: 2026-11-10
+  date: 2026-11-12
 ---
 
 # MCP Server
@@ -52,7 +52,9 @@ Use the Etch Studio MCP server to open my "Portfolio" project and add a hero sec
 
 ## How a session works
 
-1. The assistant lists your workspaces and projects, then opens one.
+1. The assistant lists your workspaces and projects, then opens one. If
+   someone else has it open, it first gets
+   [editing control](#working-alongside-others).
 2. It runs small scripts against the project's builder to read and change it.
 3. It can take screenshots of the builder to check its work.
 4. When it's done, it saves, closes the project and tells you what it saved.
@@ -72,10 +74,29 @@ and changes it hasn't saved are lost. Ask it to save before you step away.
 
 ### Working alongside others
 
-If someone else already has the project open, the assistant is asked to check
-with you before opening it anyway. If you and the assistant both edit the same
-project at once, the last save wins and can overwrite the other's changes. Keep
-to one editor per project at a time.
+Only one builder tab at a time has **editing control** of a project, and only
+that tab can save. The assistant's builder counts as a tab like any other.
+Others in the project see it under the name and logo of the app driving it,
+such as Claude. Without control, every change the assistant tries to save or
+write is refused.
+
+When the project is already open somewhere else, the assistant still opens it,
+but it asks for control before it edits:
+
+- If someone else has the project open, it checks with you first, since asking
+  interrupts them. If the only other tab is your own, it just asks.
+- The person editing sees a **Control request** and can choose **Save +
+  Accept**, **Undo changes + Accept** or **Decline**. If they don't answer within
+  30 seconds, control passes to the assistant and their unsaved changes are
+  discarded.
+- If they decline, the assistant tells you and doesn't ask again unless you
+  tell it to.
+- Getting control reloads the assistant's builder with the latest saved
+  version, so it asks before it makes any changes.
+
+You can also ask the assistant for control from your own tab while it works.
+It can't answer the request itself, so after 30 seconds it saves what it has
+and hands over. It checks with you before taking control back.
 
 ## Tools
 
@@ -85,7 +106,8 @@ yourself; they're listed so you can follow what the assistant is doing.
 | Tool | What it does |
 | --- | --- |
 | `list_projects` | Lists your workspaces and the projects in each. |
-| `open_project` | Opens a project and returns a handle the other tools use. Refuses if others have it open, unless `force` is set. |
+| `open_project` | Opens a project and returns a handle the other tools use, along with who else has the project open. |
+| `request_control` | Asks whoever has editing control to hand it over, and waits up to about 30 seconds for the answer. |
 | `get_guide` | Returns the server's instructions for the assistant. |
 | `eval` | Runs a script in the builder with `etch` in scope, and returns its result, errors and console logs. |
 | `screenshot` | Returns a PNG of the builder, or of one element in it. |
@@ -98,6 +120,14 @@ first `eval`; it is the authoritative version of these notes.
 
 - `eval` runs its `code` as the body of an async function. Use `await` and
   `return` a value to see it.
+- `open_project` returns `othersPresent`. If it isn't empty, call
+  `request_control` before the first write. Ask the user first, unless the
+  only entry has `isYou: true`. Call it before you change anything, because
+  getting control reloads the builder and loses earlier edits. If the answer is
+  `granted: false`, tell the user and don't ask again unless they tell you to.
+- If saves start failing partway through, someone asked for control and the
+  builder handed over after 30 seconds, saving first. Ask the user before you
+  request control again.
 - When done, call `close_project` with `save: true` unless the user said not
   to save, then tell the user what was saved. `await etch.saveAsync()` saves
   mid-session. See the [persistence model](./public-api/index.md#saving-and-the-persistence-model).
