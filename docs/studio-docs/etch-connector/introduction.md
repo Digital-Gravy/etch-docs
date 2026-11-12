@@ -2,7 +2,7 @@
 title: Introduction
 sidebar_position: 0
 last_update:
-  date: 2026-06-22
+  date: 2026-11-10
 ---
 
 # Etch Connector
@@ -11,6 +11,8 @@ last_update:
 
 Under the hood it does this by running small scripts and leveraging [Etch's Public API](../public-api/index.md). You don't have to write those scripts — the assistant does. The connector is just the link that lets it reach your open tab.
 
+To let an assistant work without a local install or an open builder tab, use the [MCP Server](../mcp-server.md) instead.
+
 It's published as a free, open-source npm package, [`@digital-gravy/etch-connector`](https://www.npmjs.com/package/@digital-gravy/etch-connector), with source at [Digital-Gravy/etch-connector](https://github.com/Digital-Gravy/etch-connector).
 
 ## Quickstart
@@ -18,7 +20,7 @@ It's published as a free, open-source npm package, [`@digital-gravy/etch-connect
 Copy the following prompt, and send it to your AI agent:
 
 ```markdown
-I'd like your help to work in Etch. Read the documentation page at https://docs.etchwp.com/etch-connector/usage and https://docs.etchwp.com/etch-connector/ai-agent-guide to learn how it works, run `npx @digital-gravy/etch-connector serve`, and guide me.
+I'd like your help to work in Etch. Read the documentation page at https://docs.etchwp.com/studio/etch-connector/usage and https://docs.etchwp.com/studio/etch-connector/ai-agent-guide to learn how it works, run `npx @digital-gravy/etch-connector serve`, and guide me.
 ```
 
 
