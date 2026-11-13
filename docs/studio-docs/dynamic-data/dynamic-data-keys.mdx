@@ -2,7 +2,7 @@
 title: Dynamic Data Keys
 sidebar_position: 50
 last_update:
-  date: 2026-01-19
+  date: 2026-11-13
 ---
 
 # Dynamic Data Keys
@@ -55,17 +55,18 @@ For full documentation, available keys, and usage examples, see [Component Names
 
 ## Environment Keys
 
-| Key                   | Description                                              |
-| --------------------- | -------------------------------------------------------- |
-| `environment.current` | The active rendering environment.                        |
-| `environment.context` | Provides additional context for the current environment. |
+| Key                        | Description                                              |
+| -------------------------- | -------------------------------------------------------- |
+| `environment.current`      | The active rendering environment.                        |
+| `environment.context`      | Provides additional context for the current environment. |
+| `environment.clientEditor` | Whether a client is editing the website.                 |
 
 `environment.current` exposes the name of the environment in which the content is currently being rendered.
 
 **Possible values:**
 
-- `"etch"`
-- `"frontend"`
+- `"etch"` in the builder
+- `"frontend"` on the published site
 
 This key is primarily intended for conditional rendering, allowing you to tailor output depending on where the content is displayed.
 
@@ -75,7 +76,9 @@ In most scenarios `environment.context` will be unset.
 
 It is set to `"componentEditor"` when rendering inside the component editor. This allows you to conditionally display content only while editing a component.
 
+---
 
+`environment.clientEditor` is `true` while a [client](../getting-started/client-editing) edits the website, and while you view the builder as a client from the action bar. It is `false` for everyone else in the builder, and always `false` on the published site.
 
 ### Example: Environment-specific content
 
@@ -88,6 +91,19 @@ You can use `environment.current` to include content that should only appear in 
 {/if}
 ```
 In this example, the developer note is visible in Etch but omitted from the frontend render.
+
+Clients editing the website see the note too. To hide it from them, use `environment.current === "etch" && !environment.clientEditor`.
+
+### Example: Instructions for clients
+
+You can use `environment.clientEditor` to show instructions to clients while they edit, without showing them to your team or on the published site.
+```
+{#if environment.clientEditor}
+  <div class="client-note">
+    Replace this photo with one of your team. Landscape photos fit best.
+  </div>
+{/if}
+```
 
 ## Etch Custom Fields Support
 

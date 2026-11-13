@@ -57,3 +57,11 @@ Etch Connector is not currently available to clients.
 New Content Hub items can be created, but clients cannot add page elements to
 an empty page in the builder. A client can duplicate an existing item to start
 from its content.
+
+## Show content only to clients
+
+Wrap content in a condition on `environment.clientEditor` to show it only while
+a client edits the website, for example a note on what to change. It never
+appears on the published site, and your team sees it only while viewing the
+builder as a client. See
+[Environment Keys](../dynamic-data/dynamic-data-keys#environment-keys).
