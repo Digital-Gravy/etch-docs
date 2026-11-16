@@ -1,6 +1,6 @@
 ---
 title: Shop pages and templates
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Shop pages and templates

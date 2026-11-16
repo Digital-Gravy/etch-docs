@@ -1,0 +1,73 @@
+---
+title: Get started with WooCommerce
+sidebar_position: 2
+---
+
+# Get started with WooCommerce
+
+This page walks through setting up a shop with Etch: what you need, what Etch does by itself once WooCommerce is active, and how to add the ready-made cart and checkout.
+
+## Requirements
+
+- Etch and the Etch theme.
+- WooCommerce, with its setup finished so that the Shop, Cart, Checkout and My account pages exist (WooCommerce → Settings → Advanced lists them).
+
+There is nothing to switch on. The integration starts as soon as both Etch and WooCommerce are active.
+
+## What happens when WooCommerce is active
+
+Etch adds the integration and leaves your content alone. Nothing is created or placed in your pages.
+
+| Where | What you get |
+| --- | --- |
+| Dynamic data | `this.woo` on products, and `woo.cart`, `woo.checkout`, `woo.account` and `woo.order` everywhere. See [Product data and loops](./product-data.md). |
+| Loops | The **WooCommerce Products** loop type. |
+| Elements | **Add WooCommerce Hook** and **Add Store Notices** in the element bar; one element per shop role in the command bar (search "woo"). |
+| Templates | A **WooCommerce** group in the template hub with cart, checkout, order confirmation, product search, category, tag and attribute archives. Single product and shop archive are under **Products**. See [Shop pages and templates](./shop-pages.md). |
+| Settings | A **WooCommerce** tab in Etch's settings. |
+| Site Health | Checks for the Etch checkout (Tools → Site Health). |
+
+Your shop keeps working as before. The cart and checkout pages show WooCommerce's own blocks inside the Etch theme's frame until you replace them.
+
+The template hub lists the templates the theme and WooCommerce provide. When you open it, Etch saves them as editable templates, so they appear in the list.
+
+## Add the cart and checkout
+
+The **Woo Cart** and **Woo Checkout** starters are complete, working designs built from the shop roles. They are never installed automatically: you install them when you want them, and after that they are your own components.
+
+:::note WP-CLI only for now
+In the current development state, starters are installed with WP-CLI. Run the commands below in the site's WordPress folder.
+:::
+
+### 1. Install the cart
+
+```sh
+wp etch starter install woo-cart
+```
+
+This adds the components **Woo Cart**, **Woo Cart Lines**, **Woo Cart Totals**, **Woo Cart Shipping**, **Woo Cart Drawer** and **Woo Cart Button**, together with their styles. Then place them yourself:
+
+- **Woo Cart** on the cart page. Open the page in Etch, remove WooCommerce's Cart block and insert the component.
+- **Woo Cart Button** and **Woo Cart Drawer** in your header, so every page has the cart count and the drawer.
+
+### 2. Install the checkout
+
+```sh
+wp etch starter install woo-checkout --place
+```
+
+This adds the checkout components and, with `--place`, puts **Woo Checkout** on WooCommerce's checkout page together with a hidden carrier block, which lets payment plugins load their checkout code. The page's previous content is kept, so you can go back. Without `--place`, only the components are added and you place **Woo Checkout** yourself.
+
+### 3. Check the result
+
+- Add a product to the cart: the cart count, the drawer and the cart page update together.
+- Open the checkout: your payment methods and any blocks plugins add (legal checkboxes, newsletter opt-ins) are there.
+- Tools → Site Health shows no Etch checkout warnings.
+
+## Good to know
+
+- **Starters belong to you after installing.** Restyle and change them like any component. Updating Etch does not change installed starters.
+- **Installing again** needs `--new-copy` and creates copies with new component keys (`WooCart2`, …). `wp etch starter list` shows what is installed.
+- **Existing styles win.** If your site already has a class with the same selector as a starter style, the starter uses your class and keeps its CSS.
+- **Your own design instead of a starter.** Everything the starters do is available as shop roles. Start from an empty page and use the elements from the command bar. See [Cart and checkout](./cart-and-checkout.md) and [Product pages](./product-pages.md).
+- **WooCommerce's styles.** Once your templates style the shop themselves, you can leave WooCommerce's stylesheets out under Settings → WooCommerce.

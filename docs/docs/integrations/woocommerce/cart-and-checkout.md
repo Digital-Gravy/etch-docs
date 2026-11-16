@@ -1,6 +1,6 @@
 ---
 title: Cart and checkout
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # Cart and checkout

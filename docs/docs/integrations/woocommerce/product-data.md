@@ -1,6 +1,6 @@
 ---
 title: Product data and loops
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Product data and loops

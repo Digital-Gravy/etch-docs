@@ -11,7 +11,7 @@ The WooCommerce integration is not part of a released Etch version yet. This pag
 
 Etch lets you design every page of a WooCommerce shop yourself: product pages, shop and category pages, the cart, the cart drawer, the checkout and the customer account. You write the markup and the styles. Etch supplies the shop data and the behaviour.
 
-The integration is active as soon as WooCommerce is active. It has four parts:
+The integration is active as soon as WooCommerce is active. New to it? Start with [Get started with WooCommerce](./get-started.md). It has four parts:
 
 | Part | What it gives you | Read more |
 | --- | --- | --- |
