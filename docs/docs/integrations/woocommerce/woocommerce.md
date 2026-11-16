@@ -116,4 +116,4 @@ Common WooCommerce priorities:
 
 ## Settings
 
-**Remove default WooCommerce styles** (Settings, shown while WooCommerce is active) leaves WooCommerce's own stylesheets out of the frontend. Use it when your templates style everything themselves. Styles of other plugins stay.
+**Remove default WooCommerce styles** (Settings → WooCommerce; the tab shows while WooCommerce is active) leaves WooCommerce's own stylesheets out of the frontend. Use it when your templates style everything themselves. Styles of other plugins stay.
