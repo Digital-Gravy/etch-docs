@@ -40,6 +40,10 @@ The cart or checkout itself goes into the page. Installing a starter with placem
 
 A frame of its own is useful for the checkout. Give the **Checkout** template a reduced header (logo, help link, no navigation) and the checkout page keeps its content.
 
+### WooCommerce's own cart or checkout
+
+Etch's builder offers no element for WooCommerce's original Cart and Checkout blocks, because the roles and starters replace them. If a plugin needs WooCommerce's own cart or checkout, open the cart or checkout page in the block editor (Pages → Cart → Edit), add the **Cart** or **Checkout** block from WooCommerce and remove the Etch component from the page. The template stays the frame around it.
+
 ## Order confirmation
 
 The order confirmation is not a page. WooCommerce shows it at the end of the checkout URL (`/checkout/order-received/…`), so its content lives in the template **Order Confirmation**. Read the order from `woo.order`.
