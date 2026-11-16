@@ -1,6 +1,6 @@
 ---
 title: Cart and checkout
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Cart and checkout
@@ -17,11 +17,11 @@ The cart and the checkout are built from roles (see [How roles work](./woocommer
 | `cart-error` | `p` | The last error, hidden otherwise |
 | `cart-line` | `li` with `data-etch-woo-id="{item.key}"` | One cart line; hidden once it leaves the cart |
 | `line-name`, `line-price`, `line-total` | text inside a line | Line values |
-| `line-quantity` | `input` | Changes the quantity |
+| `line-quantity` | `input` | Changes the quantity; read-only for products that can be bought only once, such as bookings, and limited to the minimum, maximum and step WooCommerce allows |
 | `line-remove` | `button` | Removes the line |
 | `coupon-code`, `coupon-apply`, `coupon-remove` | input and buttons | Coupons |
 | `checkout-link` | `a` | Link to the checkout |
-| `cart-toggle` | checkbox with `data-etch-woo-id` = product ID | Adds one of the product when checked, removes it when unchecked |
+| `cart-toggle` | checkbox with `data-etch-woo-id` = product ID | Adds one of the product when checked, removes it when unchecked. Disabled for products with their own add to cart form, such as bookings |
 | `cart-drawer`, `drawer-open`, `drawer-close` | `aside` and buttons | A cart drawer; it also opens after a product form added a product |
 | `shipping-form`, `shipping-country`, `shipping-state`, `shipping-postcode`, `shipping-city`, `shipping-update` | form and fields | Shipping calculator |
 | `shipping-rates`, `shipping-package`, `shipping-rate` | containers and radios | Choose a shipping rate |

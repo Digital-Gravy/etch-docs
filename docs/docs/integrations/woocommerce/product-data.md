@@ -1,6 +1,6 @@
 ---
 title: Product data and loops
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Product data and loops
@@ -80,6 +80,20 @@ These keys work on every page:
 | `woo.order` | The current order on the thank-you page and in the account, following WooCommerce's access rules |
 
 Loop over the cart with `woo.cart.items`. Each item is one line: `item.name`, `item.quantity`, `item.price`.
+
+Plugins attach details to a line, such as a booking date, an add-on choice, or Germanized's delivery time and unit price. They are in `item.item_data`, each with `key`, `value` and `slug` (the key as a class name). Show them with a loop:
+
+```html
+<dl>
+  <!-- loop over item.item_data as detail -->
+  <div class="detail detail--{detail.slug}">
+    <dt>{detail.key}</dt>
+    <dd>{detail.value}</dd>
+  </div>
+</dl>
+```
+
+Germanized's values already contain their label ("Delivery time: 2–3 days"), so the Woo Cart starter hides the key of details whose slug starts with `gzd-`. `item.quantity_max` is `1` for products sold individually.
 
 A page that renders a filled cart is marked as not cacheable, as WooCommerce does for its cart and checkout.
 

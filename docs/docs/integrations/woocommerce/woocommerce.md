@@ -20,6 +20,8 @@ The integration is active as soon as WooCommerce is active. It has four parts:
 | Roles | Turn your own elements into live shop controls: cart, checkout, product forms | [Cart and checkout](./cart-and-checkout.md), [Product pages](./product-pages.md) |
 | Hook block | Place WooCommerce's and plugins' own output where you want it | [Hook block](#hook-block) |
 
+Which screen is a page and which is a template: [Shop pages and templates](./shop-pages.md).
+
 ## How roles work
 
 An element becomes a shop control by carrying a role in `data-etch-woo-role`:

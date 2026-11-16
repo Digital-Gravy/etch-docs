@@ -1,6 +1,6 @@
 ---
 title: Product pages
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # Product pages
@@ -87,4 +87,6 @@ The total leaves out shipping; say so next to it. Which accessory a product offe
 
 ## Other product types
 
-Grouped and external products, and product types from plugins such as subscriptions, keep WooCommerce's own form. Place it with the hook block and a condition on `this.woo.product_type`.
+Grouped and external products, and products from plugins that need their own add to cart form (a booking with a date, a bundle with choices), keep WooCommerce's own form. Place it with the hook block and a condition on `this.woo.product_type`.
+
+Etch tells these products apart the way WooCommerce's own buttons do: a product form adds a product only when it is variable, a variation, or WooCommerce's add to cart link adds it directly. For any other product the `add-to-cart` button stays disabled and the browser console names the product. Simple subscriptions add like simple products.
