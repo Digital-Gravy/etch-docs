@@ -42,6 +42,24 @@ The cart and the checkout are built from roles (see [How roles work](./woocommer
 
 A cart region may sit next to the checkout form, but the place order button, areas and slots must be inside the form. To show the order button in a summary sidebar, make the sidebar part of the form.
 
+## Customizing the starters
+
+The roles carry the behaviour, the classes only the look. You can rename, change or add classes on a starter without breaking anything, as long as the `data-etch-woo-role` attributes stay.
+
+Pick the approach by how much the result should differ:
+
+| You want | Do this |
+| --- | --- |
+| One look for the whole shop | Edit the starter's classes directly. They are your styles after installing, and Etch updates do not change them. |
+| The same checkout with a small variation, such as a compact layout | Add a modifier class to the component's root, for example `woo-checkout--compact`, and style only the differences under it. The base classes stay as they are. |
+| A checkout with a different structure | Install a copy (**Install a copy** in Settings → WooCommerce) and change its structure. |
+
+Avoid stacking extra classes on top of the starter's classes only to override them. The CSS then exists twice and it becomes unclear which rule wins.
+
+**Copies share classes.** A copy of a starter uses the same class names as the original, because the installer reuses classes that already exist and keeps their CSS. Changing a class therefore changes the original and the copy. Rename the classes in the copy (for example `woo-checkout-b__…`) or use a modifier class when the two should look different.
+
+**One checkout page.** WooCommerce has one checkout page, and payment plugins rely on it. To offer different checkouts, put them on that page and switch between them with conditions, for example on what the cart contains.
+
 ## Recipe: order bump
 
 An order bump offers one extra product in the cart or the checkout. Everything except the checkbox is your own markup:
