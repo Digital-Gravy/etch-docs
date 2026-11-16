@@ -42,7 +42,13 @@ A frame of its own is useful for the checkout. Give the **Checkout** template a 
 
 ### WooCommerce's own cart or checkout
 
-Etch's builder offers no element for WooCommerce's original Cart and Checkout blocks, because the roles and starters replace them. If a plugin needs WooCommerce's own cart or checkout, open the cart or checkout page in the block editor (Pages → Cart → Edit), add the **Cart** or **Checkout** block from WooCommerce and remove the Etch component from the page. The template stays the frame around it.
+Etch's builder offers no element for WooCommerce's original Cart and Checkout blocks, because the roles and starters replace them. If a plugin needs WooCommerce's own cart or checkout:
+
+1. Open the cart or checkout page in the block editor (Pages → Cart → Edit).
+2. Delete every block on the page. On the checkout page this includes the Checkout block that is already there: it is the hidden carrier of Etch's checkout and stays empty on the frontend.
+3. Add a new **Cart** or **Checkout** block from WooCommerce and save.
+
+The template stays the frame around it.
 
 ## Order confirmation
 
