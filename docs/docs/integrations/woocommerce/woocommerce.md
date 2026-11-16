@@ -116,4 +116,16 @@ Common WooCommerce priorities:
 
 ## Settings
 
-**Remove default WooCommerce styles** (Settings → WooCommerce; the tab shows while WooCommerce is active) leaves WooCommerce's own stylesheets out of the frontend. Use it when your templates style everything themselves. Styles of other plugins stay.
+The integration needs no setting: dynamic data, product loops, roles, starters and the hook block work as soon as WooCommerce is active. **Settings → WooCommerce** (shown while WooCommerce is active) holds the options that change how the shop is delivered.
+
+### Remove default WooCommerce styles
+
+Off by default. When on, WooCommerce's own stylesheets stay out of the frontend:
+
+- the classic shop styles (`woocommerce-general`, `woocommerce-layout`, `woocommerce-smallscreen`),
+- the styles of WooCommerce's blocks (`wc-blocks-style` and the per-block styles),
+- WooCommerce's inline styles.
+
+Turn it on when your templates style the shop themselves, so the browser loads less CSS and WooCommerce's rules no longer compete with yours. Everything WooCommerce still renders then needs your styles: output of a hook block, the account forms, notices, and WooCommerce's own Cart or Checkout block if you use one. Styles of other plugins stay, even when they style WooCommerce's elements.
+
+Check the cart, checkout, account and a product page after turning it on.
