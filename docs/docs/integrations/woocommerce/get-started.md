@@ -35,7 +35,7 @@ The template hub lists the templates the theme and WooCommerce provide. When you
 
 The **Woo Cart** and **Woo Checkout** starters are complete, working designs built from the shop roles. They are never installed automatically: you install them when you want them, and after that they are your own components.
 
-Install them under **Settings → WooCommerce → Starters** in the builder. Each starter has an **Install** button; save your work first, because the builder reloads after installing so it knows the new components and styles.
+Install them under **Settings → WooCommerce → Starters** in the builder. Each starter has an **Install** button. Installing saves your unsaved changes and then reloads the builder, so it knows the new components and styles.
 
 ### 1. Install the cart
 
