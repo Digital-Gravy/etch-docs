@@ -18,6 +18,7 @@ The cart and the checkout are built from roles (see [How roles work](./woocommer
 | `cart-line` | `li` with `data-etch-woo-id="{item.key}"` | One cart line; hidden once it leaves the cart |
 | `line-name`, `line-price`, `line-total` | text inside a line | Line values |
 | `line-quantity` | `input` | Changes the quantity; read-only for products that can be bought only once, such as bookings, and limited to the minimum, maximum and step WooCommerce allows |
+| `quantity-step` | `button` with `data-etch-woo-step="1"` or `"-1"`, inside the line | Raises or lowers the line's quantity by one step; disabled at the minimum or maximum and while the quantity is read-only. Never goes below 1: removing is `line-remove`'s job |
 | `line-remove` | `button` | Removes the line |
 | `coupon-code`, `coupon-apply`, `coupon-remove` | input and buttons | Coupons |
 | `checkout-link` | `a` | Link to the checkout |
