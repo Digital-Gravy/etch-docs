@@ -39,13 +39,13 @@ Install them under **Settings → WooCommerce → Starters** in the builder. Eac
 
 ### 1. Install the cart
 
-Leave **Put it on WooCommerce's cart page** checked and click **Install** next to **Woo Cart**. This adds the components **Woo Cart**, **Woo Cart Lines**, **Woo Cart Totals**, **Woo Cart Shipping**, **Woo Cart Drawer** and **Woo Cart Button**, together with their styles, and puts **Woo Cart** on WooCommerce's cart page in place of WooCommerce's Cart block. The page's previous content is kept, so you can go back. Uncheck the option to only add the components and place **Woo Cart** yourself.
+Leave **Put it on WooCommerce's cart page** checked and click **Install** next to **Woo Cart**. This adds the components **Woo Cart**, **Woo Cart Lines**, **Woo Cart Totals**, **Woo Cart Shipping**, **Woo Cart Drawer** and **Woo Cart Button**, together with their styles, and puts **Woo Cart** on WooCommerce's cart page in place of WooCommerce's Cart block, inside a section and container with the page title as heading. The component holds only the cart; the section, container and title are ordinary elements of the page. The page's previous content is kept, so you can go back. Uncheck the option to only add the components and place **Woo Cart** yourself.
 
 Then put **Woo Cart Button** and **Woo Cart Drawer** in your header, so every page has the cart count and the drawer.
 
 ### 2. Install the checkout
 
-Leave **Put it on WooCommerce's checkout page** checked and click **Install** next to **Woo Checkout**. This adds the checkout components and puts **Woo Checkout** on WooCommerce's checkout page together with a hidden carrier block, which lets payment plugins load their checkout code. The page's previous content is kept, so you can go back. Uncheck the option to only add the components and place **Woo Checkout** yourself.
+Leave **Put it on WooCommerce's checkout page** checked and click **Install** next to **Woo Checkout**. This adds the checkout components and puts **Woo Checkout** on WooCommerce's checkout page, framed the same way, together with a hidden carrier block, which lets payment plugins load their checkout code. The page's previous content is kept, so you can go back. Uncheck the option to only add the components and place **Woo Checkout** yourself.
 
 ### 3. Check the result
 
