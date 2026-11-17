@@ -33,16 +33,15 @@ The template hub lists the templates the theme and WooCommerce provide. When you
 
 ## Add the cart and checkout
 
-The **Woo Cart** and **Woo Checkout** starters are complete, working designs built from the shop roles. They are never installed automatically: you install them when you want them, and after that they are your own components.
+The **Woo Cart** and **Woo Checkout** starters are complete, working designs built from the shop roles. They are never installed automatically, and Etch never removes WooCommerce's Cart and Checkout blocks by itself: you install the starters when you want them, and after that they are your own components.
 
 Install them under **Settings → WooCommerce → Starters** in the builder. Each starter has an **Install** button. Installing saves your unsaved changes and then reloads the builder, so it knows the new components and styles.
 
 ### 1. Install the cart
 
-Click **Install** next to **Woo Cart**. This adds the components **Woo Cart**, **Woo Cart Lines**, **Woo Cart Totals**, **Woo Cart Shipping**, **Woo Cart Drawer** and **Woo Cart Button**, together with their styles. Then place them yourself:
+Leave **Put it on WooCommerce's cart page** checked and click **Install** next to **Woo Cart**. This adds the components **Woo Cart**, **Woo Cart Lines**, **Woo Cart Totals**, **Woo Cart Shipping**, **Woo Cart Drawer** and **Woo Cart Button**, together with their styles, and puts **Woo Cart** on WooCommerce's cart page in place of WooCommerce's Cart block. The page's previous content is kept, so you can go back. Uncheck the option to only add the components and place **Woo Cart** yourself.
 
-- **Woo Cart** on the cart page. Open the page in Etch, remove WooCommerce's Cart block and insert the component.
-- **Woo Cart Button** and **Woo Cart Drawer** in your header, so every page has the cart count and the drawer.
+Then put **Woo Cart Button** and **Woo Cart Drawer** in your header, so every page has the cart count and the drawer.
 
 ### 2. Install the checkout
 
@@ -58,7 +57,7 @@ Leave **Put it on WooCommerce's checkout page** checked and click **Install** ne
 
 - **Starters belong to you after installing.** Restyle and change them like any component. Updating Etch does not change installed starters.
 - **Installing again** shows as **Install a copy** and creates copies with new component keys (`WooCart1`, …). The settings show which version is installed.
-- **With WP-CLI**, the same works from the command line: `wp etch starter install woo-cart`, `wp etch starter install woo-checkout --place`, `--new-copy` for a copy and `wp etch starter list` for what is installed.
+- **With WP-CLI**, the same works from the command line: `wp etch starter install woo-cart --place`, `wp etch starter install woo-checkout --place`, `--new-copy` for a copy and `wp etch starter list` for what is installed.
 - **Existing styles win.** If your site already has a class with the same selector as a starter style, the starter uses your class and keeps its CSS.
 - **Your own design instead of a starter.** Everything the starters do is available as shop roles. Start from an empty page and use the elements from the command bar. See [Cart and checkout](./cart-and-checkout.md) and [Product pages](./product-pages.md).
 - **WooCommerce's styles.** Once your templates style the shop themselves, you can leave WooCommerce's stylesheets out under Settings → WooCommerce.
