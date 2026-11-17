@@ -24,7 +24,7 @@ The cart and the checkout are built from roles (see [How roles work](./woocommer
 | `checkout-link` | `a` | Link to the checkout |
 | `cart-toggle` | checkbox with `data-etch-woo-id` = product ID | Adds one of the product when checked, removes it when unchecked. Disabled for products with their own add to cart form, such as bookings |
 | `cart-drawer`, `drawer-open`, `drawer-close` | `aside` and buttons | A cart drawer; it also opens after a product form added a product |
-| `shipping-form`, `shipping-country`, `shipping-state`, `shipping-postcode`, `shipping-city`, `shipping-update` | form and fields | Shipping calculator. Woo Cart folds the address fields into a closed `<details>` (**Calculate shipping**) and keeps the rates visible. |
+| `shipping-form`, `shipping-country`, `shipping-state`, `shipping-postcode`, `shipping-city`, `shipping-update` | form and fields | Shipping calculator. Woo Cart folds the address fields into a closed `<details>` (**Calculate shipping**) and keeps the rates visible. It follows WooCommerce's settings: without **Enable the shipping calculator on the cart page** (WooCommerce → Settings → Shipping → Options) the address fields are left out, and a cart that needs no shipping shows no shipping box. Conditions on `woo.shipping.calculator` and `woo.cart.needs_shipping` do this. |
 | `shipping-rates`, `shipping-package`, `shipping-rate` | containers and radios | Choose a shipping rate |
 
 ## Checkout roles
