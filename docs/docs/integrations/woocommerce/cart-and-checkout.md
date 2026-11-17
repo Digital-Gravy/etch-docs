@@ -42,6 +42,29 @@ The cart and the checkout are built from roles (see [How roles work](./woocommer
 
 A cart region may sit next to the checkout form, but the place order button, areas and slots must be inside the form. To show the order button in a summary sidebar, make the sidebar part of the form.
 
+## Store notices
+
+WooCommerce's notices ("added to your cart", "out of stock", coupon and shipping messages) come from the **Store Notices** block. Etch's templates do not print them: the page decides where they go.
+
+- **Woo Cart** and **Woo Checkout** bring them in an element named **Notices** with the class `woo-notices`, under the page title. Move that element to show the notices somewhere else.
+- **Your own cart or checkout page**, or WooCommerce's own Cart or Checkout block, needs them too. Use **Add Store Notices** in the element bar; the builder shows a warning while a page with shop elements has none.
+
+Every cart and checkout page needs the notices. WooCommerce keeps error notices until a page prints them, and while one is stored, the checkout refuses to place the order.
+
+### Styling the notices
+
+The notices are WooCommerce's markup, so you style them through their classes. The `woo-notices` style that comes with the starters covers them, and it keeps working when WooCommerce's stylesheets are left out (Settings → WooCommerce). Edit it like any other class:
+
+| Selector | What it is |
+| --- | --- |
+| `.woo-notices` | the Notices element; hidden while there is no notice |
+| `.wc-block-components-notice-banner` | one notice |
+| `.is-success`, `.is-error`, `.is-info` | the kind of notice, on the same element |
+| `.wc-block-components-notice-banner > svg` | the notice icon |
+| `.wc-block-components-notice-banner__content` | the text, which may contain a link |
+
+The style reads the custom properties `--woo-notice-bg`, `--woo-notice-color`, `--woo-notice-success-bg`, `--woo-notice-success`, `--woo-notice-error-bg` and `--woo-notice-error`, so you can match your colours without touching the rules.
+
 ## Customizing the starters
 
 The roles carry the behaviour, the classes only the look. You can rename, change or add classes on a starter without breaking anything, as long as the `data-etch-woo-role` attributes stay.

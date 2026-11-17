@@ -60,4 +60,5 @@ Leave **Put it on WooCommerce's checkout page** checked and click **Install** ne
 - **With WP-CLI**, the same works from the command line: `wp etch starter install woo-cart --place`, `wp etch starter install woo-checkout --place`, `--new-copy` for a copy and `wp etch starter list` for what is installed.
 - **Existing styles win.** If your site already has a class with the same selector as a starter style, the starter uses your class and keeps its CSS.
 - **Your own design instead of a starter.** Everything the starters do is available as shop roles. Start from an empty page and use the elements from the command bar. See [Cart and checkout](./cart-and-checkout.md) and [Product pages](./product-pages.md).
+- **Keeping WooCommerce's Cart or Checkout block?** Add **Store Notices** to that page. Etch's templates print none, and the checkout refuses orders while an error notice is stored. See [Store notices](./cart-and-checkout.md#store-notices).
 - **WooCommerce's styles.** Once your templates style the shop themselves, you can leave WooCommerce's stylesheets out under Settings → WooCommerce.
