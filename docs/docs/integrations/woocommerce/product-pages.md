@@ -7,6 +7,21 @@ sidebar_position: 6
 
 A product form adds a product to the cart. You design it completely: swatches, prices, quantity buttons and accessories are your markup. Roles connect it to the cart (see [How roles work](./woocommerce.md#how-roles-work)).
 
+## The Woo Product starter
+
+**Woo Product** (Settings → WooCommerce → Starters) builds the single product page and puts it into the **Single product** template. Your saved template is kept and comes back when you remove the starter. It brings four components:
+
+| Component | What it shows |
+| --- | --- |
+| **Woo Product** | The page: store notices, gallery and summary side by side, then description, reviews and related products (`this.woo.related_products`) |
+| **Woo Product Gallery** | The product image and the gallery images |
+| **Woo Product Form** | Price, short description, one choice per variation option, quantity buttons and add to cart |
+| **Woo Product Reviews** | Approved reviews and the review form |
+
+**Extensions keep their output.** Germanized's price notes (incl. VAT, shipping costs, unit price, delivery time) and similar output of other plugins appear without work: **WooCommerce Hook** blocks for `woocommerce_single_product_summary`, set to **Only extensions**, sit after the price (priorities 1–19), after the short description (21–29) and after the form (31 and up). WooCommerce's own title, price and button stay out, so nothing shows twice.
+
+**Products the form cannot add** (grouped, external, bookings and other products with their own form) keep WooCommerce's form: the condition `this.woo.uses_product_form` switches to a hook block that prints it, styled by the starter.
+
 ## Product roles
 
 | Role | Element | What it does |

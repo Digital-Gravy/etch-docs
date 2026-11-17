@@ -36,6 +36,8 @@ Prices are plain text in the shop's format, with currency and tax as the shop di
 | `attributes` | List of `{ name, slug, options: [{ name, slug }], visible, variation }` |
 | `variations` | For variable products: `{ id, sku, attributes, price, price_amount, is_on_sale, stock_status, is_in_stock, is_purchasable, image }` |
 | `upsell_ids`, `cross_sell_ids`, `related_ids` | Product IDs, with `has_upsells`, `has_cross_sells`, `has_related` |
+| `related_products` | Up to four related products for cards: `id`, `title`, `permalink`, `image` (`url`, `alt`) and `woo` with prices, sale and rating |
+| `uses_product_form` | Etch's product form can add the product (simple and variable products); grouped, external and bookable products keep WooCommerce's form |
 | `children`, `external_url` | Grouped products' children and external products' link |
 
 ### Reviews
@@ -96,6 +98,8 @@ Plugins attach details to a line, such as a booking date, an add-on choice, or G
 ```
 
 Germanized's values already contain their label ("Delivery time: 2–3 days"), so the Woo Cart starter hides the key of details whose slug starts with `gzd-`. `item.quantity_max` is `1` for products sold individually.
+
+Germanized's lines under the totals of WooCommerce's classic cart are table rows for that table, so the Woo Cart starter leaves them out: the included tax shows in its own tax row (`cart-tax`). A shop that sells second-hand goods under differential taxation adds that notice as text.
 
 A page that renders a filled cart is marked as not cacheable, as WooCommerce does for its cart and checkout.
 

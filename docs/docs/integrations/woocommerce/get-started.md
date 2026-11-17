@@ -51,7 +51,11 @@ Click **Install** next to **Woo Checkout**. This adds the checkout components an
 
 Click **Install** next to **Woo Account**. This adds **Woo Account**, **Woo Account Nav** and **Woo Account Dashboard** and puts **Woo Account** on the My account page, framed like the cart. Customers get a menu of the account pages and a dashboard with their latest orders and addresses; the other account pages and the login for guests stay WooCommerce's, styled by the starter. See [My account](./account.md).
 
-### 4. Check the result
+### 4. Install the product page
+
+Click **Install** next to **Woo Product**. It puts **Woo Product** into the **Single product** template: gallery, product form with variation choices, reviews and related products. Germanized's price notes and similar output of other plugins show in it. See [Product pages](./product-pages.md#the-woo-product-starter).
+
+### 5. Check the result
 
 - Add a product to the cart: the cart count, the drawer and the cart page update together.
 - Open the checkout: your payment methods and any blocks plugins add (legal checkboxes, newsletter opt-ins) are there.
