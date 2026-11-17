@@ -60,8 +60,9 @@ Leave **Put it on WooCommerce's My account page** checked and click **Install** 
 ## Good to know
 
 - **Starters belong to you after installing.** Restyle and change them like any component. Updating Etch does not change installed starters.
-- **Installing again** shows as **Install a copy** and creates copies with new component keys (`WooCart1`, …). The settings show which version is installed.
-- **With WP-CLI**, the same works from the command line: `wp etch starter install woo-cart --place`, `wp etch starter install woo-checkout --place`, `--new-copy` for a copy and `wp etch starter list` for what is installed.
+- **Update, Reinstall and Remove.** The settings show which version is installed and when a newer one ships. **Update** (or **Reinstall**) removes the installed starter, copies included, and installs the shipped version afresh, placed again where it was. **Remove** deletes its components and the styles it created and puts back what its page held. Both ask first and say which components you changed since installing and where else they are used, because **your changes to the starter are lost**.
+- **Install a copy** creates a second set of components with new keys (`WooCart1`, …) next to the first.
+- **With WP-CLI**, the same works from the command line: `wp etch starter install woo-cart --place`, `wp etch starter install woo-checkout --place`, `--new-copy` for a copy, `wp etch starter update woo-cart --place`, `wp etch starter remove woo-cart` (`--force` when other content uses it) and `wp etch starter list` for what is installed.
 - **Existing styles win.** If your site already has a class with the same selector as a starter style, the starter uses your class and keeps its CSS.
 - **Your own design instead of a starter.** Everything the starters do is available as shop roles. Start from an empty page and use the elements from the command bar. See [Cart and checkout](./cart-and-checkout.md) and [Product pages](./product-pages.md).
 - **Keeping WooCommerce's Cart or Checkout block?** Add **Store Notices** to that page. Etch's templates print none, and the checkout refuses orders while an error notice is stored. See [Store notices](./cart-and-checkout.md#store-notices).
