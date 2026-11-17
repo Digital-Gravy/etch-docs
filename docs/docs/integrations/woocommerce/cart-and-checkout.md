@@ -23,7 +23,7 @@ The cart and the checkout are built from roles (see [How roles work](./woocommer
 | `checkout-link` | `a` | Link to the checkout |
 | `cart-toggle` | checkbox with `data-etch-woo-id` = product ID | Adds one of the product when checked, removes it when unchecked. Disabled for products with their own add to cart form, such as bookings |
 | `cart-drawer`, `drawer-open`, `drawer-close` | `aside` and buttons | A cart drawer; it also opens after a product form added a product |
-| `shipping-form`, `shipping-country`, `shipping-state`, `shipping-postcode`, `shipping-city`, `shipping-update` | form and fields | Shipping calculator |
+| `shipping-form`, `shipping-country`, `shipping-state`, `shipping-postcode`, `shipping-city`, `shipping-update` | form and fields | Shipping calculator. Woo Cart folds the address fields into a closed `<details>` (**Calculate shipping**) and keeps the rates visible. |
 | `shipping-rates`, `shipping-package`, `shipping-rate` | containers and radios | Choose a shipping rate |
 
 ## Checkout roles
@@ -76,6 +76,8 @@ Pick the approach by how much the result should differ:
 | One look for the whole shop | Edit the starter's classes directly. They are your styles after installing, and Etch updates do not change them. |
 | The same checkout with a small variation, such as a compact layout | Add a modifier class to the component's root, for example `woo-checkout--compact`, and style only the differences under it. The base classes stay as they are. |
 | A checkout with a different structure | Install a copy (**Install a copy** in Settings → WooCommerce) and change its structure. |
+
+**No starter rule outweighs one class.** Each starter style targets a single class, and everything nested in it (child elements, states such as `:read-only`, WooCommerce's notice markup) sits in `:where()`. A class of your own on the same element therefore overrides the starter as long as it comes later in the stylesheet, which is the case for classes you create after installing.
 
 Avoid stacking extra classes on top of the starter's classes only to override them. The CSS then exists twice and it becomes unclear which rule wins.
 
