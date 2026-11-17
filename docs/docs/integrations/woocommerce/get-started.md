@@ -31,9 +31,9 @@ Your shop keeps working as before. The cart and checkout pages show WooCommerce'
 
 The template hub lists the templates the theme and WooCommerce provide. When you open it, Etch saves them as editable templates, so they appear in the list.
 
-## Add the cart and checkout
+## Add the cart, checkout and account
 
-The **Woo Cart** and **Woo Checkout** starters are complete, working designs built from the shop roles. They are never installed automatically, and Etch never removes WooCommerce's Cart and Checkout blocks by itself: you install the starters when you want them, and after that they are your own components.
+The **Woo Cart**, **Woo Checkout** and **Woo Account** starters are complete, working designs built from the shop roles and dynamic data. They are never installed automatically, and Etch never removes WooCommerce's blocks or shortcodes by itself: you install the starters when you want them, and after that they are your own components.
 
 Install them under **Settings → WooCommerce → Starters** in the builder. Each starter has an **Install** button. Installing saves your unsaved changes and then reloads the builder, so it knows the new components and styles.
 
@@ -47,7 +47,11 @@ Then put **Woo Cart Button** and **Woo Cart Drawer** in your header, so every pa
 
 Leave **Put it on WooCommerce's checkout page** checked and click **Install** next to **Woo Checkout**. This adds the checkout components and puts **Woo Checkout** on WooCommerce's checkout page, framed the same way, together with a hidden carrier block, which lets payment plugins load their checkout code. The page's previous content is kept, so you can go back. Uncheck the option to only add the components and place **Woo Checkout** yourself.
 
-### 3. Check the result
+### 3. Install the account
+
+Leave **Put it on WooCommerce's My account page** checked and click **Install** next to **Woo Account**. This adds **Woo Account**, **Woo Account Nav** and **Woo Account Dashboard** and puts **Woo Account** on the My account page, framed like the cart. Customers get a menu of the account pages and a dashboard with their latest orders and addresses; the other account pages and the login for guests stay WooCommerce's, styled by the starter. See [My account](./account.md).
+
+### 4. Check the result
 
 - Add a product to the cart: the cart count, the drawer and the cart page update together.
 - Open the checkout: your payment methods and any blocks plugins add (legal checkboxes, newsletter opt-ins) are there.

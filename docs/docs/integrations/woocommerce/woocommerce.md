@@ -43,6 +43,7 @@ Starters are ready-made component families built from the roles. Install one, th
 
 - **Woo Cart:** cart page, cart drawer and cart button.
 - **Woo Checkout:** checkout with contact, addresses, shipping, payment and summary.
+- **Woo Account:** My account with menu, dashboard, orders and addresses.
 
 ## Hook block
 

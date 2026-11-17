@@ -77,7 +77,8 @@ These keys work on every page:
 | `woo.cart` | `items`, `count`, `subtotal`, `total`, `is_empty`, `needs_shipping`, `url`, `cross_sells` |
 | `woo.shipping` | `countries` (the countries the store ships to, each with `code` and `name`), `calculator` (WooCommerce offers the shipping calculator on the cart) |
 | `woo.checkout.url` | Link to the checkout |
-| `woo.account` | `url`, `endpoint`, `menu`, `is_logged_in`, and for customers `orders` and `addresses` |
+| `woo.account` | `url`, `endpoint`, `is_dashboard`, `menu`, `is_logged_in`, and for customers `name` (first name, else display name), `orders` and `addresses` |
+| `woo.shop.url` | Link to the shop page |
 | `woo.order` | The current order on the thank-you page and in the account, following WooCommerce's access rules |
 
 Loop over the cart with `woo.cart.items`. Each item is one line: `item.name`, `item.quantity`, `item.price`.
