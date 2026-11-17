@@ -39,17 +39,17 @@ Install them under **Settings → WooCommerce → Starters** in the builder. Eac
 
 ### 1. Install the cart
 
-Leave **Put it on WooCommerce's cart page** checked and click **Install** next to **Woo Cart**. This adds the components **Woo Cart**, **Woo Cart Lines**, **Woo Cart Totals**, **Woo Cart Shipping**, **Woo Cart Drawer** and **Woo Cart Button**, together with their styles, and puts **Woo Cart** on WooCommerce's cart page in place of WooCommerce's Cart block, inside a section and container with the page title as heading. The component holds only the cart; the section, container and title are ordinary elements of the page. The page's previous content is kept, so you can go back. Uncheck the option to only add the components and place **Woo Cart** yourself.
+Click **Install** next to **Woo Cart**. This adds the components **Woo Cart**, **Woo Cart Lines**, **Woo Cart Totals**, **Woo Cart Shipping**, **Woo Cart Drawer** and **Woo Cart Button**, together with their styles, and puts **Woo Cart** on WooCommerce's cart page in place of WooCommerce's Cart block, inside a section and container with the page title as heading. The component holds only the cart; the section, container and title are ordinary elements of the page. The page's previous content is kept, and **Remove** puts it back. To add only the components and place **Woo Cart** yourself, install with WP-CLI without `--place`.
 
 Then put **Woo Cart Button** and **Woo Cart Drawer** in your header, so every page has the cart count and the drawer.
 
 ### 2. Install the checkout
 
-Leave **Put it on WooCommerce's checkout page** checked and click **Install** next to **Woo Checkout**. This adds the checkout components and puts **Woo Checkout** on WooCommerce's checkout page, framed the same way, together with a hidden carrier block, which lets payment plugins load their checkout code. The page's previous content is kept, so you can go back. Uncheck the option to only add the components and place **Woo Checkout** yourself.
+Click **Install** next to **Woo Checkout**. This adds the checkout components and puts **Woo Checkout** on WooCommerce's checkout page, framed the same way, together with a hidden carrier block, which lets payment plugins load their checkout code. The page's previous content is kept, and **Remove** puts it back.
 
 ### 3. Install the account
 
-Leave **Put it on WooCommerce's My account page** checked and click **Install** next to **Woo Account**. This adds **Woo Account**, **Woo Account Nav** and **Woo Account Dashboard** and puts **Woo Account** on the My account page, framed like the cart. Customers get a menu of the account pages and a dashboard with their latest orders and addresses; the other account pages and the login for guests stay WooCommerce's, styled by the starter. See [My account](./account.md).
+Click **Install** next to **Woo Account**. This adds **Woo Account**, **Woo Account Nav** and **Woo Account Dashboard** and puts **Woo Account** on the My account page, framed like the cart. Customers get a menu of the account pages and a dashboard with their latest orders and addresses; the other account pages and the login for guests stay WooCommerce's, styled by the starter. See [My account](./account.md).
 
 ### 4. Check the result
 
@@ -61,7 +61,7 @@ Leave **Put it on WooCommerce's My account page** checked and click **Install** 
 
 - **Starters belong to you after installing.** Restyle and change them like any component. Updating Etch does not change installed starters.
 - **Update, Reinstall and Remove.** The settings show which version is installed and when a newer one ships. **Update** (or **Reinstall**) removes the installed starter, copies included, and installs the shipped version afresh, placed again where it was. **Remove** deletes its components and the styles it created and puts back what its page held. Both ask first and say which components you changed since installing and where else they are used, because **your changes to the starter are lost**.
-- **Install a copy** creates a second set of components with new keys (`WooCart1`, …) next to the first.
+- **Install a copy** creates a second set of components with new keys (`WooCart1`, …) next to the first and places nothing; the page stays with the first install.
 - **With WP-CLI**, the same works from the command line: `wp etch starter install woo-cart --place`, `wp etch starter install woo-checkout --place`, `--new-copy` for a copy, `wp etch starter update woo-cart --place`, `wp etch starter remove woo-cart` (`--force` when other content uses it) and `wp etch starter list` for what is installed.
 - **Existing styles win.** If your site already has a class with the same selector as a starter style, the starter uses your class and keeps its CSS.
 - **Your own design instead of a starter.** Everything the starters do is available as shop roles. Start from an empty page and use the elements from the command bar. See [Cart and checkout](./cart-and-checkout.md) and [Product pages](./product-pages.md).

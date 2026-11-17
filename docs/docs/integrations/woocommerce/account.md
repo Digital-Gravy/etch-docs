@@ -5,7 +5,7 @@ sidebar_position: 7
 
 # My account
 
-The **Woo Account** starter turns WooCommerce's My account page into an Etch page. Install it under **Settings → WooCommerce → Starters**; with **Put it on WooCommerce's My account page** checked it replaces the page's `[woocommerce_my_account]` shortcode and keeps it in the install record.
+The **Woo Account** starter turns WooCommerce's My account page into an Etch page. Install it under **Settings → WooCommerce → Starters**: it replaces the page's `[woocommerce_my_account]` shortcode and keeps it in the install record, so **Remove** puts it back.
 
 ## What it contains
 
