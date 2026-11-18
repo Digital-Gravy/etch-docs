@@ -45,10 +45,13 @@ Prices are plain text in the shop's format, with currency and tax as the shop di
 | Field | Content |
 | --- | --- |
 | `rating`, `rating_count`, `review_count` | Average rating and counts |
+| `has_one_review` | The product has exactly one review, for a label like `1 review` |
 | `rating_label` | The average with one decimal in the shop's number format, such as `4,5` |
 | `reviews` | Up to 20 approved reviews, newest first: `{ id, author, rating, text, date, date_iso, verified }` |
 | `reviews_open` | The shop takes reviews and the product is open for them |
-| `can_review` | The visitor may write a review. When WooCommerce allows reviews by verified owners only, this needs a logged-in customer who bought the product |
+| `can_review` | The visitor may write a review. When WooCommerce allows reviews by verified owners only, this needs a logged-in customer who bought the product. When WordPress takes comments from registered users only, guests may not review |
+| `review_contact_required` | A guest reviews and WordPress requires name and email (**Settings → Discussion**) |
+| `review_contact_optional` | A guest reviews and WordPress does not require name and email |
 
 A review form is your own markup. It posts to WordPress, which validates, stores and moderates the review as for WooCommerce's own form:
 
@@ -63,11 +66,17 @@ A review form is your own markup. It posts to WordPress, which validates, stores
   </fieldset>
   <label for="review-text">Your review</label>
   <textarea id="review-text" name="comment" required></textarea>
-  {#if !woo.account.is_logged_in}
+  {#if this.woo.review_contact_required}
   <label for="review-author">Name</label>
   <input type="text" id="review-author" name="author" autocomplete="name" required />
   <label for="review-email">Email</label>
   <input type="email" id="review-email" name="email" autocomplete="email" required />
+  {/if}
+  {#if this.woo.review_contact_optional}
+  <label for="review-author-optional">Name</label>
+  <input type="text" id="review-author-optional" name="author" autocomplete="name" />
+  <label for="review-email-optional">Email</label>
+  <input type="email" id="review-email-optional" name="email" autocomplete="email" />
   {/if}
   <input type="hidden" name="comment_post_ID" value="{this.id}" />
   <input type="hidden" name="comment_parent" value="0" />
@@ -76,7 +85,7 @@ A review form is your own markup. It posts to WordPress, which validates, stores
 {/if}
 ```
 
-`{site.url}` keeps the form working when WordPress is installed in a subdirectory. Guests who may review need the name and email fields. Keep `required` on them when **Comment author must fill out name and email** is enabled under **Settings → Discussion**, and remove it when it is not.
+`{site.url}` keeps the form working when WordPress is installed in a subdirectory. Guests get the name and email fields, required when WordPress requires them; logged-in customers get neither. **Woo Product** builds its review form this way.
 
 ## Shop-wide data
 
@@ -88,7 +97,7 @@ These keys work on every page:
 | `woo.shipping` | `countries` (the countries the store ships to, each with `code` and `name`), `calculator` (WooCommerce offers the shipping calculator on the cart) |
 | `woo.checkout.url` | Link to the checkout |
 | `woo.account` | `url`, `endpoint`, `is_dashboard`, `menu`, `is_logged_in`, and for customers `name` (first name, else display name), `orders` and `addresses` |
-| `woo.shop` | On shop, category, tag and search pages: `url`, `title`, `description`, `products` (cards like `related_products`, with `quick_add`), `total`, `pages` (`number`, `url`, `is_current`), `previous_url`, `next_url`, `sorting` (`value`, `label`, `is_current`), `search` and `categories` (`name`, `url`, `count`, `is_current`); elsewhere `url` and empty lists |
+| `woo.shop` | On shop, category, tag and search pages: `url`, `title`, `description`, `products` (cards like `related_products`, with `quick_add`), `total`, `has_one_product` (for `1 product`), `pages` (`number`, `url`, `is_current`), `previous_url`, `next_url`, `sorting` (`value`, `label`, `is_current`), `search` and `categories` (`name`, `url`, `count`, `is_current`); elsewhere `url` and empty lists |
 | `woo.order` | The current order on the thank-you page and in the account, following WooCommerce's access rules |
 
 Loop over the cart with `woo.cart.items`. Each item is one line: `item.name`, `item.quantity`, `item.price`.

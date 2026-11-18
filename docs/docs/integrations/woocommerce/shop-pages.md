@@ -63,6 +63,8 @@ The template stays the frame around it.
 
 The products are the page's own, so WooCommerce's sorting, filters, paging and the shop's products per page apply.
 
+![A category page from Woo Shop: the current category is marked in the list, simple products have Add to cart, variable ones Select options](img/woo-category.webp)
+
 The sorting is a `select` with the role `catalog-sorting` and `name="orderby"` inside a GET form. Choosing an order submits the form, as WooCommerce's own dropdown does. On search results the form keeps the search terms (`woo.shop.search`).
 
 ## Order confirmation
