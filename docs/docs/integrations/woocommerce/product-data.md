@@ -54,7 +54,7 @@ A review form is your own markup. It posts to WordPress, which validates, stores
 
 ```html
 {#if this.woo.can_review}
-<form action="/wp-comments-post.php" method="post">
+<form action="{site.url}/wp-comments-post.php" method="post">
   <fieldset>
     <legend>Your rating</legend>
     <input type="radio" name="rating" id="rating-5" value="5" required />
@@ -63,12 +63,20 @@ A review form is your own markup. It posts to WordPress, which validates, stores
   </fieldset>
   <label for="review-text">Your review</label>
   <textarea id="review-text" name="comment" required></textarea>
+  {#if !woo.account.is_logged_in}
+  <label for="review-author">Name</label>
+  <input type="text" id="review-author" name="author" autocomplete="name" required />
+  <label for="review-email">Email</label>
+  <input type="email" id="review-email" name="email" autocomplete="email" required />
+  {/if}
   <input type="hidden" name="comment_post_ID" value="{this.id}" />
   <input type="hidden" name="comment_parent" value="0" />
   <button type="submit">Send review</button>
 </form>
 {/if}
 ```
+
+`{site.url}` keeps the form working when WordPress is installed in a subdirectory. Guests who may review need the name and email fields. Keep `required` on them when **Comment author must fill out name and email** is enabled under **Settings → Discussion**, and remove it when it is not.
 
 ## Shop-wide data
 

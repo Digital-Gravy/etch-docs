@@ -31,7 +31,7 @@ WooCommerce shows its cart and checkout pages through the templates **Cart** and
 ```html
 <SiteHeader />
 <main id="main" class="site-main">
-  {post content}
+  {@post-content}
 </main>
 <SiteFooter />
 ```
