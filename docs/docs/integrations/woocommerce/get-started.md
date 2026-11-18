@@ -59,7 +59,11 @@ Click **Install** next to **Woo Product**. It puts **Woo Product** into the **Si
 
 Click **Install** next to **Woo Shop**. It puts the product list into the shop, category, tag and search templates: sorting, categories, product cards with **Add to cart** and paging. See [Shop pages and templates](./shop-pages.md#shop-categories-and-search).
 
-### 6. Check the result
+### 6. Add the header
+
+Click **Install** next to **Woo Header**. It adds **Woo Header** with the site name, a product search, a link to My account (**Log in** for guests) and the cart button and drawer of **Woo Cart**, which it installs too when it is missing. A header has no fixed place, so put **Woo Header** at the top of your templates yourself. To build your own header instead, use its parts: **Woo Product Search**, **Woo Account Link**, **Woo Cart Button** and **Woo Cart Drawer**.
+
+### 7. Check the result
 
 - Add a product to the cart: the cart count, the drawer and the cart page update together.
 - Open the checkout: your payment methods and any blocks plugins add (legal checkboxes, newsletter opt-ins) are there.

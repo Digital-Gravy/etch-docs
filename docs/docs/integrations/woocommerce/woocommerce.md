@@ -41,6 +41,7 @@ There is no switch per feature. A template that uses the roles gets Etch's behav
 
 Starters are ready-made component families built from the roles. Install one, then restyle it like any of your components.
 
+- **Woo Header:** site name, product search, account link, cart button and drawer.
 - **Woo Shop:** product list of shop, category, tag and search pages.
 - **Woo Product:** single product page with gallery, product form, reviews and related products.
 - **Woo Cart:** cart page, cart drawer and cart button.
