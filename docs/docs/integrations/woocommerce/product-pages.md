@@ -14,7 +14,7 @@ A product form adds a product to the cart. You design it completely: swatches, p
 | Component | What it shows |
 | --- | --- |
 | **Woo Product** | The page: store notices, gallery and summary side by side, then description, reviews and related products (`this.woo.related_products`) |
-| **Woo Product Gallery** | The product image and the gallery images |
+| **Woo Product Gallery** | The product image, which switches to the chosen variation's image (`product-image`), and the gallery images |
 | **Woo Product Form** | Price, short description, one choice per variation option, quantity buttons and add to cart |
 | **Woo Product Reviews** | Approved reviews and the review form |
 
@@ -32,6 +32,7 @@ A product form adds a product to the cart. You design it completely: swatches, p
 | `variation-option` | radio, `name="{attribute.slug}"`, `value="{option.slug}"` | Chooses an option; disabled when no variation in stock fits the other choices |
 | `option-price` | text inside the option's label | The option's price once it settles the variation |
 | `product-price` | text, `{this.woo.price}` | The chosen variation's price; the server's price until one is chosen |
+| `product-image` | `img` with `data-etch-woo-id="{this.id}"`, outside the form | Shows the chosen variation's own image; the product image again when the choice has none |
 | `product-quantity` | `input` | Quantity; 1 when left out |
 | `quantity-step` | `button` with `data-etch-woo-step="1"` or `"-1"` | Changes the quantity, never below 1 |
 | `product-addon` | checkbox with `data-etch-woo-id` = product or variation ID | An accessory added together with the product, in the same quantity |
