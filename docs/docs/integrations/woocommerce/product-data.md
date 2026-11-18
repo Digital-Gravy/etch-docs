@@ -135,6 +135,7 @@ The **WooCommerce Products** loop type (`woo-products`) lists products. Every it
 | `price_min`, `price_max` | Numbers |
 | `include`, `exclude` | Product IDs |
 | `relation` with `product_id` | `related`, `upsells`, `cross_sells` (without `product_id`: the cart's cross-sells) or `children` |
+| `include_in_cart` | With the cart's cross-sells: also list those the cart already holds, which WooCommerce leaves out. For order bumps, see [Cart and checkout](./cart-and-checkout.md#recipe-order-bump) |
 
 Arguments take loop parameters, so one loop serves many places. A loop with `include: "$ids"` shows the products you pass in:
 
