@@ -55,7 +55,11 @@ Click **Install** next to **Woo Account**. This adds **Woo Account**, **Woo Acco
 
 Click **Install** next to **Woo Product**. It puts **Woo Product** into the **Single product** template: gallery, product form with variation choices, reviews and related products. Germanized's price notes and similar output of other plugins show in it. See [Product pages](./product-pages.md#the-woo-product-starter).
 
-### 5. Check the result
+### 5. Install the shop pages
+
+Click **Install** next to **Woo Shop**. It puts the product list into the shop, category, tag and search templates: sorting, categories, product cards with **Add to cart** and paging. See [Shop pages and templates](./shop-pages.md#shop-categories-and-search).
+
+### 6. Check the result
 
 - Add a product to the cart: the cart count, the drawer and the cart page update together.
 - Open the checkout: your payment methods and any blocks plugins add (legal checkboxes, newsletter opt-ins) are there.

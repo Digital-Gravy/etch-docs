@@ -50,6 +50,21 @@ Etch's builder offers no element for WooCommerce's original Cart and Checkout bl
 
 The template stays the frame around it.
 
+## Shop, categories and search
+
+**Woo Shop** (Settings → WooCommerce → Starters) puts one product list into the **Product Catalog**, **Products by Category**, **Products by Tag** and **Product Search Results** templates. Each saved template is kept and comes back when you remove the starter.
+
+| Component | What it shows |
+| --- | --- |
+| **Woo Shop** | Title (`woo.shop.title`), category description, product count, WooCommerce's sorting, categories, the grid and paging |
+| **Woo Shop Grid** | One card per product of the page (`woo.shop.products`): image, sale badge, regular and sale price, and **Add to cart** for simple products in stock (`quick_add`), a link to the product for the others |
+| **Woo Shop Categories** | The top-level categories (`woo.shop.categories`), the one shown marked with `aria-current` |
+| **Woo Shop Pagination** | Previous, page numbers and next (`woo.shop.pages`) |
+
+The products are the page's own, so WooCommerce's sorting, filters, paging and the shop's products per page apply.
+
+The sorting is a `select` with the role `catalog-sorting` and `name="orderby"` inside a GET form. Choosing an order submits the form, as WooCommerce's own dropdown does. On search results the form keeps the search terms (`woo.shop.search`).
+
 ## Order confirmation
 
 The order confirmation is not a page. WooCommerce shows it at the end of the checkout URL (`/checkout/order-received/…`), so its content lives in the template **Order Confirmation**. Read the order from `woo.order`.
