@@ -90,17 +90,33 @@ Avoid stacking extra classes on top of the starter's classes only to override th
 
 ## Recipe: order bump
 
-An order bump offers one extra product in the cart or the checkout. Everything except the checkbox is your own markup:
+An order bump offers extra products right before paying. Take them from WooCommerce's cross-sells (**Product data → Linked Products → Cross-sells** on each product), so the shop owner picks them per product and the markup holds no IDs, names or prices.
 
-```html
-<div class="bump">
-  <input type="checkbox" id="bump" data-etch-woo-role="cart-toggle" data-etch-woo-id="94" />
-  <label for="bump">
-    <span>Add to your order</span>
-    <strong>A bottle of Brìo</strong>
-    <span>+ 5,99 €</span>
-  </label>
-</div>
+**1. Create the loop.** Add a loop of the type **WooCommerce Products** with the key `orderBumps` and these arguments:
+
+```json
+{ "relation": "cross_sells", "include_in_cart": true, "per_page": 2 }
 ```
 
-The checkbox is checked exactly when the cart holds product 94. Removing the product in the cart or the drawer unchecks it.
+Without `product_id`, `cross_sells` lists the cross-sells of the products in the cart. WooCommerce leaves out the ones the cart already holds; `include_in_cart` keeps them, so a bump the customer checked stays checked and can be unchecked.
+
+**2. Put it in the cart or the checkout.** Everything except the checkbox is your own markup:
+
+```html
+{#loop orderBumps as bump}
+  {#if bump.woo.quick_add}
+  <div class="bump">
+    <input type="checkbox" id="bump-{bump.id}" data-etch-woo-role="cart-toggle" data-etch-woo-id="{bump.id}" />
+    <label for="bump-{bump.id}">
+      <img src="{bump.image.url}" alt="{bump.image.alt}" width="48" height="48" />
+      <span>Add {bump.title}</span>
+      <span>+ {bump.woo.price}</span>
+    </label>
+  </div>
+  {/if}
+{/loop}
+```
+
+- The checkbox is checked exactly when the cart holds the product. Checking adds one, unchecking removes it, and the cart lines, totals and drawer follow without a reload.
+- `bump.woo.quick_add` keeps out products that need a choice first (variable products) or their own form (bookings).
+- When the cart has no products with cross-sells, the loop shows nothing.
