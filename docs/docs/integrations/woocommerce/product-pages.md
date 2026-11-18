@@ -18,6 +18,8 @@ A product form adds a product to the cart. You design it completely: swatches, p
 | **Woo Product Form** | Price, short description, one choice per variation option, quantity buttons and add to cart |
 | **Woo Product Reviews** | Approved reviews and the review form |
 
+![The whole product page from Woo Product: gallery and form, description, reviews with the review form, related products](img/woo-product-full.webp)
+
 **Extensions keep their output.** Germanized's price notes (incl. VAT, shipping costs, unit price, delivery time) and similar output of other plugins appear without work: **WooCommerce Hook** blocks for `woocommerce_single_product_summary`, set to **Only extensions**, sit after the price (priorities 1–19), after the short description (21–29) and after the form (31 and up). WooCommerce's own title, price and button stay out, so nothing shows twice.
 
 **Products the form cannot add** (grouped, external, bookings and other products with their own form) keep WooCommerce's form: the condition `this.woo.uses_product_form` switches to a hook block that prints it, styled by the starter.

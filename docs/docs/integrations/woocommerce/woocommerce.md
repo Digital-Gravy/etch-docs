@@ -48,6 +48,8 @@ Starters are ready-made component families built from the roles. Install one, th
 - **Woo Checkout:** checkout with contact, addresses, shipping, payment and summary.
 - **Woo Account:** My account with menu, dashboard, orders and addresses.
 
+![Settings → WooCommerce → Starters with every starter installed: Reinstall, Install a copy and Remove](img/woo-settings-starters-installed.webp)
+
 ## Hook block
 
 The **WooCommerce Hook** element runs one WooCommerce hook where you place it, for example `woocommerce_single_product_summary`. Use it to keep what other plugins add (legal notes, delivery times, trust badges) next to your own layout. Add it with **Add WooCommerce Hook** in the element bar.

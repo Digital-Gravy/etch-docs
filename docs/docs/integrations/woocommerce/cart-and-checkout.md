@@ -7,6 +7,8 @@ sidebar_position: 5
 
 The cart and the checkout are built from roles (see [How roles work](./woocommerce.md#how-roles-work)). The **Woo Cart** and **Woo Checkout** starters contain complete, working versions you can restyle.
 
+![The cart drawer from Woo Cart, opened by the cart button in the header](img/woo-cart-drawer.webp)
+
 ## Cart roles
 
 | Role | Element | What it does |

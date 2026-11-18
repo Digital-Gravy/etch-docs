@@ -22,6 +22,8 @@ The dashboard is Etch's. The other account pages (orders, order details, downloa
 - On the account pages other than the dashboard, a **WooCommerce Hook** block runs `woocommerce_account_content`, the same hook WooCommerce's own account page uses.
 - For guests, the starter prints WooCommerce's `[woocommerce_my_account]`, which shows the login and lost-password forms.
 
+![Guests see WooCommerce's login form inside the account page](img/woo-account-login.webp)
+
 The conditions `woo.account.is_logged_in` and `woo.account.is_dashboard` choose between the three. Keep them when you rebuild the page.
 
 ## Styling WooCommerce's forms

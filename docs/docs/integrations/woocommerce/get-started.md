@@ -39,9 +39,15 @@ Install them under **Settings → WooCommerce → Starters** in the builder. Eac
 
 **Set up shop** at the top of the list installs every missing starter in one go and places each on its page or template. It shows first what goes where. The steps below install them one by one.
 
+![The Starters in Settings → WooCommerce, none installed yet, with Set up shop above the list](img/woo-settings-starters.webp)
+
+![Set up shop lists each starter and where it goes before anything is installed](img/woo-set-up-shop.webp)
+
 ### 1. Install the cart
 
 Click **Install** next to **Woo Cart**. This adds the components **Woo Cart**, **Woo Cart Lines**, **Woo Cart Totals**, **Woo Cart Shipping**, **Woo Cart Drawer** and **Woo Cart Button**, together with their styles, and puts **Woo Cart** on WooCommerce's cart page in place of WooCommerce's Cart block, inside a section and container with the page title as heading. The component holds only the cart; the section, container and title are ordinary elements of the page. The page's previous content is kept, and **Remove** puts it back. To add only the components and place **Woo Cart** yourself, install with WP-CLI without `--place`.
+
+![The cart page from Woo Cart: lines with quantity buttons, summary with coupon and checkout button](img/woo-cart.webp)
 
 Then put **Woo Cart Button** and **Woo Cart Drawer** in your header, so every page has the cart count and the drawer.
 
@@ -49,21 +55,33 @@ Then put **Woo Cart Button** and **Woo Cart Drawer** in your header, so every pa
 
 Click **Install** next to **Woo Checkout**. This adds the checkout components and puts **Woo Checkout** on WooCommerce's checkout page, framed the same way, together with a hidden carrier block, which lets payment plugins load their checkout code. The page's previous content is kept, and **Remove** puts it back.
 
+![The checkout page from Woo Checkout: contact, billing address, payment and order summary](img/woo-checkout.webp)
+
 ### 3. Install the account
 
 Click **Install** next to **Woo Account**. This adds **Woo Account**, **Woo Account Nav** and **Woo Account Dashboard** and puts **Woo Account** on the My account page, framed like the cart. Customers get a menu of the account pages and a dashboard with their latest orders and addresses; the other account pages and the login for guests stay WooCommerce's, styled by the starter. See [My account](./account.md).
+
+![The My account dashboard from Woo Account: account menu, recent orders and addresses](img/woo-account.webp)
 
 ### 4. Install the product page
 
 Click **Install** next to **Woo Product**. It puts **Woo Product** into the **Single product** template: gallery, product form with variation choices, reviews and related products. Germanized's price notes and similar output of other plugins show in it. See [Product pages](./product-pages.md#the-woo-product-starter).
 
+![A variable product from Woo Product: gallery, price, color and logo choices, quantity buttons and Add to cart](img/woo-product.webp)
+
 ### 5. Install the shop pages
 
 Click **Install** next to **Woo Shop**. It puts the product list into the shop, category, tag and search templates: sorting, categories, product cards with **Add to cart** and paging. See [Shop pages and templates](./shop-pages.md#shop-categories-and-search).
 
+![The shop page from Woo Shop: categories, product count, sorting and product cards with sale badges](img/woo-shop.webp)
+
 ### 6. Add the header
 
 Click **Install** next to **Woo Header**. It adds **Woo Header** with the site name, a product search, a link to My account (**Log in** for guests) and the cart button and drawer of **Woo Cart**, which it installs too when it is missing. A header has no fixed place, so put **Woo Header** at the top of your templates yourself. To build your own header instead, use its parts: **Woo Product Search**, **Woo Account Link**, **Woo Cart Button** and **Woo Cart Drawer**.
+
+![Woo Header: site name, product search, account link and cart button with the item count](img/woo-header.webp)
+
+![The cart drawer opens after Add to cart and shows the line, total and checkout button](img/woo-cart-drawer.webp)
 
 ### 7. Check the result
 
