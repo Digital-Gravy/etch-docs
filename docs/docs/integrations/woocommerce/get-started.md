@@ -37,6 +37,8 @@ The **Woo Cart**, **Woo Checkout** and **Woo Account** starters are complete, wo
 
 Install them under **Settings → WooCommerce → Starters** in the builder. Each starter has an **Install** button. Installing saves your unsaved changes and then reloads the builder, so it knows the new components and styles.
 
+**Set up shop** at the top of the list installs every missing starter in one go and places each on its page or template. It shows first what goes where. The steps below install them one by one.
+
 ### 1. Install the cart
 
 Click **Install** next to **Woo Cart**. This adds the components **Woo Cart**, **Woo Cart Lines**, **Woo Cart Totals**, **Woo Cart Shipping**, **Woo Cart Drawer** and **Woo Cart Button**, together with their styles, and puts **Woo Cart** on WooCommerce's cart page in place of WooCommerce's Cart block, inside a section and container with the page title as heading. The component holds only the cart; the section, container and title are ordinary elements of the page. The page's previous content is kept, and **Remove** puts it back. To add only the components and place **Woo Cart** yourself, install with WP-CLI without `--place`.
