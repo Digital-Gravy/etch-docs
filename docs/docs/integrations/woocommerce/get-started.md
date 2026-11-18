@@ -85,6 +85,10 @@ Click **Install** next to **Woo Header**. It adds **Woo Header** with the site n
 
 ### 7. Check the result
 
+The starters work on phones out of the box: the header puts the search on its own row, the categories wrap and the cart drawer takes the full width.
+
+![Shop, product, cart drawer and cart on a phone](img/woo-mobile.webp)
+
 - Add a product to the cart: the cart count, the drawer and the cart page update together.
 - Open the checkout: your payment methods and any blocks plugins add (legal checkboxes, newsletter opt-ins) are there.
 - Tools → Site Health shows no Etch checkout warnings.
