@@ -160,6 +160,15 @@
   "docs/integrations/hooks": [
     "hooks.md"
   ],
+  "docs/integrations/woocommerce": [
+    "account.md",
+    "cart-and-checkout.md",
+    "get-started.md",
+    "product-data.md",
+    "product-pages.md",
+    "shop-pages.md",
+    "woocommerce.md"
+  ],
   "docs/interface": [
     "asset-manager.md",
     "attributes-bar.md",
