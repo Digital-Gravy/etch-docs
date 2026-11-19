@@ -38,6 +38,7 @@ Prices are plain text in the shop's format, with currency and tax as the shop di
 | `upsell_ids`, `cross_sell_ids`, `related_ids` | Product IDs, with `has_upsells`, `has_cross_sells`, `has_related` |
 | `related_products` | Up to four related products for cards: `id`, `title`, `permalink`, `image` (`url`, `alt`) and `woo` with prices, sale and rating |
 | `uses_product_form` | Etch's product form can add the product (simple and variable products); grouped, external and bookable products keep WooCommerce's form |
+| `quick_add` | The product is simple, purchasable and in stock, so a button or `cart-toggle` can add it without choosing anything first |
 | `children`, `external_url` | Grouped products' children and external products' link |
 
 ### Reviews
