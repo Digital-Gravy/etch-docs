@@ -53,7 +53,7 @@ Then put **Woo Cart Button** and **Woo Cart Drawer** in your header, so every pa
 
 ### 2. Install the checkout
 
-Click **Install** next to **Woo Checkout**. This adds the checkout components and puts **Woo Checkout** on WooCommerce's checkout page, framed the same way, together with a hidden carrier block, which lets payment plugins load their checkout code. The page's previous content is kept, and **Remove** puts it back.
+Click **Install** next to **Woo Checkout**. This adds the checkout components and puts **Woo Checkout** on WooCommerce's checkout page, framed the same way, together with a hidden carrier block, which lets payment plugins load their checkout code. It uses the order bump of **Woo Cart** and installs Woo Cart too when it is missing. The page's previous content is kept, and **Remove** puts it back.
 
 ![The checkout page from Woo Checkout: contact, billing address, payment and order summary](img/woo-checkout.webp)
 

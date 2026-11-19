@@ -44,8 +44,8 @@ Starters are ready-made component families built from the roles. Install one, th
 - **Woo Header:** site name, product search, account link, cart button and drawer.
 - **Woo Shop:** product list of shop, category, tag and search pages.
 - **Woo Product:** single product page with gallery, product form, reviews and related products.
-- **Woo Cart:** cart page, cart drawer and cart button.
-- **Woo Checkout:** checkout with contact, addresses, shipping, payment and summary.
+- **Woo Cart:** cart page with an order bump, cart drawer and cart button.
+- **Woo Checkout:** checkout with contact, addresses, shipping, order bump, payment and summary.
 - **Woo Account:** My account with menu, dashboard, orders and addresses.
 
 ![Settings → WooCommerce → Starters with every starter installed: Reinstall, Install a copy and Remove](img/woo-settings-starters-installed.webp)

@@ -88,7 +88,23 @@ Avoid stacking extra classes on top of the starter's classes only to override th
 
 **One checkout page.** WooCommerce has one checkout page, and payment plugins rely on it. To offer different checkouts, put them on that page and switch between them with conditions, for example on what the cart contains.
 
-## Recipe: order bump
+## Order bump
+
+**Woo Order Bump** offers extra products to add with one tick. Woo Cart puts it in the `bump` slot below the cart lines, Woo Checkout in the `bump` slot before the payment.
+
+![Woo Order Bump below the cart lines: Cap ticked and in the cart, Belt still offered](img/woo-order-bump.webp)
+
+| Property | Default | What it does |
+| --- | --- | --- |
+| **Product** | empty | The ID of the product to offer. Empty: the cross-sells of the products in the cart (**Product data → Linked Products → Cross-sells**) |
+| **Label** | `Add to your order` | The line above each product's title |
+| **Cross-sells shown** | `2` | How many cross-sells, when no Product is set |
+
+Select the bump on the page and set **Product** to offer one product of your choice. Only simple products in stock show (`quick_add`); the others need a choice first. A ticked bump stays ticked, unticking removes the product, and the cart lines, totals and drawer follow without a reload. To leave the bump out, delete it from the slot.
+
+The bump uses two loops that the starter adds: `wooOrderBumpProduct` and `wooOrderBumpCrossSells`.
+
+### Your own order bump
 
 An order bump offers extra products right before paying. Take them from WooCommerce's cross-sells (**Product data → Linked Products → Cross-sells** on each product), so the shop owner picks them per product and the markup holds no IDs, names or prices.
 
