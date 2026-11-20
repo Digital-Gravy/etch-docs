@@ -387,7 +387,7 @@ code {
   }
 }
 
-/* Etch Studio changelog (studio-docs/changelog.md): a timeline per date with coloured type badges. */
+/* Changelogs (docs/changelog.md and studio-docs/changelog.md): a timeline per heading with coloured type badges. */
 .docs-doc-id-changelog .markdown h2 + ul {
   list-style: none;
   padding-left: 0;
@@ -444,4 +444,8 @@ code {
 
 .changelog-badge--fixed {
   background: #c2410c;
+}
+
+.changelog-badge--breaking {
+  background: #a61e4d;
 }
