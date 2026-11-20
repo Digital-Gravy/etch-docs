@@ -105,6 +105,10 @@ const config: Config = {
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 	trailingSlash: false,
+	markdown: {
+		mermaid: true
+	},
+	themes: ['@docusaurus/theme-mermaid'],
 
 	// Even if you don't use internationalization, you can use this field to set
 	// useful metadata like html lang. For example, if your site is Chinese, you
