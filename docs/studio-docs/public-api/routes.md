@@ -28,6 +28,8 @@ if (etch.environment?.capabilities.routes === true) {
 interface EtchRoutesApi {
   listAsync(): Promise<EtchRoute[]>;            // every route, the site root included
   getPathsAsync(): Promise<EtchRoutedPath[]>;   // every URL the tree resolves to
+  getSeoAsync(path: string): Promise<EtchPageSeo>; // resolved SEO for one published path
+  listSeoAsync(): Promise<EtchPageSeo[]>;         // resolved SEO for all published paths
   createAsync(route: EtchRouteInput): Promise<EtchRoute>;
   updateAsync(routeId: string, patch: EtchRoutePatch): Promise<EtchRoute>;
   deleteAsync(routeId: string): Promise<void>;  // the route and everything beneath it
@@ -54,7 +56,7 @@ A dynamic segment can use the full [dynamic data](../dynamic-data/dynamic-data-i
 ```ts
 type EtchRouteSegmentKind = "root" | "static" | "group" | "dynamic";
 
-interface EtchRoute {
+interface EtchRoute extends EtchRouteSeo {
   id: string;                // opaque
   parentId?: string;         // absent only on the site root
   segment: string;
@@ -81,6 +83,45 @@ interface EtchRoutePatch {
   parentId?: string;                  // moves the route and its subtree
   source?: Partial<EtchRouteSource>;  // replaces what it serves, whole; a missing dataSources keeps the route's
   templateId?: number | null;         // null clears it, so the route inherits again
+  title?: string | null;
+  description?: string | null;
+  language?: string | null;
+  canonical?: string | null;
+  socialImage?: string | null;
+  faviconId?: number | null;
+  searchVisibility?: EtchSearchVisibility;
+  redirect?: EtchRouteRedirect | null;
+  notFoundId?: number | null;
+}
+
+type EtchSearchVisibility = "inherit" | "hidden" | "visible";
+
+interface EtchRouteRedirect {
+  to: string;                // literal path or URL, without whitespace
+  status: 301 | 302;
+}
+
+interface EtchRouteSeo {
+  title?: string;
+  description?: string;
+  language?: string;         // language tag, e.g. "en" or "de-AT"
+  canonical?: string;
+  socialImage?: string;      // asset id as text, URL, site path, or expression
+  faviconId?: number;        // asset id; site root only
+  searchVisibility: EtchSearchVisibility;
+  redirect?: EtchRouteRedirect; // not available on the site root
+  notFoundId?: number;       // record id of the 404 page
+}
+
+interface EtchPageSeo {
+  path: string;
+  routeId: string;
+  title?: string;
+  description?: string;
+  language?: string;
+  canonical?: string;
+  socialImage?: string;
+  noindex: boolean;
 }
 
 interface EtchRoutedPath {
@@ -144,12 +185,35 @@ After a change, read `getPathsAsync()` to see what the build would publish. Each
 
 See [When two routes want the same URL](../routing/README.md#when-two-routes-want-the-same-url) for how the build settles conflicts.
 
+## Reading and updating SEO
+
+`listAsync()` returns SEO fields stored on each route. Use `updateAsync()` to change them:
+
+```ts
+await etch.routes.updateAsync(team.id, {
+  title: "{this.title} | {site.name}",
+  description: "Meet our team",
+  searchVisibility: "visible",
+});
+
+const pageSeo = await etch.routes.getSeoAsync("/team");
+const allPageSeo = await etch.routes.listSeoAsync();
+```
+
+`title`, `description`, `language`, `socialImage`, and the 404 page inherit from the nearest ancestor that sets them. `canonical` and `redirect` do not inherit. Titles, descriptions, canonicals, and social images can contain expressions resolved for each page. Search visibility uses `"inherit"` to take the nearest ancestor's setting; the root defaults to visible.
+
+Pass `null` to clear an SEO field in `updateAsync()`, except `searchVisibility`, which uses `"inherit"` instead. Set the favicon only on the site root; redirects are not allowed on the root. Redirect destinations are literal paths or URLs, not expressions.
+
+`getSeoAsync()` accepts a published path from `getPathsAsync()` and returns its inherited, resolved SEO. It throws `ROUTE_NOT_FOUND` if the path is not published. Use `listSeoAsync()` to read every published page at once rather than calling `getSeoAsync()` in a loop. The returned values describe route SEO; a tag already present in the page's own markup takes precedence in the built page.
+
 ## Errors
 
 | Code | When |
 | --- | --- |
-| `ROUTE_NOT_FOUND` | No route has that id, or `parentId` names no route. |
-| `INVALID_ARGUMENT` | A malformed segment, a source its kind forbids, a name a sibling already has, an unknown content type, an unknown data source key, a template that isn't a template record, a move into the route's own subtree, or deleting the site root. |
+| `ROUTE_NOT_FOUND` | No route has that id, `parentId` names no route, or no route publishes the requested SEO path. |
+| `INVALID_ARGUMENT` | A malformed segment, source or SEO value; a duplicate sibling name; an unknown content type or data source; a template that isn't a template record; a move into the route's own subtree; or deleting the site root. |
+| `ASSET_NOT_FOUND` | A favicon or social image asset id names no asset. |
+| `POST_NOT_FOUND` | The 404 page id names no record. |
 | `OPERATION_FAILED` | The route could not be written. |
 
 See [Error handling](./index.md#error-handling).

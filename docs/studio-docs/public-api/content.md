@@ -140,7 +140,7 @@ What a field's value is:
 | `text`, `textarea`, `link`, `email`, `select` | A string. |
 | `number` | A number, within `min`/`max`. |
 | `boolean` | `true` or `false`. |
-| `image` | An asset id from [`etch.assets`](./assets.md). Available only when **Settings → Experimental → Image Content Field** is on. |
+| `image` | An asset id from [`etch.assets`](./assets.md). |
 | `relationship` | One item id of the `target` type. |
 | `relationshipList` | An ordered array of such ids. |
 | `relationshipBacklink` | The other end of a relationship declared on another type: the items that link here. Written by Etch, read-only on items, and can't be added. |
