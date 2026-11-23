@@ -104,7 +104,8 @@ interface EtchContentItemPatch {
 type EtchContentFieldType =
   | "text" | "textarea" | "number" | "link" | "email" | "boolean" | "select"
   | "image"
-  | "relationship" | "relationshipList" | "relationshipBacklink";
+  | "relationship" | "relationshipList" | "relationshipBacklink"
+  | "repeater";
 
 interface EtchContentField {
   key: string;              // lowercase letter first, then a-z 0-9 - _; unique per type
@@ -122,7 +123,14 @@ interface EtchContentField {
   showLabels?: boolean;
   target?: string;          // relation fields: key of the type they link to
   source?: { postType: string; fieldKey: string }; // backlinks: the field they mirror
+  fields?: EtchContentSubField[]; // repeaters: the sub-fields each item holds, in order
 }
+
+// A repeater's sub-field: a field of a plain value type. Its key holds no
+// hyphen and is unique within the repeater.
+type EtchContentSubField = Omit<EtchContentField, "type" | "target" | "source" | "fields"> & {
+  type: "text" | "textarea" | "number" | "link" | "email" | "boolean" | "select" | "image";
+};
 ```
 
 What a field's value is:
@@ -136,8 +144,9 @@ What a field's value is:
 | `relationship` | One item id of the `target` type. |
 | `relationshipList` | An ordered array of such ids. |
 | `relationshipBacklink` | The other end of a relationship declared on another type: the items that link here. Written by Etch, read-only on items, and can't be added. |
+| `repeater` | An ordered array of items, each an object keyed by sub-field key and valued as that sub-field's type says. Writing it replaces every item. Available only when **Settings → Experimental → Repeater Field** is on. See [Repeater fields](../content-types/repeater-fields.md). |
 
-Renaming a field with a new `key` keeps every item's value under the new key. Changing a relation field's `target`, or changing its `type` to something that isn't a relation, drops every item's links in that field.
+Renaming a field with a new `key` keeps every item's value under the new key. A repeater's `fields` is replaced whole: change one sub-field's `key` in place, the list otherwise as it was, to rename it and keep its values; a sub-field left out is removed from every item. Rename and reshape in separate calls. Changing a relation field's `target`, or changing its `type` to something that isn't a relation, drops every item's links in that field.
 
 ## Example
 
@@ -168,7 +177,7 @@ Creating a non-template type also creates a matching [JavaScript data source](..
 | `CONTENT_TYPE_NOT_FOUND` | No type has that key, or a relation field targets no type. |
 | `FIELD_NOT_FOUND` | The type has no field with that key. |
 | `POST_NOT_FOUND` | No item has that id. |
-| `INVALID_ARGUMENT` | A malformed key, a name or key another type has, fields on a template type, a field type that isn't available, a relation to a template type, deleting the `page` type, changing an item's `postType`, or a value its field refuses (required, number bounds, email, link, image, or a link to an item of the wrong type). |
+| `INVALID_ARGUMENT` | A malformed key, a name or key another type has, fields on a template type, a field type that isn't available, a relation to a template type, deleting the `page` type, changing an item's `postType`, sub-fields on a field that isn't a repeater, or a value its field refuses (required, number bounds, email, link, image, a link to an item of the wrong type, a repeater item that fails its sub-fields' rules, or an item key no sub-field declares). |
 | `READONLY` | Writing a backlink's value, or changing a backlink other than its `key` and `name`. |
 
 See [Error handling](./index.md#error-handling).

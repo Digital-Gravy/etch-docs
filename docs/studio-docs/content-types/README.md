@@ -88,12 +88,24 @@ beside the key puts it on the clipboard, ready to paste into a query.
 
 ### Field types
 
-**Text** · **Number** · **Boolean** · **Dropdown** · **Checkbox** · **Radio**
+**Text** · **Textarea** · **Number** · **Link** · **Email** · **Boolean** ·
+**Select** · **Image** · **Relationship** · **Repeater**
 
-**Boolean** takes a **Default value** on the card's **Advanced** tab.
+A field's settings are on the card's **General** tab. Every type takes a **Help
+text**, shown to whoever fills the field in, and the **Make field required**
+button in the header makes it required. On top of that:
 
-**Dropdown**, **Checkbox** and **Radio** take their choices there instead, one
-per line, as a label and a value separated by a colon:
+| Type                                        | Settings                                                               |
+| ------------------------------------------- | ---------------------------------------------------------------------- |
+| **Text**, **Textarea**, **Link**, **Email** | **Placeholder** and **Default value**                                  |
+| **Number**                                  | **Placeholder**, **Default value**, and **Min** and **Max**            |
+| **Boolean**                                 | **Default value**, and optional labels for the two states              |
+| **Select**                                  | **Options** and **Default value**                                      |
+| **Relationship**                            | The type it links to, one item or many, and the label of the link back |
+| **Repeater**                                | Its **Sub-fields**. See [Repeater fields](repeater-fields.md)          |
+
+**Select** takes its options one per line, as a label and a value separated by a
+colon:
 
 ```
 Beginner : beginner
@@ -103,26 +115,35 @@ Advanced : advanced
 
 A line with no colon uses its text as both label and value.
 
-The **Validation** and **Conditions** tabs are visible but not yet enabled.
+**Repeater** is experimental: turn it on in **Settings → Experimental →
+Repeater Field**.
 
-### Renaming: types are cheap, fields are not
+The **Advanced**, **Validation** and **Conditions** tabs are visible but not yet
+enabled.
+
+### Renaming
 
 A **content type's key** can be changed freely once renaming lands. Pages point
 at their type by id, so a rename cascades nowhere.
 
-A **field's key** cannot. Every page of the type stores its value under that key,
-so renaming `role` to `job_title` moves the definition and orphans the value on
-every page. Choose field keys as though you can't change them.
+A **field's key** can be changed too. Every page of the type stores its value
+under that key, so renaming `role` to `job_title` moves the value on every page
+along with the definition. What Etch doesn't rewrite is your own markup and
+queries: a `{this.fields.role}` or a `where: { 'fields.role': … }` still reads
+the old key, and finds nothing, until you update it.
 
-> **🚧 Work in progress:** a page's own field values don't reach the render
-> context yet, so there's no `{this.fields.level}` on the page they belong to.
-> Reading them through a [query](querying-content.md) works today — records come
-> back with their values under `fields`, so a loop reads
-> `{course.fields.level}`.
+Deleting a field deletes its value from every page.
+
+### Reading fields
+
+On a page of the type, and in a template that serves it, the page's own fields
+are under `this.fields`: `{this.fields.level}`. A [query](querying-content.md)
+returns them the same way, so a loop over courses reads `{course.fields.level}`.
 
 ## Next
 
 - [Querying content](querying-content.md): `queryContent()`, filters, ordering,
   and what comes back
+- [Repeater fields](repeater-fields.md): lists of items inside a single field
 - [JavaScript sources](../data-sources/javascript.md): where queries are written
 - [Data Sources](../data-sources/README.md): using the result in your markup
