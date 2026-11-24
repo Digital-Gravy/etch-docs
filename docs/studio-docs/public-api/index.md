@@ -101,6 +101,7 @@ interface Etch {
   content?: EtchContentApi; // optional: only where the `content` capability is backed
   routes?: EtchRoutesApi; // optional: only where the `routes` capability is backed
   assets?: EtchAssetsApi; // optional: only where the `assets` capability is backed
+  deploy?: EtchDeployApi; // optional: only where the `deploy` capability is backed
 
   saveAsync(): Promise<void>;
   connect?(options?: ConnectOptions): Etch; // reserved for the future stable runtime
@@ -121,6 +122,7 @@ interface Etch {
 | `etch.dataSources`         | [Data Sources](./data-sources.md)       | Named json, api and js sources, read through `data('key')`           |
 | `etch.navigation`          | [Navigation](./navigation.md)           | Move around the builder UI; switch posts/templates                   |
 | `etch.routes`              | [Routes](./routes.md)                   | The route tree: which content is published, and at which URL         |
+| `etch.deploy`              | [Deploy](./deploy.md)                   | Save, build, and publish the site                                    |
 | `etch.ui` / `etch.history` | [UI & History](./ui-and-history.md)     | Color scheme, chrome visibility, undo/redo                           |
 | `etch.skills`              | [Skills](./skills.md)                   | Bundled, read-only authoring guides (e.g. ACSS conventions)          |
 | `etch.ai`                  | [AI Presence](./ai.md)                  | Advertise an external agent's presence and phase to the builder      |
@@ -141,7 +143,7 @@ await etch.saveAsync(); // persists the block changes above
 
 ## Error handling
 
-Every API error is an `EtchApiError` carrying a machine-readable `code`. Use the `isEtchApiError` type guard to narrow caught values:
+Many API errors are `EtchApiError` values carrying a machine-readable `code`. Some operations can also reject with an ordinary `Error`, including a failed save before deployment. Use the `isEtchApiError` type guard to narrow caught values:
 
 ```ts
 import { isEtchApiError } from "@digital-gravy/etch-public-api";
@@ -179,6 +181,7 @@ type EtchApiErrorCode =
   | "ASSET_NOT_FOUND"
   | "COLLECTION_NOT_FOUND"
   | "ASSET_IN_USE"
+  | "DEPLOY_BLOCKED"
   | "OPERATION_FAILED"
   | "NOT_AVAILABLE"
   | (string & {}); // open-ended for forward compatibility
@@ -213,6 +216,7 @@ A capability that's missing from the map counts as unavailable, so test with `==
 | `content` | [`etch.content`](./content.md) is backed: content types, their fields and their items. | yes |
 | `routes` | [`etch.routes`](./routes.md) is backed: the site's URLs are a route tree. | yes |
 | `assets` | [`etch.assets`](./assets.md) is backed: the product's own asset store. | yes |
+| `deploy` | [`etch.deploy`](./deploy.md) is backed: the site can be built and published. | yes |
 | `wpMedia` | Media ids resolve against the WordPress media library. | no |
 
 ```ts

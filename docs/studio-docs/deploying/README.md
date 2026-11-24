@@ -16,6 +16,8 @@ Two ways to get that out of the builder:
 planned; deploying somewhere else in the meantime means downloading the build and
 uploading it yourself.
 
+To publish from a script, see the [`etch.deploy` API reference](../public-api/deploy.md).
+
 Etch Studio never hosts your site. It builds the artifact; you own where it runs,
 which is also why your site's uptime never depends on ours.
 
