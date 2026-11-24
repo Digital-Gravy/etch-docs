@@ -153,7 +153,7 @@ interface EtchBridgeConnection {
 }
 ```
 
-Call `window.etch.connectAs("homepage")` from the builder's browser console. The name must not be empty or whitespace; otherwise the call throws `INVALID_ARGUMENT`. The returned handle is immediate: `connected` reports whether the socket is currently open, not whether it will eventually connect. `close()` closes it and stops automatic reconnects. Calling `connectAs()` again opens another connection.
+Call `window.etch.connectAs("homepage")` from the builder's browser console. The name must not be empty or whitespace; otherwise the call throws `INVALID_ARGUMENT`. The returned handle is immediate: `connected` reports whether the socket is currently open, not whether it will eventually connect. A connected socket does not grant script execution permission: Studio checks `aiConnector.use` for pushed scripts. `close()` closes it and stops automatic reconnects. Calling `connectAs()` again opens another connection.
 
 The server can request script execution, so connect only to a server you trust. Etch Connector's default safe mode is a guardrail rather than a hardened sandbox; see [Connector Security](../etch-connector/security.md). A custom `url` can point to a different host or a `wss://` endpoint, so choose it with care.
 

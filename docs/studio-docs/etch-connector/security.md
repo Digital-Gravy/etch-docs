@@ -9,21 +9,21 @@ last_update:
 
 The connector is designed to stay on your own computer, and to keep the scripts it runs on a tight leash. Here's what that means in practice.
 
-## Everything stays local
+## Network access
 
-The connector only listens on `127.0.0.1` — your own machine. Other computers on your network (and the internet) can't reach it. Run it on a machine you trust, and don't deliberately open its ports up to other devices.
+By default, the connector listens on `127.0.0.1` — your own machine. The `--ws-host` and `--control-host` options can change the listening addresses and expose them to other devices. Run it on a machine you trust, and keep its ports local unless you understand the risk.
 
-Websites you visit can't use it either. The connector refuses any request that comes from a web page (browsers mark those, local tools don't), and only accepts commands sent as JSON. A page open in your browser can't run commands in your Etch tab through it.
+The HTTP control server rejects requests carrying a browser `Origin` header. The WebSocket listener used by builder tabs does not apply the same check, so do not assume every browser-originated connection is refused.
 
 ## Downloads don't overwrite your files
 
-When the agent uses `download`, the file name comes from the Etch tab. So the connector never overwrites a file that already exists, and never writes a name starting with `.` (like `.bashrc`), unless the agent passes `--force`.
+When the agent uses `download`, the file name can come from the Etch tab. The connector refuses a tab-supplied name starting with `.` (like `.bashrc`). It also refuses to overwrite an existing file unless the agent passes `--force`; `--force` does not permit tab-supplied dotfile names.
 
 ## Scripts run in a safe mode
 
-When your agent sends a command, it runs in a restricted mode: the script can use Etch's `etch.*` API and standard JavaScript, but it's blocked from touching the wider page — things like `window`, `document`, network requests, and browser storage are off-limits.
+The normal connector CLI runs scripts in a restricted safe mode: they can use Etch's `etch.*` API and standard JavaScript, but obvious access to the wider page — such as `window`, `document`, network requests, and browser storage — is blocked. Safe mode is not enforced by the server: a trusted control client or custom WebSocket server can request unsafe execution with full page access.
 
-This is a **guardrail, not a vault.** It reliably keeps everyday and AI-written scripts on the Etch API and blocks the obvious ways out, which is exactly what it's for. It is not built to contain deliberately malicious code — a determined attacker writing hostile scripts could still find a way around it.
+Safe mode is a **guardrail, not a vault**. It is not built to contain deliberately malicious code — a determined attacker writing hostile scripts could still find a way around it.
 
 :::caution Run trusted tools only
 Treat the connector like any other developer tool on your machine: only connect AI agents and run scripts you trust, and keep its ports on your own computer.

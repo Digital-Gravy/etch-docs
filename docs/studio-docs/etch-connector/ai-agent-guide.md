@@ -17,7 +17,7 @@ The connector's own agent instructions live in `etch-connector --help`. It docum
 
 - Run scripts with `etch-connector eval -t <tab> "<js>"` (or `-f file.js`). See [Usage](./usage.md) for the full flow.
 - The body runs as an **async function** — use `await` and `return` a value. The return value comes back on stdout as JSON.
-- Tabs connect in **safe mode**: only the `etch` global plus standard JS exist. There is no `window`/`document` — reference `etch.*` directly. See [Security](./security.md).
+- The normal connector CLI runs scripts in **safe mode**: only the `etch` global plus standard JS are available. There is no `window`/`document` — reference `etch.*` directly. Safe mode is a guardrail, not a server-enforced boundary. See [Security](./security.md).
 
 ## Saving your changes
 
