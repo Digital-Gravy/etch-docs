@@ -9,7 +9,7 @@ last_update:
 
 # Edit Control
 
-`etch.presence` (`EtchPresenceApi`) manages the project's edit lock. One builder tab at a time holds editing control; other tabs cannot save. For the MCP workflow, see [Working alongside others](../mcp-server.md#working-alongside-others).
+`etch.presence` (`EtchPresenceApi`) manages the project's edit lock. When edit control is enabled (`EDITOR_TAKEOVER`, on by default), one builder tab at a time holds control; other tabs cannot save. For the MCP workflow, see [Working alongside others](../mcp-server.md#working-alongside-others).
 
 This is separate from [`etch.ai`](./ai.md), which shows an agent's activity in the builder but does not grant editing control.
 
@@ -39,7 +39,7 @@ interface EtchPresenceApi {
 
 When control is newly granted, the tab reloads shortly afterwards to load the last saved state. Stop the current script and continue only after the builder and `window.etch` are available again; changes made before the reload can be lost.
 
-An editor who does not answer hands over after about 30 seconds. This is not a timeout on the request itself: it can wait longer if the presence service is unreachable. When requesting control interrupts another person, check with the user first.
+An editor who does not answer normally hands over after about 30 seconds. An unattended agent starts saving at that point, but the presence service can transfer control before a slow save finishes. This is not a timeout on the request itself: it can wait longer if the presence service is unreachable. When requesting control interrupts another person, check with the user first.
 
 ## Handing over control
 
@@ -49,6 +49,6 @@ When this tab holds control and is finished editing, call `handOverControlAsync(
 await etch.presence?.handOverControlAsync(); // saves first
 ```
 
-The default is `save: true`. If saving fails, the promise rejects and the tab keeps control so its edits are not stranded. A save failure can be an ordinary `Error`. Retry, or explicitly use `handOverControlAsync({ save: false })` to release without saving buffered changes; those changes will not be available to the next editor.
+The default is `save: true`. If the save rejects, the handover rejects without releasing control; a pending request may still be transferred by the presence service. Subscription-related save failures are reported in Studio but may not reject the save, so control can still be released without all changes saved. A save rejection can be an ordinary `Error`. Retry, or explicitly use `handOverControlAsync({ save: false })` to release without saving buffered changes; those changes will not be available to the next editor.
 
 In Studio, the default call attempts to save even when the tab does not hold control, so it may reject rather than acting as a no-op. Call it when the tab holds control.

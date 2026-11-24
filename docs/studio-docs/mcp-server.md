@@ -74,7 +74,8 @@ and changes it hasn't saved are lost. Ask it to save before you step away.
 
 ### Working alongside others
 
-Only one builder tab at a time has **editing control** of a project, and only
+When edit control is enabled (`EDITOR_TAKEOVER`, on by default), only one
+builder tab at a time has **editing control** of a project, and only
 that tab can save. The assistant's builder counts as a tab like any other.
 Others in the project see it under the name and logo of the app driving it,
 such as Claude. Without control, every change the assistant tries to save or
@@ -95,8 +96,10 @@ but it asks for control before it edits:
   version, so it asks before it makes any changes.
 
 You can also ask the assistant for control from your own tab while it works.
-It can't answer the request itself, so after 30 seconds it saves what it has
-and hands over. It checks with you before taking control back.
+It can't answer the request itself, so after about 30 seconds it starts saving
+and handing over. The presence service can transfer control before a slow
+save finishes, so unsaved changes may be lost. The assistant checks with you
+before taking control back.
 
 For scripts managing editing control directly, see the [`etch.presence` API reference](./public-api/presence.md).
 
@@ -109,7 +112,7 @@ yourself; they're listed so you can follow what the assistant is doing.
 | --- | --- |
 | `list_projects` | Lists your workspaces and the projects in each. |
 | `open_project` | Opens a project and returns a handle the other tools use, along with who else has the project open. |
-| `request_control` | Asks whoever has editing control to hand it over, and waits up to about 30 seconds for the answer. |
+| `request_control` | Asks whoever has editing control to hand it over and waits for the answer and any required reload. |
 | `get_guide` | Returns the server's instructions for the assistant. |
 | `eval` | Runs a script in the builder with `etch` in scope, and returns its result, errors and console logs. |
 | `screenshot` | Returns a PNG of the builder, or of one element in it. |
@@ -127,9 +130,10 @@ first `eval`; it is the authoritative version of these notes.
   only entry has `isYou: true`. Call it before you change anything, because
   getting control reloads the builder and loses earlier edits. If the answer is
   `granted: false`, tell the user and don't ask again unless they tell you to.
-- If saves start failing partway through, someone asked for control and the
-  builder handed over after 30 seconds, saving first. Ask the user before you
-  request control again.
+- If saves start failing partway through, someone may have asked for control
+  and the builder may have handed over. An unattended agent starts saving after
+  about 30 seconds, but control can transfer before the save finishes. Ask the
+  user before you request control again.
 - When done, call `close_project` with `save: true` unless the user said not
   to save, then tell the user what was saved. `await etch.saveAsync()` saves
   mid-session. See the [persistence model](./public-api/index.md#saving-and-the-persistence-model).
