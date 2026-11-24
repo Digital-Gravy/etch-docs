@@ -100,7 +100,7 @@ interface Etch {
   dataSources?: EtchDataSourcesApi; // optional: only where the `dataSources` capability is backed
   content?: EtchContentApi; // optional: only where the `content` capability is backed
   routes?: EtchRoutesApi; // optional: only where the `routes` capability is backed
-  assets?: EtchAssetsApi; // optional: only where the `assets` capability is backed
+  assets?: EtchAssetsApi; // optional: full or partial asset capabilities
   deploy?: EtchDeployApi; // optional: only where the `deploy` capability is backed
   presence?: EtchPresenceApi; // optional: only where the `presence` capability is backed
   acss?: EtchAcssApi; // optional: only where the `acss` capability is backed
@@ -235,7 +235,7 @@ interface EtchEnvironment {
 type EtchCapabilities = Readonly<Partial<Record<EtchCapability, boolean>>>;
 ```
 
-A capability that's missing from the map counts as unavailable, so test with `=== true`. A namespace tied to an optional capability (`routes`, `assets`, …) is left off `etch` entirely when the runtime doesn't back it.
+A capability that's missing from the map counts as unavailable, so test with `=== true`. Optional namespaces may be omitted when unsupported. `etch.assets` can also be present with only some operations backed; check the full or relevant granular asset capability before calling it.
 
 | Capability | When `true` | On Etch Studio |
 | --- | --- | --- |
@@ -245,11 +245,20 @@ A capability that's missing from the map counts as unavailable, so test with `==
 | `templates` | Templates exist and `navigation.goTo("templates")` works. On Studio they are records of a template content type. | yes |
 | `content` | [`etch.content`](./content.md) is backed: content types, their fields and their items. | yes |
 | `routes` | [`etch.routes`](./routes.md) is backed: the site's URLs are a route tree. | yes |
-| `assets` | [`etch.assets`](./assets.md) is backed: the product's own asset store. | yes |
+| `assets` | The full [`etch.assets`](./assets.md) contract is backed, including replacement, upload compression, filename updates and compression that keeps the original. | yes |
+| `assetsRead` | `listAsync` and `getAsync`. | not advertised |
+| `assetsUpload` | `uploadAsync` without the `compress` option. | not advertised |
+| `assetsDownload` | `downloadAsync`. | not advertised |
+| `assetsUpdate` | `updateAsync` for `alt` and `collectionIds`, not `fileName`. | not advertised |
+| `assetsDelete` | `deleteAsync`. | not advertised |
+| `assetsCollections` | List, create, update and delete collections. | not advertised |
+| `assetsCompressInPlace` | `compressAsync` with `keepOriginal` omitted or `false`. | not advertised |
 | `deploy` | [`etch.deploy`](./deploy.md) is backed: the site can be built and published. | yes |
 | `presence` | [`etch.presence`](./presence.md) is backed: tabs can request and hand over editing control. | yes |
 | `acss` | [`etch.acss`](./acss.md) is backed: ACSS settings can be managed. Check `isEnabled()` to see if ACSS is on. | yes |
 | `wpMedia` | Media ids resolve against the WordPress media library. | no |
+
+The granular asset flags promise only the listed subsets and do not imply `assets`. Conversely, `assets === true` promises the entire asset API even when the granular flags are absent, as on Studio. For operations outside the subsets, check `assets`.
 
 ```ts
 if (etch.environment?.capabilities.routes === true) {
