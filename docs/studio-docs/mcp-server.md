@@ -113,9 +113,11 @@ yourself; they're listed so you can follow what the assistant is doing.
 | `list_projects` | Lists your workspaces and the projects in each. |
 | `open_project` | Opens a project and returns a handle the other tools use, along with who else has the project open. |
 | `request_control` | Asks whoever has editing control to hand it over and waits for the answer and any required reload. |
+| `hand_over_control` | Releases editing control without closing the builder. Saves first by default; `save: false` skips saving. A save rejection prevents the tool from releasing control. |
 | `get_guide` | Returns the server's instructions for the assistant. |
 | `eval` | Runs a script in the builder with `etch` in scope, and returns its result, errors and console logs. |
 | `screenshot` | Returns a PNG of the builder, or of one element in it. |
+| `upload_assets` | Returns a shell command to upload local files to the project's asset library; the tool call itself does not upload them. |
 | `close_project` | Closes the builder. With `save: true` it saves first, and stays open if the save fails. |
 
 ## Notes for the AI agent
@@ -130,6 +132,26 @@ first `eval`; it is the authoritative version of these notes.
   only entry has `isYou: true`. Call it before you change anything, because
   getting control reloads the builder and loses earlier edits. If the answer is
   `granted: false`, tell the user and don't ask again unless they tell you to.
+- To add files on a disk your shell can access, call `upload_assets` with the
+  project handle and file paths, then run the returned command once, exactly as
+  given. It reports the created asset or error for each file. Pass at most 10
+  files per call, each no larger than 24.9 MiB. The upload tickets expire after
+  10 minutes; call the tool again if they expire. The default command is for a
+  POSIX shell; set `shell: "powershell"` for PowerShell. Uploads are saved
+  immediately, without `etch.saveAsync()`.
+- If the command cannot connect to Etch, retry with network access, which may
+  require the user's approval. If you have no shell, the command still cannot
+  connect, or the file is not on a disk you can access, ask the user to add it
+  in the Asset Manager. Save and call `hand_over_control` first: their Asset
+  Manager stays closed while you hold control. Afterwards, find the assets with
+  `etch.assets.listAsync()` (newest `createdAt` first) and call
+  `request_control` again before editing. Use base64 with
+  `etch.assets.uploadAsync()` through `eval` only when neither route works.
+- If finished editing but keeping the project open, call `hand_over_control`.
+  It saves first unless `save: false` is specified. A save rejection prevents
+  the tool from releasing control, but a pending request can still transfer it
+  as described above. Subscription-related save failures may not reject; see
+  [Edit Control](./public-api/presence.md#handing-over-control).
 - If saves start failing partway through, someone may have asked for control
   and the builder may have handed over. An unattended agent starts saving after
   about 30 seconds, but control can transfer before the save finishes. Ask the
