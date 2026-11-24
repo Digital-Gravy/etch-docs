@@ -125,12 +125,26 @@ opens the deployed Worker any time.
 
 ![The action bar's Download, Deploy and View Worker buttons](../images/action-bar-deploy.webp)
 
-### Size limit
+### Build and file limits
 
-The total site must stay under **25 MB**, Cloudflare's limit for Workers static
-assets. A deploy over the limit is refused before anything is uploaded, with the
-actual size in the message. Large images are usually the cause; the Asset
-Manager's compression presets are the first place to look.
+With the standard build, the total site size is limited to **50 MiB for a
+deploy** and **80 MiB for a ZIP export**. Large images are often the cause; try
+the Asset Manager's compression presets if a build exceeds the limit.
+
+Cloudflare also limits each individual deployed static asset to **25 MiB**.
+Studio limits individual Asset Manager uploads to approximately **24.9 MiB**
+so they remain under that limit.
+
+### Container Builds
+
+For a site that is too large to build with the standard limits, open
+**Settings → Experimental** and turn on **Container Builds**. Studio then builds
+both deploys and ZIP exports in a separate container with more memory.
+
+Container Builds bypasses the standard total-site limits above, but does not
+change the individual-file limits. The container is used to build the site; the
+published site still runs on your chosen hosting target. This feature is
+experimental and may change.
 
 ### Troubleshooting
 
