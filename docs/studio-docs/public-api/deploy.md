@@ -36,9 +36,11 @@ interface EtchDeployResult {
 }
 ```
 
-`deployAsync()` saves first, so a failed save prevents the deploy. It then builds and uploads the site. The promise resolves when Cloudflare accepts the deploy; the URL can take a few more seconds to respond.
+`deployAsync()` attempts to save first, then builds and uploads the site. A save rejection stops the deploy. Subscription-related save failures are reported in Studio but may not reject the save, so a deploy can still proceed without all editor changes. Check that your changes are saved before deploying.
 
-The optional `url` is the primary custom domain when one is attached, or the `workers.dev` URL otherwise. It can be absent when Cloudflare does not provide one.
+The promise resolves when Cloudflare accepts the deploy; the URL can take a few more seconds to respond.
+
+The optional `url` is the primary custom domain when one is attached, or the `workers.dev` URL otherwise. It can be absent when Studio cannot determine a URL.
 
 ## Errors
 
