@@ -14,7 +14,7 @@ last_update:
 An asset's numeric `id` is what an `etch/dynamic-image` block's `mediaId` attribute and an `image` content field take.
 
 :::note Optional namespace
-`etch.assets` is optional. Studio advertises the full `assets` capability; other runtimes may expose only subsets of the namespace. Check for the full capability before using this page's complete API (contract `@digital-gravy/etch-public-api` 0.14.0):
+`etch.assets` is optional. Studio advertises the full `assets` capability. Check before using it (contract `@digital-gravy/etch-public-api` 0.14.0):
 
 ```ts
 if (etch.environment?.capabilities.assets === true) {
@@ -22,8 +22,6 @@ if (etch.environment?.capabilities.assets === true) {
   // …
 }
 ```
-
-For portable scripts that need only some operations, check the full capability **or** the relevant [asset capability subset](./index.md#feature-detection), and check that `etch.assets` is present. A subset does not promise the rest of the API.
 :::
 
 ## API
