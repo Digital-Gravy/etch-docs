@@ -59,6 +59,8 @@ On `PublicBlockJson`, reads also expose:
 
 ### Block variants
 
+The shapes below describe Studio's supported block variants. In particular, Studio loops use a required dynamic `target` expression.
+
 ```ts
 interface EtchTextBlockJson extends EtchBlockCommon {
   type: "etch/text";
@@ -88,11 +90,14 @@ interface EtchSvgBlockJson extends EtchBlockCommon {
 
 interface EtchLoopBlockJson extends EtchBlockCommon {
   type: "etch/loop";
-  itemId: string;                       // variable name for the current item
-  target?: string;                      // what to iterate over (dynamic path)
-  indexId?: string;                     // variable name for the current index
-  loopId?: string;                      // registered loop definition id
-  loopParams?: Record<string, unknown>; // loop parameter values
+  itemId: string;             // variable name for the current item
+  target: string;             // dynamic expression yielding the items
+  indexId?: string;           // variable name for the current index
+}
+
+interface EtchRenderBlockJson extends EtchBlockCommon {
+  type: "etch/render";
+  target: string;             // expression resolving to Etch block JSON
 }
 
 interface EtchConditionBlockJson extends EtchBlockCommon {

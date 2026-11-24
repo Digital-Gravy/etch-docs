@@ -103,6 +103,7 @@ interface BlockPatch {
   hidden?: boolean;                               // hide or show on canvas
   attributes?: Record<string, string | undefined>; // merge attrs/props (undefined removes a key)
   text?: string;                                  // replace text (text blocks only)
+  target?: string;                                // dynamic expression (loop and render blocks only)
 }
 ```
 
@@ -110,7 +111,7 @@ interface BlockPatch {
 etch.blocks.update(id, { name: "Hero heading", hidden: false });
 ```
 
-The `attributes` patch works on HTML blocks (HTML attributes) and on component instances, whose attributes are their props — see [Component props](#component-props).
+The `attributes` patch works on HTML blocks (HTML attributes) and on component instances, whose attributes are their props — see [Component props](#component-props). `target` changes the expression on an `etch/loop` or `etch/render` block; other block types reject it with `WRONG_BLOCK_TYPE`.
 
 ### copy() and pasteAsync() {#copy-paste}
 

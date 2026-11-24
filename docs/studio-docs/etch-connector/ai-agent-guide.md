@@ -23,7 +23,7 @@ The connector's own agent instructions live in `etch-connector --help`. It docum
 
 How a change reaches the database depends on which part of the API you used:
 
-- `etch.blocks`, `etch.styles`, and `etch.loops` are buffered — persist them with `await etch.saveAsync()`.
+- `etch.blocks` and `etch.styles` are buffered — persist them with `await etch.saveAsync()`.
 - `etch.components.*`, `etch.stylesheets.*` and `etch.assets.*` persist immediately; no `saveAsync()` needed.
 
 This matches the [persistence model in the Public API docs](../public-api/index.md#saving-and-the-persistence-model) — refer there for the per-namespace details.

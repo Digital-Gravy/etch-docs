@@ -13,7 +13,7 @@ Two small namespaces control the builder chrome and the undo/redo stack.
 
 ## etch.ui
 
-`EtchUiApi` controls the canvas color scheme, the visibility of the builder chrome (panels and toolbars), and exiting the builder.
+`EtchUiApi` controls the canvas color scheme and the visibility of the builder chrome (panels and toolbars).
 
 ```ts
 interface EtchUiApi {

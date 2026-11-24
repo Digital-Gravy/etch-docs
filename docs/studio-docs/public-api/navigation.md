@@ -18,7 +18,7 @@ interface EtchNavigationApi {
   // UI areas
   goTo(place: NavigationPlace): void;        // navigate to a builder area
   getCurrentPlace(): NavigationPlace;        // the current area
-  getPlaces(): NavigationPlace[];            // every area goTo accepts
+  getPlaces(): NavigationPlace[];            // areas available to the current viewer
 
   // post / template switching
   openPostAsync(postId: number): Promise<void>;
@@ -38,8 +38,9 @@ type NavigationPlace =
   | "templates"
   | "content-hub"
   | "style-manager"
-  | "loop-manager"
-  | "asset-manager";
+  | "data-manager"
+  | "asset-manager"
+  | "routes";
 
 interface PostSummary {
   id: number;
@@ -55,6 +56,8 @@ interface TemplateSummary {
   slug: string;
 }
 ```
+
+In Studio, `goTo("templates")` opens the content hub. The `routes` place requires permission to manage routes: without it, `getPlaces()` omits it and `goTo("routes")` throws `NOT_AVAILABLE`.
 
 ## Examples
 

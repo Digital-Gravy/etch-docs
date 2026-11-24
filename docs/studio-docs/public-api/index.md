@@ -82,17 +82,15 @@ const etch = getEtch({ apiVersion: "^1.0", id: "my-plugin" });
 
 ## The `Etch` object
 
-`getEtch()` returns the root `Etch` interface — its namespaces plus a few top-level members:
+`getEtch()` returns the root `Etch` interface. Its Studio-supported namespaces and top-level members include:
 
 ```ts
 interface Etch {
   blocks: EtchBlocksApi;
-  loops: EtchLoopsApi;
   styles: EtchStylesApi;
   stylesheets: EtchStylesheetsApi;
   components: EtchComponentsApi;
   navigation: EtchNavigationApi;
-  fields: EtchFieldsApi;
   ui: EtchUiApi;
   history: EtchHistoryApi;
   skills: EtchSkillsApi;
@@ -161,8 +159,8 @@ The server can request script execution, so connect only to a server you trust. 
 
 How a change reaches the database depends on which namespace it lives in:
 
-- **`blocks`, `styles`, `loops`** — buffered in the editor. They are persisted when you call `etch.saveAsync()` (the same save the UI performs).
-- **`stylesheets`, `components`, `fields`, `dataSources`, `content`, `routes`, `assets`, `acss`** — every mutating method is `*Async` and **persists immediately**; you do not need `saveAsync()` for them.
+- **`blocks`, `styles`** — buffered in the editor. They are persisted when you call `etch.saveAsync()` (the same save the UI performs).
+- **`stylesheets`, `components`, `dataSources`, `content`, `routes`, `assets`, `acss`** — mutating methods persist immediately; you do not need `saveAsync()` for them.
 
 ```ts
 etch.blocks.setText(id, "Hello world");
@@ -235,13 +233,11 @@ interface EtchEnvironment {
 type EtchCapabilities = Readonly<Partial<Record<EtchCapability, boolean>>>;
 ```
 
-A capability that's missing from the map counts as unavailable, so test with `=== true`. A namespace tied to an optional capability (`routes`, `assets`, …) is left off `etch` entirely when the runtime doesn't back it.
+A capability that's missing from the map counts as unavailable, so test with `=== true`. Namespace presence alone does not guarantee support: Studio also exposes some namespaces whose methods throw `NOT_AVAILABLE`.
 
 | Capability | When `true` | On Etch Studio |
 | --- | --- | --- |
 | `dataSources` | [`etch.dataSources`](./data-sources.md) is backed: named `json`, `api` and `js` sources, reached from a loop's `target` through `data('key')`. | yes |
-| `loops` | The older loop registry: a loop block binds to a named definition by `loopId`. Superseded by `dataSources`. | no |
-| `fields` | `etch.fields` is backed by a custom-field store. | no |
 | `templates` | Templates exist and `navigation.goTo("templates")` works. On Studio they are records of a template content type. | yes |
 | `content` | [`etch.content`](./content.md) is backed: content types, their fields and their items. | yes |
 | `routes` | [`etch.routes`](./routes.md) is backed: the site's URLs are a route tree. | yes |
@@ -249,7 +245,6 @@ A capability that's missing from the map counts as unavailable, so test with `==
 | `deploy` | [`etch.deploy`](./deploy.md) is backed: the site can be built and published. | yes |
 | `presence` | [`etch.presence`](./presence.md) is backed: tabs can request and hand over editing control. | yes |
 | `acss` | [`etch.acss`](./acss.md) is backed: ACSS settings can be managed. Check `isEnabled()` to see if ACSS is on. | yes |
-| `wpMedia` | Media ids resolve against the WordPress media library. | no |
 
 ```ts
 if (etch.environment?.capabilities.routes === true) {
@@ -260,12 +255,12 @@ if (etch.environment?.capabilities.routes === true) {
 `blockTypes` is read live off the runtime's block registry, so it cannot drift from what the runtime can actually construct. Check it instead of assuming a block type exists:
 
 ```ts
-if (etch.environment?.blockTypes.includes("etch/passthrough")) {
+if (etch.environment?.blockTypes.includes("etch/render")) {
   // safe to author one here
 }
 ```
 
-`environment` itself is optional: a runtime that predates the descriptor omits it. Treat a missing `environment` as everything being available, which is what every runtime that predates it was.
+`environment` itself is optional in the shared contract. If it is missing, availability is unknown; do not assume a capability is supported.
 
 For an individual method that may not exist on an older runtime, `typeof` still applies:
 
