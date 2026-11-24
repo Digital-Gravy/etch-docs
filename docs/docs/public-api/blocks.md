@@ -149,7 +149,7 @@ interface EtchBlocksApi {
 
   // attributes (HTML attributes, or component props — see Component props below)
   getAttribute(blockId: string, key: string): string | undefined;
-  setAttribute(blockId: string, key: string, value?: string): void; // undefined clears
+  setAttribute(blockId: string, key: string, value?: string): void; // omitted value: valueless attribute
   removeAttribute(blockId: string, key: string): void;
 
   // CSS classes
@@ -159,11 +159,17 @@ interface EtchBlocksApi {
 }
 ```
 
+`setAttribute()` with an omitted or `undefined` value sets a valueless attribute; it does not remove the key. Use `removeAttribute()` to remove it. `getAttribute()` returns `undefined` for both an absent attribute and a valueless one. In contrast, an `undefined` value in an [`update()` attributes patch](#update) removes the key.
+
 ```ts
-const [id] = etch.blocks.find({ type: "etch/text" });
-etch.blocks.setText(id, "Hello world");
-etch.blocks.addClass(id, "lead");
-etch.blocks.setAttribute(id, "data-track", "hero");
+const [textId] = etch.blocks.find({ type: "etch/text" });
+etch.blocks.setText(textId, "Hello world");
+
+const [elementId] = etch.blocks.find({ type: "etch/element" });
+etch.blocks.addClass(elementId, "lead");
+etch.blocks.setAttribute(elementId, "data-track", "hero");
+etch.blocks.setAttribute(elementId, "hidden"); // valueless attribute
+etch.blocks.removeAttribute(elementId, "data-track");
 await etch.saveAsync();
 ```
 
