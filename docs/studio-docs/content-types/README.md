@@ -75,7 +75,7 @@ A field definition has three parts:
 | Part     | Notes                                                                                                            |
 | -------- | ---------------------------------------------------------------------------------------------------------------- |
 | **Name** | The human label shown in the editor.                                                                             |
-| **Key**  | The machine name. Lowercase, starts with a letter, then letters, digits, `-` or `_`. This is what a query reads. |
+| **Key**  | The machine name a query reads. New keys start with a lowercase letter, followed by letters (uppercase or lowercase), digits or underscores. Existing hyphenated keys remain readable, but new ones are refused. |
 | **Type** | Which editor the field gets and what it accepts.                                                                 |
 
 The **Fields** tab in the sidebar edits them for whichever type is selected. The
@@ -115,8 +115,8 @@ Advanced : advanced
 
 A line with no colon uses its text as both label and value.
 
-**Repeater** is experimental: turn it on in **Settings → Experimental →
-Repeater Field**.
+The **Repeater** menu is experimental: turn it on in **Settings → Experimental →
+Repeater Field**. The [public API](../public-api/content.md) can add repeater fields without checking this setting.
 
 The **Advanced**, **Validation** and **Conditions** tabs are visible but not yet
 enabled.

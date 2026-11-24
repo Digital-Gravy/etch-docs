@@ -108,7 +108,7 @@ type EtchContentFieldType =
   | "repeater";
 
 interface EtchContentField {
-  key: string;              // lowercase letter first, then a-z 0-9 - _; unique per type
+  key: string;              // lowercase letter first, then letters, digits or underscores; unique per type
   name: string;             // display label
   type: EtchContentFieldType;
   required?: boolean;
@@ -126,25 +126,38 @@ interface EtchContentField {
   fields?: EtchContentSubField[]; // repeaters: the sub-fields each item holds, in order
 }
 
-// A repeater's sub-field: a field of a plain value type. Its key holds no
-// hyphen and is unique within the repeater.
+// A repeater row holds plain values, not relationships or nested repeaters.
+type EtchContentSubFieldType =
+  | "text" | "textarea" | "number" | "link" | "email" | "boolean" | "select" | "image";
+
 type EtchContentSubField = Omit<EtchContentField, "type" | "target" | "source" | "fields"> & {
-  type: "text" | "textarea" | "number" | "link" | "email" | "boolean" | "select" | "image";
+  type: EtchContentSubFieldType;
 };
+
+type EtchContentFieldInput = Omit<EtchContentField, "source" | "type"> & {
+  type: Exclude<EtchContentFieldType, "relationshipBacklink">;
+};
+
+type EtchContentFieldPatch = Partial<EtchContentFieldInput>;
 ```
+
+New field keys start with a lowercase letter and may then contain uppercase or lowercase letters, digits and underscores. Existing hyphenated keys remain readable, but new hyphenated keys are refused. Sub-field keys must be unique within their repeater and cannot contain hyphens. Content-type keys have separate rules.
+
+Backlinks are returned as fields but cannot be added as input. Their values are read-only; their field definitions can only be renamed by changing `key` or `name`.
 
 What a field's value is:
 
 | Type | Value |
 | --- | --- |
-| `text`, `textarea`, `link`, `email`, `select` | A string. |
-| `number` | A number, within `min`/`max`. |
+| `text`, `textarea`, `link`, `email` | A string. |
+| `select` | A string; a nonblank value must match an option's value. |
+| `number` | An integer, within `min`/`max`. |
 | `boolean` | `true` or `false`. |
 | `image` | An asset id from [`etch.assets`](./assets.md). |
 | `relationship` | One item id of the `target` type. |
 | `relationshipList` | An ordered array of such ids. |
 | `relationshipBacklink` | The other end of a relationship declared on another type: the items that link here. Written by Etch, read-only on items, and can't be added. |
-| `repeater` | An ordered array of items, each an object keyed by sub-field key and valued as that sub-field's type says. Writing it replaces every item. Available only when **Settings → Experimental → Repeater Field** is on. See [Repeater fields](../content-types/repeater-fields.md). |
+| `repeater` | An ordered array of items, each an object keyed by sub-field key and valued as that sub-field's type says. Writing it replaces every item. The same value validation applies inside each row. Settings → Experimental → Repeater Field controls the UI menu; the public API does not check that setting when adding a repeater. See [Repeater fields](../content-types/repeater-fields.md). |
 
 Renaming a field with a new `key` keeps every item's value under the new key. A repeater's `fields` is replaced whole: change one sub-field's `key` in place, the list otherwise as it was, to rename it and keep its values; a sub-field left out is removed from every item. Rename and reshape in separate calls. Changing a relation field's `target`, or changing its `type` to something that isn't a relation, drops every item's links in that field.
 
@@ -177,7 +190,7 @@ Creating a non-template type also creates a matching [JavaScript data source](..
 | `CONTENT_TYPE_NOT_FOUND` | No type has that key, or a relation field targets no type. |
 | `FIELD_NOT_FOUND` | The type has no field with that key. |
 | `POST_NOT_FOUND` | No item has that id. |
-| `INVALID_ARGUMENT` | A malformed key, a name or key another type has, fields on a template type, a field type that isn't available, a relation to a template type, deleting the `page` type, changing an item's `postType`, sub-fields on a field that isn't a repeater, or a value its field refuses (required, number bounds, email, link, image, a link to an item of the wrong type, a repeater item that fails its sub-fields' rules, or an item key no sub-field declares). |
-| `READONLY` | Writing a backlink's value, or changing a backlink other than its `key` and `name`. |
+| `INVALID_ARGUMENT` | A malformed key, a name or key another type has, fields on a template type, a field type that isn't available, a relation to a template type, narrowing a `relationshipList` to `relationship` while an item has multiple links, deleting the `page` type, changing an item's `postType`, sub-fields on a field that isn't a repeater, or a value its field refuses (required, integer or number bounds, select option, email, link, image, a link to an item of the wrong type, a repeater item that fails its sub-fields' rules, or an item key no sub-field declares). |
+| `READONLY` | Writing a backlink's value, removing a backlink directly, or changing a backlink other than its `key` and `name`. Remove the relationship it mirrors instead. |
 
 See [Error handling](./index.md#error-handling).
