@@ -103,6 +103,7 @@ interface Etch {
   assets?: EtchAssetsApi; // optional: only where the `assets` capability is backed
   deploy?: EtchDeployApi; // optional: only where the `deploy` capability is backed
   presence?: EtchPresenceApi; // optional: only where the `presence` capability is backed
+  acss?: EtchAcssApi; // optional: only where the `acss` capability is backed
 
   saveAsync(): Promise<void>;
   connect?(options?: ConnectOptions): Etch; // reserved for the future stable runtime
@@ -125,6 +126,7 @@ interface Etch {
 | `etch.routes`              | [Routes](./routes.md)                   | The route tree: which content is published, and at which URL         |
 | `etch.deploy`              | [Deploy](./deploy.md)                   | Save, build, and publish the site                                    |
 | `etch.presence`            | [Edit Control](./presence.md)           | Request and hand over the project's edit lock                       |
+| `etch.acss`                | [Automatic.css](./acss.md)              | Enable ACSS and manage its dashboard settings                        |
 | `etch.ui` / `etch.history` | [UI & History](./ui-and-history.md)     | Color scheme, chrome visibility, undo/redo                           |
 | `etch.skills`              | [Skills](./skills.md)                   | Bundled, read-only authoring guides (e.g. ACSS conventions)          |
 | `etch.ai`                  | [AI Presence](./ai.md)                  | Advertise an external agent's presence and phase to the builder      |
@@ -135,7 +137,7 @@ interface Etch {
 How a change reaches the database depends on which namespace it lives in:
 
 - **`blocks`, `styles`, `loops`** — buffered in the editor. They are persisted when you call `etch.saveAsync()` (the same save the UI performs).
-- **`stylesheets`, `components`, `fields`, `dataSources`, `content`, `routes`, `assets`** — every mutating method is `*Async` and **persists immediately**; you do not need `saveAsync()` for them.
+- **`stylesheets`, `components`, `fields`, `dataSources`, `content`, `routes`, `assets`, `acss`** — every mutating method is `*Async` and **persists immediately**; you do not need `saveAsync()` for them.
 
 ```ts
 etch.blocks.setText(id, "Hello world");
@@ -183,6 +185,7 @@ type EtchApiErrorCode =
   | "ASSET_NOT_FOUND"
   | "COLLECTION_NOT_FOUND"
   | "ASSET_IN_USE"
+  | "ACSS_DISABLED"
   | "DEPLOY_BLOCKED"
   | "OPERATION_FAILED"
   | "NOT_AVAILABLE"
@@ -220,6 +223,7 @@ A capability that's missing from the map counts as unavailable, so test with `==
 | `assets` | [`etch.assets`](./assets.md) is backed: the product's own asset store. | yes |
 | `deploy` | [`etch.deploy`](./deploy.md) is backed: the site can be built and published. | yes |
 | `presence` | [`etch.presence`](./presence.md) is backed: tabs can request and hand over editing control. | yes |
+| `acss` | [`etch.acss`](./acss.md) is backed: ACSS settings can be managed. Check `isEnabled()` to see if ACSS is on. | yes |
 | `wpMedia` | Media ids resolve against the WordPress media library. | no |
 
 ```ts

@@ -11,6 +11,8 @@ last_update:
 
 `etch.skills` (`EtchSkillsApi`) exposes the bundled, **read-only authoring guides** the Etch builder ships — for example the Automatic.css conventions. They're meant to be read by tooling driving the builder (an AI assistant connected over the [AI Connector](../etch-connector/introduction.md), say) so it can follow Etch's authoring conventions instead of guessing.
 
+To enable Automatic.css or change its dashboard settings, see [`etch.acss`](./acss.md).
+
 Skills follow a **progressive-disclosure** model: a lightweight summary for discovery, a full guide body, and per-reference subskill documents loaded on demand. The expected flow is `list()` → `get()` the relevant skill → `getReference()` for individual references only when needed.
 
 :::info Read-only and synchronous
