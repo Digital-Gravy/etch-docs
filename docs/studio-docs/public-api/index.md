@@ -102,6 +102,7 @@ interface Etch {
   routes?: EtchRoutesApi; // optional: only where the `routes` capability is backed
   assets?: EtchAssetsApi; // optional: only where the `assets` capability is backed
   deploy?: EtchDeployApi; // optional: only where the `deploy` capability is backed
+  presence?: EtchPresenceApi; // optional: only where the `presence` capability is backed
 
   saveAsync(): Promise<void>;
   connect?(options?: ConnectOptions): Etch; // reserved for the future stable runtime
@@ -123,6 +124,7 @@ interface Etch {
 | `etch.navigation`          | [Navigation](./navigation.md)           | Move around the builder UI; switch posts/templates                   |
 | `etch.routes`              | [Routes](./routes.md)                   | The route tree: which content is published, and at which URL         |
 | `etch.deploy`              | [Deploy](./deploy.md)                   | Save, build, and publish the site                                    |
+| `etch.presence`            | [Edit Control](./presence.md)           | Request and hand over the project's edit lock                       |
 | `etch.ui` / `etch.history` | [UI & History](./ui-and-history.md)     | Color scheme, chrome visibility, undo/redo                           |
 | `etch.skills`              | [Skills](./skills.md)                   | Bundled, read-only authoring guides (e.g. ACSS conventions)          |
 | `etch.ai`                  | [AI Presence](./ai.md)                  | Advertise an external agent's presence and phase to the builder      |
@@ -217,6 +219,7 @@ A capability that's missing from the map counts as unavailable, so test with `==
 | `routes` | [`etch.routes`](./routes.md) is backed: the site's URLs are a route tree. | yes |
 | `assets` | [`etch.assets`](./assets.md) is backed: the product's own asset store. | yes |
 | `deploy` | [`etch.deploy`](./deploy.md) is backed: the site can be built and published. | yes |
+| `presence` | [`etch.presence`](./presence.md) is backed: tabs can request and hand over editing control. | yes |
 | `wpMedia` | Media ids resolve against the WordPress media library. | no |
 
 ```ts

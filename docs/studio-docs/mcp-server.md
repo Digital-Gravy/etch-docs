@@ -98,6 +98,8 @@ You can also ask the assistant for control from your own tab while it works.
 It can't answer the request itself, so after 30 seconds it saves what it has
 and hands over. It checks with you before taking control back.
 
+For scripts managing editing control directly, see the [`etch.presence` API reference](./public-api/presence.md).
+
 ## Tools
 
 These are the tools the server gives your assistant. You don't call them

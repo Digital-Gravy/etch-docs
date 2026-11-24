@@ -11,6 +11,8 @@ last_update:
 
 `etch.ai` (`EtchAiApi`) lets an external AI agent advertise that it is working in this tab and what phase it is in. Setting a non-idle state shows a presence overlay in the builder so the human watching the tab can see an agent is active; clearing it removes the overlay.
 
+This overlay does not grant editing control. See [`etch.presence`](./presence.md) for the project's edit lock.
+
 This is built for tooling driving the builder over the [AI Connector](../etch-connector/introduction.md). Scripts pushed over that bridge run with access to `window.etch` only — they can't dispatch DOM events or reach the page — so this namespace is the supported way to toggle presence.
 
 :::info Synchronous and local
