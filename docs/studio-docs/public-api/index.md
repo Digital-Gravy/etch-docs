@@ -106,6 +106,7 @@ interface Etch {
   acss?: EtchAcssApi; // optional: only where the `acss` capability is backed
 
   saveAsync(): Promise<void>;
+  connectAs(name: string, options?: BridgeConnectOptions): EtchBridgeConnection;
   connect?(options?: ConnectOptions): Etch; // reserved for the future stable runtime
   readonly apiVersion: string; // scripting contract version, e.g. "0.x"
   readonly version: string; // Etch product version
@@ -131,6 +132,30 @@ interface Etch {
 | `etch.skills`              | [Skills](./skills.md)                   | Bundled, read-only authoring guides (e.g. ACSS conventions)          |
 | `etch.ai`                  | [AI Presence](./ai.md)                  | Advertise an external agent's presence and phase to the builder      |
 | —                          | [Types Reference](./types-reference.md) | Block JSON union, shared types, errors                               |
+
+## Connecting an external tool
+
+`etch.connectAs()` opens a WebSocket from this builder tab to a compatible tooling server, such as [Etch Connector](../etch-connector/introduction.md), and registers the tab under a name. The server can send scripts to execute in the builder and receive their results and console output. For the normal Connector workflow and manual setup, see [Usage](../etch-connector/usage.md#connect-manually-from-the-console).
+
+```ts
+interface BridgeConnectOptions {
+  url?: string; // WebSocket endpoint; defaults to ws://127.0.0.1:7331
+  port?: number; // localhost port; ignored when url is set
+  meta?: Record<string, unknown>; // identifying metadata sent to the server
+  reconnect?: boolean; // reconnect with backoff; defaults to true
+}
+
+interface EtchBridgeConnection {
+  readonly name: string;
+  readonly url: string;
+  readonly connected: boolean;
+  close(): void;
+}
+```
+
+Call `window.etch.connectAs("homepage")` from the builder's browser console. The name must not be empty or whitespace; otherwise the call throws `INVALID_ARGUMENT`. The returned handle is immediate: `connected` reports whether the socket is currently open, not whether it will eventually connect. `close()` closes it and stops automatic reconnects. Calling `connectAs()` again opens another connection.
+
+The server can request script execution, so connect only to a server you trust. Etch Connector's default safe mode is a guardrail rather than a hardened sandbox; see [Connector Security](../etch-connector/security.md). A custom `url` can point to a different host or a `wss://` endpoint, so choose it with care.
 
 ## Saving and the persistence model
 

@@ -43,6 +43,8 @@ etch-connector serve [--ws-port 7331] [--control-port 7332] [--ws-host 127.0.0.1
 | `--control-port` | `7332` | The port the other commands use to talk to the running connector. |
 | `--ws-host` | `127.0.0.1` | The address to listen on. Leave this as-is unless you have a specific reason to change it. |
 
+For a custom WebSocket port, see [connecting manually](./usage.md#connect-manually-from-the-console).
+
 ### `tabs`
 
 Lists the Etch tabs currently connected.

@@ -33,6 +33,22 @@ Open the page or template you want to work on **in the Etch builder**, and leave
 
 Click the sparkles button again any time to disconnect.
 
+### Connect manually from the console
+
+For advanced use, start the connector as above, then run this in the **builder tab's browser console** instead of clicking the AI button:
+
+```js
+const connection = window.etch.connectAs("homepage");
+```
+
+The name identifies this tab in `etch-connector tabs` and can be used with `etch-connector eval -t homepage`. If the connector was started with a custom `--ws-port`, pass the same port:
+
+```js
+const connection = window.etch.connectAs("homepage", { port: 7441 });
+```
+
+Keep the returned handle to check `connection.connected` or call `connection.close()` to disconnect and stop reconnecting. The toolbar button controls its own connection, not this manually opened one. See the [`connectAs()` reference](../public-api/index.md#connecting-an-external-tool) for options and security guidance.
+
 ## Multi-Agent & Maintaining Connection
 
 The connection stays alive as long as the chat where you ran `npx @digital-gravy/etch-connector serve` is still open. You can start as many new chats as you want and keep working through the same connection — there's no need to re-run the command each time. You only need to run it again if you close the original chat, which ends the connection.
