@@ -9,7 +9,7 @@ last_update:
 
 # Automatic.css
 
-`etch.acss` (`EtchAcssApi`) reads and changes the project's Automatic.css dashboard settings. Changes remain editable in the dashboard and regenerate the ACSS stylesheets. For authoring conventions, classes, and tokens, see the [`acss` skill](./skills.md).
+`etch.acss` (`EtchAcssApi`) reads and changes the project's Automatic.css dashboard settings. Changes remain editable in the dashboard and trigger ACSS stylesheet regeneration. For authoring conventions, classes, and tokens, see the [`acss` skill](./skills.md).
 
 ## Availability
 
@@ -52,7 +52,7 @@ interface AcssUpdateResult {
 
 ## Enabling and disabling
 
-`setEnabledAsync(true)` turns ACSS on and generates its stylesheets; `setEnabledAsync(false)` turns it off and removes them. The `acss` skill is available while ACSS is enabled. Both changes persist immediately, without `etch.saveAsync()`.
+`setEnabledAsync(true)` turns ACSS on and attempts to generate its stylesheets; `setEnabledAsync(false)` turns it off and removes them. The `acss` skill is available while ACSS is enabled. Successful changes persist immediately, without `etch.saveAsync()`.
 
 ```ts
 if (etch.environment?.capabilities.acss === true && etch.acss) {
@@ -63,7 +63,7 @@ if (etch.environment?.capabilities.acss === true && etch.acss) {
 
 ## Reading and updating settings
 
-`listSettingsAsync()` returns settings with their IDs, current and default values, dashboard screen, and type. An optional query filters by ID, label, or screen, ignoring case. Select settings also include their accepted `options`.
+`listSettingsAsync()` returns settings with their IDs, current and default values, dashboard screen, and type, even while ACSS is disabled. An optional query filters by ID, label, or screen, ignoring case. Select settings also include their accepted `options`.
 
 ```ts
 if (etch.environment?.capabilities.acss === true && etch.acss?.isEnabled()) {
@@ -80,10 +80,10 @@ if (etch.environment?.capabilities.acss === true && etch.acss?.isEnabled()) {
 
 Use the returned IDs and types to choose values. Types include `color`, `toggle`, `select`, `px`, `rem`, `percent`, `number`, `text`, `textarea`, and `codebox`. A palette color accepts an opaque CSS color, is read back as hex, and recomputes its shades. A toggle takes a boolean; a select must match an accepted option.
 
-Updates are validated together: an unknown ID or invalid value rejects with `INVALID_ARGUMENT` before anything is saved. `updateSettingsAsync()` rejects with `ACSS_DISABLED` while ACSS is off. Valid updates persist immediately and regenerate the stylesheets; no `etch.saveAsync()` is needed.
+Updates are validated together: an unknown ID or invalid value rejects with `INVALID_ARGUMENT` before anything is saved. `updateSettingsAsync()` rejects with `ACSS_DISABLED` while ACSS is off. Successful updates persist immediately and trigger stylesheet regeneration; no `etch.saveAsync()` is needed.
 
 ## Warnings and errors
 
-Always inspect `warnings` after `setEnabledAsync()` or `updateSettingsAsync()`. A nonempty array means the change was saved, but part of the stylesheet regeneration or the builder's stylesheet reload failed. A stylesheet that could not be regenerated keeps its previous version. A warning does not mean the settings write failed.
+Always inspect `warnings` after `setEnabledAsync()` or `updateSettingsAsync()`. A nonempty array means the change was saved, but part of the stylesheet regeneration or the builder's stylesheet reload failed. A stylesheet that could not be regenerated keeps its previous version if one exists. A warning does not mean the settings write failed.
 
-A failed settings save rejects with `OPERATION_FAILED`. Invalid inputs reject with `INVALID_ARGUMENT`; missing project-settings permission rejects with `NOT_AVAILABLE`.
+An `OPERATION_FAILED` rejection does not guarantee that nothing was saved: settings can persist before stylesheet regeneration fails. A failed update can also leave values changed in the dashboard, where a later save can persist them. Check the current settings, dashboard values and stylesheets before retrying. Invalid inputs reject with `INVALID_ARGUMENT` before application; missing project-settings permission rejects with `NOT_AVAILABLE`.

@@ -20,7 +20,7 @@ All three methods are synchronous and never hit the network — content is bundl
 :::
 
 :::note Runtime-dependent set
-The available skills depend on what's active on the page: a skill tied to an integration is only listed when that integration is present (e.g. the ACSS skill appears only when Automatic.css is installed), and some references are generated on demand from live page state rather than bundled. Always call `list()` to see what's currently available rather than assuming a fixed set.
+The available skills depend on what's active on the page: the ACSS skill appears only when Automatic.css is enabled. Some references are generated on demand from live page state and may not be available until their stylesheets exist. Always call `list()` to see what's currently available rather than assuming a fixed set.
 :::
 
 ## Skills
