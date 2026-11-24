@@ -24,7 +24,7 @@ interface EtchStylesApi {
 
 ```ts
 interface StyleSummary {
-  id: string;                            // stable id — pass this to blocks.addClass etc.
+  id: string;                            // stable id — use with styles.update and styles.delete
   selector: string;                      // CSS selector, e.g. ".lead"
   type: StyleSelectorType | undefined;    // inferred selector type
   collection: string;                    // internal; always "default" for the public API
@@ -85,5 +85,9 @@ etch.styles.removeVariable("--brand", "theme-a");
 ```
 
 :::tip
-The `id` returned by `create()` (and present on each `StyleSummary`) is the value you pass to [`etch.blocks.addClass()`](./blocks.md#text-naming-attributes-and-classes) and related block methods.
+Use the style ID with `etch.styles.update()` and `etch.styles.delete()`. To apply
+a class to a block, pass its **class name without the leading dot** to
+[`etch.blocks.addClass()`](./blocks.md#text-naming-attributes-and-classes), not
+the style ID. For example, a `.lead` rule is applied with
+`etch.blocks.addClass(blockId, "lead")`.
 :::
