@@ -72,10 +72,29 @@ copy the ID from the URL (`https://dash.cloudflare.com/<account-id>`) or from th
 three-dot menu next to **+ Add**.
 
 **API Token.** Go to
-[API Tokens](https://dash.cloudflare.com/profile/api-tokens) → **Create Token**,
-use the **Edit Cloudflare Workers** template (or a custom token with **Account** →
-**Workers Scripts** → **Edit**), scope it to the right account, and copy it.
-Cloudflare only shows it once.
+[API Tokens](https://dash.cloudflare.com/profile/api-tokens) → **Create Token**
+and create a custom token. Add permissions for the features you use:
+
+| Feature | Permission |
+| --- | --- |
+| Deploy to Workers | **Account** → **Workers Scripts** → **Edit** |
+| Find and select a custom domain | **Zone** → **Zone** → **Read** |
+| Manage the redirect between a primary domain and its `www` or apex counterpart | **Zone** → **Dynamic URL Redirects** → **Edit** |
+
+Scope the account permission to the account identified by your Account ID. For
+the zone permissions, include the zones containing the domains you want Studio
+to manage. The Workers Scripts permission also lets Studio attach a Worker
+custom domain. The redirect permission is only needed when Studio manages a
+redirect between the primary hostname and its counterpart.
+
+Cloudflare's **Edit Cloudflare Workers** template grants additional permissions,
+including access to Workers KV and R2; it is not equivalent to the custom token
+above and does not list the zone permissions above. Review its permissions and
+resources before using it. See Cloudflare's
+[token templates](https://developers.cloudflare.com/fundamentals/api/reference/template/)
+and [permissions reference](https://developers.cloudflare.com/fundamentals/api/reference/permissions/).
+
+Create the token and copy it into Studio. Cloudflare only shows it once.
 
 **Worker Name.** See below.
 
@@ -118,8 +137,18 @@ Manager's compression presets are the first place to look.
 **The deploy button is disabled.** Missing credentials or a missing Worker name.
 
 **"Deploy failed" with an authorization error.** For OAuth, use **Reconnect
-Cloudflare**. For a manual token, confirm it has **Workers Scripts: Edit** on the
-account the Account ID points at.
+Cloudflare** and approve the requested permissions. For a manual token, check that
+the Account ID and the token's account scope match, and that it has **Workers
+Scripts: Edit**. An authorization error can have other causes, so also check
+Cloudflare's error details.
+
+**Custom domains do not appear.** Confirm the domain's zone is in the Cloudflare
+account and that the token has **Zone: Read** for that zone.
+
+**The site deployed, but its primary-domain redirect failed.** Check that the
+token has **Dynamic URL Redirects: Edit** for the domain's zone. With OAuth,
+reconnect Cloudflare to grant any newly requested permissions. The site can deploy
+even when the redirect cannot be updated.
 
 **The site deployed but the data is stale.** Expected: data resolves at build
 time. Deploy again.
