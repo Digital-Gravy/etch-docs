@@ -7,7 +7,7 @@ sidebar_custom_props:
 
 # Asset Manager
 
-The Asset Manager is Etch's native media hub for uploading, organizing, editing, and optimizing all the media files in your project. It replaces the standard WordPress Media Library with a purpose-built experience designed for speed and efficiency.
+The Asset Manager is Etch's native media hub for uploading, organizing, editing, and optimizing all the media files in your project.
 
 ![Etch Asset Manager](img/etch-asset-manager.webp)
 
