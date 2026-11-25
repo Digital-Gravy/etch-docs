@@ -115,18 +115,18 @@ For example, `item.fields.field_id` in a loop or `this.fields.field_id` in a pag
 
 When working with dynamic data keys, it's important to understand the rules for property names and when to use bracket notation.
 - **Valid property names** in dot notation can only contain: letters (a-z, A-Z), digits (0-9), and underscores (\_).
-  - Valid examples: `{this.title}`, `{item.acf_field}`, `{this.category_name}` ✅
-  - Invalid examples: `{this.post-title}`, `{item.full name}` ❌
+  - Valid examples: `{this.title}`, `{item.product_name}`, `{this.page_name}` ✅
+  - Invalid examples: `{this.page-title}`, `{item.full name}` ❌
 
   Any property name containing characters outside of letters, digits, and underscores (such as spaces, dashes, etc.) must use bracket notation with quotes:
   - Keys with spaces: `{item["full name"]}`
-  - Keys with dashes: `{item["post-meta"]}`
+  - Keys with dashes: `{item["product-name"]}`
   - Keys with numbers: `{item[0]}` (for arrays)
 
   Examples:
   - `{this["page title"]}` - Access a key with spaces
-  - `{item["author-info"]["email"]}` - Nested keys with dashes
-  - `{this.categories[0].name}` - Mix dot and bracket notation
+  - `{item["contact-info"]["email"]}` - Nested keys with dashes
+  - `{this.fields.categories[0].name}` - Mix dot and bracket notation
   - `{item["users"][0]["display-name"]}` - Multiple bracket notations
 
   You can use either single or double quotes in bracket notation: `{item['full name']}` and `{item["full name"]}` are equivalent.
@@ -135,23 +135,23 @@ When working with dynamic data keys, it's important to understand the rules for 
 
 - Not all keys are available for every item type. Availability depends on the context.
   - Output `{this}` on the page/template to view the data available for the item you are working with. This will show the full JSON object for the item in question, which can be helpful for understanding what data is available.
-- Some keys output the data directly (e.g., `{item.title}`, `{this.content}`, etc). If your key outputs a string, you can use it directly in your page or template.
-- Some keys are objects (e.g., `author`, `template`). These are inside of curly braces `{}`. If your key outputs an object, you need to drill down to a sub-key (e.g., `{item.author.displayName}`, `{this.template.slug`) to get to the data you're looking for.
-- Some keys are arrays (e.g., `categories`, `tags`). These are inside of square brackets `[]`. If your key outputs an array, you can `{#loop}` through it or access a specific item by index (e.g., `{this.categories.at(0).name}`). See the [Accessing Data in Arrays](#accessing-data-in-arrays) section below for more information.
+- Some keys output data directly (e.g., `{item.title}`, `{this.title}`). If your key outputs a string, you can use it directly in your page or template.
+- Some keys contain objects. For example, if your data includes a `contact` object, access a property with `{item.contact.email}`.
+- Some keys contain arrays. For example, a custom `categories` field might contain an array you can loop through or access by index. See [Accessing Data in Arrays](#accessing-data-in-arrays) below.
 - If you want to output curly braces (`{` and `}`) **without the dynamic data engine interpreting them**, you can do so by adding them as a separate string inside the dynamic expression. For example: `{"{This will be output as is}"}`
 
 ## Accessing Data in Arrays
 
-Some dynamic data keys return arrays (for example, `categories`, `tags`, etc). You can work with these arrays in two common ways:
+Some dynamic data keys return arrays. For example, a content item might have a custom `categories` field containing an array of objects. You can work with these arrays in two common ways:
 
 **1) Loop through the items**
 
 - Create a loop that returns the array items you want to render, then output each item’s fields.
 
-_Example: Loop categories for the current post:_
+_Example: Loop through the current item's custom categories field:_
 
 ```html
-{#loop categories as category}
+{#loop this.fields.categories as category}
 <span>{category.name}</span>
 {/loop}
 ```
@@ -163,16 +163,16 @@ You can use either **dot notation with the `.at()` modifier** or **bracket notat
 **Dot notation (using .at() modifier):**
 
 ```
-{this.categories.at(0).name}
+{this.fields.categories.at(0).name}
 ```
 
 **Bracket notation (direct array access):**
 
 ```
-{this.categories[0].name}
+{this.fields.categories[0].name}
 ```
 
-Both approaches are equivalent. Continue using dot notation for simple property names (e.g., `{this.title}`, `{item.name}`). Use bracket notation only when needed for properties with special characters or spaces (e.g., `{this["author-name"]}`, `{item["full name"]}`).
+Both approaches are equivalent. Continue using dot notation for simple property names (e.g., `{this.title}`, `{item.name}`). Use bracket notation only when needed for properties with special characters or spaces (e.g., `{this["page-name"]}`, `{item["full name"]}`).
 
 :::info
 We've updated the syntax to align with standard JavaScript and PHP conventions. Bracket notation is now available as an option for properties with special characters or spaces. Aligning with industry standards allows us to extend the functionality of dynamic data even further and will make it possible to add support for advanced features like mathematical operations in the future. The "old" syntax (dashes/spaces in dot notation) will no longer be supported, but standard dot notation like `{this.title}` remains unchanged and is the recommended approach for regular property names.
@@ -182,4 +182,4 @@ We've updated the syntax to align with standard JavaScript and PHP conventions. 
 
 - Indexing is zero-based (`0` is the first item, `1` is the second, etc.).
 - It is possible to get the last item with `-1`, or the second to last item with `-2` and so on.
-- Ensure the array and the requested index exist before using them (e.g., a post may have no categories).
+- Ensure the array and the requested index exist before using them (e.g., an item may have no categories).
