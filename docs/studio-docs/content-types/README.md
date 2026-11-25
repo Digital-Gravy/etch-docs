@@ -31,8 +31,7 @@ copy on each page to drift out of sync.
 ## The `page` type
 
 Every project has a content type keyed `page`. It's what an ordinary page is,
-and it's what a query reads when it doesn't name a type, the way `WP_Query`
-reads posts when you give it no `post_type`.
+and it's what a query reads when it doesn't name a type.
 
 You can't delete it. Deleting a content type deletes its pages, and deleting
 `page` would take the whole site, so Studio refuses.
