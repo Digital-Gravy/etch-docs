@@ -35,20 +35,18 @@ Then, in Etch, press <kbd>cmd</kbd> + <kbd>v</kbd> (Mac) or <kbd>ctrl</kbd> + <k
 - Verify the component.
 
 ### Configuration
-- CSS, JS, and props are bundled inside the component—no setup required. You can edit prop values to customize behavior.
+- CSS, JS, and props are bundled inside the component. Set a trigger selector and edit prop values to customize behavior.
 - Styling: tweak CSS variables on `.etch-drawer` (e.g., colors, icon sizes).
 - Fill the props in the Elements Settings panel.
 
 
 ## Editing the Off Canvas
 
-Off Canvas comes with 1 slot, if you open the drawer and you don't see the slot, you will need to add it.
+The imported Off Canvas component includes a `drawerContent` slot with example content. If the slot is missing, you can add it:
 
 ### Adding the slot ( if the slot is not already there )
 
-Once you select the drawer, on the bottom bar where all the elements are, you will see 1 slot icons on the left, click on it and you should see the slot appear on the drawer.
-
-Now your drawer should contain 1 slot named `drawerContent`
+Select the drawer, then click the slot icon in the bottom bar to add the `drawerContent` slot.
 
 ### Adding content to the slot
 - You can add content to the drawer by adding content to the slot.
@@ -67,6 +65,8 @@ Lets select the drawer component and see the Elements Settings panel.
 On that Panel there will be a prop called `triggerSelector`, type there a .class or an #id from the element that you want to trigger the drawer from.
 
 ### Off Canvas Component Props
+
+The table lists component defaults. The imported instance sets `drawerDisplayMethod` to `pushBody` and `isInLoop` to `false`.
 
 | Option           | Type                      | Default | Description |
 | ---------------- | ------------------------- | ------- | ----------- |
@@ -92,4 +92,4 @@ On that Panel there will be a prop called `triggerSelector`, type there a .class
 | `drawerBackdropColor` | `string` | `rgba(0, 0, 0, 0.5)` | The background color for the Drawer backdrop, sets scoped variable inline |
 | `drawerPadding` | `string` | `1em` | Padding for the Drawer |
 | `cloneSelector` | `string` |  | Optional. A selector (.class or #id) of an element that will be cloned and moved into the drawer when opened. The element will be restored to its original position when the drawer closes. |
-| `isInLoop` | `boolean` | `false` | Declares if the Drawer is being used inside a loop |
+| `isInLoop` | `boolean` | `true` | Declares if the Drawer is being used inside a loop. The imported instance sets this to `false`. |
