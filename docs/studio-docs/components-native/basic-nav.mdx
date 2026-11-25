@@ -15,7 +15,11 @@ export const BURGER_JSON = JSON.stringify(BurgerJSON, null, 2);
 # Basic Nav
 
 :::note
-This page documents the recommended way to add a Basic Nav by importing the prebuilt components with Copy/Paste JSON below. The older manual approach (copying HTML/CSS/JS) has been removed.
+You can import the prebuilt Navigation and Burger components using the Copy/Paste JSON below.
+:::
+
+:::note
+Importing the components does not create a navigation data source. Create and connect one as described below.
 :::
 
 ## Setup
@@ -43,24 +47,24 @@ Then, in Etch, press <kbd>cmd</kbd> + <kbd>v</kbd> (Mac) or <kbd>ctrl</kbd> + <k
 
 ### Configuration
 
-- The `basicNav` loop is preinstalled in Etch and already wired in the component.
-- CSS, JS, and props are bundled inside these components—no setup required. You can edit prop values to customize behavior.
+- CSS, JS, and props are bundled inside these components. You can edit prop values to customize behavior.
 - Accessibility features (including `aria-current` behavior) are enabled by default.
 - Styling: tweak CSS variables on `.etch-nav` and `.etch-burger` (e.g., colors, icon sizes, breakpoint at 768px).
 
 ## Configuring Your Navigation
 
-You obviously don't want sample data in your Navigation, so let's customize it.
+1. In the **Data Manager**, create a JSON data source with the key `navigation`.
+2. Add your navigation items to the source. The example below shows the expected shape, including nested items.
+3. Select the imported Navigation component and set its `basicNav` prop to the data source expression in the HTML panel:
 
-1. Open the Loop Manager.
-2. Click on the Basic Nav loop.
-3. Edit the JSON to configure your navigation.
+   ```html
+   <EtchNavComponent basicNav={data('navigation')} />
+   ```
 
-:::tip
-AI is extremely good at producing working JSON. If you don't like editing JSON manually, consider letting AI help you.
-:::
+   If your data source has a different key, use that key instead. Keep any other props already set on the component.
+4. Verify the menu and its dropdowns at desktop and mobile sizes.
 
-Here's some sample JSON:
+Example navigation data:
 
 ```json
 [
@@ -153,7 +157,7 @@ Use relative URL references, not full static URLs.
 
 | Option         | Type                  | Default   | Description                                                                                                         |
 | -------------- | --------------------- | --------- | ------------------------------------------------------------------------------------------------------------------- |
-| `jsonNav`      | Loop (array of items) | preset    | Data source for your menu. Preinstalled in Etch; edit via Loop Manager.                                             |
+| `basicNav`     | Data source           | `basicNav` | Navigation items; set this to your JSON data source expression.                                                   |
 | `navAriaLabel` | `string`              | `"Menu"`  | Sets the nav `aria-label`.                                                                                          |
 | `mouseSubmenu` | select                | `"hover"` | Interaction mode. Options: `hover`, `click`, `click-sub-hover` (click for dropdowns, hover for flyouts on desktop). |
 
@@ -201,7 +205,7 @@ you can search for `/* Set the desired breakpoint */` in the component CSS to fi
 
 ## Advanced Customization
 
-After you paste/import the components, you can open the Navigation or Burger component and edit its JS to customize behavior. This is optional—the defaults work out of the box.
+After you paste/import the components, you can open the Navigation or Burger component and edit its JS to customize behavior.
 
 :::warning
 The examples below might differ from the javascript provided in the components for brevity.
