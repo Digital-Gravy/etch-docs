@@ -32,7 +32,7 @@ The editor bar has two tools:
 
 - **Format JavaScript** tidies your code.
 - **Insert snippet** (the lightning icon) drops in a ready-made starting point.
-  Today: **Query Pages** and **Query by Type**.
+  Today: **Query Pages**, **Query by Type**, and **Filter by Field**.
 
 > **💡 Tip:** AI models write this kind of code well, so describe what you want
 > back ("group these posts by year, newest first") and paste it in. Two things
@@ -182,7 +182,7 @@ const courses = await queryContent({ type: 'course', limit: -1 });
 
 const byLevel = {};
 for (const course of courses) {
-	(byLevel[course.level] ??= []).push(course);
+	(byLevel[course.fields.level] ??= []).push(course);
 }
 
 return Object.entries(byLevel).map(([level, items]) => ({ level, items }));
