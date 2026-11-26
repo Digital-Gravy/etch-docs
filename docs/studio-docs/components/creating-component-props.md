@@ -63,7 +63,7 @@ Next, click on the prop type that you're wanting:
 - **[Boolean](./props/prop-boolean)** - True/false values for controlling visibility, states, or conditional behavior.
 - **[Select](./props/prop-select)** - Dropdown options for choosing from predefined values (like sizes, categories, or themes).
 - **[Media](./props/prop-media)** - Media upload and selection for photos, icons, logos, or other media from your Studio asset library.
-- **[Loop](./props/prop-loop)** - Allows selection of a loop source to be used in the component.
+- **[Data Source](./props/prop-loop)** - Lets a component use a selected data source, for example as the target of a loop.
 - **[Object](./props/prop-object)** - JSON like structure for complex data structures.
 - **[Class](./props/prop-class)** - CSS class names for styling structure within the component from the outside.
 - **[Group](./props/prop-group)** - A way to group multiple props together for better organization and management.
