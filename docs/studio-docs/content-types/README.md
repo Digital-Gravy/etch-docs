@@ -38,34 +38,27 @@ You can't delete it. Deleting a content type deletes its pages, and deleting
 
 ## Creating a content type
 
-In the **Content Hub**, on the **Content** tab, the sidebar lists the project's
-content types. Use the **+** next to the **Content Types** heading:
+In the **Content Hub**, on the **Content** tab:
 
-1. Enter the **name**, the label you'll see everywhere: `Course`.
-2. Enter the **key**, prefilled with a slug of the name: `course`. This is the
-   machine name a query reads, so it has to start with a letter and hold only
-   lowercase letters, digits, `-` and `_`. It must be unique in the project.
+1. Select **+** next to **Content Types**.
+2. Enter a name, such as `Course`, in the new sidebar entry and confirm it.
 
-The new type appears in the sidebar and is selected. A name or key the project
-won't accept comes back as an error toast and nothing is created.
-
-> **🚧 Work in progress:** a type can be created but not renamed or deleted from
-> the UI yet, so treat both name and key as permanent for now.
+Studio selects the new type, generates its initial key from the name (for
+example, `course`), and creates a data source for it. The name is the label
+shown in the editor; the key is the machine name used in queries. You can
+change the name later without changing the key.
 
 ## Creating pages of a type
 
-Select the type in the sidebar and its table lists that type's pages, and no
-others. The footer row creates one:
+Select the type in the sidebar to see its pages. Enter a title in the table's
+footer row and select **Create Item**, or press <kbd>Enter</kbd>. The **New
+Item** button above the table focuses the title field.
 
-1. Type a **title** and, optionally, a **slug**. A blank slug is derived from the
-   title.
-2. Select **Create Course** — the button is named after the type.
+Use the row's **Open in Builder** action to edit the page. To give it an
+address, assign it to a route in the [Routes Manager](../routing/README.md).
+Assign a page to the `/` route to make it the homepage.
 
-These are pages like any other. Open one in the builder from the row's arrow
-icon, mark one as the homepage, delete it — all the same as on **Pages**.
-
-**Create Page** on the `page` type is the same action; a page created there is an
-ordinary page of the `page` type.
+An item created under the `page` type is an ordinary page of that type.
 
 ## Fields
 
@@ -122,8 +115,10 @@ enabled.
 
 ### Renaming
 
-A **content type's key** can be changed freely once renaming lands. Pages point
-at their type by id, so a rename cascades nowhere.
+You can rename a content type by editing its name in the header or
+double-clicking it in the sidebar. Its key stays the same. To change the key,
+edit it separately in the header. Pages reference the type by ID, but update any
+queries and data sources that refer to the old key.
 
 A **field's key** can be changed too. Every page of the type stores its value
 under that key, so renaming `role` to `job_title` moves the value on every page
