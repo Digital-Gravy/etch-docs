@@ -60,9 +60,13 @@ the homepage.
 
 ### Saving
 
-Studio does not autosave. Use **Save** in the action bar, or <kbd>⌘</kbd> +
-<kbd>S</kbd> / <kbd>Ctrl</kbd> + <kbd>S</kbd>. Navigating away with unsaved
-changes warns you first.
+Changes to page structure and styles are not autosaved. Use **Save** in the
+action bar, or <kbd>⌘</kbd> + <kbd>S</kbd> / <kbd>Ctrl</kbd> + <kbd>S</kbd>.
+Navigating away with unsaved changes warns you first.
+
+Other changes, such as content, routes, data sources and assets, are saved as
+you make them. See the [persistence model](../public-api/index.md#saving-and-the-persistence-model)
+for the distinction.
 
 ## Adding dynamic data
 
