@@ -31,14 +31,14 @@ Prices are plain text in the shop's format, with currency and tax as the shop di
 | `stock_status`, `stock_label`, `stock_quantity` | Stock; the quantity is `null` when stock is not managed |
 | `is_in_stock`, `is_purchasable`, `is_featured`, `backorders_allowed` | Booleans |
 | `add_to_cart_url`, `add_to_cart_text` | WooCommerce's add to cart link and button text |
+| `supports_ajax_add_to_cart` | WooCommerce's ajax add to cart button can add the product from a list: a simple product that can be bought and is in stock |
 | `weight`, `dimensions`, `shipping_class`, `tax_class` | Formatted with units |
 | `gallery_images`, `has_gallery` | Gallery images, each with `url`, `alt` and `sizes` |
 | `attributes` | List of `{ name, slug, options: [{ name, slug }], visible, variation }` |
 | `variations` | For variable products: `{ id, sku, attributes, price, price_amount, is_on_sale, stock_status, is_in_stock, is_purchasable, image }` |
 | `upsell_ids`, `cross_sell_ids`, `related_ids` | Product IDs, with `has_upsells`, `has_cross_sells`, `has_related` |
 | `related_products` | Up to four related products for cards: `id`, `title`, `permalink`, `image` (`url`, `alt`) and `woo` with prices, sale and rating |
-| `uses_product_form` | Etch's product form can add the product (simple and variable products); grouped, external and bookable products keep WooCommerce's form |
-| `quick_add` | The product is simple, purchasable and in stock, so a button or `cart-toggle` can add it without choosing anything first |
+| `quick_add` | The product is simple, purchasable and in stock, so one add to cart button can add it without choosing anything first |
 | `children`, `external_url` | Grouped products' children and external products' link |
 
 ### Reviews
@@ -94,14 +94,28 @@ These keys work on every page:
 
 | Key | Content |
 | --- | --- |
-| `woo.cart` | `items`, `count`, `subtotal`, `total`, `is_empty`, `needs_shipping`, `url`, `cross_sells` |
-| `woo.shipping` | `countries` (the countries the store ships to, each with `code` and `name`), `calculator` (WooCommerce offers the shipping calculator on the cart) |
+| `woo.cart` | `items`, `count`, `is_empty`; `subtotal`, `discount_total`, `shipping_total`, `tax_total` and `total`, each also as a number (`*_amount`); `coupons` (`code`, `discount`, `remove_url`); `needs_shipping`, `shipping_rates` and `shipping_address`; `cross_sells` (product IDs); `url`; `nonce` for cart forms; `currency`, `currency_symbol` |
+| `woo.shipping` | `countries` (the countries the store ships to, each with `code` and `name`), `states` (the states of the shopper's shipping country, if it has any), `calculator` (WooCommerce offers the shipping calculator on the cart) |
 | `woo.checkout.url` | Link to the checkout |
 | `woo.account` | `url`, `endpoint`, `is_dashboard`, `menu`, `is_logged_in`, and for customers `name` (first name, else display name), `orders` and `addresses` |
 | `woo.shop` | On shop, category, tag and search pages: `url`, `title`, `description`, `products` (cards like `related_products`, with `quick_add`), `total`, `has_one_product` (for `1 product`), `pages` (`number`, `url`, `is_current`), `previous_url`, `next_url`, `sorting` (`value`, `label`, `is_current`), `search` and `categories` (`name`, `url`, `count`, `is_current`); elsewhere `url` and empty lists |
 | `woo.order` | The current order on the thank-you page and in the account, following WooCommerce's access rules |
 
-Loop over the cart with `woo.cart.items`. Each item is one line: `item.name`, `item.quantity`, `item.price`.
+Loop over the cart with `woo.cart.items`. Each item is one line:
+
+| Field | Content |
+| --- | --- |
+| `key` | The line's key, for the quantity field `cart[{item.key}][qty]` |
+| `product_id`, `variation_id` | The product, and the variation or `0` |
+| `name`, `permalink`, `image` | Name, link and image (`url`, `alt`) |
+| `variation_label` | The chosen variation, such as `Color: Blue` |
+| `quantity`, `quantity_max` | Quantity; `quantity_max` is `1` for products sold individually |
+| `price`, `line_subtotal`, `line_total` | Unit price, line before and after discounts, each also as a number (`*_amount`) |
+| `item_data` | Details plugins attach to the line, see below |
+| `remove_url` | WooCommerce's link that removes the line |
+| `woo` | The product's fields, as on a product page |
+
+`woo.cart.shipping_rates` lists one entry per shipping package, with `package_id`, `name` and `rates`. Each rate has `id`, `name`, `price` (`Free` without cost), `price_amount` and `selected`. `woo.cart.shipping_address` holds the `country`, `state`, `postcode` and `city` the rates are estimated for. See [Shipping](./cart-and-checkout.md#shipping).
 
 Plugins attach details to a line, such as a booking date, an add-on choice, or Germanized's delivery time and unit price. They are in `item.item_data`, each with `key`, `value` and `slug` (the key as a class name). Show them with a loop:
 
@@ -115,9 +129,9 @@ Plugins attach details to a line, such as a booking date, an add-on choice, or G
 </dl>
 ```
 
-Germanized's values already contain their label ("Delivery time: 2–3 days"), so the Woo Cart starter hides the key of details whose slug starts with `gzd-`. `item.quantity_max` is `1` for products sold individually.
+Germanized's values already contain their label ("Delivery time: 2–3 days"), so the Woo Cart starter hides the key of details whose slug starts with `gzd-`.
 
-Germanized's lines under the totals of WooCommerce's classic cart are table rows for that table, so the Woo Cart starter leaves them out: the included tax shows in its own tax row (`cart-tax`). A shop that sells second-hand goods under differential taxation adds that notice as text.
+Germanized's lines under the totals of WooCommerce's classic cart are table rows for that table, so the Woo Cart starter leaves them out: the tax shows in its own row (`woo.cart.tax_total`). A shop that sells second-hand goods under differential taxation adds that notice as text.
 
 A page that renders a filled cart is marked as not cacheable, as WooCommerce does for its cart and checkout.
 
@@ -136,7 +150,7 @@ The **WooCommerce Products** loop type (`woo-products`) lists products. Every it
 | `price_min`, `price_max` | Numbers |
 | `include`, `exclude` | Product IDs |
 | `relation` with `product_id` | `related`, `upsells`, `cross_sells` (without `product_id`: the cart's cross-sells) or `children` |
-| `include_in_cart` | With the cart's cross-sells: also list those the cart already holds, which WooCommerce leaves out. For order bumps, see [Cart and checkout](./cart-and-checkout.md#recipe-order-bump) |
+| `include_in_cart` | With the cart's cross-sells: also list those the cart already holds, which WooCommerce leaves out. For order bumps, see [Cart and checkout](./cart-and-checkout.md#your-own-order-bump) |
 
 Arguments take loop parameters, so one loop serves many places. A loop with `include: "$ids"` shows the products you pass in:
 

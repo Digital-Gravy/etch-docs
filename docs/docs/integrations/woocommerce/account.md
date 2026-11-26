@@ -11,7 +11,7 @@ The **Woo Account** starter turns WooCommerce's My account page into an Etch pag
 
 | Component | What it shows |
 | --- | --- |
-| **Woo Account** | The page: store notices, then for customers the menu and the content, for guests WooCommerce's login (and registration, if the shop allows it). |
+| **Woo Account** | The page: WooCommerce's notices (from `woocommerce_account_content`, priority 5), then for customers the menu and the content, for guests WooCommerce's login (and registration, if the shop allows it). |
 | **Woo Account Nav** | A loop over `woo.account.menu`. The link of the page shown carries `aria-current="page"`. |
 | **Woo Account Dashboard** | The account front page: a greeting with `woo.account.name`, the latest orders from `woo.account.orders` and both addresses from `woo.account.addresses`. |
 
@@ -19,7 +19,7 @@ The **Woo Account** starter turns WooCommerce's My account page into an Etch pag
 
 The dashboard is Etch's. The other account pages (orders, order details, downloads, addresses, account details, payment methods) and the login and lost-password forms are WooCommerce's own, so their fields, checks and the plugins that extend them keep working.
 
-- On the account pages other than the dashboard, a **WooCommerce Hook** block runs `woocommerce_account_content`, the same hook WooCommerce's own account page uses.
+- On the account pages other than the dashboard, a **WooCommerce Hook** block runs `woocommerce_account_content` from priority 6, the same hook WooCommerce's own account page uses, without the notices printed above.
 - For guests, the starter prints WooCommerce's `[woocommerce_my_account]`, which shows the login and lost-password forms.
 
 ![Guests see WooCommerce's login form inside the account page](img/woo-account-login.webp)

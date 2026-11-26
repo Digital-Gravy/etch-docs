@@ -26,7 +26,9 @@ The templates are listed in the template hub under **WooCommerce**. Single produ
 
 ## Cart and checkout
 
-WooCommerce shows its cart and checkout pages through the templates **Cart** and **Checkout**, whatever template the page itself selects. Keep those templates as a frame: header, a `main` element with the post content inside it, footer.
+WooCommerce shows its cart and checkout pages through the templates **Cart** and **Checkout**, whatever template the page itself selects. With the Etch theme, Etch supplies both, and the **Order Confirmation** template: each is an Etch `main` element with WooCommerce's store notices and the content. On the Cart template the notices sit in a [cart region](./cart-and-checkout.md#cart-regions), so they update after background cart actions. A template you saved in the template hub wins over Etch's.
+
+Keep these templates as a frame: header, a `main` element with the store notices and the post content inside it, footer.
 
 ```html
 <SiteHeader />
@@ -40,12 +42,16 @@ The cart or checkout itself goes into the page. Installing a starter with placem
 
 A frame of its own is useful for the checkout. Give the **Checkout** template a reduced header (logo, help link, no navigation) and the checkout page keeps its content.
 
+Keep the store notices in an edited Cart or Checkout template. Without them, a page that keeps WooCommerce's Cart or Checkout block shows no notices.
+
 ### WooCommerce's own cart or checkout
 
-Etch's builder offers no element for WooCommerce's original Cart and Checkout blocks, because the roles and starters replace them. If a plugin needs WooCommerce's own cart or checkout:
+The cart and checkout pages keep WooCommerce's Cart and Checkout blocks until you replace them, so the shop works as before. The **Woo Cart** and **Woo Checkout** starters replace them, and **Remove** puts them back.
+
+To go back by hand, for example because a payment plugin needs WooCommerce's block checkout:
 
 1. Open the cart or checkout page in the block editor (Pages → Cart → Edit).
-2. Delete every block on the page. On the checkout page this includes the Checkout block that is already there: it is the hidden carrier of Etch's checkout and stays empty on the frontend.
+2. Delete every block on the page.
 3. Add a new **Cart** or **Checkout** block from WooCommerce and save.
 
 The template stays the frame around it.
@@ -56,8 +62,8 @@ The template stays the frame around it.
 
 | Component | What it shows |
 | --- | --- |
-| **Woo Shop** | Title (`woo.shop.title`), category description, product count, WooCommerce's sorting, categories, the grid and paging |
-| **Woo Shop Grid** | One card per product of the page (`woo.shop.products`): image, sale badge, regular and sale price, and **Add to cart** for simple products in stock (`quick_add`), a link to the product for the others |
+| **Woo Shop** | WooCommerce's notices, title (`woo.shop.title`), category description, product count, WooCommerce's sorting, categories, the grid and paging |
+| **Woo Shop Grid** | One card per product of the page (`woo.shop.products`): image, sale badge, regular and sale price, and **Add to cart** for simple products in stock (`quick_add`), a link to the product with WooCommerce's button text for the others |
 | **Woo Shop Categories** | The top-level categories (`woo.shop.categories`), the one shown marked with `aria-current` |
 | **Woo Shop Pagination** | Previous, page numbers and next (`woo.shop.pages`) |
 
@@ -65,11 +71,13 @@ The products are the page's own, so WooCommerce's sorting, filters, paging and t
 
 ![A category page from Woo Shop: the current category is marked in the list, simple products have Add to cart, variable ones Select options](img/woo-category.webp)
 
-The sorting is a `select` with the role `catalog-sorting` and `name="orderby"` inside a GET form. Choosing an order submits the form, as WooCommerce's own dropdown does. On search results the form keeps the search terms (`woo.shop.search`).
+**Add to cart** on a card is WooCommerce's ajax add to cart button (the classes `add_to_cart_button ajax_add_to_cart`). It adds the product without leaving the page, and the cart regions on the page, such as the header count and the drawer, update. Without JavaScript it posts `add-to-cart` and reloads the page.
+
+The sorting is WooCommerce's own sorting form: a GET form with the class `woocommerce-ordering` and a `select` with `name="orderby"` and the class `orderby`. Choosing an order submits it, as WooCommerce's own dropdown does; without JavaScript a **Sort** button does. The form keeps the search terms, category and tag. Other filters in the URL, such as WooCommerce's layered navigation, are dropped when sorting.
 
 ## Order confirmation
 
-The order confirmation is not a page. WooCommerce shows it at the end of the checkout URL (`/checkout/order-received/…`), so its content lives in the template **Order Confirmation**. Read the order from `woo.order`.
+The order confirmation is not a page. WooCommerce shows it at the end of the checkout URL (`/checkout/order-received/…`), so its content lives in the template **Order Confirmation**. Etch's version shows WooCommerce's order confirmation blocks (status, summary, totals, downloads and addresses) inside an Etch section. To design it yourself, read the order from `woo.order`, and place a hook block on `woocommerce_thankyou` for the payment method's instructions, such as bank details.
 
 ## Pages with their own frame
 

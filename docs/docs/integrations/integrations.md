@@ -12,4 +12,4 @@ Most third-party custom field plugins are supported since you can access any cus
 
 For example, you can access all ACF data using the `this.acf` namespace. Their data is stored in a more structured way, so we output all that info nested under `this.acf`.
 
-WooCommerce has its own integration: product, cart and account data under `woo`, product loops, and roles that turn your own markup into a live cart, checkout and product form. See [WooCommerce](./woocommerce/woocommerce.md).
+WooCommerce has its own integration, in development: product, cart and account data under `woo`, product loops, cart regions that update without a reload, and WooCommerce's checkout in your own layout. See [WooCommerce](./woocommerce/woocommerce.md).
