@@ -27,7 +27,7 @@ interface StyleSummary {
   id: string;                            // stable id — use with styles.update and styles.delete
   selector: string;                      // CSS selector, e.g. ".lead"
   type: StyleSelectorType | undefined;    // inferred selector type
-  collection: string;                    // internal; always "default" for the public API
+  collection: string;                    // internal; "default" for API-created styles
   css: string;                           // the CSS declarations
 }
 
@@ -42,6 +42,8 @@ interface StylePatch {
 
 type StyleSelectorType = "class" | "id" | "tag" | "element" | "attribute" | "custom";
 ```
+
+`collection` is an internal detail and may change without notice. Existing styles can belong to other collections; do not rely on this value.
 
 ```ts
 // Create a class rule
