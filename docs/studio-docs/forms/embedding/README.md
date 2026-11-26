@@ -8,9 +8,10 @@ sidebar_position: 10
 The fastest route. A form service hosts the form, receives the submissions and
 notifies you; your page just has to load it.
 
-This works with any provider that hands you an embed snippet — a `<script>` tag,
-an `<iframe>`, or both. Studio has no special integration with any of them, and
-doesn't need one.
+Many providers offer an embed snippet using a `<script>` tag, an `<iframe>`, or
+both. Studio has no built-in form submission handling or special integration
+with these providers. Check the provider's requirements and test its embed in
+your deployed or downloaded site; compatibility varies.
 
 ## Providers to look at
 
@@ -129,9 +130,10 @@ ask for the head, keep the script next to the container.
 ### What happens next
 
 Studio parses what you paste into blocks, so the embed becomes part of the page
-structure: visible in **Structure**, selectable, movable. When the site is
-built, the code goes into the exported HTML exactly as you wrote it, and the
-form loads in the visitor's browser when the page opens.
+structure: visible in **Structure**, selectable, movable. The built site renders
+the resulting structure as HTML, but it may not match the original snippet
+exactly. Test that the provider's form loads and accepts a submission on the
+exported site.
 
 ## 3. Adjust sizing and styling
 

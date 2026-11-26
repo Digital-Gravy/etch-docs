@@ -42,18 +42,17 @@ if (!etch.ui.isInterfaceHidden()) etch.ui.toggleInterface();
 
 ## etch.history
 
-`EtchHistoryApi` drives the same undo/redo stack as the keyboard shortcuts. Because every scripting mutation routes through the guarded UI paths, your changes participate in undo/redo automatically.
+`EtchHistoryApi` drives the same undo/redo stack as the keyboard shortcuts. It tracks changes to registered builder state, not every scripting mutation. Do not assume an immediately persisted content or asset change can be undone through this stack. Changes recorded close together can be grouped into one history step.
 
 ```ts
 interface EtchHistoryApi {
-  undo(): void;          // undo the last builder mutation
-  redo(): void;          // redo the last undone mutation
+  undo(): void;          // undo the last recorded history step
+  redo(): void;          // redo the last undone history step
   canUndo(): boolean;
   canRedo(): boolean;
 }
 ```
 
 ```ts
-etch.blocks.setText(id, "Draft");
-if (etch.history.canUndo()) etch.history.undo(); // reverts the setText above
+if (etch.history.canUndo()) etch.history.undo();
 ```

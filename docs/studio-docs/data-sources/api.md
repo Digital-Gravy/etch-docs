@@ -92,13 +92,15 @@ It's simply empty until you fill it in.
 Two contexts, and the difference matters:
 
 **In the builder**, the request is made by your browser. Normal browser rules
-apply: the endpoint needs to allow the origin via CORS, and a `file://`-style
-or localhost-only endpoint won't be reachable.
+apply, including CORS and mixed-content restrictions. `localhost` refers to the
+computer running your browser, so a local endpoint may be reachable if those
+rules allow it.
 
-**At deploy or download**, the request is made on the server as the site is
-built, and the response is **baked into the generated HTML**. Your deployed site
-is static: it does not call the API when a visitor arrives. To publish updated
-data, deploy again.
+**At deploy or download**, the request is made in the build environment, and
+the response is **baked into the generated HTML**. In a remote build,
+`localhost` refers to that environment, not your computer; an API running only
+on your computer is not available there. Your deployed site is static: it does
+not call the API when a visitor arrives. To publish updated data, deploy again.
 
 If you need data that's live per visitor, an API source isn't the tool. That's a
 job for client-side JavaScript on the deployed page.
