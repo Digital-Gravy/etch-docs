@@ -38,6 +38,12 @@ interface EtchRoutesApi {
 
 Every write **persists immediately**; none of them wait for `etch.saveAsync()`. An open Routes Manager shows the change.
 
+:::caution Partial updates
+When `updateAsync()` changes `parentId` along with other fields, the move is
+written first. If the later update fails, the route may already be under the
+new parent. Read `listAsync()` to inspect its current state before retrying.
+:::
+
 ## Segments
 
 A route's URL is its ancestors' segments joined by `/`. What a segment is depends on how it's written:
