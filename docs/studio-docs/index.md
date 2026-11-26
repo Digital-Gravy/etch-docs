@@ -9,12 +9,12 @@ Etch is the first and only Unified Visual Development Environment. It empowers u
 
 ## What Makes Etch Different
 
-Unlike traditional page builders that generate bloated code, block code access, and lock you into proprietary systems, Etch provides a transparent visual interface that directly manipulates real HTML, CSS, PHP, and JavaScript. You get the speed and convenience of visual development without sacrificing code quality, control, or web standards.
+Unlike traditional page builders that generate bloated code, block code access, and lock you into proprietary systems, Etch provides a transparent visual interface that directly manipulates real HTML, CSS, and JavaScript. You get the speed and convenience of visual development without sacrificing code quality, control, or web standards.
 
 **Key Principles:**
 - **Total Transparency** – Every element is accessible and editabl via GUI or code. No hidden wrappers or mysterious containers.
 - **Crystal Clean Output** – Professional-grade code that you'd be proud to write by hand.
-- **Web Standards** – Work with Semantic HTML, CSS, PHP, and JavaScript as they were designed to work.
+- **Web Standards** – Work with Semantic HTML, CSS, and JavaScript as they were designed to work.
 - **Full Empowerment** – Complete control over your code without limitations.
 - **Hyper-Efficiency** – Etch turns traditionally complex tasks like building loops, components, dynamic templates, conditional elements, and custom blocks into easy money.
 
