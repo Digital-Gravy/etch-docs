@@ -18,10 +18,10 @@ This page will serve as the master doc page for all dynamic data keys. Feel free
 | -------------------- | -------------------------------------------------------------------------------------- |
 | `id`                 | The unique identifier for the item (post, page, etc).                                  |
 | `title`              | The title of the item.                                                                 |
-| `slug`               | The URL-friendly slug for the item.                                                    |
-| `content`            | The main content/body of the item.                                                     |
-| `createdAt`               | The publish date of the item.                                                          |
-| `updatedAt`           | The last modified date of the item.                                                    |
+| `slug`               | A canonical static route path without surrounding slashes, when available. See [routing](../routing/README.md#thisslug-and-thisishomepage). |
+| `content`            | The item's content as a block tree; use a [Render element](../elements/render.md) to render it. |
+| `createdAt`          | The item's creation date and time.                                                     |
+| `updatedAt`          | The item's last modified date and time.                                                |
 
 ## Site Keys
 
