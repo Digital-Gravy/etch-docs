@@ -11,7 +11,7 @@ import VersionBadge from '@site/src/components/VersionBadge/VersionBadge';
 
 # Public API
 
-Etch exposes a typed scripting API on `window.etch` that lets your own scripts and plugins read and mutate the document the builder is editing — blocks, styles, loops, components, custom fields, and the builder UI itself. Every mutation routes through the same guarded paths as the UI, so undo/redo keeps working and nothing bypasses validation.
+Etch exposes a typed scripting API on `window.etch` that lets your scripts and external tools work with blocks, styles, components, data sources, content fields, and the builder UI. Some editor changes support undo and redo; not every API operation is covered by history.
 
 The contract is published as an MIT-licensed npm package that ships **types plus a thin accessor** — no heavy runtime is bundled. The runtime itself is provided by the Etch builder on the page.
 
@@ -20,7 +20,7 @@ npm install @digital-gravy/etch-public-api
 ```
 
 :::warning Experimental surface
-The current contract version is **`0.x`** — the surface is experimental and may change without a major version bump until it stabilizes. Prefer [feature detection](#feature-detection) over version comparison, and don't pin production plugins to `0.x`.
+The current contract version is **`0.x`** — the surface is experimental and may change without a major version bump until it stabilizes. Prefer [feature detection](#feature-detection) over version comparison, and don't pin production integrations to `0.x`.
 :::
 
 ## Acquiring the API
@@ -70,14 +70,14 @@ const etch = await whenEtchReady();
 ```ts
 interface ConnectOptions {
   apiVersion?: string; // e.g. "^1.0" — reserved for the future 1.x runtime
-  id?: string; // your plugin identifier, for telemetry
+  id?: string; // your integration identifier, for telemetry
 }
 ```
 
 On today's `0.x` runtime, `getEtch()` returns the global directly after a best-effort version check (it **warns**, but does not throw, on a major-version mismatch). When a future stable runtime exposes a native `connect()`, version negotiation is delegated to it.
 
 ```ts
-const etch = getEtch({ apiVersion: "^1.0", id: "my-plugin" });
+const etch = getEtch({ apiVersion: "^1.0", id: "my-integration" });
 ```
 
 ## The `Etch` object
@@ -233,7 +233,7 @@ interface EtchEnvironment {
 type EtchCapabilities = Readonly<Partial<Record<EtchCapability, boolean>>>;
 ```
 
-A capability that's missing from the map counts as unavailable, so test with `=== true`. Namespace presence alone does not guarantee support: Studio also exposes some namespaces whose methods throw `NOT_AVAILABLE`.
+A capability that's missing from the map counts as unavailable, so test with `=== true`. Namespace presence alone does not guarantee support: Studio exposes `etch.loops` and `etch.fields`, but their methods throw `NOT_AVAILABLE`. Use loop blocks with data sources, and manage content fields through `etch.content`.
 
 | Capability | When `true` | On Etch Studio |
 | --- | --- | --- |
