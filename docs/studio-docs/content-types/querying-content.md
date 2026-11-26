@@ -57,7 +57,7 @@ Keys are field names, values are conditions. A bare value means equality:
 
 ```js
 where: {
-	slug: 'about';
+	slug: 'about'
 }
 ```
 
