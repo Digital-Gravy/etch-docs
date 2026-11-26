@@ -183,6 +183,8 @@ await etch.content.updateItemAsync(jo.id, { fields: { role: "Lead designer" } })
 
 Creating a non-template type also creates a matching [JavaScript data source](../data-sources/javascript.md) that queries its items, as the Content Hub does. The new item is unpublished until a [route](./routes.md) serves it or its type.
 
+If `createTypeAsync` fails while creating the data source, the content type may already exist. Check `listTypesAsync` before retrying; also check the data source before creating a replacement.
+
 ## Errors
 
 | Code | When |
