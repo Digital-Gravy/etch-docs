@@ -39,8 +39,10 @@ https://studio.etchbuilder.io/mcp
 - **Other clients:** add it as a remote (HTTP) MCP server. See your client's
   documentation for where.
 
-When you connect, sign in with your Etch Studio account. The assistant can
-reach the same workspaces and projects you can, and nothing more.
+When you connect, sign in with your Etch Studio account. The assistant can list
+the workspaces and projects you can access, but opening a project also requires
+your role to have permission to use the AI Connector. It cannot access projects
+you cannot reach.
 
 ## Quickstart
 
@@ -110,7 +112,7 @@ yourself; they're listed so you can follow what the assistant is doing.
 
 | Tool | What it does |
 | --- | --- |
-| `list_projects` | Lists your workspaces and the projects in each. |
+| `list_projects` | Lists your accessible workspaces and projects. Each workspace's `agentAllowed` indicates whether your role permits the assistant to open its projects. |
 | `open_project` | Opens a project and returns a handle the other tools use, along with who else has the project open. |
 | `request_control` | Asks whoever has editing control to hand it over and waits for the answer and any required reload. |
 | `hand_over_control` | Releases editing control without closing the builder. Saves first by default; `save: false` skips saving. A save rejection prevents the tool from releasing control. |
