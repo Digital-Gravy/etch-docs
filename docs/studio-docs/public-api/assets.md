@@ -175,6 +175,8 @@ const inHeroes = await etch.assets.listAsync({ collectionId: heroes.id });
 
 Deleting a collection keeps its assets and moves its sub-collections to the top level.
 
+`updateCollectionAsync` renames a collection before moving it when both `name` and `parentId` are supplied. If the move fails, the rename may already have persisted. Inspect the collection with `listCollectionsAsync` before retrying a failed update.
+
 ## Errors
 
 | Code | When |
