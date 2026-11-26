@@ -118,12 +118,12 @@ driving a condition: all reasonable data sources, none of them loops.
 
 ### Reaching into the value
 
-Dot notation walks objects and arrays:
+Use dot notation for object properties and bracket notation for array indexes:
 
 <!-- prettier-ignore -->
 ```html
 {data('profile').name}
-{data('courses').0.title}
+{data('courses')[0].title}
 {data('settings').contact.email}
 ```
 
