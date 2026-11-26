@@ -46,7 +46,7 @@ interface PostSummary {
   id: number;
   title: string;
   slug: string;
-  status: string;   // e.g. "publish", "draft"
+  status: string;   // always "publish" in Studio
   postType: string; // e.g. "page", "post", or a custom type
 }
 
@@ -56,6 +56,8 @@ interface TemplateSummary {
   slug: string;
 }
 ```
+
+Studio returns `"publish"` for every post summary; it does not indicate whether a route serves the item. A post summary's `slug` is empty when no static route supplies one, which does not distinguish an unrouted item from one served dynamically. Template summaries always have an empty `slug`.
 
 In Studio, `goTo("templates")` opens the content hub. The `routes` place requires permission to manage routes: without it, `getPlaces()` omits it and `goTo("routes")` throws `NOT_AVAILABLE`.
 
