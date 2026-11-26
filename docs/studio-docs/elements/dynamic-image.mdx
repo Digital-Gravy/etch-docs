@@ -24,11 +24,9 @@ On the front-end, the image will be rendered with the appropriate `alt`, `src`, 
 
 The `alt` attribute will be populated from the media library, but can be overridden by setting a custom `alt` attribute.
 
-You can also choose a specific maximum image size by choosing from the `Maximum Size` dropdown in the Attributes Panel, or use the `maximumSize` attribute to set a custom size.
+If you do not want to use `srcset` and `sizes`, turn off **Use srcset** in the image properties, or set the `useSrcSet` attribute to `false`.
 
-If you do not want to use `srcset` and `sizes`, you can disable this feature by toggling off the `Use SRCSET` option in the Attributes Panel, or set the `useSrcSet` attribute to `false`.
-
-![Etch Dynamic Image Attribute Panel](img/etch-dynamic-image-attribute-panel.webp)
+![Studio image properties showing Media ID, Alt Text, static URL, and Use srcset controls](img/etch-dynamic-image-attribute-panel.webp)
 
 ## Using Dynamic Images With Components
 
@@ -38,6 +36,6 @@ For example, if you want to create a gallery, you can loop over an array of medi
 
 ## Other attributes
 
-Any attribute set on the Dynamic image element will be passed through to the rendered `<img>` tag, except for the special attributes like `src`, `maximumSize`, and `useSrcSet`, which won't be rendered on the final `<img>` tag.
+Attributes set on the Dynamic Image element are passed through to the rendered `<img>` tag, except for `mediaId`, `maximumSize`, and `useSrcSet`. When a Media ID is set, Studio generates the `src` from the selected asset.
 
 If you set a custom `alt` attribute, it will override the default alt text from the media library.
