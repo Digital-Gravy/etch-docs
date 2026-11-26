@@ -9,7 +9,7 @@ last_update:
 
 # Types Reference
 
-This page collects the shared types referenced throughout the [Public API](./index.md) — the block JSON union, the common block shape, and HTML helper types. For per-namespace types (styles, components, loops, fields), see each namespace page.
+This page collects shared types referenced throughout the [Public API](./index.md) — the block JSON union, the common block shape, and HTML helper types. For namespace-specific types, see each namespace page.
 
 ## Block JSON
 
@@ -59,7 +59,7 @@ On `PublicBlockJson`, reads also expose:
 
 ### Block variants
 
-The shapes below describe Studio's supported block variants. In particular, Studio loops use a required dynamic `target` expression.
+The shapes below include block variants supported by Studio. Studio loops use a required dynamic `target` expression. For the runtime's registered block types, check `etch.environment.blockTypes`.
 
 ```ts
 interface EtchTextBlockJson extends EtchBlockCommon {
@@ -80,7 +80,7 @@ interface EtchDynamicElementBlockJson extends EtchBlockCommon {
 
 interface EtchDynamicImageBlockJson extends EtchBlockCommon {
   type: "etch/dynamic-image";
-  attributes: EtchHtmlAttributes; // special: mediaId, useSrcSet, maximumSize
+  attributes: EtchHtmlAttributes; // special: mediaId, useSrcSet
 }
 
 interface EtchSvgBlockJson extends EtchBlockCommon {
@@ -121,10 +121,6 @@ interface EtchSlotPlaceholderBlockJson extends EtchBlockCommon {
   slotName: string;
 }
 
-interface EtchPostContentBlockJson extends EtchBlockCommon {
-  type: "etch/post-content";      // no extra fields
-}
-
 interface EtchRawHtmlBlockJson extends EtchBlockCommon {
   type: "etch/raw-html";
   content: string;                // sanitized HTML
@@ -135,19 +131,7 @@ interface EtchRawHtmlBlockJson extends EtchBlockCommon {
 
 ## Copy payload
 
-`CopyObject` is the portable, JSON-serializable snapshot produced by [`etch.blocks.copy()`](./blocks.md#copy-paste) and consumed by [`etch.blocks.pasteAsync()`](./blocks.md#copy-paste). Treat it as an **opaque token** — hold it, store it, or pass it back to `pasteAsync()`. The bundled `styles` / `loops` / `components` / `customMediaDefinitions` are Etch-internal definitions that paste re-creates and re-maps to fresh ids, so don't depend on their shape.
-
-```ts
-interface CopyObject {
-  type: "block";                                        // payload kind (currently always "block")
-  version: number;                                      // schema version, from the block's features
-  styles?: { [styleId: string]: unknown };              // referenced global styles (opaque)
-  loops?: { [loopId: string]: unknown };                // referenced loop definitions (opaque)
-  components?: { [componentId: number]: unknown };      // referenced component definitions (opaque)
-  customMediaDefinitions?: { [name: string]: unknown }; // referenced @custom-media rules (opaque)
-  timestamp?: string;                                   // ISO 8601 time the copy was produced
-}
-```
+`CopyObject` is the portable, JSON-serializable snapshot produced by [`etch.blocks.copy()`](./blocks.md#copy-paste) and consumed by [`etch.blocks.pasteAsync()`](./blocks.md#copy-paste). Treat it as an **opaque token**: hold it, store it, or pass it back unchanged to `pasteAsync()`. Do not depend on its internal shape.
 
 ## Errors
 
@@ -177,6 +161,8 @@ type EtchApiErrorCode =
   | "ASSET_NOT_FOUND"
   | "COLLECTION_NOT_FOUND"
   | "ASSET_IN_USE"
+  | "ACSS_DISABLED"
+  | "DEPLOY_BLOCKED"
   | "OPERATION_FAILED"
   | "NOT_AVAILABLE"
   | (string & {});
