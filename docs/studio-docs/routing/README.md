@@ -207,18 +207,26 @@ means no route serves it.
 
 ## Published URLs
 
-- Every page is published with a trailing slash: `/team/john/`. The bare form,
-  `/team/john`, redirects to it.
-- `sitemap.xml` lists every published URL.
+- Ordinary pages are built as directory indexes, with paths such as
+  `/team/john/`. On Studio's Cloudflare deployment, `/team/john` redirects to
+  the trailing-slash form. If you download the site as a ZIP, redirects and
+  URL handling depend on your host.
+- When the site URL is configured, the build includes `sitemap.xml` and
+  `robots.txt`. The sitemap excludes noindex pages, redirected pages and
+  generated 404 files. A custom 404 is optional: you must assign a page as an
+  [error page](redirects-and-errors.md#the-error-page) to generate one. If that
+  same page is also served by a normal route, its normal URL can appear in the
+  sitemap.
 - Routes, and new content they pick up, take effect **on the next deploy**.
   You don't need to revisit the Routes Manager when you add content: a new
   employee gets their page as soon as you deploy.
 
 ## `this.slug` and `this.isHomepage`
 
-A record's `slug` is **read from the routes**, not typed in: it's the record's
-path without the surrounding slashes, taken from the static routes that serve
-it.
+A record's `slug` is **read from its static routes**, not typed in: it's a
+canonical path without the surrounding slashes. If more than one static route
+serves the record, Studio chooses the shortest path, breaking ties
+alphabetically.
 
 | Published at   | `slug`       | `isHomepage` |
 | -------------- | ------------ | ------------ |
@@ -227,14 +235,14 @@ it.
 | `/docs/intro/` | `docs/intro` | `false`      |
 | nowhere        | absent       | `false`      |
 
-So `https://example.com/{this.slug}/` is always a page's real address. To move a
-page, rename its route.
+Use the routes to determine a page's address. A record may be served at more
+than one URL, and its `slug` does not describe every route.
 
 Because the routes decide `slug` and `isHomepage`, a route's name can't use
 either of them. Use `{this.title.toSlug()}` or another field instead.
 
 :::caution Known limitation
-A record served **only** by a dynamic route has no `slug` yet. Link to it by
-building the same expression the route uses, for example
-`/team/{member.title.toSlug()}/`.
+A record served **only** by a dynamic route has no `slug` yet, even though it
+has a published address. Link to it by building the same expression the route
+uses, for example `/team/{member.title.toSlug()}/`.
 :::
