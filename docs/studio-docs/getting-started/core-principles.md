@@ -9,7 +9,7 @@ sidebar_position: 40
 
 Etch respects the fundamental language and practices of web development. We don't create proprietary systems or "magic" that hides what's really happening.
 
-Instead, we work with HTML, CSS, PHP, and JavaScript as they were designed to work, providing a visual interface that directly manipulates real code. This means you learn actual web development skills, not just how to use a tool.
+Instead, we work with HTML, CSS, and JavaScript as they were designed to work, providing a visual interface that directly manipulates real code. This means you learn actual web development skills, not just how to use a tool.
 
 ## Pillar #2: Never Generate an Element the User Can't Access
 
