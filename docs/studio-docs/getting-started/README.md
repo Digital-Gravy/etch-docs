@@ -44,18 +44,19 @@ is.
 
 Pages live in the **Content Hub**, which you open from the left rail.
 
-1. Select **Pages** in the sidebar (the **Content** tab).
-2. In the table's footer row, type a **title** and, optionally, a **slug**.
-   Leaving the slug blank derives one from the title.
-3. Select **Create Page**.
+1. On the **Content** tab, select the built-in `page` content type in the
+   sidebar.
+2. Enter a title in the table's footer row and select **Create Item**, or press
+   <kbd>Enter</kbd>. The **New Item** button above the table focuses the title
+   field.
+3. Use the row's **Open in Builder** action, then use the **Elements** picker
+   in the action bar to add elements to the canvas.
 
-Use the home icon on a row to mark that page as the site's homepage; it becomes
-`index.html` when the site is built.
+To give the page an address, assign it to a route in the
+[Routes Manager](../routing/README.md). Assign it to the `/` route to make it
+the homepage.
 
-![The Content Hub showing the Pages table, with the title and slug fields in the footer row and the Create Page button](../images/content-hub-pages.webp)
-
-Select the page to open it in the builder, then use the **Elements** picker in
-the action bar to add elements to the canvas.
+![The Content Hub showing a Home page served under the root route and a title field for a new item](../images/content-hub-pages.webp)
 
 ### Saving
 
