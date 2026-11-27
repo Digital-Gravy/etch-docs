@@ -88,6 +88,27 @@ A review form is your own markup. It posts to WordPress, which validates, stores
 
 `{site.url}` keeps the form working when WordPress is installed in a subdirectory. Guests get the name and email fields, required when WordPress requires them; logged-in customers get neither. **Woo Product** builds its review form this way.
 
+## Gallery images
+
+A product's gallery images (**Product gallery** in WooCommerce's product editor) are in `gallery_images` whenever WooCommerce is active: `this.gallery_images` on a product page, `item.gallery_images` in a loop over products. The main product image is not part of the list; it stays in `image`. A product without gallery images has an empty list.
+
+```html
+{#loop this.gallery_images as picture}
+  <etch:img mediaId="{picture.id}" loading="lazy" />
+{/loop}
+```
+
+With `mediaId`, the [Dynamic Image](../../elements/dynamic-image.mdx) element renders the image with `srcset` and `sizes` and takes the alt text from the media library. Each image has the same fields as `image`:
+
+| Field | Content |
+| --- | --- |
+| `id` | The attachment ID |
+| `url`, `filename` | The full-size image's URL and file name |
+| `alt`, `title`, `caption`, `description` | The texts from the media library |
+| `width`, `height`, `filesize`, `mime_type` | Size in pixels, file size in bytes and the file type |
+| `srcset` | WordPress's `srcset` for responsive images |
+| `sizes` | Every registered image size by name, plus `full`, each with `url`, `width` and `height`, for example `picture.sizes.woocommerce_gallery_thumbnail.url` |
+
 ## Shop-wide data
 
 These keys work on every page:

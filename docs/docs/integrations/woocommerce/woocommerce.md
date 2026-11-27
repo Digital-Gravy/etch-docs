@@ -7,6 +7,8 @@ sidebar_position: 1
 
 :::note In development
 The WooCommerce integration is not part of a released Etch version yet. This page describes the current development state and may change before the release.
+
+One part already works in released Etch versions: every product carries its gallery images as `gallery_images` whenever WooCommerce is active. See [Gallery images](./product-data.md#gallery-images).
 :::
 
 Etch lets you design every page of a WooCommerce shop yourself: product pages, shop and category pages, the cart, the cart drawer, the checkout and the customer account. You write the layout and the styles. WooCommerce keeps doing the shop's work: its forms, prices, taxes, notices and payment, and the plugins that hook into them keep working.
