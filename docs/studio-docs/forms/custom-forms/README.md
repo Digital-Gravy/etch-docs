@@ -56,6 +56,16 @@ setup: a contact form, a quote request, a newsletter sign-up.
 else: create a lead in your CRM, post to a Slack channel, add a row to a
 spreadsheet, or run your own validation rules.
 
+## Self-host with Etch Forms
+
+[Etch Forms](etch-forms/README.md) is a form backend you run in your agency's
+own Cloudflare account. It stores each client's submissions in a separate
+database and emails notifications through one shared mailer.
+
+Choose Etch Forms when your agency wants to control where form data is stored
+and is comfortable managing a Cloudflare account. The guide covers the complete
+setup, adding client sites, spam protection, submission management and removal.
+
 ## Form backends
 
 A form backend gives you an address to post your form to, such as
